@@ -1,0 +1,53 @@
+---
+interface Category {
+  name: string;
+  link: string;
+}
+
+interface Props {
+  categories : Category[];
+}
+
+const {categories} = Astro.props;
+---
+
+<div class="categories">
+  <ul class="categories__list">
+    {categories.map(category => (
+    <li>
+      <a href="{category.link}">{category.name}</a>
+    </li>
+    ))}
+  </ul>
+</div>
+
+
+<style>
+  .categories {
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.875rem;
+        
+      li {
+        list-style: none;
+
+        a {
+          font-size: .8em;
+          width: 100%;
+          height: 100%;
+          background-color: #ddd;
+          border: none;
+          color: black;
+          padding: 5px 10px 0px 10px ;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          cursor: pointer;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+</style>

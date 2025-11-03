@@ -1,0 +1,19 @@
+---
+import Categories from "./Categories.astro"
+
+interface Category {
+  name: string;
+  link: string;
+}
+
+const categories: Category[] = [
+  {name: "vegan", link: "#"},
+  {name: "vegan", link: "#"},
+  {name: "vegan", link: "#"},
+  {name: "high protein", link: "#"}
+];
+---
+
+<header>
+  <Categories categories={categories}/>
+</header>
