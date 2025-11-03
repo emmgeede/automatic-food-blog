@@ -1,0 +1,40 @@
+---
+interface Props {
+  link: string;
+  label: string;
+  outline?: boolean;
+  color?: 'primary' | 'secondary' | 'neutral' | 'accent';
+}
+
+const {link, label, outline = false, color="primary"} = Astro.props
+---
+
+<a href={link} class={`btn btn--${color}`}>{label}</a>
+
+
+<style>
+  .btn {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 5px 10px 0 10px;
+
+      &--primary {
+        background-color: var(--primary);
+      border: 5px solid red;
+        color: black;
+      }
+      &--secondary {
+        background-color: var(--secondary);
+        color: var(--muted);
+      }
+      &--accent {
+        background-color: var(--accent);
+        color: black;
+      }
+      &--neutral {
+        background-color: var(--neutral);
+        color: black;
+      }
+  }
+</style>

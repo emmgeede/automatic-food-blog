@@ -1,5 +1,7 @@
 ---
 import Categories from "./Categories.astro"
+import StarReviews from "./StarReviews.astro"
+import Button from "./Button.astro"
 
 interface Category {
   name: string;
@@ -12,8 +14,16 @@ const categories: Category[] = [
   {name: "vegan", link: "#"},
   {name: "high protein", link: "#"}
 ];
+
+const {frontmatter} = Astro.props
 ---
 
 <header>
   <Categories categories={categories}/>
+  <h1>Das ist ein Testtitel</h1>
+  <StarReviews rating={510} stars={4.96} />
+<ul>
+    <li><Button link="#" label="Zum Rezept springen" /></li>
+    <li><Button link="#" label="Rezept Pinnen" /></li>
+</ul>
 </header>

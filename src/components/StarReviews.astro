@@ -1,0 +1,80 @@
+---
+interface Props {
+  rating: number;
+  stars: number;
+}
+const { rating, stars } = Astro.props;
+
+// Berechne volle, halbe und leere Sterne
+const fullStars = Math.floor(stars);
+const hasHalfStar = stars % 1 >= 0.5;
+const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+---
+
+<div class="star-rating">
+  <div class="stars">
+    <!-- Volle Sterne -->
+    {Array.from({ length: fullStars }).map(() => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="star star-full">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    ))}
+    
+    <!-- Halber Stern -->
+    {hasHalfStar && (
+      <svg width="20" height="20" viewBox="0 0 24 24" class="star star-half">
+        <defs>
+          <linearGradient id="half-fill">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+          </linearGradient>
+        </defs>
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" 
+              fill="url(#half-fill)" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    )}
+    
+    <!-- Leere Sterne -->
+    {Array.from({ length: emptyStars }).map(() => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="star star-empty">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+    ))}
+  </div>
+  
+  <span class="rating-value">{stars.toFixed(2)}</span>
+  <span class="rating-count">({rating} Bewertungen)</span>
+</div>
+
+<style>
+  div {
+    font-size: .8em;
+  }
+  .star-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .stars {
+    display: flex;
+    gap: 0.125rem;
+    color: var(--secondary);
+  }
+  
+  .star {
+    flex-shrink: 0;
+  }
+  
+  .star-empty {
+    color: var(--neutral);
+  }
+  
+  .rating-value {
+    font-weight: 600;
+  }
+  
+  .rating-count {
+    color: var(--neutral);
+  }
+</style>
