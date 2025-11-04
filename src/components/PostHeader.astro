@@ -1,7 +1,7 @@
 ---
-import Categories from "./Categories.astro"
-import StarReviews from "./StarReviews.astro"
-import Button from "./Button.astro"
+import Categories from "./Categories.astro";
+import StarReviews from "./StarReviews.astro";
+import Button from "./Button.astro";
 
 interface Category {
   name: string;
@@ -9,21 +9,36 @@ interface Category {
 }
 
 const categories: Category[] = [
-  {name: "vegan", link: "#"},
-  {name: "vegan", link: "#"},
-  {name: "vegan", link: "#"},
-  {name: "high protein", link: "#"}
+  { name: "vegan", link: "#" },
+  { name: "vegan", link: "#" },
+  { name: "vegan", link: "#" },
+  { name: "high protein", link: "#" },
 ];
 
-const {frontmatter} = Astro.props
+const { frontmatter } = Astro.props;
 ---
 
 <header>
-  <Categories categories={categories}/>
+  <Categories categories={categories} />
   <h1>Das ist ein Testtitel</h1>
   <StarReviews rating={510} stars={4.96} />
-<ul>
-    <li><Button link="#" label="Zum Rezept springen" /></li>
-    <li><Button link="#" label="Rezept Pinnen" /></li>
-</ul>
+  <ul>
+    <li><Button ariaLabel="testbutton" link="#" label="Zum Rezept springen" /></li>
+    <li><Button ariaLabel="testbutton" link="#" label="Rezept Pinnen" /></li>
+  </ul>
 </header>
+
+<style lang="scss">
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 4%;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+</style>

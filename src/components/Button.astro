@@ -4,37 +4,127 @@ interface Props {
   label: string;
   outline?: boolean;
   color?: 'primary' | 'secondary' | 'neutral' | 'accent';
+  ariaLabel?: string;
+  disabled?: boolean;
+  loading?: boolean;
 }
 
-const {link, label, outline = false, color="primary"} = Astro.props
+const { 
+  link, 
+  label, 
+  outline = false, 
+  color = 'primary',
+  ariaLabel,
+  disabled = false,
+  loading = false
+} = Astro.props;
 ---
 
-<a href={link} class={`btn btn--${color}`}>{label}</a>
+<a href={disabled ? undefined : link}
+  class={`btn btn--${color} ${outline ? 'btn--outline' : ''}`}
+  aria-label={ariaLabel || label}
+  aria-disabled={disabled}
+  aria-busy={loading}
+  aria-describedby={disabled ? 'btn-disabled-msg' : undefined}
+  role="button"
+  tabindex={disabled ? -1 : 0}
+>
+  {label}
+</a>
+
+{disabled && (
+  <span id="btn-disabled-msg" class="sr-only">
+    Dieser Button ist deaktiviert
+  </span>
+)}
 
 
-<style>
-  .btn {
-    width: 100%;
-    height: 100%;
+<style lang="scss">
+  .btn{
+    min-width: 44px;
+    min-height: 44px;
     text-decoration: none;
-    padding: 5px 10px 0 10px;
+    padding: 5px 30px;
+    font-size: .9em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .5s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    // Focus-Styles für Tastaturnavigation
+    &:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 2px;
+    }
+    
+    // Hover-Effekt
+    &:hover:not([aria-disabled="true"]) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    // Active-State
+    &:active:not([aria-disabled="true"]) {
+      transform: translateY(0);
+    }
+    
+    // Disabled-State
+    &[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
 
       &--primary {
         background-color: var(--primary);
-      border: 5px solid red;
         color: black;
+        
+        &:hover {
+          background-color: var(--secondary);
+          color: white;
+        }
       }
       &--secondary {
         background-color: var(--secondary);
         color: var(--muted);
+
+        &:hover {
+          background-color: var(--primary);
+          color: black;
+        }
       }
       &--accent {
         background-color: var(--accent);
         color: black;
+
+        &:hover {
+          background-color: var(--primary);
+          color: black;
+        }
       }
       &--neutral {
         background-color: var(--neutral);
         color: black;
+
+        &:hover {
+          background-color: var(--primary);
+          color: black;
+        }
       }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 </style>
