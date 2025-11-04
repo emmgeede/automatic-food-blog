@@ -13,10 +13,12 @@ const { categories, ariaLabel = "Kategorien" } = Astro.props;
 ---
 
 <nav aria-label={ariaLabel}>
-  <ul class="list-none flex flex-row flex-wrap gap-2.5" role="list">
+  <ul class="flex list-none flex-row flex-wrap gap-2.5" role="list">
     {
       categories.map((category) => (
-        <Pill label={category.name} link={category.link} ariaLabel={ariaLabel} />
+        <li>
+          <Pill label={category.name} link={category.link} ariaLabel={ariaLabel} />
+        </li>
       ))
     }
   </ul>

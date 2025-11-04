@@ -8,51 +8,10 @@ interface Props {
 const { link, label, ariaLabel } = Astro.props;
 ---
 
-<li>
-  <a
-    href={link}
-    aria-label={label}
-    class="text-sm min-w-11 min-h-11 bg-neutral-200 border-none py-2.5 px-8 text-center inline-flex no-underline items-center justify-center cursor-pointer rounded-full transition-all duration-300 ease-in-out font-bold"
-  >
-    {label}
-  </a>
-</li>
-
-<style lang="scss">
-  a {
-    // Focus-Indicator für Tastaturnavigation
-    &:focus-visible {
-      outline: 3px solid var(--color-neutral-200);
-      outline-offset: 2px;
-    }
-
-    // Hover-Effekt
-    &:hover {
-      background-color: var(--color-neutral-400);
-      transform: translateY(-2px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    // Active-State
-    &:active {
-      transform: translateY(0);
-      background-color: var(--color-neutral-300);
-    }
-
-    // Kontrast-Verbesserung für bessere Lesbarkeit
-    @media (prefers-contrast: high) {
-      background-color: var(--color-black);
-      color: var(--color-white);
-      border: 2px solid var(--color-white);
-    }
-
-    // Reduced Motion für Nutzer mit Bewegungsempfindlichkeit
-    @media (prefers-reduced-motion: reduce) {
-      transition: none;
-
-      &:hover {
-        transform: none;
-      }
-    }
-  }
-</style>
+<a
+  href={link}
+  aria-label={ariaLabel}
+  class="text-sm min-w-11 min-h-11 bg-neutral-200 border-none py-2.5 px-8 text-center inline-flex no-underline items-center justify-center cursor-pointer rounded-full transition-all duration-300 ease-in-out focus-visible:outline-[3px] focus-visible:outline-neutral-200 focus-visible:outline-offset-2 hover:bg-neutral-400 hover:-translate-y-0.5 hover:shadow-[0_2px_8px_rgba(0,0,0,0.15)] active:translate-y-0 active:bg-neutral-300 contrast-more:bg-black contrast-more:text-white contrast-more:border-2 contrast-more:border-white motion-reduce:transition-none motion-reduce:hover:transform-none"
+>
+  {label}
+</a>

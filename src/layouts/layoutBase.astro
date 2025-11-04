@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-const { frontmatter, title } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
@@ -9,32 +9,22 @@ const { frontmatter, title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="{frontmatter.description}" />
-    <meta name="keywords" content="{frontmatter.keywords}" />
+    <meta name="description" content={frontmatter.metaDescription} />
+    <meta name="keywords" content={frontmatter.metaKeywords} />
     <meta
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
 
-    <meta property="og:title" content="{title}" />
-    <meta property="og:url" content="{frontmatter.canonical}" />
-    <meta property="og:description" content="{frontmatter.description}" />
-    <meta property="og:image" content="{frontmatter.image-url}" />
+    <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:url" content={frontmatter.metaCanonical} />
+    <meta property="og:description" content={frontmatter.metaDescription} />
+    <meta property="og:image" content={frontmatter.featuredImage} />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="canonical" href="{frontmatter.canonical}" />
+    <link rel="canonical" href={frontmatter.metaCanonical} />
 
-    <style>
-      * {
-        font-family: Faustina, serif;
-        font-size: 16px;
-        color: var(--color-neutral-700);
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-
-    <title>{title}</title>
+    <title>{frontmatter.title}</title>
   </head>
   <body>
     <main>

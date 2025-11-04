@@ -1,1 +1,21 @@
+---
+import LayoutBase from "./layoutBase.astro";
+import PostHeader from "../components/PostHeader.astro";
 
+interface Props {
+  frontmatter: {
+    title: string;
+    metaDescription?: string;
+    metaKeywords?: string[];
+    metaCanonical?: string;
+    heroImage?: string;
+    images?: string[];
+  };
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<LayoutBase frontmatter={frontmatter}>
+  <PostHeader />
+</LayoutBase>
