@@ -1,40 +1,10 @@
 ---
+import MainNavigation from "../components/MainNavigation.astro";
 import PostHeader from "../components/PostHeader.astro";
+import LayoutBase from "../layouts/layoutBase.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --primary: hsla(31, 53%, 64%, 1);
-        --secondary: hsla(34, 68%, 46%, 1);
-        --accent: hsla(44, 100%, 60%, 1);
-        --muted: hsla(38, 100%, 96%, 1);
-        --neutral: hsla(0, 0%, 74%, 1);
-        --text: hsl(0, 0%, 20%);
-      }
-
-      * {
-        font-family: Faustina, serif;
-        font-size: 16px;
-        color: var(--text);
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-    <title>Astro</title>
-  </head>
-  <body>
-    <PostHeader />
-  </body>
-</html>
+<LayoutBase>
+  <MainNavigation />
+  <PostHeader />
+</LayoutBase>

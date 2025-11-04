@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: hsla(31, 53%, 64%, 1);
+  --color-secondary: hsla(34, 68%, 46%, 1);
+  --color-accent: hsla(44, 100%, 60%, 1);
+  --color-muted: hsla(38, 100%, 96%, 1);
+  --color-neutral: hsla(0, 0%, 74%, 1);
+
+  --font-display: "Faustina", serif;
+}
+
+* {
+  font-family: var(--font-display);
+  color: var(--color-neutral-800);
+}

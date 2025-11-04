@@ -1,32 +1,43 @@
 ---
-import MainNavigation from "../components/MainNavigation.astro"
+import "../styles/global.css";
 
-const {javascript, frontmatter, title} = Astro.props;
+const { frontmatter, title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{frontmatter.description}">
-    <meta name="keywords" content="{frontmatter.keywords}">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{frontmatter.description}" />
+    <meta name="keywords" content="{frontmatter.keywords}" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
 
-    <meta property="og:title" content="{title}">
-    <meta property="og:url" content="{frontmatter.canonical}">
-    <meta property="og:description" content="{frontmatter.description}">
-    <meta property="og:image" content="{frontmatter.image-url}">
+    <meta property="og:title" content="{title}" />
+    <meta property="og:url" content="{frontmatter.canonical}" />
+    <meta property="og:description" content="{frontmatter.description}" />
+    <meta property="og:image" content="{frontmatter.image-url}" />
+    <meta name="generator" content={Astro.generator} />
 
-    <link rel="canonical" href="{frontmatter.canonical}">
+    <link rel="canonical" href="{frontmatter.canonical}" />
 
-    <script src="{javascript}" defer></script>
+    <style>
+      * {
+        font-family: Faustina, serif;
+        font-size: 16px;
+        color: var(--color-neutral-700);
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 
     <title>{title}</title>
   </head>
   <body>
     <main>
-      <MainNavigation />
       <slot />
     </main>
   </body>

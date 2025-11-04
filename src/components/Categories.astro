@@ -1,4 +1,6 @@
 ---
+import Pill from "./Pill.astro";
+
 interface Category {
   name: string;
   link: string;
@@ -10,87 +12,12 @@ interface Props {
 const { categories, ariaLabel = "Kategorien" } = Astro.props;
 ---
 
-<nav class="categories" aria-label={ariaLabel}>
-  <ul class="categories__list" role="list">
+<nav aria-label={ariaLabel}>
+  <ul class="list-none flex flex-row flex-wrap gap-2.5" role="list">
     {
       categories.map((category) => (
-        <li>
-          <a href={category.link} aria-label={`Kategorie: ${category.name}`}>
-            {category.name}
-          </a>
-        </li>
+        <Pill label={category.name} link={category.link} ariaLabel={ariaLabel} />
       ))
     }
   </ul>
 </nav>
-
-<style lang="scss">
-  .categories {
-    ul {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 0.625rem;
-      padding: 0;
-      margin: 0;
-
-      li {
-        list-style: none;
-
-        a {
-          font-size: 0.8em;
-          min-height: 44px; // WCAG Mindestgröße für Touch-Targets
-          min-width: 44px;
-          background-color: var(--neutral);
-          border: none;
-          color: black;
-          padding: 10px 30px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          border-radius: 50px;
-          transition: all 0.2s ease;
-          font-weight: 500;
-
-          // Focus-Indicator für Tastaturnavigation
-          &:focus-visible {
-            outline: 3px solid var(--neutral);
-            outline-offset: 2px;
-          }
-
-          // Hover-Effekt
-          &:hover {
-            background-color: #bbb;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-          }
-
-          // Active-State
-          &:active {
-            transform: translateY(0);
-            background-color: #aaa;
-          }
-
-          // Kontrast-Verbesserung für bessere Lesbarkeit
-          @media (prefers-contrast: high) {
-            background-color: #000;
-            color: #fff;
-            border: 2px solid #fff;
-          }
-
-          // Reduced Motion für Nutzer mit Bewegungsempfindlichkeit
-          @media (prefers-reduced-motion: reduce) {
-            transition: none;
-
-            &:hover {
-              transform: none;
-            }
-          }
-        }
-      }
-    }
-  }
-</style>
