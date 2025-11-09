@@ -2,9 +2,15 @@
 import MainNavigation from "../components/MainNavigation.astro";
 import PostHeader from "../components/PostHeader.astro";
 import LayoutBase from "../layouts/layoutBase.astro";
+
+const frontmatter = {
+  title: "Test",
+  metaDescription: "Food Blog",
+  metaKeywords: ["food", "recipes", "blog"],
+};
 ---
 
-<LayoutBase>
+<LayoutBase frontmatter={frontmatter}>
   <MainNavigation />
   <PostHeader />
 </LayoutBase>
