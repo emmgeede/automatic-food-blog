@@ -3,7 +3,8 @@
     "allow": [
       "Bash(git checkout:*)",
       "Bash(git branch:*)",
-      "Bash(node convert-recipes.js:*)"
+      "Bash(node convert-recipes.js:*)",
+      "Bash(ssh:*)"
     ],
     "deny": [],
     "ask": []

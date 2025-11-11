@@ -1,12 +1,19 @@
 ---
+interface Props {
+  title: string;
+}
 
+const { title } = Astro.props;
 ---
 
 <nav>
-
-  <ul>
-    <li><a href="#">Test</a></li>
-    <li><a href="#">Test</a></li>
-    <li><a href="#">Test</a></li>
-  </ul>
+  <uk>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Rezepte</a></li>
+    <li><a href="#">About</a></li>
+  </uk>
 </nav>
+
+<style>
+  /* Styles */
+</style>

@@ -1,0 +1,220 @@
+---
+/**
+ * Comment List Component
+ * Displays approved comments for a recipe
+ */
+import StarRating from "./StarRating.astro";
+
+interface Props {
+  recipeUuid: string;
+}
+
+const { recipeUuid } = Astro.props;
+---
+
+<div class="comment-list-container" data-recipe-uuid={recipeUuid}>
+  <div id="comments-header" class="mb-6">
+    <h3 class="text-2xl font-display font-bold text-neutral-900">
+      Kommentare <span id="comment-count" class="text-neutral-600"></span>
+    </h3>
+    <div id="average-rating" class="flex items-center gap-2 mt-2"></div>
+  </div>
+
+  <!-- Loading State -->
+  <div id="comments-loading" class="text-center py-8">
+    <div class="inline-block w-8 h-8 border-4 border-primary-DEFAULT/30 border-t-primary-DEFAULT rounded-full animate-spin"></div>
+    <p class="text-neutral-600 mt-2">Kommentare werden geladen...</p>
+  </div>
+
+  <!-- Error State -->
+  <div id="comments-error" class="hidden bg-accent-DEFAULT/10 border border-accent-DEFAULT text-accent-DEFAULT px-4 py-3 rounded-lg" role="alert">
+    <p class="text-sm">Fehler beim Laden der Kommentare.</p>
+  </div>
+
+  <!-- Empty State -->
+  <div id="comments-empty" class="hidden text-center py-8 text-neutral-600">
+    <p>Noch keine Kommentare vorhanden. Seien Sie der Erste!</p>
+  </div>
+
+  <!-- Comments List -->
+  <div id="comments-list" class="hidden space-y-6"></div>
+</div>
+
+<script>
+  interface Comment {
+    id: string;
+    name: string;
+    message: string;
+    rating: number;
+    createdAt: string;
+  }
+
+  interface CommentsResponse {
+    success: boolean;
+    comments: Comment[];
+    rating: {
+      average: number;
+      count: number;
+    };
+    error?: string;
+  }
+
+  class CommentListHandler {
+    private container: HTMLElement;
+    private recipeUuid: string;
+    private loadingDiv: HTMLElement;
+    private errorDiv: HTMLElement;
+    private emptyDiv: HTMLElement;
+    private listDiv: HTMLElement;
+    private countSpan: HTMLElement;
+    private ratingDiv: HTMLElement;
+
+    constructor(containerElement: HTMLElement) {
+      this.container = containerElement;
+      this.recipeUuid = containerElement.dataset.recipeUuid || "";
+      this.loadingDiv = containerElement.querySelector("#comments-loading")!;
+      this.errorDiv = containerElement.querySelector("#comments-error")!;
+      this.emptyDiv = containerElement.querySelector("#comments-empty")!;
+      this.listDiv = containerElement.querySelector("#comments-list")!;
+      this.countSpan = containerElement.querySelector("#comment-count")!;
+      this.ratingDiv = containerElement.querySelector("#average-rating")!;
+
+      this.loadComments();
+
+      // Listen for new comments
+      window.addEventListener("commentAdded", () => this.loadComments());
+    }
+
+    private async loadComments() {
+      this.showLoading();
+
+      try {
+        const response = await fetch(`/api/comments/${this.recipeUuid}`);
+        const data: CommentsResponse = await response.json();
+
+        if (data.success) {
+          this.renderComments(data.comments, data.rating);
+        } else {
+          this.showError();
+        }
+      } catch (error) {
+        console.error("Error loading comments:", error);
+        this.showError();
+      }
+    }
+
+    private renderComments(
+      comments: Comment[],
+      rating: { average: number; count: number }
+    ) {
+      // Update count
+      this.countSpan.textContent = `(${comments.length})`;
+
+      // Update average rating
+      if (rating.count > 0) {
+        this.ratingDiv.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-semibold text-neutral-700">
+              Durchschnittliche Bewertung:
+            </span>
+            <span class="text-lg font-bold text-primary-DEFAULT">
+              ${rating.average.toFixed(1)}
+            </span>
+            <span class="text-sm text-neutral-600">
+              (${rating.count} ${rating.count === 1 ? "Bewertung" : "Bewertungen"})
+            </span>
+          </div>
+        `;
+      }
+
+      // Show appropriate state
+      if (comments.length === 0) {
+        this.showEmpty();
+        return;
+      }
+
+      // Render comments
+      this.listDiv.innerHTML = comments
+        .map((comment) => this.renderComment(comment))
+        .join("");
+
+      this.showComments();
+    }
+
+    private renderComment(comment: Comment): string {
+      const date = new Date(comment.createdAt);
+      const formattedDate = date.toLocaleDateString("de-DE", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
+      // Create stars HTML
+      const starsHtml = Array.from({ length: 5 }, (_, i) => {
+        const filled = i < comment.rating;
+        return `
+          <svg class="w-5 h-5 ${filled ? "text-accent-DEFAULT" : "text-muted-DEFAULT"}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        `;
+      }).join("");
+
+      return `
+        <div class="comment bg-white border border-neutral-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+          <div class="comment-header flex items-start justify-between mb-4">
+            <div>
+              <h4 class="font-semibold text-neutral-900 text-lg">${this.escapeHtml(comment.name)}</h4>
+              <p class="text-sm text-neutral-600">${formattedDate}</p>
+            </div>
+            ${comment.rating > 0 ? `<div class="flex gap-1">${starsHtml}</div>` : ""}
+          </div>
+          <div class="comment-message text-neutral-700 leading-relaxed whitespace-pre-wrap">
+            ${this.escapeHtml(comment.message)}
+          </div>
+        </div>
+      `;
+    }
+
+    private showLoading() {
+      this.loadingDiv.classList.remove("hidden");
+      this.errorDiv.classList.add("hidden");
+      this.emptyDiv.classList.add("hidden");
+      this.listDiv.classList.add("hidden");
+    }
+
+    private showError() {
+      this.loadingDiv.classList.add("hidden");
+      this.errorDiv.classList.remove("hidden");
+      this.emptyDiv.classList.add("hidden");
+      this.listDiv.classList.add("hidden");
+    }
+
+    private showEmpty() {
+      this.loadingDiv.classList.add("hidden");
+      this.errorDiv.classList.add("hidden");
+      this.emptyDiv.classList.remove("hidden");
+      this.listDiv.classList.add("hidden");
+    }
+
+    private showComments() {
+      this.loadingDiv.classList.add("hidden");
+      this.errorDiv.classList.add("hidden");
+      this.emptyDiv.classList.add("hidden");
+      this.listDiv.classList.remove("hidden");
+    }
+
+    private escapeHtml(text: string): string {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  }
+
+  // Initialize comment list handler
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".comment-list-container") as HTMLElement;
+    if (container) {
+      new CommentListHandler(container);
+    }
+  });
+</script>
