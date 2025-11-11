@@ -1,21 +1,41 @@
 ---
 import LayoutBase from "./layoutBase.astro";
 import PostHeader from "../components/PostHeader.astro";
+import RecipeSchema from "../components/RecipeSchema.astro";
 
 interface Props {
   frontmatter: {
     title: string;
+    description: string;
     metaDescription?: string;
     metaKeywords?: string[];
     metaCanonical?: string;
-    heroImage?: string;
+    heroImage: string;
     images?: string[];
+    ingredients: string[];
+    categories: string[];
+    keywords: string[];
+    pubDate: Date;
+    prepTime?: string;
+    cookTime?: string;
+    servings?: string;
+    cuisine?: string;
+    sourceUrl?: string;
+    nutrition: {
+      servings?: string;
+      calories?: string;
+      carbohydrates?: string;
+      protein?: string;
+      fat?: string;
+    };
   };
+  slug?: string;
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter, slug = "" } = Astro.props;
 ---
 
 <LayoutBase frontmatter={frontmatter}>
+  <RecipeSchema frontmatter={frontmatter} slug={slug} slot="head" />
   <PostHeader />
 </LayoutBase>

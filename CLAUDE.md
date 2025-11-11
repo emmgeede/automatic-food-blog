@@ -115,3 +115,6 @@ When editing code, maintain these formatting standards.
 - Blog posts may contain duplicate frontmatter (formatting issue in existing content)
 - Recipe content format follows German recipe conventions with structured ingredients list (quantity, unit, ingredient name)
 - When adding new blog posts, ensure they pass validation by running `npm run test:run`
+- ERstelle immer einen neuen Git branch, wenn du neue Features oder Bugfixes durchführst
+- Comitte immer dann, wenn es während der Erstellung von Features oder Buchfixes sinn macht
+- Frage mich am Ende eines Bugfixes oder einer Featureerstellung ob der neue Branch gemerged werden soll

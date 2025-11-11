@@ -25,6 +25,7 @@ const { frontmatter = {} } = Astro.props;
     <link rel="canonical" href={frontmatter.metaCanonical} />
 
     <title>{frontmatter.title}</title>
+    <slot name="head" />
   </head>
   <body>
     <main>

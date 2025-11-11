@@ -1,5 +1,13 @@
 import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 import { getApprovedComments, getAverageRating } from "../../../utils/comments";
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { recipeUuid: post.data.uuid || post.slug },
+  }));
+};
 
 export const GET: APIRoute = async ({ params }) => {
   try {
