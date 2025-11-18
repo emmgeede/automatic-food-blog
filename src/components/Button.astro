@@ -18,39 +18,11 @@ const {
   disabled = false,
   loading = false,
 } = Astro.props;
-
-const colorClasses = {
-  primary: outline
-    ? "bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-secondary)] hover:text-white hover:border-[var(---color-secondary)]"
-    : "bg-[var(--color-primary)] text-black hover:bg-[var(--color-secondary)] hover:text-white",
-  secondary: outline
-    ? "bg-transparent border-2 border-[var(--color-secondary)] text-[var(--color-secondary)] hover:bg-[var(--color-primary)] hover:text-black hover:border-[var(--color-primary)]"
-    : "bg-[var(--color-secondary)] text-[var(--muted)] hover:bg-[var(--color-primary)] hover:text-black",
-  accent: outline
-    ? "bg-transparent border-2 border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--color-primary)] hover:text-black hover:border-[var(--color-primary)]"
-    : "bg-[var(--accent)] text-black hover:bg-[var(--color-primary)]",
-  neutral: outline
-    ? "bg-transparent border-2 border-[var(--color-neutral)] text-[var(--color-neutral)] hover:bg-[var(--color-primary)] hover:text-black hover:border-[var(--color-primary)]"
-    : "bg-[var(--color-neutral)] text-black hover:bg-[var(--color-primary)]",
-};
 ---
 
 <a
   href={disabled ? undefined : link}
-  class={`
-    min-w-11 min-h-11 
-    inline-flex items-center justify-center
-    px-[30px] pt-1 pb-2
-    text-l no-underline 
-    rounded-[50px]
-    transition-all duration-500 ease-in-out
-    cursor-pointer
-    focus-visible:outline focus-visible:outline-primary focus-visible:outline-offset-2
-    hover:aria-[disabled=false]:-translate-y-px hover:aria-[disabled=false]:shadow-[0_4px_8px_rgba(0,0,0,0.15)]
-    active:aria-[disabled=false]:translate-y-0
-    aria-disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:pointer-events-none
-    ${colorClasses[color]}
-  `}
+  class="bg-primary text-l focus-visible:outline-primary inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-[50px] px-[30px] pt-1 pb-2 text-neutral-200 no-underline transition-all duration-500 ease-in-out focus-visible:outline focus-visible:outline-offset-2 aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-50 hover:aria-[disabled=false]:-translate-y-px hover:aria-[disabled=false]:shadow-[0_4px_8px_rgba(0,0,0,0.15)] active:aria-[disabled=false]:translate-y-0"
   aria-label={ariaLabel || label}
   aria-disabled={disabled}
   aria-busy={loading}

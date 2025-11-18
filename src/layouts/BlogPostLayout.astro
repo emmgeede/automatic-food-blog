@@ -1,5 +1,5 @@
 ---
-import LayoutBase from "./layoutBase.astro";
+import BaseLayout from "./BaseLayout.astro";
 import PostHeader from "../components/PostHeader.astro";
 import RecipeSchema from "../components/RecipeSchema.astro";
 
@@ -35,7 +35,7 @@ interface Props {
 const { frontmatter, slug = "" } = Astro.props;
 ---
 
-<LayoutBase frontmatter={frontmatter}>
+<BaseLayout frontmatter={frontmatter}>
   <RecipeSchema frontmatter={frontmatter} slug={slug} slot="head" />
   <PostHeader />
-</LayoutBase>
+</BaseLayout>

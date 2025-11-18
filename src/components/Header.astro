@@ -1,0 +1,16 @@
+---
+import { Icon } from "astro-icon/components";
+import MainNavigation from "./MainNavigation.astro";
+---
+
+<header
+  class="bg-primary mb-8 flex min-h-20 w-full flex-row flex-nowrap items-center justify-between px-6 text-neutral-200"
+>
+  <div class="logo flex flex-row items-center justify-center gap-2.5">
+    <Icon
+      class="m-0 flex h-11 w-11 items-center justify-center p-0"
+      name="simple-icons:apacheguacamole"
+    /><span class="text-3xl">Die Mama kocht</span>
+  </div>
+  <MainNavigation />
+</header>

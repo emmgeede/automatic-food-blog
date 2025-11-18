@@ -1,0 +1,29 @@
+---
+import MenuLink from "./MenuLink.astro";
+
+type MenuLinks = {
+  label: string;
+  url: string;
+};
+
+const menuLinks: MenuLinks[] = [
+  { label: "Impressum", url: "/impressum" },
+  { label: "Datenschutz", url: "/datenschutz" },
+  { label: "Accessabability", url: "/accessability" },
+  { label: "Kontakt", url: "/kontakt" },
+  { label: "Rezepte", url: "/rezepte" },
+];
+---
+
+<footer class="bg-primary mt-8 grid w-full grid-cols-3 p-6 text-neutral-200">
+  <div>Zitronensaft</div>
+  <div>Cool</div>
+  <div>
+    <h3 class="text-accent mb-5 text-xl">Links</h3>
+    <nav>
+      <ul>
+        {menuLinks.map((link) => <MenuLink label={link.label} urk={link.url} />)}
+      </ul>
+    </nav>
+  </div>
+</footer>

@@ -1,5 +1,7 @@
 ---
-title: "Auflauf mit Zitronen Ricotta - einfach - von Gabelheld"
+layout: "BlogPostLayout"
+UUID: "6188e26e-2e04-4a00-acd0-5a17be1d0002"
+title: "Auflauf mit Zitronen Ricotta"
 description: "Leckeres Rezept für Auflauf mit Zitronen-Ricotta - ausgezeichnet & viel kommentiert. Mit praktischem Portionsrechner. Jetzt kochen & bewerten!"
 metaTitle: "Auflauf mit Zitronen Ricotta - einfach - von Gabelheld"
 metaDescription: "Leckeres Rezept für Auflauf mit Zitronen-Ricotta - ausgezeichnet & viel kommentiert. Mit praktischem Portionsrechner. Jetzt kochen & bewerten!"
@@ -51,14 +53,32 @@ sourceUrl: "https://www.kochbar.de/rezept/597956/Auflauf-mit-Zitronen-Ricotta.ht
 
 ## Zubereitung
 
+<info paragraph>
+
+<image 2>
+
+<info paragraph>
+
+<imgae 3>
+
+<info paragraph>
+
+<image 4>
+
 **Schritt 1:** Gemüse vorbereiten:
 Porree in feine Ringe, Zucchini in Scheiben schneiden. Knoblauch hacken.
+
+<step image>
 
 **Schritt 2:** Hack anbraten:
 In Olivenöl das Rinderhack kräftig anbraten, Knoblauch und Porree dazugeben. Mit Salz, Pfeffer und Kräutern würzen.
 
+<step image>
+
 **Schritt 3:** Tomaten zufügen:
 Die Tomaten unterrühren und 10 Minuten leicht köcheln lassen. Bei frischen Tomaten eventuell etwas Tomatenmark ergänzen
+
+<step image>
 
 **Schritt 4:** Ricottacreme anrühren:
 Ricotta mit fein abgeriebener Zitronenschale, etwas Zitronensaft, Salz, Pfeffer und Olivenöl glattrühren.
@@ -70,6 +90,6 @@ Zitronenscheiben als Dekoration auflegen.
 **Schritt 6:** Backen:
 Bei 180 °C (Ober-/Unterhitze) etwa 30–35 Minuten goldgelb backen.
 
----
+<image 5>
 
-_Quelle: [Original-Rezept](https://www.kochbar.de/rezept/597956/Auflauf-mit-Zitronen-Ricotta.html)_
+## <info paragrapg>

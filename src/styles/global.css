@@ -1,19 +1,42 @@
-@import url("https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap");
+@font-face {
+  font-family: Ubuntu;
+  src: url("/fonts/Ubuntu-Regular.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: Ubuntu;
+  src: url("/fonts/Ubuntu-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Ubuntu;
+  src: url("/fonts/Ubuntu-Italic.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Ubuntu;
+  src: url("/fonts/Ubuntu-Light.ttf");
+  font-weight: 200;
+}
+
 @import "tailwindcss";
 
 @theme {
-  --color-primary: hsla(31, 53%, 64%, 1);
+  --color-primary: hsla(213, 40%, 10%, 1);
   --color-secondary: hsla(34, 68%, 46%, 1);
-  --color-accent: hsla(44, 100%, 60%, 1);
+  --color-accent: hsla(274, 100%, 71%, 1);
   --color-muted: hsla(38, 100%, 96%, 1);
   --color-neutral: hsla(0, 0%, 74%, 1);
 
-  --font-display: "Faustina", serif;
+  --font-display: "Ubuntu", serif;
 }
 
 * {
   font-family: var(--font-display);
-  color: var(--color-neutral-800);
 }
 
 .sr-only {

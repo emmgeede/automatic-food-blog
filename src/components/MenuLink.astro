@@ -1,0 +1,58 @@
+---
+interface Props {
+  label: string;
+  url: string;
+  fontWeight: "normal" | "bold";
+}
+
+const { label, url, fontWeight = "normal" } = Astro.props;
+---
+
+<li>
+  <a
+    href={url}
+    aria-label={label}
+    aria-role="link"
+    aria-busy="false"
+    aria-disabled="false"
+    tabindex="0"
+  >
+    {label}
+  </a>
+
+  <style lang="scss" define:vars={{ fontWeight }}>
+    li {
+      text-decoration: none;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-self: start;
+
+      a {
+        display: inline-flex;
+        min-width: 44px;
+        min-height: 44px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: var(--color-neutral-200);
+        align-items: center;
+        justify-items: start;
+        text-decoration: none;
+        padding: 5px 20px;
+        margin-left: -20px;
+        border-radius: 50px;
+        font-weight: var(--fontWeight);
+
+        &:hover:not(:focus-visible) {
+          color: var(--color-accent);
+        }
+
+        &:focus-visible {
+          outline: none;
+          background-color: var(--color-accent);
+        }
+      }
+    }
+  </style>
+</li>

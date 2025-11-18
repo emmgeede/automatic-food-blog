@@ -1,7 +1,6 @@
 ---
-import MainNavigation from "../components/MainNavigation.astro";
 import PostHeader from "../components/PostHeader.astro";
-import LayoutBase from "../layouts/layoutBase.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const frontmatter = {
   title: "Test",
@@ -10,7 +9,6 @@ const frontmatter = {
 };
 ---
 
-<LayoutBase frontmatter={frontmatter}>
-  <MainNavigation />
+<BaseLayout frontmatter={frontmatter}>
   <PostHeader />
-</LayoutBase>
+</BaseLayout>

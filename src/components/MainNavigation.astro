@@ -1,19 +1,21 @@
 ---
-interface Props {
-  title: string;
-}
+import MenuLink from "./MenuLink.astro";
 
-const { title } = Astro.props;
+type Link = {
+  label: string;
+  link: string;
+};
+
+const links: Link[] = [
+  { label: "Home", link: "/" },
+  { label: "About", link: "/" },
+  { label: "Rezepte", link: "/" },
+  { label: "Kooperation", link: "/" },
+];
 ---
 
-<nav>
-  <uk>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Rezepte</a></li>
-    <li><a href="#">About</a></li>
-  </uk>
+<nav class="min-h-11">
+  <ul class="flex min-h-11 flex-row flex-nowrap gap-3.5">
+    {links.map((link) => <MenuLink label={link.label} url={link.link} fontWeight="bold" />)}
+  </ul>
 </nav>
-
-<style>
-  /* Styles */
-</style>
