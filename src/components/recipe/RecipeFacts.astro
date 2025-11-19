@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  content: CollectionEntry<"blog">["data"]["content"];
+  images: CollectionEntry<"blog">["data"]["images"];
+}
+
+const { content, images } = Astro.props;
+---
+
+{
+  content?.facts && content.facts.length > 0 && (
+    <section class="recipe-facts" aria-labelledby="recipe-facts-heading">
+      <h2 id="recipe-facts-heading" class="recipe-facts__heading">
+        Wissenswertes
+      </h2>
+
+      <div class="recipe-facts__grid">
+        {content.facts
+          .sort((a, b) => a.order - b.order)
+          .map((fact) => (
+            <article class="recipe-facts__item">
+              <h3 class="recipe-facts__item-title">{fact.title}</h3>
+              <p class="recipe-facts__item-text">{fact.text}</p>
+            </article>
+          ))}
+      </div>
+
+      {images?.content &&
+        images.content
+          .filter((img) => img.position === "facts_section")
+          .map((img) => (
+            <figure class="recipe-facts__image-wrapper">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={img.width || 800}
+                height={img.height || 600}
+                class="recipe-facts__image"
+                loading="lazy"
+                format="webp"
+                quality={85}
+              />
+              {img.caption && <figcaption class="recipe-facts__caption">{img.caption}</figcaption>}
+            </figure>
+          ))}
+    </section>
+  )
+}

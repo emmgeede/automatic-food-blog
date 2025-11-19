@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  taxonomy: CollectionEntry<"blog">["data"]["taxonomy"];
+}
+
+const { taxonomy } = Astro.props;
+---
+
+{
+  taxonomy?.tags && taxonomy.tags.length > 0 && (
+    <footer class="recipe-footer">
+      <div class="recipe-footer__tags" role="list" aria-label="Schlagwörter">
+        <span class="recipe-footer__tags-label">Schlagwörter:</span>
+        {taxonomy.tags.map((tag) => (
+          <span class="recipe-footer__tag" role="listitem">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {taxonomy.cuisine && (
+        <div class="recipe-footer__cuisine" itemprop="recipeCuisine">
+          Küche: {taxonomy.cuisine}
+        </div>
+      )}
+    </footer>
+  )
+}

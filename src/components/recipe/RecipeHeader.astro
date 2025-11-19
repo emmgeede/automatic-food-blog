@@ -1,0 +1,169 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import Button from "../Button.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  metadata: CollectionEntry<"blog">["data"]["metadata"];
+  taxonomy: CollectionEntry<"blog">["data"]["taxonomy"];
+  timing: CollectionEntry<"blog">["data"]["timing"];
+  nutrition: CollectionEntry<"blog">["data"]["nutrition"];
+  images: CollectionEntry<"blog">["data"]["images"];
+}
+
+const { metadata, taxonomy, timing, nutrition, images } = Astro.props;
+
+// Helper function to format ISO 8601 duration to human-readable
+function formatDuration(duration?: string): string {
+  if (!duration) return "";
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?/);
+  if (!match) return duration;
+  const hours = match[1] ? `${match[1]} Std.` : "";
+  const minutes = match[2] ? `${match[2]} Min.` : "";
+  return [hours, minutes].filter(Boolean).join(" ");
+}
+---
+
+<header class="recipe-header">
+  <div class="head-band">
+    <div class="head-band__breadcrumb">
+      <a href="/">Home</a>
+      <Icon name="material-symbols:arrow-right-rounded" />
+      <a href="/blog">Rezepte</a>
+      <Icon name="material-symbols:arrow-right-rounded" />
+      {metadata?.title}
+    </div>
+    <h1>{metadata?.title}</h1>
+    <div class="head-band__buttons">
+      <Button link="#recipe-content" label="Zum Rezept springen" />
+      <Button link="#recipe-content" label="Rezept Speichern" />
+    </div>
+  </div>
+
+  {
+    images?.featured && (
+      <figure class="recipe-header__image-wrapper">
+        <Image
+          src={images.featured.src}
+          alt={images.featured.alt}
+          width={images.featured.width || 1200}
+          height={images.featured.height || 800}
+          class="recipe-header__image"
+          itemprop="image"
+          loading="eager"
+          format="webp"
+          quality={90}
+        />
+        {images.featured.caption && (
+          <figcaption class="recipe-header__caption">{images.featured.caption}</figcaption>
+        )}
+      </figure>
+    )
+  }
+
+  <div class="recipe-header__content">
+    <h1 class="recipe-header__title" itemprop="name">
+      {metadata?.title}
+    </h1>
+
+    {
+      metadata?.description && (
+        <p class="recipe-header__description" itemprop="description">
+          {metadata.description}
+        </p>
+      )
+    }
+
+    <div class="recipe-header__meta">
+      {
+        metadata?.pubDate && (
+          <time
+            class="recipe-header__meta-item"
+            datetime={metadata.pubDate.toISOString()}
+            itemprop="datePublished"
+          >
+            Veröffentlicht: {metadata.pubDate.toLocaleDateString("de-DE")}
+          </time>
+        )
+      }
+
+      {
+        metadata?.author && (
+          <span
+            class="recipe-header__meta-item"
+            itemprop="author"
+            itemscope
+            itemtype="https://schema.org/Person"
+          >
+            <span itemprop="name">Von {metadata.author}</span>
+          </span>
+        )
+      }
+    </div>
+
+    {
+      taxonomy?.categories && taxonomy.categories.length > 0 && (
+        <div class="recipe-header__categories" role="list" aria-label="Kategorien">
+          {taxonomy.categories.map((category) => (
+            <span class="recipe-header__category" role="listitem" itemprop="recipeCategory">
+              {category}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      timing && (timing.prepTime || timing.cookTime || timing.totalTime) && (
+        <dl class="recipe-header__timing">
+          {timing.prepTime && (
+            <div class="recipe-header__timing-item">
+              <dt class="recipe-header__timing-label">Vorbereitungszeit:</dt>
+              <dd class="recipe-header__timing-value" itemprop="prepTime" content={timing.prepTime}>
+                {formatDuration(timing.prepTime)}
+              </dd>
+            </div>
+          )}
+          {timing.cookTime && (
+            <div class="recipe-header__timing-item">
+              <dt class="recipe-header__timing-label">Kochzeit:</dt>
+              <dd class="recipe-header__timing-value" itemprop="cookTime" content={timing.cookTime}>
+                {formatDuration(timing.cookTime)}
+              </dd>
+            </div>
+          )}
+          {timing.totalTime && (
+            <div class="recipe-header__timing-item">
+              <dt class="recipe-header__timing-label">Gesamtzeit:</dt>
+              <dd
+                class="recipe-header__timing-value"
+                itemprop="totalTime"
+                content={timing.totalTime}
+              >
+                {formatDuration(timing.totalTime)}
+              </dd>
+            </div>
+          )}
+        </dl>
+      )
+    }
+
+    {
+      taxonomy?.difficulty && (
+        <div class="recipe-header__difficulty">
+          <span class="recipe-header__difficulty-label">Schwierigkeit:</span>
+          <span class="recipe-header__difficulty-value">{taxonomy.difficulty}</span>
+        </div>
+      )
+    }
+
+    {
+      nutrition?.servings && (
+        <div class="recipe-header__servings" itemprop="recipeYield">
+          Portionen: {nutrition.servings}
+        </div>
+      )
+    }
+  </div>
+</header>

@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  content: CollectionEntry<"blog">["data"]["content"];
+  images: CollectionEntry<"blog">["data"]["images"];
+}
+
+const { content, images } = Astro.props;
+---
+
+{
+  content?.steps && content.steps.length > 0 && (
+    <section class="recipe-instructions" aria-labelledby="recipe-instructions-heading">
+      <h2 id="recipe-instructions-heading" class="recipe-instructions__heading">
+        Zubereitung
+      </h2>
+
+      <ol class="recipe-instructions__list" role="list">
+        {content.steps
+          .sort((a, b) => a.number - b.number)
+          .map((step) => {
+            const stepImage = images?.steps?.find((img) => img.stepNumber === step.number);
+            return (
+              <li
+                class="recipe-instructions__step"
+                itemprop="recipeInstructions"
+                itemscope
+                itemtype="https://schema.org/HowToStep"
+              >
+                <div class="recipe-instructions__step-header">
+                  <span
+                    class="recipe-instructions__step-number"
+                    aria-label={`Schritt ${step.number}`}
+                  >
+                    {step.number}
+                  </span>
+                  <h3 class="recipe-instructions__step-title" itemprop="name">
+                    {step.title}
+                  </h3>
+                </div>
+
+                {stepImage && (
+                  <figure class="recipe-instructions__step-image-wrapper">
+                    <Image
+                      src={stepImage.src}
+                      alt={stepImage.alt}
+                      width={stepImage.width || 800}
+                      height={stepImage.height || 600}
+                      class="recipe-instructions__step-image"
+                      itemprop="image"
+                      loading="lazy"
+                      format="webp"
+                      quality={85}
+                    />
+                  </figure>
+                )}
+
+                <div class="recipe-instructions__step-content">
+                  <p class="recipe-instructions__step-text" itemprop="text">
+                    {step.text}
+                  </p>
+
+                  {step.tips && step.tips.length > 0 && (
+                    <div class="recipe-instructions__step-tips">
+                      <strong class="recipe-instructions__step-tips-label">Tipps:</strong>
+                      <ul class="recipe-instructions__step-tips-list">
+                        {step.tips.map((tip) => (
+                          <li class="recipe-instructions__step-tip">{tip}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+      </ol>
+    </section>
+  )
+}

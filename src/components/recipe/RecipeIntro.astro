@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  content: CollectionEntry<"blog">["data"]["content"];
+  images: CollectionEntry<"blog">["data"]["images"];
+}
+
+const { content, images } = Astro.props;
+---
+
+{
+  content?.introduction?.text && (
+    <section class="recipe-intro" aria-labelledby="recipe-intro-heading">
+      <div class="recipe-intro__content">
+        <h2 id="recipe-intro-heading" class="sr-only">
+          Einleitung
+        </h2>
+        <div class="recipe-intro__text" set:html={content.introduction.text} />
+      </div>
+
+      {images?.content && images.content.find((img) => img.position === "after_intro") && (
+        <figure class="recipe-intro__image-wrapper">
+          {(() => {
+            const img = images.content.find((img) => img.position === "after_intro");
+            return (
+              img && (
+                <>
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width || 800}
+                    height={img.height || 600}
+                    class="recipe-intro__image"
+                    loading="lazy"
+                    format="webp"
+                    quality={85}
+                  />
+                  {img.caption && (
+                    <figcaption class="recipe-intro__caption">{img.caption}</figcaption>
+                  )}
+                </>
+              )
+            );
+          })()}
+        </figure>
+      )}
+    </section>
+  )
+}

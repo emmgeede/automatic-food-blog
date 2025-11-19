@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  ingredients: CollectionEntry<"blog">["data"]["ingredients"];
+}
+
+const { ingredients } = Astro.props;
+
+// Group ingredients by group
+const groupedIngredients = ingredients.reduce(
+  (acc, ingredient) => {
+    const group = ingredient.group || "Zutaten";
+    if (!acc[group]) acc[group] = [];
+    acc[group].push(ingredient);
+    return acc;
+  },
+  {} as Record<string, typeof ingredients>
+);
+---
+
+<section class="recipe-ingredients" aria-labelledby="recipe-ingredients-heading" id="recipe-content">
+  <h2 id="recipe-ingredients-heading" class="recipe-ingredients__heading">Zutaten</h2>
+
+  <div class="recipe-ingredients__content">
+    {
+      Object.entries(groupedIngredients).map(([groupName, groupIngredients]) => (
+        <div class="recipe-ingredients__group">
+          {groupName !== "Zutaten" && (
+            <h3 class="recipe-ingredients__group-title">{groupName}</h3>
+          )}
+          <ul class="recipe-ingredients__list" role="list">
+            {groupIngredients.map((ingredient) => (
+              <li class="recipe-ingredients__item" itemprop="recipeIngredient">
+                <span class="recipe-ingredients__item-content">
+                  {ingredient.amount && (
+                    <span class="recipe-ingredients__amount">{ingredient.amount}</span>
+                  )}
+                  {ingredient.unit && (
+                    <span class="recipe-ingredients__unit">{ingredient.unit}</span>
+                  )}
+                  <span class="recipe-ingredients__name">{ingredient.name}</span>
+                  {ingredient.note && (
+                    <span class="recipe-ingredients__note">({ingredient.note})</span>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>

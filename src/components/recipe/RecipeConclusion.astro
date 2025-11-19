@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  content: CollectionEntry<"blog">["data"]["content"];
+}
+
+const { content } = Astro.props;
+---
+
+{
+  content?.conclusion?.text && (
+    <section class="recipe-conclusion" aria-labelledby="recipe-conclusion-heading">
+      <h2 id="recipe-conclusion-heading" class="sr-only">
+        Fazit
+      </h2>
+      <div class="recipe-conclusion__content">
+        <p class="recipe-conclusion__text">{content.conclusion.text}</p>
+      </div>
+    </section>
+  )
+}

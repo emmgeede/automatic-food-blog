@@ -1,0 +1,94 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  nutrition: CollectionEntry<"blog">["data"]["nutrition"];
+}
+
+const { nutrition } = Astro.props;
+---
+
+{
+  nutrition && (
+    <section class="recipe-nutrition" aria-labelledby="recipe-nutrition-heading">
+      <h2 id="recipe-nutrition-heading" class="recipe-nutrition__heading">
+        Nährwertangaben
+      </h2>
+
+      <div
+        class="recipe-nutrition__content"
+        itemprop="nutrition"
+        itemscope
+        itemtype="https://schema.org/NutritionInformation"
+      >
+        {nutrition.servingSize && (
+          <div class="recipe-nutrition__item">
+            <span class="recipe-nutrition__label">Portionsgröße:</span>
+            <span class="recipe-nutrition__value" itemprop="servingSize">
+              {nutrition.servingSize}
+            </span>
+          </div>
+        )}
+
+        <dl class="recipe-nutrition__list">
+          {nutrition.calories && (
+            <div class="recipe-nutrition__list-item">
+              <dt class="recipe-nutrition__list-label">Kalorien:</dt>
+              <dd class="recipe-nutrition__list-value" itemprop="calories">
+                {nutrition.calories}
+              </dd>
+            </div>
+          )}
+          {nutrition.carbohydrates && (
+            <div class="recipe-nutrition__list-item">
+              <dt class="recipe-nutrition__list-label">Kohlenhydrate:</dt>
+              <dd class="recipe-nutrition__list-value" itemprop="carbohydrateContent">
+                {nutrition.carbohydrates}
+              </dd>
+            </div>
+          )}
+          {nutrition.protein && (
+            <div class="recipe-nutrition__list-item">
+              <dt class="recipe-nutrition__list-label">Eiweiß:</dt>
+              <dd class="recipe-nutrition__list-value" itemprop="proteinContent">
+                {nutrition.protein}
+              </dd>
+            </div>
+          )}
+          {nutrition.fat && (
+            <div class="recipe-nutrition__list-item">
+              <dt class="recipe-nutrition__list-label">Fett:</dt>
+              <dd class="recipe-nutrition__list-value" itemprop="fatContent">
+                {nutrition.fat}
+              </dd>
+            </div>
+          )}
+          {nutrition.fiber && (
+            <div class="recipe-nutrition__list-item">
+              <dt class="recipe-nutrition__list-label">Ballaststoffe:</dt>
+              <dd class="recipe-nutrition__list-value" itemprop="fiberContent">
+                {nutrition.fiber}
+              </dd>
+            </div>
+          )}
+          {nutrition.sugar && (
+            <div class="recipe-nutrition__list-item">
+              <dt class="recipe-nutrition__list-label">Zucker:</dt>
+              <dd class="recipe-nutrition__list-value" itemprop="sugarContent">
+                {nutrition.sugar}
+              </dd>
+            </div>
+          )}
+          {nutrition.sodium && (
+            <div class="recipe-nutrition__list-item">
+              <dt class="recipe-nutrition__list-label">Natrium:</dt>
+              <dd class="recipe-nutrition__list-value" itemprop="sodiumContent">
+                {nutrition.sodium}
+              </dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    </section>
+  )
+}
