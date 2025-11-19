@@ -1,19 +1,474 @@
 ---
-import { getCollection } from "astro:content";
-import LayoutBlogPost from "../../layouts/layoutBlogPost.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
 
-export const getStaticPaths = async () => {
-  const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
+type BlogEntry = CollectionEntry<"blog">;
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog");
+
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.data.metadata.slug },
+    props: { entry },
   }));
-};
+}
 
-const { post } = Astro.props;
-const { Content } = await post.render();
+const { entry } = Astro.props as { entry: BlogEntry };
+
+const { metadata, content, images, ingredients, nutrition, timing, taxonomy, seo } = entry.data;
+
+// Helper function to format ISO 8601 duration to human-readable
+function formatDuration(duration?: string): string {
+  if (!duration) return "";
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?/);
+  if (!match) return duration;
+  const hours = match[1] ? `${match[1]} Std.` : "";
+  const minutes = match[2] ? `${match[2]} Min.` : "";
+  return [hours, minutes].filter(Boolean).join(" ");
+}
+
+// Group ingredients by group
+const groupedIngredients = ingredients.reduce((acc, ingredient) => {
+  const group = ingredient.group || "Zutaten";
+  if (!acc[group]) acc[group] = [];
+  acc[group].push(ingredient);
+  return acc;
+}, {} as Record<string, typeof ingredients>);
 ---
 
-<LayoutBlogPost frontmatter={post.data} slug={post.slug}>
-  <Content />
-</LayoutBlogPost>
+<BlogPostLayout
+  title={metadata?.title || "Untertitelter Beitrag"}
+  description={metadata?.description || ""}
+  postData={entry.data}
+>
+  <article class="recipe" itemscope itemtype="https://schema.org/Recipe">
+
+    <!-- Recipe Header -->
+    <header class="recipe-header">
+      {images?.featured && (
+        <figure class="recipe-header__image-wrapper">
+          <img
+            src={images.featured.src}
+            alt={images.featured.alt}
+            width={images.featured.width}
+            height={images.featured.height}
+            class="recipe-header__image"
+            itemprop="image"
+            loading="eager"
+          />
+          {images.featured.caption && (
+            <figcaption class="recipe-header__caption">
+              {images.featured.caption}
+            </figcaption>
+          )}
+        </figure>
+      )}
+
+      <div class="recipe-header__content">
+        <h1 class="recipe-header__title" itemprop="name">
+          {metadata?.title}
+        </h1>
+
+        {metadata?.description && (
+          <p class="recipe-header__description" itemprop="description">
+            {metadata.description}
+          </p>
+        )}
+
+        <div class="recipe-header__meta">
+          {metadata?.pubDate && (
+            <time
+              class="recipe-header__meta-item"
+              datetime={metadata.pubDate.toISOString()}
+              itemprop="datePublished"
+            >
+              Veröffentlicht: {metadata.pubDate.toLocaleDateString("de-DE")}
+            </time>
+          )}
+
+          {metadata?.author && (
+            <span class="recipe-header__meta-item" itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <span itemprop="name">Von {metadata.author}</span>
+            </span>
+          )}
+        </div>
+
+        {taxonomy?.categories && taxonomy.categories.length > 0 && (
+          <div class="recipe-header__categories" role="list" aria-label="Kategorien">
+            {taxonomy.categories.map((category) => (
+              <span class="recipe-header__category" role="listitem" itemprop="recipeCategory">
+                {category}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {timing && (timing.prepTime || timing.cookTime || timing.totalTime) && (
+          <dl class="recipe-header__timing">
+            {timing.prepTime && (
+              <div class="recipe-header__timing-item">
+                <dt class="recipe-header__timing-label">Vorbereitungszeit:</dt>
+                <dd class="recipe-header__timing-value" itemprop="prepTime" content={timing.prepTime}>
+                  {formatDuration(timing.prepTime)}
+                </dd>
+              </div>
+            )}
+            {timing.cookTime && (
+              <div class="recipe-header__timing-item">
+                <dt class="recipe-header__timing-label">Kochzeit:</dt>
+                <dd class="recipe-header__timing-value" itemprop="cookTime" content={timing.cookTime}>
+                  {formatDuration(timing.cookTime)}
+                </dd>
+              </div>
+            )}
+            {timing.totalTime && (
+              <div class="recipe-header__timing-item">
+                <dt class="recipe-header__timing-label">Gesamtzeit:</dt>
+                <dd class="recipe-header__timing-value" itemprop="totalTime" content={timing.totalTime}>
+                  {formatDuration(timing.totalTime)}
+                </dd>
+              </div>
+            )}
+          </dl>
+        )}
+
+        {taxonomy?.difficulty && (
+          <div class="recipe-header__difficulty">
+            <span class="recipe-header__difficulty-label">Schwierigkeit:</span>
+            <span class="recipe-header__difficulty-value">{taxonomy.difficulty}</span>
+          </div>
+        )}
+
+        {nutrition?.servings && (
+          <div class="recipe-header__servings" itemprop="recipeYield">
+            Portionen: {nutrition.servings}
+          </div>
+        )}
+      </div>
+    </header>
+
+    <!-- Introduction Section -->
+    {content?.introduction?.text && (
+      <section class="recipe-intro" aria-labelledby="recipe-intro-heading">
+        <div class="recipe-intro__content">
+          <h2 id="recipe-intro-heading" class="sr-only">Einleitung</h2>
+          <div class="recipe-intro__text" set:html={content.introduction.text} />
+        </div>
+
+        {images?.content && images.content.find(img => img.position === "after_intro") && (
+          <figure class="recipe-intro__image-wrapper">
+            {(() => {
+              const img = images.content.find(img => img.position === "after_intro");
+              return img && (
+                <>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    class="recipe-intro__image"
+                    loading="lazy"
+                  />
+                  {img.caption && (
+                    <figcaption class="recipe-intro__caption">
+                      {img.caption}
+                    </figcaption>
+                  )}
+                </>
+              );
+            })()}
+          </figure>
+        )}
+      </section>
+    )}
+
+    <!-- Facts Section -->
+    {content?.facts && content.facts.length > 0 && (
+      <section class="recipe-facts" aria-labelledby="recipe-facts-heading">
+        <h2 id="recipe-facts-heading" class="recipe-facts__heading">
+          Wissenswertes
+        </h2>
+
+        <div class="recipe-facts__grid">
+          {content.facts.sort((a, b) => a.order - b.order).map((fact) => (
+            <article class="recipe-facts__item">
+              <h3 class="recipe-facts__item-title">{fact.title}</h3>
+              <p class="recipe-facts__item-text">{fact.text}</p>
+            </article>
+          ))}
+        </div>
+
+        {images?.content && images.content.filter(img => img.position === "facts_section").map((img) => (
+          <figure class="recipe-facts__image-wrapper">
+            <img
+              src={img.src}
+              alt={img.alt}
+              width={img.width}
+              height={img.height}
+              class="recipe-facts__image"
+              loading="lazy"
+            />
+            {img.caption && (
+              <figcaption class="recipe-facts__caption">
+                {img.caption}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </section>
+    )}
+
+    <!-- Ingredients Section -->
+    <section class="recipe-ingredients" aria-labelledby="recipe-ingredients-heading">
+      <h2 id="recipe-ingredients-heading" class="recipe-ingredients__heading">
+        Zutaten
+      </h2>
+
+      <div class="recipe-ingredients__content">
+        {Object.entries(groupedIngredients).map(([groupName, groupIngredients]) => (
+          <div class="recipe-ingredients__group">
+            {groupName !== "Zutaten" && (
+              <h3 class="recipe-ingredients__group-title">{groupName}</h3>
+            )}
+            <ul class="recipe-ingredients__list" role="list">
+              {groupIngredients.map((ingredient) => (
+                <li class="recipe-ingredients__item" itemprop="recipeIngredient">
+                  <span class="recipe-ingredients__item-content">
+                    {ingredient.amount && (
+                      <span class="recipe-ingredients__amount">{ingredient.amount}</span>
+                    )}
+                    {ingredient.unit && (
+                      <span class="recipe-ingredients__unit">{ingredient.unit}</span>
+                    )}
+                    <span class="recipe-ingredients__name">{ingredient.name}</span>
+                    {ingredient.note && (
+                      <span class="recipe-ingredients__note">({ingredient.note})</span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Instructions Section -->
+    {content?.steps && content.steps.length > 0 && (
+      <section class="recipe-instructions" aria-labelledby="recipe-instructions-heading">
+        <h2 id="recipe-instructions-heading" class="recipe-instructions__heading">
+          Zubereitung
+        </h2>
+
+        <ol class="recipe-instructions__list" role="list">
+          {content.steps.sort((a, b) => a.number - b.number).map((step) => {
+            const stepImage = images?.steps?.find(img => img.stepNumber === step.number);
+            return (
+              <li class="recipe-instructions__step" itemprop="recipeInstructions" itemscope itemtype="https://schema.org/HowToStep">
+                <div class="recipe-instructions__step-header">
+                  <span class="recipe-instructions__step-number" aria-label={`Schritt ${step.number}`}>
+                    {step.number}
+                  </span>
+                  <h3 class="recipe-instructions__step-title" itemprop="name">
+                    {step.title}
+                  </h3>
+                </div>
+
+                {stepImage && (
+                  <figure class="recipe-instructions__step-image-wrapper">
+                    <img
+                      src={stepImage.src}
+                      alt={stepImage.alt}
+                      width={stepImage.width}
+                      height={stepImage.height}
+                      class="recipe-instructions__step-image"
+                      itemprop="image"
+                      loading="lazy"
+                    />
+                  </figure>
+                )}
+
+                <div class="recipe-instructions__step-content">
+                  <p class="recipe-instructions__step-text" itemprop="text">
+                    {step.text}
+                  </p>
+
+                  {step.tips && step.tips.length > 0 && (
+                    <div class="recipe-instructions__step-tips">
+                      <strong class="recipe-instructions__step-tips-label">Tipps:</strong>
+                      <ul class="recipe-instructions__step-tips-list">
+                        {step.tips.map((tip) => (
+                          <li class="recipe-instructions__step-tip">{tip}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+    )}
+
+    <!-- Nutrition Section -->
+    {nutrition && (
+      <section class="recipe-nutrition" aria-labelledby="recipe-nutrition-heading">
+        <h2 id="recipe-nutrition-heading" class="recipe-nutrition__heading">
+          Nährwertangaben
+        </h2>
+
+        <div class="recipe-nutrition__content" itemprop="nutrition" itemscope itemtype="https://schema.org/NutritionInformation">
+          {nutrition.servingSize && (
+            <div class="recipe-nutrition__item">
+              <span class="recipe-nutrition__label">Portionsgröße:</span>
+              <span class="recipe-nutrition__value" itemprop="servingSize">
+                {nutrition.servingSize}
+              </span>
+            </div>
+          )}
+
+          <dl class="recipe-nutrition__list">
+            {nutrition.calories && (
+              <div class="recipe-nutrition__list-item">
+                <dt class="recipe-nutrition__list-label">Kalorien:</dt>
+                <dd class="recipe-nutrition__list-value" itemprop="calories">
+                  {nutrition.calories}
+                </dd>
+              </div>
+            )}
+            {nutrition.carbohydrates && (
+              <div class="recipe-nutrition__list-item">
+                <dt class="recipe-nutrition__list-label">Kohlenhydrate:</dt>
+                <dd class="recipe-nutrition__list-value" itemprop="carbohydrateContent">
+                  {nutrition.carbohydrates}
+                </dd>
+              </div>
+            )}
+            {nutrition.protein && (
+              <div class="recipe-nutrition__list-item">
+                <dt class="recipe-nutrition__list-label">Eiweiß:</dt>
+                <dd class="recipe-nutrition__list-value" itemprop="proteinContent">
+                  {nutrition.protein}
+                </dd>
+              </div>
+            )}
+            {nutrition.fat && (
+              <div class="recipe-nutrition__list-item">
+                <dt class="recipe-nutrition__list-label">Fett:</dt>
+                <dd class="recipe-nutrition__list-value" itemprop="fatContent">
+                  {nutrition.fat}
+                </dd>
+              </div>
+            )}
+            {nutrition.fiber && (
+              <div class="recipe-nutrition__list-item">
+                <dt class="recipe-nutrition__list-label">Ballaststoffe:</dt>
+                <dd class="recipe-nutrition__list-value" itemprop="fiberContent">
+                  {nutrition.fiber}
+                </dd>
+              </div>
+            )}
+            {nutrition.sugar && (
+              <div class="recipe-nutrition__list-item">
+                <dt class="recipe-nutrition__list-label">Zucker:</dt>
+                <dd class="recipe-nutrition__list-value" itemprop="sugarContent">
+                  {nutrition.sugar}
+                </dd>
+              </div>
+            )}
+            {nutrition.sodium && (
+              <div class="recipe-nutrition__list-item">
+                <dt class="recipe-nutrition__list-label">Natrium:</dt>
+                <dd class="recipe-nutrition__list-value" itemprop="sodiumContent">
+                  {nutrition.sodium}
+                </dd>
+              </div>
+            )}
+          </dl>
+        </div>
+      </section>
+    )}
+
+    <!-- Tips Section -->
+    {content?.tips && (
+      <section class="recipe-tips" aria-labelledby="recipe-tips-heading">
+        <h2 id="recipe-tips-heading" class="recipe-tips__heading">
+          {content.tips.title}
+        </h2>
+
+        <div class="recipe-tips__grid">
+          {content.tips.items.map((tip) => (
+            <article class="recipe-tips__item">
+              <h3 class="recipe-tips__item-title">{tip.title}</h3>
+              <p class="recipe-tips__item-text">{tip.text}</p>
+            </article>
+          ))}
+        </div>
+
+        {images?.content && images.content.filter(img => img.position === "tips_section").map((img) => (
+          <figure class="recipe-tips__image-wrapper">
+            <img
+              src={img.src}
+              alt={img.alt}
+              width={img.width}
+              height={img.height}
+              class="recipe-tips__image"
+              loading="lazy"
+            />
+            {img.caption && (
+              <figcaption class="recipe-tips__caption">
+                {img.caption}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </section>
+    )}
+
+    <!-- Conclusion Section -->
+    {content?.conclusion?.text && (
+      <section class="recipe-conclusion" aria-labelledby="recipe-conclusion-heading">
+        <h2 id="recipe-conclusion-heading" class="sr-only">Fazit</h2>
+        <div class="recipe-conclusion__content">
+          <p class="recipe-conclusion__text">{content.conclusion.text}</p>
+        </div>
+      </section>
+    )}
+
+    <!-- Tags Section -->
+    {taxonomy?.tags && taxonomy.tags.length > 0 && (
+      <footer class="recipe-footer">
+        <div class="recipe-footer__tags" role="list" aria-label="Schlagwörter">
+          <span class="recipe-footer__tags-label">Schlagwörter:</span>
+          {taxonomy.tags.map((tag) => (
+            <span class="recipe-footer__tag" role="listitem">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {taxonomy.cuisine && (
+          <div class="recipe-footer__cuisine" itemprop="recipeCuisine">
+            Küche: {taxonomy.cuisine}
+          </div>
+        )}
+      </footer>
+    )}
+  </article>
+
+  <!-- Screen Reader Only Styles -->
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
+</BlogPostLayout>

@@ -1,41 +1,27 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import PostHeader from "../components/PostHeader.astro";
 import RecipeSchema from "../components/RecipeSchema.astro";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  frontmatter: {
-    title: string;
-    description: string;
-    metaDescription?: string;
-    metaKeywords?: string[];
-    metaCanonical?: string;
-    heroImage: string;
-    images?: string[];
-    ingredients: string[];
-    categories: string[];
-    keywords: string[];
-    pubDate: Date;
-    prepTime?: string;
-    cookTime?: string;
-    servings?: string;
-    cuisine?: string;
-    sourceUrl?: string;
-    nutrition: {
-      servings?: string;
-      calories?: string;
-      carbohydrates?: string;
-      protein?: string;
-      fat?: string;
-    };
-  };
-  slug?: string;
+  title: string;
+  description: string;
+  postData: CollectionEntry<"blog">["data"];
 }
 
-const { frontmatter, slug = "" } = Astro.props;
+const { title, description, postData } = Astro.props;
+
+// Create frontmatter object for BaseLayout from postData
+const frontmatter = {
+  title: postData.metadata?.title || title,
+  metaDescription: postData.seo?.metaDescription || postData.metadata?.description || description,
+  metaKeywords: postData.seo?.metaKeywords?.join(", ") || "",
+  metaCanonical: postData.seo?.metaCanonical || "",
+  featuredImage: postData.images?.featured?.src || "",
+};
 ---
 
 <BaseLayout frontmatter={frontmatter}>
-  <RecipeSchema frontmatter={frontmatter} slug={slug} slot="head" />
-  <PostHeader />
+  <RecipeSchema postData={postData} slug={postData.metadata?.slug || ""} slot="head" />
+  <slot />
 </BaseLayout>

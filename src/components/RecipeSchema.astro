@@ -5,97 +5,32 @@
  * Generates JSON-LD structured data for Google Recipe Schema
  * Based on: https://schema.org/Recipe
  *
- * Note: recipeInstructions are not included as they are part of the markdown content.
- * To add them, you would need to pass the rendered content as a prop and extract
- * the instructions from the HTML.
+ * Uses the recipeSchema from the JSON data if available, otherwise generates it from postData
  */
 
+import type { CollectionEntry } from "astro:content";
+
 interface Props {
-  frontmatter: {
-    title: string;
-    description: string;
-    heroImage: string;
-    images?: string[];
-    ingredients: string[];
-    categories: string[];
-    keywords: string[];
-    pubDate: Date;
-    prepTime?: string;
-    cookTime?: string;
-    servings?: string;
-    cuisine?: string;
-    sourceUrl?: string;
-    nutrition: {
-      servings?: string;
-      calories?: string;
-      carbohydrates?: string;
-      protein?: string;
-      fat?: string;
-    };
-  };
+  postData: CollectionEntry<"blog">["data"];
   slug: string;
 }
 
-const { frontmatter, slug } = Astro.props;
-
-// Helper function to parse ISO 8601 duration to schema format
-function parseISO8601Duration(duration?: string): string | undefined {
-  if (!duration) return undefined;
-  return duration; // Schema.org uses ISO 8601 format directly
-}
-
-// Helper function to extract numeric value from string (e.g., "4 servings" -> "4")
-function extractNumber(value?: string): string | undefined {
-  if (!value) return undefined;
-  const match = value.match(/[\d.]+/);
-  return match ? match[0] : undefined;
-}
+const { postData, slug } = Astro.props;
 
 // Build the recipe URL
 const baseUrl = Astro.site?.href || Astro.url.origin + "/";
 const recipeUrl = `${baseUrl}blog/${slug}`;
 
-// Build the schema object
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Recipe",
-  name: frontmatter.title,
-  description: frontmatter.description,
-  image: [
-    frontmatter.heroImage,
-    ...(frontmatter.images || []),
-  ],
-  author: {
-    "@type": "Organization",
-    name: Astro.site?.hostname || "Food Blog",
-  },
-  datePublished: frontmatter.pubDate.toISOString(),
-  prepTime: parseISO8601Duration(frontmatter.prepTime),
-  cookTime: parseISO8601Duration(frontmatter.cookTime),
-  totalTime:
-    frontmatter.prepTime && frontmatter.cookTime
-      ? undefined // Could calculate combined time if needed
-      : undefined,
-  recipeYield: frontmatter.servings || frontmatter.nutrition.servings,
-  recipeCategory: frontmatter.categories.join(", "),
-  recipeCuisine: frontmatter.cuisine,
-  keywords: frontmatter.keywords.join(", "),
-  recipeIngredient: frontmatter.ingredients,
-  nutrition: {
-    "@type": "NutritionInformation",
-    servingSize: frontmatter.nutrition.servings || frontmatter.servings,
-    calories: frontmatter.nutrition.calories
-      ? `${extractNumber(frontmatter.nutrition.calories)} calories`
-      : undefined,
-    carbohydrateContent: frontmatter.nutrition.carbohydrates,
-    proteinContent: frontmatter.nutrition.protein,
-    fatContent: frontmatter.nutrition.fat,
-  },
-  url: recipeUrl,
-  ...(frontmatter.sourceUrl && {
-    isBasedOn: frontmatter.sourceUrl,
-  }),
-};
+// Use the recipeSchema from JSON if available, otherwise build it
+let schema = postData.recipeSchema || {};
+
+// If the schema doesn't have a URL, add it
+if (!schema.url) {
+  schema = {
+    ...schema,
+    url: recipeUrl,
+  };
+}
 
 // Clean up undefined values
 const cleanedSchema = JSON.parse(
