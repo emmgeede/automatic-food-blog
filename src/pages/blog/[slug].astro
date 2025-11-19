@@ -1,15 +1,12 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
-import RecipeHeader from "../../components/recipe/RecipeHeader.astro";
-import RecipeIntro from "../../components/recipe/RecipeIntro.astro";
-import RecipeFacts from "../../components/recipe/RecipeFacts.astro";
-import RecipeIngredients from "../../components/recipe/RecipeIngredients.astro";
-import RecipeInstructions from "../../components/recipe/RecipeInstructions.astro";
-import RecipeNutrition from "../../components/recipe/RecipeNutrition.astro";
-import RecipeTips from "../../components/recipe/RecipeTips.astro";
-import RecipeConclusion from "../../components/recipe/RecipeConclusion.astro";
-import RecipeFooter from "../../components/recipe/RecipeFooter.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RecipeHero from "../../components/recipe/RecipeHero.astro";
+import RecipeIngredientsNew from "../../components/recipe/RecipeIngredientsNew.astro";
+import RecipeDirectionsNew from "../../components/recipe/RecipeDirectionsNew.astro";
+import RecipeNutritionNew from "../../components/recipe/RecipeNutritionNew.astro";
+import RecipeFactsNew from "../../components/recipe/RecipeFactsNew.astro";
+import RecipeSidebar from "../../components/recipe/RecipeSidebar.astro";
 
 type BlogEntry = CollectionEntry<"blog">;
 
@@ -24,100 +21,190 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props as { entry: BlogEntry };
 
-const { metadata, content, images, ingredients, nutrition, timing, taxonomy } = entry.data;
+const {
+  metadata,
+  seo,
+  content,
+  images,
+  ingredients,
+  nutrition,
+  timing,
+  taxonomy,
+  recipeSchema,
+} = entry.data;
+
+// Prepare canonical URL
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.pathname;
+
+// Prepare Open Graph image
+const ogImage = seo?.ogImage || images?.featured?.src || "/og-default.jpg";
+const ogImageURL = Astro.site && ogImage.startsWith('/')
+  ? new URL(ogImage, Astro.site).toString()
+  : ogImage;
+
+// Build Table of Contents items
+const tocItems = [
+  { id: 'introduction', label: 'Einleitung', iconType: 'introduction' as const },
+  content?.facts && content.facts.length > 0 && { id: 'facts', label: 'Wissenswertes', iconType: 'facts' as const },
+  { id: 'ingredients', label: 'Zutaten', iconType: 'ingredients' as const },
+  { id: 'directions', label: 'Zubereitung', iconType: 'directions' as const },
+  { id: 'nutrition', label: 'Nährwerte', iconType: 'nutrition' as const },
+  content?.tips && content.tips.items && content.tips.items.length > 0 && { id: 'tips', label: 'Tipps', iconType: 'tips' as const },
+].filter(Boolean);
+
+// Prepare frontmatter for BaseLayout
+const frontmatter = {
+  title: seo?.metaTitle || metadata?.title,
+  metaDescription: seo?.metaDescription || metadata?.description,
+  metaKeywords: seo?.metaKeywords?.join(", "),
+  metaCanonical: canonicalURL,
+  featuredImage: ogImageURL,
+  ogType: seo?.ogType || "article",
+};
 ---
 
-<BlogPostLayout
-  title={metadata?.title || "Untertitelter Beitrag"}
-  description={metadata?.description || ""}
-  postData={entry.data}
->
-  <article class="recipe" itemscope itemtype="https://schema.org/Recipe">
-    <RecipeHeader {metadata} {taxonomy} {timing} {nutrition} {images} />
+<BaseLayout frontmatter={frontmatter}>
+  <!-- Schema.org Recipe Markup in head slot -->
+  <Fragment slot="head">
+    {recipeSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(recipeSchema)} />
+    )}
+  </Fragment>
 
-    <div class="content">
-      <div class="content__main">
-        <RecipeIntro {content} {images} />
-        <RecipeFacts {content} {images} />
-        <RecipeIngredients {ingredients} />
-        <RecipeInstructions {content} {images} />
-        <RecipeNutrition {nutrition} />
-        <RecipeTips {content} {images} />
-        <RecipeConclusion {content} />
-        <RecipeFooter {taxonomy} />
+  <!-- Recipe Article -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <article
+      class="recipe-article"
+      itemscope
+      itemtype="https://schema.org/Recipe"
+    >
+      <!-- Hidden Schema Data -->
+      <meta itemprop="name" content={metadata?.title} />
+      <meta itemprop="description" content={metadata?.description} />
+      {images?.featured?.src && <meta itemprop="image" content={images.featured.src} />}
+      {metadata?.pubDate && <meta itemprop="datePublished" content={metadata.pubDate.toString()} />}
+      {metadata?.author && <meta itemprop="author" content={metadata.author} />}
+      {timing?.prepTime && <meta itemprop="prepTime" content={timing.prepTime} />}
+      {timing?.cookTime && <meta itemprop="cookTime" content={timing.cookTime} />}
+      {timing?.totalTime && <meta itemprop="totalTime" content={timing.totalTime} />}
+      {nutrition?.servings && <meta itemprop="recipeYield" content={nutrition.servings.toString()} />}
+      {taxonomy?.categories && <meta itemprop="recipeCategory" content={taxonomy.categories.join(", ")} />}
+      {taxonomy?.cuisine && <meta itemprop="recipeCuisine" content={taxonomy.cuisine} />}
+
+      <!-- Hero Section -->
+      {images?.featured && (
+        <RecipeHero
+          title={metadata?.title || ""}
+          description={metadata?.description}
+          heroImage={{
+            src: images.featured.src,
+            alt: images.featured.alt,
+            width: images.featured.width,
+            height: images.featured.height,
+          }}
+          category={taxonomy?.categories?.[0]}
+          categories={taxonomy?.categories}
+          timing={timing}
+          cuisine={taxonomy?.cuisine}
+          servings={nutrition?.servings}
+          difficulty={taxonomy?.difficulty}
+          author={{
+            name: metadata?.author,
+            role: "Recipe Author",
+          }}
+          tocItems={tocItems}
+        />
+      )}
+
+      <!-- Content Grid: Main Content + Sidebar -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content (2/3 width) -->
+        <div class="lg:col-span-2 space-y-0">
+          <!-- Introduction (optional) -->
+          {content?.introduction?.text && (
+            <section id="introduction" class="bg-white rounded-lg p-8 mb-8 scroll-mt-24">
+              <h2 class="text-2xl font-bold text-gray-900 mb-4">Einleitung</h2>
+              <p class="text-lg text-gray-700 leading-relaxed">
+                {content.introduction.text}
+              </p>
+            </section>
+          )}
+
+          <!-- Facts (Wissenswertes) -->
+          <div id="facts" class="scroll-mt-24">
+            <RecipeFactsNew facts={content?.facts} />
+          </div>
+
+          <!-- Ingredients -->
+          <div id="ingredients" class="scroll-mt-24">
+            <RecipeIngredientsNew
+              ingredients={ingredients}
+              servings={nutrition?.servings}
+            />
+          </div>
+
+          <!-- Directions/Instructions -->
+          <div id="directions" class="scroll-mt-24">
+            <RecipeDirectionsNew
+              steps={content?.steps}
+              stepImages={images?.steps}
+            />
+          </div>
+
+          <!-- Nutrition Facts -->
+          <div id="nutrition" class="scroll-mt-24">
+            <RecipeNutritionNew nutrition={nutrition} />
+          </div>
+
+          <!-- Tips (optional) -->
+          {content?.tips && content.tips.items && content.tips.items.length > 0 && (
+            <section id="tips" class="bg-white rounded-lg p-8 mb-8 scroll-mt-24">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">{content.tips.title || "Tipps"}</h2>
+              <div class="space-y-6">
+                {content.tips.items.map((tip) => (
+                  <div class="flex gap-4 border-l-4 border-secondary pl-6 py-2">
+                    <div class="flex-shrink-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6 text-primary-light"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-gray-900 mb-2">{tip.title}</h3>
+                      <p class="text-gray-700 leading-relaxed">{tip.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <!-- Conclusion (optional) -->
+          {content?.conclusion?.text && (
+            <section class="bg-white rounded-lg p-8 mb-8">
+              <p class="text-lg text-gray-700 leading-relaxed italic border-l-4 border-accent pl-6">
+                {content.conclusion.text}
+              </p>
+            </section>
+          )}
+        </div>
+
+        <!-- Sidebar (1/3 width) -->
+        <div class="lg:col-span-1">
+          <RecipeSidebar
+            currentSlug={metadata?.slug || ""}
+            currentCategories={taxonomy?.categories}
+          />
+        </div>
       </div>
-      <aside class="content__sidebar">SIDEBAR</aside>
-    </div>
-  </article>
-
-  <!-- Screen Reader Only Styles -->
-  <style>
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border-width: 0;
-    }
-  </style>
-
-  <style lang="scss">
-    .content {
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      gap: 2rem;
-      max-width: 80%;
-
-      &__main {
-      }
-      &__sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-      }
-    }
-
-    .recipe-header {
-      .head-band {
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-        padding: 1.2rem;
-        background-color: var(--color-neutral-200);
-
-        h1 {
-          font-size: 2em;
-        }
-
-        &__buttons {
-          display: flex;
-          gap: 1rem;
-        }
-
-        &__breadcrumb {
-          font-size: 0.8em;
-          flex-direction: row;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
-
-          a {
-            text-decoration: underline;
-            transition: text-decoration 0.3s ease;
-
-            &:hover {
-              text-decoration: none;
-            }
-          }
-        }
-      }
-    }
-  </style>
-</BlogPostLayout>
+    </article>
+  </div>
+</BaseLayout>

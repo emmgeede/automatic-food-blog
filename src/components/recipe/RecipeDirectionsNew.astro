@@ -1,0 +1,101 @@
+---
+import { Image } from "astro:assets";
+
+interface Step {
+  number: number;
+  title: string;
+  text: string;
+  shortText?: string;
+  image?: string;
+  tips?: string[];
+}
+
+interface StepImage {
+  stepNumber: number;
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+interface Props {
+  steps?: Step[];
+  stepImages?: StepImage[];
+}
+
+const { steps = [], stepImages = [] } = Astro.props;
+---
+
+{steps && steps.length > 0 && (
+  <section class="bg-white rounded-lg p-8 mb-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8">Zubereitung</h2>
+
+    <div class="space-y-12">
+      {steps
+        .sort((a, b) => a.number - b.number)
+        .map((step) => {
+          const stepImage = stepImages.find((img) => img.stepNumber === step.number);
+          return (
+            <div class="relative">
+              <div class="flex items-start gap-4 mb-4">
+                <div class="flex-shrink-0">
+                  <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-sm">
+                    {step.number}
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-accent pt-1">{step.title}</h3>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 ml-12">
+                {stepImage && (
+                  <div class="md:col-span-1">
+                    <figure class="rounded-lg overflow-hidden shadow-md">
+                      <Image
+                        src={stepImage.src}
+                        alt={stepImage.alt}
+                        width={stepImage.width || 400}
+                        height={stepImage.height || 533}
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                        format="webp"
+                        quality={85}
+                      />
+                    </figure>
+                  </div>
+                )}
+
+                <div class={stepImage ? "md:col-span-2" : "md:col-span-3"}>
+                  <p class="text-gray-700 leading-relaxed mb-4">{step.text}</p>
+
+                  {step.tips && step.tips.length > 0 && (
+                    <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-secondary">
+                      <div class="flex items-center gap-2 mb-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 text-accent"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                        <strong class="text-gray-900 font-semibold">Tipps:</strong>
+                      </div>
+                      <ul class="space-y-1">
+                        {step.tips.map((tip) => (
+                          <li class="text-sm text-gray-700 pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-secondary">
+                            {tip}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+    </div>
+  </section>
+)}

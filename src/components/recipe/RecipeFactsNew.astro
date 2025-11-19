@@ -1,0 +1,29 @@
+---
+interface Fact {
+  title: string;
+  text: string;
+  order: number;
+}
+
+interface Props {
+  facts?: Fact[];
+}
+
+const { facts = [] } = Astro.props;
+
+const sortedFacts = facts.sort((a, b) => a.order - b.order);
+---
+
+{sortedFacts && sortedFacts.length > 0 && (
+  <section class="bg-white rounded-lg p-8 mb-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Wissenswertes</h2>
+    <div class="space-y-6">
+      {sortedFacts.map((fact) => (
+        <div class="border-l-4 border-accent pl-6 py-2">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">{fact.title}</h3>
+          <p class="text-gray-700 leading-relaxed">{fact.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

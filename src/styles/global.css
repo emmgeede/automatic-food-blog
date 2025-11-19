@@ -26,17 +26,43 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: hsla(213, 40%, 10%, 1);
-  --color-secondary: hsla(34, 68%, 46%, 1);
-  --color-accent: hsla(274, 100%, 71%, 1);
-  --color-muted: hsla(38, 100%, 96%, 1);
+  /* Hauptfarben basierend auf hsla(214, 41%, 10%, 1) */
+  --color-primary: hsla(214, 41%, 10%, 1);
+  --color-primary-light: hsla(214, 41%, 20%, 1);
+  --color-primary-dark: hsla(214, 41%, 5%, 1);
+  --color-secondary: hsla(214, 41%, 10%, 1);
+  --color-accent: hsla(0, 100%, 50%, 1);
+  --color-muted: hsla(0, 0%, 96%, 1);
   --color-neutral: hsla(0, 0%, 74%, 1);
+
+  /* Graustufen */
+  --color-gray-50: hsla(0, 0%, 98%, 1);
+  --color-gray-100: hsla(0, 0%, 96%, 1);
+  --color-gray-200: hsla(0, 0%, 91%, 1);
+  --color-gray-300: hsla(0, 0%, 82%, 1);
+  --color-gray-400: hsla(0, 0%, 64%, 1);
+  --color-gray-500: hsla(0, 0%, 45%, 1);
+  --color-gray-600: hsla(0, 0%, 38%, 1);
+  --color-gray-700: hsla(0, 0%, 26%, 1);
+  --color-gray-800: hsla(0, 0%, 15%, 1);
+  --color-gray-900: hsla(214, 41%, 10%, 1);
 
   --font-display: "Ubuntu", serif;
 }
 
 * {
   font-family: var(--font-display);
+}
+
+/* Globaler Focus-Visible Stil für Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Entfernt den Default-Focus-Ring für nicht-keyboard-navigation */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .sr-only {

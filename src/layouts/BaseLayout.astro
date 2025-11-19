@@ -11,29 +11,66 @@ const { frontmatter = {} } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{frontmatter.title}</title>
+    <meta name="title" content={frontmatter.title} />
     <meta name="description" content={frontmatter.metaDescription} />
-    <meta name="keywords" content={frontmatter.metaKeywords} />
+    {frontmatter.metaKeywords && <meta name="keywords" content={frontmatter.metaKeywords} />}
     <meta
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
-
-    <meta property="og:title" content={frontmatter.title} />
-    <meta property="og:url" content={frontmatter.metaCanonical} />
-    <meta property="og:description" content={frontmatter.metaDescription} />
-    <meta property="og:image" content={frontmatter.featuredImage} />
-    <meta name="generator" content={Astro.generator} />
-
     <link rel="canonical" href={frontmatter.metaCanonical} />
 
-    <title>{frontmatter.title}</title>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={frontmatter.ogType || "website"} />
+    <meta property="og:url" content={frontmatter.metaCanonical} />
+    <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:description" content={frontmatter.metaDescription} />
+    <meta property="og:image" content={frontmatter.featuredImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={frontmatter.metaCanonical} />
+    <meta property="twitter:title" content={frontmatter.title} />
+    <meta property="twitter:description" content={frontmatter.metaDescription} />
+    <meta property="twitter:image" content={frontmatter.featuredImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <slot name="head" />
   </head>
   <body>
+    <!-- Skip Links für Accessibility -->
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="#navigation" class="skip-link">Zur Navigation springen</a>
+
     <Header />
-    <main class="container mx-auto">
+    <main id="main-content" class="container mx-auto" tabindex="-1">
       <slot />
     </main>
+    <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--color-accent);
+        color: white;
+        padding: 8px 16px;
+        text-decoration: none;
+        font-weight: bold;
+        z-index: 100;
+        border-radius: 0 0 4px 0;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
+    </style>
   </body>
-  <Footer />
 </html>

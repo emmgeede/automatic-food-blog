@@ -1,0 +1,24 @@
+---
+interface Props {
+  name?: string;
+  role?: string;
+  image?: string;
+}
+
+const { name = "Food Blog", role = "Recipe Author", image = "/images/default-author.jpg" } = Astro.props;
+---
+
+<div class="flex items-center gap-3 py-4 border-t border-b border-gray-200">
+  <img
+    src={image}
+    alt={name}
+    class="w-12 h-12 rounded-full object-cover"
+    loading="lazy"
+    width="48"
+    height="48"
+  />
+  <div>
+    <h3 class="font-semibold text-gray-900">{name}</h3>
+    <p class="text-sm text-gray-500">{role}</p>
+  </div>
+</div>
