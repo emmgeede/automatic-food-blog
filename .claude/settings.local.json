@@ -27,7 +27,9 @@
       "WebFetch(domain:www.svgrepo.com)",
       "WebFetch(domain:icon-icons.com)",
       "WebFetch(domain:www.flaticon.com)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "WebFetch(domain:remark42.com)",
+      "WebFetch(domain:gitlab.com)"
     ],
     "deny": [],
     "ask": []
