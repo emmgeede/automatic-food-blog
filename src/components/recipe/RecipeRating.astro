@@ -1,0 +1,263 @@
+---
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
+
+interface RatingData {
+  average: number;
+  totalRatings: number;
+  distribution: {
+    5: number;
+    4: number;
+    3: number;
+    2: number;
+    1: number;
+  };
+}
+
+interface Props {
+  recipeSlug: string;
+}
+
+const { recipeSlug } = Astro.props;
+
+// Try to load rating data from file system during build
+let ratingData: RatingData | null = null;
+try {
+  const ratingFilePath = join(process.cwd(), 'public', 'ratings', `${recipeSlug}.json`);
+  if (existsSync(ratingFilePath)) {
+    const fileContent = readFileSync(ratingFilePath, 'utf-8');
+    ratingData = JSON.parse(fileContent);
+  }
+} catch (error) {
+  // No ratings yet or file doesn't exist
+  console.log(`No rating data found for ${recipeSlug}`);
+}
+
+const maxRatings = ratingData ? Math.max(...Object.values(ratingData.distribution)) : 0;
+---
+
+<section class="bg-white rounded-lg p-8 mb-8">
+  <h2 class="text-2xl font-bold text-gray-900 mb-6">Bewertungen</h2>
+
+  {ratingData && ratingData.totalRatings > 0 ? (
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left: Average Rating -->
+      <div class="flex flex-col items-center justify-center text-center border-r border-gray-200 pr-8">
+        <div class="text-6xl font-bold text-gray-900 mb-2">
+          {ratingData.average.toFixed(1)}
+          <span class="text-2xl text-gray-500 font-normal">/ 5</span>
+        </div>
+        <div class="flex gap-1 mb-2">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <svg
+              class={`w-6 h-6 ${star <= Math.round(ratingData.average) ? 'text-yellow-400' : 'text-gray-300'}`}
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          ))}
+        </div>
+        <div class="text-sm text-gray-600">{ratingData.totalRatings} Bewertungen</div>
+      </div>
+
+      <!-- Middle: Distribution Bars -->
+      <div class="flex flex-col justify-center gap-2">
+        {[5, 4, 3, 2, 1].map((stars) => {
+          const count = ratingData.distribution[stars as keyof typeof ratingData.distribution] || 0;
+          const percentage = maxRatings > 0 ? (count / maxRatings) * 100 : 0;
+          return (
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium text-gray-700 w-3">{stars}</span>
+              <div class="flex-1 h-4 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  class={`h-full transition-all ${stars === 5 ? 'bg-accent' : 'bg-gray-400'}`}
+                  style={`width: ${percentage}%`}
+                />
+              </div>
+              <span class="text-sm text-gray-600 w-8 text-right">{count}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Right: Visual Star Preview -->
+      <div class="flex flex-col justify-center gap-1">
+        {[5, 4, 3, 2, 1].map((stars) => (
+          <div class="flex gap-0.5">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <svg
+                class={`w-5 h-5 ${star <= stars ? 'text-yellow-400' : 'text-gray-300'}`}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <div class="text-center py-8">
+      <p class="text-gray-500 mb-4">Noch keine Bewertungen vorhanden.</p>
+      <p class="text-sm text-gray-400">Sei der Erste, der dieses Rezept bewertet!</p>
+    </div>
+  )}
+
+  <!-- Rating Form -->
+  <div class="mt-8 pt-8 border-t border-gray-200">
+    <h3 class="text-lg font-semibold text-gray-900 mb-4">Dieses Rezept bewerten</h3>
+    <form id="rating-form" class="flex flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <span class="text-sm text-gray-700 font-medium">Deine Bewertung:</span>
+        <div class="flex gap-1" id="rating-stars">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              type="button"
+              data-rating={star}
+              class="rating-star focus:outline-none focus:ring-2 focus:ring-accent rounded"
+              aria-label={`${star} Sterne`}
+            >
+              <svg
+                class="w-8 h-8 text-gray-300 hover:text-yellow-400 transition-colors cursor-pointer"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            </button>
+          ))}
+        </div>
+        <span id="selected-rating" class="text-sm text-gray-600"></span>
+      </div>
+      <input type="hidden" id="rating-value" name="rating" value="" required />
+      <input type="hidden" name="recipeSlug" value={recipeSlug} />
+      <button
+        type="submit"
+        class="px-6 py-2 bg-accent text-white font-semibold rounded-lg hover:bg-accent/90 transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed self-start"
+        id="submit-rating"
+        disabled
+      >
+        Bewertung abgeben
+      </button>
+      <div id="rating-message" class="text-sm"></div>
+    </form>
+  </div>
+</section>
+
+<script>
+  const stars = document.querySelectorAll('.rating-star');
+  const ratingValue = document.getElementById('rating-value') as HTMLInputElement;
+  const selectedRatingText = document.getElementById('selected-rating');
+  const submitButton = document.getElementById('submit-rating') as HTMLButtonElement;
+  const ratingForm = document.getElementById('rating-form') as HTMLFormElement;
+  const messageDiv = document.getElementById('rating-message');
+
+  let currentRating = 0;
+
+  // Check if user has already rated this recipe
+  const recipeSlug = (ratingForm?.querySelector('input[name="recipeSlug"]') as HTMLInputElement)?.value;
+  const storageKey = `rated_${recipeSlug}`;
+  const hasRated = localStorage.getItem(storageKey);
+
+  if (hasRated) {
+    // Disable rating form
+    stars.forEach(star => (star as HTMLButtonElement).disabled = true);
+    submitButton.disabled = true;
+    submitButton.textContent = 'Bereits bewertet';
+    showMessage('Du hast dieses Rezept bereits bewertet.', 'error');
+  }
+
+  // Star hover and click handlers
+  stars.forEach((star, index) => {
+    const starButton = star as HTMLButtonElement;
+    const svg = starButton.querySelector('svg');
+
+    starButton.addEventListener('mouseenter', () => {
+      updateStarDisplay(index + 1, true);
+    });
+
+    starButton.addEventListener('click', () => {
+      currentRating = index + 1;
+      ratingValue.value = currentRating.toString();
+      if (selectedRatingText) {
+        selectedRatingText.textContent = `${currentRating} von 5 Sternen`;
+      }
+      submitButton.disabled = false;
+      updateStarDisplay(currentRating, false);
+    });
+  });
+
+  // Reset stars on mouse leave
+  document.getElementById('rating-stars')?.addEventListener('mouseleave', () => {
+    updateStarDisplay(currentRating, false);
+  });
+
+  function updateStarDisplay(rating: number, isHover: boolean) {
+    stars.forEach((star, index) => {
+      const svg = star.querySelector('svg');
+      if (svg) {
+        if (index < rating) {
+          svg.classList.remove('text-gray-300');
+          svg.classList.add('text-yellow-400');
+        } else {
+          svg.classList.remove('text-yellow-400');
+          svg.classList.add('text-gray-300');
+        }
+      }
+    });
+  }
+
+  // Form submission
+  ratingForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!currentRating) {
+      showMessage('Bitte wähle eine Bewertung aus.', 'error');
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Wird gespeichert...';
+
+    try {
+      const formData = new FormData(ratingForm);
+      const response = await fetch('/.netlify/functions/submit-rating', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipeSlug: formData.get('recipeSlug'),
+          rating: parseInt(formData.get('rating') as string),
+        }),
+      });
+
+      if (response.ok) {
+        showMessage('Vielen Dank für deine Bewertung', 'success');
+        // Mark as rated in localStorage
+        localStorage.setItem(storageKey, 'true');
+        // Disable form after successful submission
+        stars.forEach(star => (star as HTMLButtonElement).disabled = true);
+        submitButton.textContent = 'Bewertung abgegeben';
+      } else {
+        const error = await response.json();
+        showMessage(error.message || 'Fehler beim Speichern der Bewertung.', 'error');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Bewertung abgeben';
+      }
+    } catch (error) {
+      showMessage('Fehler beim Speichern der Bewertung. Bitte versuche es später erneut.', 'error');
+      submitButton.disabled = false;
+      submitButton.textContent = 'Bewertung abgeben';
+    }
+  });
+
+  function showMessage(message: string, type: 'success' | 'error') {
+    if (messageDiv) {
+      messageDiv.textContent = message;
+      messageDiv.className = `text-sm ${type === 'success' ? 'text-green-600' : 'text-red-600'}`;
+    }
+  }
+</script>
