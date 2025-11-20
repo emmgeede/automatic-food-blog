@@ -111,6 +111,18 @@ const isConfigured = !!turnstileSiteKey;
 
           // Initialize Remark42
           initRemark42();
+
+          // Handle comment fragment after Remark42 is initialized
+          if (window.location.hash && window.location.hash.includes('remark42__comment')) {
+            console.log('Detected comment fragment after Turnstile:', window.location.hash);
+            setTimeout(() => {
+              const commentsSection = document.getElementById('remark42');
+              if (commentsSection) {
+                commentsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                console.log('Scrolled to comments section');
+              }
+            }, 2000);
+          }
         }, 500);
       } else {
         if (statusDiv) {
@@ -192,45 +204,22 @@ const isConfigured = !!turnstileSiteKey;
     }, 2000);
 
     // Handle comment fragment links (e.g., #remark42__comment-xxx)
-    setTimeout(function() {
-      if (window.location.hash && window.location.hash.includes('remark42__comment')) {
-        console.log('Detected comment fragment:', window.location.hash);
+    // Remark42 supports fragments natively, but we need to scroll to the comments section first
+    if (window.location.hash && window.location.hash.includes('remark42__comment')) {
+      console.log('Detected comment fragment:', window.location.hash);
 
-        // Wait for iframe to be fully loaded
-        const checkIframe = setInterval(function() {
-          const iframe = document.querySelector('iframe[id^="remark42"]');
-          if (iframe && iframe.contentDocument) {
-            try {
-              const commentId = window.location.hash.substring(1);
-              const commentElement = iframe.contentDocument.getElementById(commentId);
+      // Immediately scroll to comments section
+      setTimeout(function() {
+        const commentsSection = document.getElementById('remark42');
+        if (commentsSection) {
+          commentsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          console.log('Scrolled to comments section, waiting for Remark42 to load...');
 
-              if (commentElement) {
-                // Scroll to comment within iframe
-                commentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                // Highlight comment
-                commentElement.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
-                setTimeout(function() {
-                  commentElement.style.transition = 'background-color 2s ease';
-                  commentElement.style.backgroundColor = 'transparent';
-                }, 2000);
-
-                clearInterval(checkIframe);
-                console.log('Scrolled to comment:', commentId);
-              }
-            } catch(e) {
-              console.warn('Could not scroll to comment (CORS):', e);
-              clearInterval(checkIframe);
-            }
-          }
-        }, 500);
-
-        // Stop trying after 10 seconds
-        setTimeout(function() {
-          clearInterval(checkIframe);
-        }, 10000);
-      }
-    }, 3000);
+          // Remark42 will automatically handle the fragment when the iframe loads
+          // We just need to ensure the comments section is visible
+        }
+      }, 1000);
+    }
   }
 
   // Check if Turnstile is already loaded, otherwise wait
