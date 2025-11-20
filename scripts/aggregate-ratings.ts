@@ -23,7 +23,8 @@ interface AggregatedRating {
 async function aggregateRatings() {
   console.log("Starting rating aggregation...");
 
-  // Check if we're in a Netlify environment
+  // Check if we're in a Netlify environment with Blobs available
+  // Blobs are only available in Functions, not during build time
   if (!process.env.NETLIFY) {
     console.log("⚠️  Not in Netlify environment - skipping rating aggregation");
     console.log("   Ratings will be aggregated during deployment on Netlify");
@@ -31,6 +32,7 @@ async function aggregateRatings() {
   }
 
   try {
+    // Try to access Blobs - will throw if not available (e.g., during build)
     const ratingsStore = getStore("ratings");
 
     // Get all rating keys (recipe slugs)
@@ -102,6 +104,12 @@ async function aggregateRatings() {
 
     console.log("Rating aggregation complete!");
   } catch (error) {
+    // Check if it's a MissingBlobsEnvironmentError (happens during build)
+    if (error instanceof Error && error.message.includes("MissingBlobsEnvironmentError")) {
+      console.log("⚠️  Netlify Blobs not available during build - skipping rating aggregation");
+      console.log("   Ratings will be available from pre-generated files");
+      return; // Don't throw, just skip
+    }
     console.error("Error aggregating ratings:", error);
     throw error;
   }
