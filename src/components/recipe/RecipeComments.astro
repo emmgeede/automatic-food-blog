@@ -190,6 +190,47 @@ const isConfigured = !!turnstileSiteKey;
         console.warn('Could not inject custom styles into Remark42 iframe (CORS):', e);
       }
     }, 2000);
+
+    // Handle comment fragment links (e.g., #remark42__comment-xxx)
+    setTimeout(function() {
+      if (window.location.hash && window.location.hash.includes('remark42__comment')) {
+        console.log('Detected comment fragment:', window.location.hash);
+
+        // Wait for iframe to be fully loaded
+        const checkIframe = setInterval(function() {
+          const iframe = document.querySelector('iframe[id^="remark42"]');
+          if (iframe && iframe.contentDocument) {
+            try {
+              const commentId = window.location.hash.substring(1);
+              const commentElement = iframe.contentDocument.getElementById(commentId);
+
+              if (commentElement) {
+                // Scroll to comment within iframe
+                commentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Highlight comment
+                commentElement.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                setTimeout(function() {
+                  commentElement.style.transition = 'background-color 2s ease';
+                  commentElement.style.backgroundColor = 'transparent';
+                }, 2000);
+
+                clearInterval(checkIframe);
+                console.log('Scrolled to comment:', commentId);
+              }
+            } catch(e) {
+              console.warn('Could not scroll to comment (CORS):', e);
+              clearInterval(checkIframe);
+            }
+          }
+        }, 500);
+
+        // Stop trying after 10 seconds
+        setTimeout(function() {
+          clearInterval(checkIframe);
+        }, 10000);
+      }
+    }, 3000);
   }
 
   // Check if Turnstile is already loaded, otherwise wait
