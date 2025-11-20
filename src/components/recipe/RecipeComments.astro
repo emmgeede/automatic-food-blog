@@ -186,7 +186,7 @@ const isConfigured = !!turnstileSiteKey;
 </script>
 
 <style>
-  /* Custom Remark42 styling */
+  /* Custom Remark42 styling to match site theme */
   #remark42 {
     margin-top: 1rem;
   }
@@ -202,28 +202,210 @@ const isConfigured = !!turnstileSiteKey;
     transition: opacity 0.3s ease-in-out;
   }
 
-  /* Override Remark42 styles to match site design */
+  /* ==================== REMARK42 THEME CUSTOMIZATION ==================== */
+
+  /* Base styles - Font und Grundfarben */
   :global(.remark) {
-    font-family: inherit !important;
+    font-family: var(--font-display) !important;
+    color: var(--color-primary) !important;
   }
 
-  :global(.remark__input) {
-    border-color: #e5e7eb !important;
+  /* Textareas und Input-Felder */
+  :global(.remark__input),
+  :global(.remark textarea) {
+    font-family: var(--font-display) !important;
+    border-color: var(--color-gray-300) !important;
     border-radius: 0.5rem !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
   }
 
-  :global(.remark__input:focus) {
-    border-color: #fb923c !important;
-    box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1) !important;
+  :global(.remark__input:focus),
+  :global(.remark textarea:focus) {
+    border-color: var(--color-accent) !important;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1) !important;
+    outline: none !important;
   }
 
-  :global(.remark__button) {
-    background-color: #fb923c !important;
+  /* Primary Buttons (Senden, Antworten, etc.) */
+  :global(.remark__button),
+  :global(.remark button[type="submit"]),
+  :global(.remark .auth-button) {
+    background-color: var(--color-accent) !important;
+    color: white !important;
+    font-family: var(--font-display) !important;
+    font-weight: 600 !important;
     border-radius: 0.5rem !important;
-    transition: background-color 0.2s !important;
+    padding: 0.5rem 1.25rem !important;
+    transition: all 0.2s !important;
+    border: none !important;
   }
 
-  :global(.remark__button:hover) {
-    background-color: #f97316 !important;
+  :global(.remark__button:hover),
+  :global(.remark button[type="submit"]:hover),
+  :global(.remark .auth-button:hover) {
+    background-color: var(--color-primary) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Secondary Buttons (Abbrechen, etc.) */
+  :global(.remark button[type="button"]),
+  :global(.remark .remark__button--secondary) {
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
+    border: 1px solid var(--color-gray-300) !important;
+    border-radius: 0.5rem !important;
+    padding: 0.5rem 1.25rem !important;
+    transition: all 0.2s !important;
+  }
+
+  :global(.remark button[type="button"]:hover),
+  :global(.remark .remark__button--secondary:hover) {
+    background-color: var(--color-gray-100) !important;
+    border-color: var(--color-primary) !important;
+  }
+
+  /* Links */
+  :global(.remark a) {
+    color: var(--color-accent) !important;
+    transition: color 0.2s !important;
+  }
+
+  :global(.remark a:hover) {
+    color: var(--color-primary) !important;
+  }
+
+  /* Kommentar-Header (Autor, Datum) */
+  :global(.remark__author) {
+    color: var(--color-primary) !important;
+    font-weight: 600 !important;
+  }
+
+  :global(.remark__time) {
+    color: var(--color-gray-500) !important;
+  }
+
+  /* Kommentar-Text */
+  :global(.remark__comment-text) {
+    color: var(--color-gray-700) !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Vote Buttons */
+  :global(.remark__vote) {
+    color: var(--color-gray-400) !important;
+    transition: color 0.2s !important;
+  }
+
+  :global(.remark__vote:hover) {
+    color: var(--color-accent) !important;
+  }
+
+  :global(.remark__vote--selected) {
+    color: var(--color-accent) !important;
+  }
+
+  /* Verschachtelte Kommentare (Threads) */
+  :global(.remark__comment--level-1),
+  :global(.remark__comment--level-2),
+  :global(.remark__comment--level-3) {
+    border-left: 2px solid var(--color-gray-200) !important;
+    padding-left: 1rem !important;
+    margin-left: 1rem !important;
+  }
+
+  :global(.remark__comment--level-1) {
+    border-left-color: var(--color-accent) !important;
+  }
+
+  /* Login-Section */
+  :global(.remark__auth) {
+    background-color: var(--color-gray-50) !important;
+    border-radius: 0.5rem !important;
+    padding: 1rem !important;
+  }
+
+  /* Sortierung und Tabs */
+  :global(.remark__sort) {
+    border-bottom: 2px solid var(--color-gray-200) !important;
+  }
+
+  :global(.remark__sort-option--selected) {
+    color: var(--color-accent) !important;
+    border-bottom-color: var(--color-accent) !important;
+  }
+
+  /* Markdown Preview */
+  :global(.remark__preview) {
+    border: 1px solid var(--color-gray-300) !important;
+    border-radius: 0.5rem !important;
+    padding: 1rem !important;
+  }
+
+  /* Error Messages */
+  :global(.remark__error) {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    color: var(--color-accent) !important;
+    border-radius: 0.5rem !important;
+    padding: 0.75rem !important;
+  }
+
+  /* Loading Spinner */
+  :global(.remark__spinner) {
+    border-top-color: var(--color-accent) !important;
+  }
+
+  /* Counter Badge */
+  :global(.remark__counter) {
+    background-color: var(--color-accent) !important;
+    color: white !important;
+    border-radius: 9999px !important;
+    padding: 0.25rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+  }
+
+  /* User Avatar */
+  :global(.remark__avatar) {
+    border-radius: 9999px !important;
+    border: 2px solid var(--color-gray-200) !important;
+  }
+
+  /* Admin Badge */
+  :global(.remark__admin-badge) {
+    background-color: var(--color-accent) !important;
+    color: white !important;
+    border-radius: 0.25rem !important;
+    padding: 0.125rem 0.5rem !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+  }
+
+  /* Emoji Picker */
+  :global(.remark__emoji-picker) {
+    border: 1px solid var(--color-gray-300) !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Image Upload */
+  :global(.remark__image-upload) {
+    border: 2px dashed var(--color-gray-300) !important;
+    border-radius: 0.5rem !important;
+    transition: border-color 0.2s !important;
+  }
+
+  :global(.remark__image-upload:hover) {
+    border-color: var(--color-accent) !important;
+  }
+
+  /* Toolbar Icons */
+  :global(.remark__toolbar-icon) {
+    color: var(--color-gray-600) !important;
+    transition: color 0.2s !important;
+  }
+
+  :global(.remark__toolbar-icon:hover) {
+    color: var(--color-accent) !important;
   }
 </style>
