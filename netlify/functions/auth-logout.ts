@@ -10,7 +10,7 @@ export default async (req: Request, context: Context) => {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Set-Cookie': 'admin_token=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0',
+      'Set-Cookie': 'admin_token=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0',
     },
   });
 };

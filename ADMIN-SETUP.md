@@ -110,7 +110,7 @@ const ALLOWED_EMAILS = ['foofourtyone@gmail.com', 'andere@email.de'];
 ### Session-Dauer
 - Login-Session ist 7 Tage gültig
 - Nach 7 Tagen automatischer Logout
-- Cookie ist HttpOnly, Secure, SameSite=Strict
+- Cookie ist HttpOnly, Secure, SameSite=Lax (Lax ermöglicht OAuth-Redirects)
 
 ## Troubleshooting
 
@@ -131,6 +131,11 @@ const ALLOWED_EMAILS = ['foofourtyone@gmail.com', 'andere@email.de'];
 ### "Zugriff verweigert"
 - Deine Email ist nicht in der ALLOWED_EMAILS Liste
 - Editiere `auth-google-callback.ts` und füge deine Email hinzu
+
+### "Login funktioniert nicht / Cookie wird nicht gesetzt"
+- Prüfe ob `SameSite=Lax` in auth-google-callback.ts gesetzt ist (nicht Strict!)
+- `SameSite=Strict` blockiert Cookies bei OAuth-Redirects von Google
+- Browser Console (F12) zeigt Warnungen über blockierte Cookies
 
 ## API Endpoints
 

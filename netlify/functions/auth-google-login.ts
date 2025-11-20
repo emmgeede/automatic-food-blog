@@ -1,11 +1,16 @@
 import type { Context } from "@netlify/functions";
 
 export default async (req: Request, context: Context) => {
+  console.log('Google OAuth login initiated');
+
   const googleClientId = process.env.AUTH_GOOGLE_CID;
   const siteUrl = process.env.URL || 'https://die-mama-kocht.de';
   const redirectUri = `${siteUrl}/api/auth/google/callback`;
 
+  console.log('Redirect URI:', redirectUri);
+
   if (!googleClientId) {
+    console.error('AUTH_GOOGLE_CID not configured');
     return new Response('Google OAuth not configured', { status: 500 });
   }
 
@@ -16,6 +21,8 @@ export default async (req: Request, context: Context) => {
   authUrl.searchParams.set('response_type', 'code');
   authUrl.searchParams.set('scope', 'openid email profile');
   authUrl.searchParams.set('access_type', 'online');
+
+  console.log('Redirecting to Google OAuth:', authUrl.toString());
 
   // Redirect to Google OAuth
   return new Response(null, {

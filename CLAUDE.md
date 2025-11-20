@@ -118,3 +118,4 @@ When editing code, maintain these formatting standards.
 - ERstelle immer einen neuen Git branch, wenn du neue Features oder Bugfixes durchführst
 - Comitte immer dann, wenn es während der Erstellung von Features oder Buchfixes sinn macht
 - Frage mich am Ende eines Bugfixes oder einer Featureerstellung ob der neue Branch gemerged werden soll
+- bei Git pushe immer zu origin und github

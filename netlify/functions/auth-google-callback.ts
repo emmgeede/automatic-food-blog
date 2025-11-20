@@ -103,7 +103,7 @@ export default async (req: Request, context: Context) => {
       status: 302,
       headers: {
         'Location': '/admin/',
-        'Set-Cookie': `admin_token=${adminToken}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${7 * 24 * 60 * 60}`,
+        'Set-Cookie': `admin_token=${adminToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${7 * 24 * 60 * 60}`,
       },
     });
 

@@ -31,7 +31,8 @@
       "WebFetch(domain:remark42.com)",
       "WebFetch(domain:gitlab.com)",
       "Bash(find:*)",
-      "Bash(.gitignore)"
+      "Bash(.gitignore)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": []

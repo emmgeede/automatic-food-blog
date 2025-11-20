@@ -74,7 +74,9 @@ const isAuthenticated = !!authCookie?.value;
   const logoutBtn = document.getElementById('logout-btn');
 
   if (googleLoginBtn) {
-    googleLoginBtn.addEventListener('click', () => {
+    googleLoginBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log('Login button clicked, redirecting to:', '/api/auth/google/login');
       window.location.href = '/api/auth/google/login';
     });
   }
