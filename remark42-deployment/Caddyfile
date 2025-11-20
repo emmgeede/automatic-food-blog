@@ -25,7 +25,7 @@ comments.die-mama-kocht.de {
 
 	# Logging
 	log {
-		output file /var/log/caddy/access.log
+		output stdout
 		format json
 	}
 }
