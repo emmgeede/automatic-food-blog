@@ -105,7 +105,12 @@ async function aggregateRatings() {
     console.log("Rating aggregation complete!");
   } catch (error) {
     // Check if it's a MissingBlobsEnvironmentError (happens during build)
-    if (error instanceof Error && error.message.includes("MissingBlobsEnvironmentError")) {
+    if (error instanceof Error && (
+      error.name === "MissingBlobsEnvironmentError" ||
+      error.constructor.name === "MissingBlobsEnvironmentError" ||
+      error.message.includes("MissingBlobsEnvironmentError") ||
+      error.message.includes("environment has not been configured to use Netlify Blobs")
+    )) {
       console.log("⚠️  Netlify Blobs not available during build - skipping rating aggregation");
       console.log("   Ratings will be available from pre-generated files");
       return; // Don't throw, just skip
