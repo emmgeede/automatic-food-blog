@@ -1,0 +1,331 @@
+/* Remark42 Custom Theme für die-mama-kocht.de */
+/* Diese Datei wird direkt von Remark42 geladen */
+
+/* CSS-Variablen für Remark42 Theme */
+:root {
+  /* Hauptfarben */
+  --color-primary: hsla(214, 41%, 10%, 1);
+  --color-primary-light: hsla(214, 41%, 20%, 1);
+  --color-accent: hsla(0, 100%, 50%, 1);
+  --color-gray-50: hsla(0, 0%, 98%, 1);
+  --color-gray-100: hsla(0, 0%, 96%, 1);
+  --color-gray-200: hsla(0, 0%, 91%, 1);
+  --color-gray-300: hsla(0, 0%, 82%, 1);
+  --color-gray-400: hsla(0, 0%, 64%, 1);
+  --color-gray-500: hsla(0, 0%, 45%, 1);
+  --color-gray-600: hsla(0, 0%, 38%, 1);
+  --color-gray-700: hsla(0, 0%, 26%, 1);
+
+  /* Font */
+  --font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Base Body */
+body {
+  font-family: var(--font-family) !important;
+  color: var(--color-primary) !important;
+}
+
+/* Primary Buttons */
+button[type="submit"],
+.auth-button,
+.reply-button {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+  font-family: var(--font-family) !important;
+  font-weight: 600 !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1.25rem !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+button[type="submit"]:hover,
+.auth-button:hover,
+.reply-button:hover {
+  background-color: var(--color-primary) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Secondary Buttons */
+button[type="button"]:not([class*="vote"]),
+.cancel-button {
+  background-color: transparent !important;
+  color: var(--color-primary) !important;
+  border: 1px solid var(--color-gray-300) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 1.25rem !important;
+  transition: all 0.2s ease !important;
+}
+
+button[type="button"]:hover:not([class*="vote"]),
+.cancel-button:hover {
+  background-color: var(--color-gray-100) !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* Textareas und Input-Felder */
+textarea,
+input[type="text"],
+input[type="email"] {
+  font-family: var(--font-family) !important;
+  border: 1px solid var(--color-gray-300) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+  color: var(--color-primary) !important;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1) !important;
+  outline: none !important;
+}
+
+/* Links */
+a {
+  color: var(--color-accent) !important;
+  transition: color 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: var(--color-primary) !important;
+  text-decoration: underline !important;
+}
+
+/* Kommentar-Autor */
+.comment-author,
+.user-name {
+  color: var(--color-primary) !important;
+  font-weight: 600 !important;
+  font-family: var(--font-family) !important;
+}
+
+/* Kommentar-Zeit */
+.comment-date,
+.comment-time {
+  color: var(--color-gray-500) !important;
+  font-size: 0.875rem !important;
+}
+
+/* Kommentar-Text */
+.comment-body,
+.comment-text {
+  color: var(--color-gray-700) !important;
+  line-height: 1.6 !important;
+  font-family: var(--font-family) !important;
+}
+
+/* Vote Buttons */
+.vote-up,
+.vote-down {
+  color: var(--color-gray-400) !important;
+  transition: color 0.2s ease !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.vote-up:hover {
+  color: var(--color-accent) !important;
+}
+
+.vote-down:hover {
+  color: var(--color-gray-600) !important;
+}
+
+.vote-up.selected,
+.vote-down.selected {
+  color: var(--color-accent) !important;
+  font-weight: 600 !important;
+}
+
+/* Verschachtelte Kommentare */
+.comment-level-1,
+.comment-reply {
+  border-left: 2px solid var(--color-gray-200) !important;
+  padding-left: 1rem !important;
+  margin-left: 1rem !important;
+  margin-top: 0.5rem !important;
+}
+
+.comment-level-1 {
+  border-left-color: var(--color-accent) !important;
+}
+
+/* Login/Auth Section */
+.auth-section,
+.user-info {
+  background-color: var(--color-gray-50) !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  border: 1px solid var(--color-gray-200) !important;
+}
+
+/* Sortierung */
+.sort-tabs,
+.toolbar {
+  border-bottom: 2px solid var(--color-gray-200) !important;
+  margin-bottom: 1rem !important;
+}
+
+.sort-tab {
+  color: var(--color-gray-600) !important;
+  padding: 0.5rem 1rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border-bottom: 2px solid transparent !important;
+  margin-bottom: -2px !important;
+}
+
+.sort-tab:hover {
+  color: var(--color-primary) !important;
+}
+
+.sort-tab.selected,
+.sort-tab.active {
+  color: var(--color-accent) !important;
+  border-bottom-color: var(--color-accent) !important;
+  font-weight: 600 !important;
+}
+
+/* Error Messages */
+.error-message,
+.error-text {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+  color: var(--color-accent) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.75rem !important;
+  border-left: 4px solid var(--color-accent) !important;
+}
+
+/* Loading Spinner */
+.spinner,
+.loading {
+  border-top-color: var(--color-accent) !important;
+}
+
+/* Counter Badge */
+.counter,
+.comment-count {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+  border-radius: 9999px !important;
+  padding: 0.25rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+}
+
+/* User Avatar */
+.avatar,
+.user-avatar {
+  border-radius: 9999px !important;
+  border: 2px solid var(--color-gray-200) !important;
+}
+
+/* Admin Badge */
+.admin-badge,
+.moderator-badge {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+  border-radius: 0.25rem !important;
+  padding: 0.125rem 0.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  margin-left: 0.5rem !important;
+}
+
+/* Emoji Picker */
+.emoji-picker {
+  border: 1px solid var(--color-gray-300) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Image Upload */
+.image-upload-area {
+  border: 2px dashed var(--color-gray-300) !important;
+  border-radius: 0.5rem !important;
+  padding: 2rem !important;
+  text-align: center !important;
+  transition: border-color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.image-upload-area:hover {
+  border-color: var(--color-accent) !important;
+  background-color: var(--color-gray-50) !important;
+}
+
+/* Toolbar Icons */
+.toolbar-icon,
+.editor-icon {
+  color: var(--color-gray-600) !important;
+  transition: color 0.2s ease !important;
+  cursor: pointer !important;
+  padding: 0.5rem !important;
+  border-radius: 0.25rem !important;
+}
+
+.toolbar-icon:hover,
+.editor-icon:hover {
+  color: var(--color-accent) !important;
+  background-color: var(--color-gray-100) !important;
+}
+
+/* Preview */
+.preview-area {
+  border: 1px solid var(--color-gray-300) !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem !important;
+  background-color: var(--color-gray-50) !important;
+}
+
+/* Markdown Formatting */
+.preview-area h1,
+.preview-area h2,
+.preview-area h3 {
+  color: var(--color-primary) !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.preview-area code {
+  background-color: var(--color-gray-100) !important;
+  padding: 0.125rem 0.25rem !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.875em !important;
+}
+
+.preview-area pre {
+  background-color: var(--color-gray-100) !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  overflow-x: auto !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500) !important;
+}

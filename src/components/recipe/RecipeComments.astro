@@ -175,6 +175,21 @@ const isConfigured = !!turnstileSiteKey;
         (d.head || d.body).appendChild(s);
       }
     })(window.remark_config.components || ['embed']);
+
+    // Inject custom styles into Remark42 iframe after it loads
+    setTimeout(function() {
+      try {
+        const iframe = document.querySelector('iframe[id^="remark42"]');
+        if (iframe && iframe.contentDocument) {
+          const style = iframe.contentDocument.createElement('link');
+          style.rel = 'stylesheet';
+          style.href = '/remark42-custom.css';
+          iframe.contentDocument.head.appendChild(style);
+        }
+      } catch(e) {
+        console.warn('Could not inject custom styles into Remark42 iframe (CORS):', e);
+      }
+    }, 2000);
   }
 
   // Check if Turnstile is already loaded, otherwise wait
