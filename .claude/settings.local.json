@@ -5,7 +5,7 @@
       "Bash(git branch:*)",
       "Bash(node convert-recipes.js:*)",
       "Bash(ssh:*)",
-      "WebFetch(domain:zimtkeksundapfeltarte.com)",
+      "WebFetch(domain:die-mama-kocht.de)",
       "Bash(npm run build:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -29,7 +29,8 @@
       "WebFetch(domain:www.flaticon.com)",
       "Bash(npm install:*)",
       "WebFetch(domain:remark42.com)",
-      "WebFetch(domain:gitlab.com)"
+      "WebFetch(domain:gitlab.com)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

@@ -21,7 +21,7 @@ services:
     container_name: remark42
     restart: unless-stopped
     environment:
-      - REMARK_URL=https://comments.zimtkeksundapfeltarte.com
+      - REMARK_URL=https://comments.die-mama-kocht.de
       - SECRET=${REMARK_SECRET}
       - SITE=food-blog
 
@@ -55,7 +55,7 @@ services:
       - MAX_IMAGE_SIZE=5000000
 
       # CORS
-      - ALLOWED_HOSTS=self,zimtkeksundapfeltarte.com,*.zimtkeksundapfeltarte.com
+      - ALLOWED_HOSTS=self,die-mama-kocht.de,*.die-mama-kocht.de
 
     volumes:
       - remark_data:/srv/var

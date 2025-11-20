@@ -14,14 +14,14 @@ Diese Dateien werden für das Deployment von Remark42 auf dem Hetzner Cloud Serv
 
 ```bash
 # SSH in den Server
-ssh root@comments.zimtkeksundapfeltarte.com
+ssh root@comments.die-mama-kocht.de
 
 # Verzeichnis erstellen
 mkdir -p /opt/remark42
 cd /opt/remark42
 
 # Dateien kopieren (von deinem lokalen Rechner aus)
-scp remark42-deployment/* root@comments.zimtkeksundapfeltarte.com:/opt/remark42/
+scp remark42-deployment/* root@comments.die-mama-kocht.de:/opt/remark42/
 ```
 
 ### 2. Environment Variables konfigurieren
@@ -49,7 +49,7 @@ docker compose logs -f
 
 ### 4. Admin-Login konfigurieren
 
-1. Öffne https://comments.zimtkeksundapfeltarte.com/web/
+1. Öffne https://comments.die-mama-kocht.de/web/
 2. Login mit Google/GitHub
 3. Browser Console (F12): `localStorage.getItem('remark42-user')`
 4. Kopiere die ID
@@ -65,7 +65,7 @@ tar -czf remark42-backup-$(date +%Y%m%d).tar.gz /opt/remark42
 docker compose up -d
 
 # Backup herunterladen
-scp root@comments.zimtkeksundapfeltarte.com:/opt/remark42/remark42-backup-*.tar.gz ./
+scp root@comments.die-mama-kocht.de:/opt/remark42/remark42-backup-*.tar.gz ./
 ```
 
 ## Updates

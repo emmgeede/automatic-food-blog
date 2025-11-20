@@ -155,7 +155,7 @@ Datenschutzerklärung Google: https://policies.google.com/privacy
 ### Phase 2: Hetzner Cloud VPS Setup (30 Min)
 1. CX11 Server erstellen (3.79€/Monat)
 2. Docker + Docker Compose installieren
-3. Domain konfigurieren (`comments.zimtkeksundapfeltarte.com`)
+3. Domain konfigurieren (`comments.die-mama-kocht.de`)
 
 ### Phase 3: Remark42 Deployment (30 Min)
 1. `docker-compose.yml` mit Caddy (Auto-SSL)

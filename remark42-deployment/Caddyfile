@@ -1,4 +1,4 @@
-comments.zimtkeksundapfeltarte.com {
+comments.die-mama-kocht.de {
 	# Reverse proxy to Remark42
 	reverse_proxy remark42:8080
 

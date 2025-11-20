@@ -87,7 +87,7 @@ Basierend auf der offiziellen Dokumentation und Produktionsdaten:
    - Rechenzentrum: Falkenstein/Nürnberg
 
 2. **Domain/Subdomain konfigurieren:**
-   - DNS A-Record: `comments.zimtkeksundapfeltarte.com` → Server-IP
+   - DNS A-Record: `comments.die-mama-kocht.de` → Server-IP
 
 3. **Docker installieren:**
    ```bash
@@ -112,7 +112,7 @@ Basierend auf der offiziellen Dokumentation und Produktionsdaten:
      remark42:
        image: umputun/remark42:latest
        environment:
-         - REMARK_URL=https://comments.zimtkeksundapfeltarte.com
+         - REMARK_URL=https://comments.die-mama-kocht.de
          - SECRET=your-secret-key
          - SITE=food-blog
          - AUTH_ANON=true  # Anonyme Kommentare erlauben
@@ -122,7 +122,7 @@ Basierend auf der offiziellen Dokumentation und Produktionsdaten:
 
 5. **Caddyfile für Auto-SSL:**
    ```
-   comments.zimtkeksundapfeltarte.com {
+   comments.die-mama-kocht.de {
        reverse_proxy remark42:8080
    }
    ```
@@ -196,7 +196,7 @@ Falls du unbedingt auf Managed Hosting bleiben möchtest, müsstest du:
 
 1. ✅ Hetzner Cloud Account erstellen (falls noch nicht vorhanden)
 2. ✅ CX11 Server mit Ubuntu 24.04 erstellen
-3. ✅ Subdomain konfigurieren (`comments.zimtkeksundapfeltarte.com`)
+3. ✅ Subdomain konfigurieren (`comments.die-mama-kocht.de`)
 4. ✅ Ich erstelle dir eine fertige `docker-compose.yml` + Setup-Script
 5. ✅ Remark42 deployen und testen
 6. ✅ Astro-Komponente `RecipeComments.astro` erstellen

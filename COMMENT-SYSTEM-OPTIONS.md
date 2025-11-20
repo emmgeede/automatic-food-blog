@@ -173,7 +173,7 @@
 
 **Setup-Aufwand:**
 - Docker-Container auf VPS deployen (z.B. Hetzner Cloud)
-- Domain/Subdomain konfigurieren (z.B. `comments.zimtkeksundapfeltarte.com`)
+- Domain/Subdomain konfigurieren (z.B. `comments.die-mama-kocht.de`)
 - Astro-Integration via Script-Tag
 - Spam-Schutz konfigurieren (reCAPTCHA empfohlen)
 

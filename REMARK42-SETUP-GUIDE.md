@@ -24,7 +24,7 @@ Komplette Schritt-für-Schritt-Anleitung für DSGVO-konforme Kommentarfunktion.
 **Konfiguration:**
 ```
 Site Name: Food Blog Comments
-Domain: zimtkeksundapfeltarte.com
+Domain: die-mama-kocht.de
 Widget Mode: Managed (empfohlen - unsichtbar)
 ```
 
@@ -87,18 +87,18 @@ Value: [DEINE-SERVER-IP]
 TTL: 300 (5 Minuten)
 ```
 
-**Ergebnis:** `comments.zimtkeksundapfeltarte.com` → Server-IP
+**Ergebnis:** `comments.die-mama-kocht.de` → Server-IP
 
 **Test:** Warte 5-10 Minuten, dann:
 ```bash
-ping comments.zimtkeksundapfeltarte.com
+ping comments.die-mama-kocht.de
 ```
 
 ### Schritt 5: Server vorbereiten
 
 Verbinde dich mit deinem Server:
 ```bash
-ssh root@comments.zimtkeksundapfeltarte.com
+ssh root@comments.die-mama-kocht.de
 # oder
 ssh root@[DEINE-SERVER-IP]
 ```
@@ -160,7 +160,7 @@ services:
     container_name: remark42
     restart: unless-stopped
     environment:
-      - REMARK_URL=https://comments.zimtkeksundapfeltarte.com
+      - REMARK_URL=https://comments.die-mama-kocht.de
       - SECRET=${REMARK_SECRET}
       - SITE=food-blog
       - AUTH_ANON=true
@@ -206,7 +206,7 @@ nano Caddyfile
 
 **Inhalt:**
 ```
-comments.zimtkeksundapfeltarte.com {
+comments.die-mama-kocht.de {
     reverse_proxy remark42:8080
 
     # Optional: Rate Limiting
@@ -290,14 +290,14 @@ docker compose logs -f
 
 **Test:** Öffne im Browser:
 ```
-https://comments.zimtkeksundapfeltarte.com/web/
+https://comments.die-mama-kocht.de/web/
 ```
 
 Du solltest die Remark42 Web-UI sehen!
 
 ### Schritt 6: Admin-Login konfigurieren
 
-1. Gehe zu `https://comments.zimtkeksundapfeltarte.com/web/`
+1. Gehe zu `https://comments.die-mama-kocht.de/web/`
 2. Klicke auf "Login" → Wähle Google/GitHub/etc.
 3. Nach Login: Kopiere deine **User ID** aus der Browser-Konsole
 4. Füge die ID in `.env` ein:
@@ -516,7 +516,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   // Initialize Remark42
   function initRemark42() {
     var remark_config = {
-      host: 'https://comments.zimtkeksundapfeltarte.com',
+      host: 'https://comments.die-mama-kocht.de',
       site_id: 'food-blog',
       components: ['embed', 'counter'],
       url: window.location.href,
@@ -646,7 +646,7 @@ tar -czf remark42-backup-$(date +%Y%m%d).tar.gz /opt/remark42
 docker compose up -d
 
 # Backup herunterladen
-scp root@comments.zimtkeksundapfeltarte.com:/opt/remark42/remark42-backup-*.tar.gz ./
+scp root@comments.die-mama-kocht.de:/opt/remark42/remark42-backup-*.tar.gz ./
 ```
 
 **Automatisches Backup (Cronjob):**
@@ -670,7 +670,7 @@ crontab -e
 ### Remark42 lädt nicht
 - Prüfe Docker Logs: `docker compose logs remark42`
 - Prüfe Caddy Logs: `docker compose logs caddy`
-- Prüfe DNS: `nslookup comments.zimtkeksundapfeltarte.com`
+- Prüfe DNS: `nslookup comments.die-mama-kocht.de`
 
 ### SSL-Fehler
 - Warte 2-3 Minuten nach erstem Start

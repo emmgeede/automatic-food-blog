@@ -8,7 +8,7 @@ Dieses Projekt verwendet **Remark42** als selbst-gehostetes Kommentarsystem mit 
 
 ### Backend: Remark42 (selbst-gehostet)
 - **Hosting:** Hetzner Cloud VPS CX11 (3.79€/Monat)
-- **URL:** https://comments.zimtkeksundapfeltarte.com
+- **URL:** https://comments.die-mama-kocht.de
 - **Features:**
   - Anonyme Kommentare
   - Social Login (Google, GitHub, Facebook, etc.)
@@ -87,7 +87,7 @@ Siehe `REMARK42-SETUP-GUIDE.md` für die vollständige Schritt-für-Schritt-Anle
 **Quick Start:**
 1. Cloudflare Turnstile Keys generieren
 2. Hetzner Cloud VPS erstellen (CX11)
-3. DNS A-Record setzen: `comments.zimtkeksundapfeltarte.com`
+3. DNS A-Record setzen: `comments.die-mama-kocht.de`
 4. Dateien aus `remark42-deployment/` auf Server kopieren
 5. `.env` konfigurieren
 6. `docker compose up -d`
@@ -100,7 +100,7 @@ Siehe `REMARK42-SETUP-GUIDE.md` für die vollständige Schritt-für-Schritt-Anle
 ```bash
 PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAAA...
 TURNSTILE_SECRET_KEY=0x4AAAAAAA...
-PUBLIC_REMARK42_URL=https://comments.zimtkeksundapfeltarte.com
+PUBLIC_REMARK42_URL=https://comments.die-mama-kocht.de
 ```
 
 ### Netlify
@@ -110,7 +110,7 @@ Setze diese Environment Variables in:
 ```
 PUBLIC_TURNSTILE_SITE_KEY=0x4AAAAAAA...
 TURNSTILE_SECRET_KEY=0x4AAAAAAA...
-PUBLIC_REMARK42_URL=https://comments.zimtkeksundapfeltarte.com
+PUBLIC_REMARK42_URL=https://comments.die-mama-kocht.de
 ```
 
 ### Remark42 Server (/opt/remark42/.env)
