@@ -30,7 +30,8 @@
       "Bash(npm install:*)",
       "WebFetch(domain:remark42.com)",
       "WebFetch(domain:gitlab.com)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(.gitignore)"
     ],
     "deny": [],
     "ask": []
