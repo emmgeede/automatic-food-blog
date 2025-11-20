@@ -6,7 +6,7 @@
   /* Hauptfarben */
   --color-primary: hsla(214, 41%, 10%, 1);
   --color-primary-light: hsla(214, 41%, 20%, 1);
-  --color-accent: hsla(0, 100%, 50%, 1);
+  --color-accent: hsla(180, 100%, 30%, 1);
   --color-gray-50: hsla(0, 0%, 98%, 1);
   --color-gray-100: hsla(0, 0%, 96%, 1);
   --color-gray-200: hsla(0, 0%, 91%, 1);
@@ -82,7 +82,7 @@ textarea:focus,
 input[type="text"]:focus,
 input[type="email"]:focus {
   border-color: var(--color-accent) !important;
-  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(0, 153, 153, 0.1) !important;
   outline: none !important;
 }
 
@@ -197,7 +197,7 @@ a:hover {
 /* Error Messages */
 .error-message,
 .error-text {
-  background-color: rgba(255, 0, 0, 0.1) !important;
+  background-color: rgba(0, 153, 153, 0.1) !important;
   color: var(--color-accent) !important;
   border-radius: 0.5rem !important;
   padding: 0.75rem !important;
