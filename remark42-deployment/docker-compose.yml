@@ -30,6 +30,14 @@ services:
       - ADMIN_SHARED_ID=${ADMIN_SHARED_ID}
       - ADMIN_SHARED_EMAIL=${ADMIN_EMAIL}
 
+      # OAuth Providers (optional, uncomment and configure as needed)
+      - AUTH_GOOGLE_CID=${AUTH_GOOGLE_CID:-}
+      - AUTH_GOOGLE_CSEC=${AUTH_GOOGLE_CSEC:-}
+      - AUTH_GITHUB_CID=${AUTH_GITHUB_CID:-}
+      - AUTH_GITHUB_CSEC=${AUTH_GITHUB_CSEC:-}
+      - AUTH_FACEBOOK_CID=${AUTH_FACEBOOK_CID:-}
+      - AUTH_FACEBOOK_CSEC=${AUTH_FACEBOOK_CSEC:-}
+
       # Localization
       - TIME_ZONE=Europe/Berlin
       - EMOJI=true
