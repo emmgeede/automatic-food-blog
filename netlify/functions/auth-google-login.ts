@@ -22,26 +22,13 @@ export default async (req: Request, context: Context) => {
   authUrl.searchParams.set('scope', 'openid email profile');
   authUrl.searchParams.set('access_type', 'online');
 
-  console.log('Redirecting to Google OAuth:', authUrl.toString());
+  console.log('Returning OAuth URL:', authUrl.toString());
 
-  // Return HTML redirect page as fallback for browsers that don't follow 302 properly
-  const redirectHtml = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta http-equiv="refresh" content="0;url=${authUrl.toString()}">
-        <script>window.location.href = "${authUrl.toString()}";</script>
-      </head>
-      <body>
-        <p>Redirecting to Google...</p>
-      </body>
-    </html>
-  `;
-
-  return new Response(redirectHtml, {
+  // Return the OAuth URL as JSON for the client to handle the redirect
+  return new Response(JSON.stringify({ redirectUrl: authUrl.toString() }), {
     status: 200,
     headers: {
-      'Content-Type': 'text/html',
+      'Content-Type': 'application/json',
     },
   });
 };

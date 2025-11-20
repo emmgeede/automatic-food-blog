@@ -74,10 +74,25 @@ const isAuthenticated = !!authCookie?.value;
   const logoutBtn = document.getElementById('logout-btn');
 
   if (googleLoginBtn) {
-    googleLoginBtn.addEventListener('click', (e) => {
+    googleLoginBtn.addEventListener('click', async (e) => {
       e.preventDefault();
-      console.log('Login button clicked, redirecting to:', '/api/auth/google/login');
-      window.location.href = '/api/auth/google/login';
+      console.log('Login button clicked, fetching OAuth URL...');
+
+      try {
+        const response = await fetch('/api/auth/google/login');
+        const data = await response.json();
+
+        if (data.redirectUrl) {
+          console.log('Redirecting to:', data.redirectUrl);
+          window.location.href = data.redirectUrl;
+        } else {
+          console.error('No redirect URL received');
+          alert('Login fehlgeschlagen: Keine Redirect-URL erhalten');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Login fehlgeschlagen: ' + error.message);
+      }
     });
   }
 
