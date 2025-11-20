@@ -8,6 +8,7 @@ import RecipeDirectionsNew from "../../components/recipe/RecipeDirectionsNew.ast
 import RecipeNutritionNew from "../../components/recipe/RecipeNutritionNew.astro";
 import RecipeFactsNew from "../../components/recipe/RecipeFactsNew.astro";
 import RecipeSidebar from "../../components/recipe/RecipeSidebar.astro";
+import RecipeComments from "../../components/recipe/RecipeComments.astro";
 
 type BlogEntry = CollectionEntry<"blog">;
 
@@ -199,6 +200,12 @@ const frontmatter = {
               </p>
             </section>
           )}
+
+          <!-- Comments Section -->
+          <RecipeComments
+            recipeSlug={metadata?.slug || ""}
+            recipeTitle={metadata?.title || ""}
+          />
         </div>
 
         <!-- Sidebar (1/3 width) -->

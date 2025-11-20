@@ -1,0 +1,205 @@
+---
+interface Props {
+  recipeSlug: string;
+  recipeTitle: string;
+}
+
+const { recipeSlug, recipeTitle } = Astro.props;
+
+// Turnstile Site Key from environment
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const remark42Url = import.meta.env.PUBLIC_REMARK42_URL || 'https://comments.zimtkeksundapfeltarte.com';
+---
+
+<section class="bg-white rounded-lg p-8 mb-8" id="comments-section">
+  <h2 class="text-2xl font-bold text-gray-900 mb-6">Kommentare</h2>
+
+  <!-- Turnstile Verification -->
+  <div id="turnstile-wrapper" class="mb-6">
+    <p class="text-sm text-gray-600 mb-4">
+      Bitte verifiziere dich, um Kommentare zu sehen und zu schreiben.
+    </p>
+    <div
+      id="turnstile-container"
+      class="cf-turnstile"
+      data-sitekey={turnstileSiteKey}
+      data-callback="onTurnstileSuccess"
+      data-error-callback="onTurnstileError"
+      data-expired-callback="onTurnstileExpired"
+      data-theme="light"
+      data-size="normal"
+    ></div>
+    <div id="turnstile-status" class="mt-4"></div>
+  </div>
+
+  <!-- Remark42 Container (initially hidden) -->
+  <div id="remark42" class="hidden"></div>
+</section>
+
+<!-- Cloudflare Turnstile Script -->
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<!-- Remark42 Integration Script -->
+<script is:inline define:vars={{ remark42Url, recipeTitle }}>
+  let turnstileVerified = false;
+  let turnstileWidget = null;
+
+  // Turnstile Success Callback
+  window.onTurnstileSuccess = async function(token) {
+    console.log('Turnstile challenge completed, validating token...');
+
+    const statusDiv = document.getElementById('turnstile-status');
+    if (statusDiv) {
+      statusDiv.innerHTML = '<p class="text-sm text-blue-600">⏳ Verifizierung läuft...</p>';
+    }
+
+    try {
+      // Validate with backend
+      const response = await fetch('/.netlify/functions/validate-turnstile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        turnstileVerified = true;
+
+        if (statusDiv) {
+          statusDiv.innerHTML = '<p class="text-sm text-green-600">✓ Verifizierung erfolgreich! Kommentare werden geladen...</p>';
+        }
+
+        // Wait a moment for better UX
+        setTimeout(() => {
+          // Hide Turnstile wrapper
+          const wrapper = document.getElementById('turnstile-wrapper');
+          if (wrapper) {
+            wrapper.style.display = 'none';
+          }
+
+          // Show Remark42
+          const remark42Container = document.getElementById('remark42');
+          if (remark42Container) {
+            remark42Container.classList.remove('hidden');
+          }
+
+          // Initialize Remark42
+          initRemark42();
+        }, 500);
+      } else {
+        if (statusDiv) {
+          statusDiv.innerHTML = '<p class="text-sm text-red-600">❌ Verifizierung fehlgeschlagen. Bitte versuche es erneut.</p>';
+        }
+        // Reset Turnstile widget
+        if (window.turnstile) {
+          window.turnstile.reset();
+        }
+      }
+    } catch (error) {
+      console.error('Validation error:', error);
+      if (statusDiv) {
+        statusDiv.innerHTML = '<p class="text-sm text-red-600">❌ Fehler bei der Verifizierung. Bitte lade die Seite neu.</p>';
+      }
+    }
+  };
+
+  // Turnstile Error Callback
+  window.onTurnstileError = function(error) {
+    console.error('Turnstile error:', error);
+    const statusDiv = document.getElementById('turnstile-status');
+    if (statusDiv) {
+      statusDiv.innerHTML = '<p class="text-sm text-red-600">❌ Verifizierung fehlgeschlagen. Bitte lade die Seite neu.</p>';
+    }
+  };
+
+  // Turnstile Expired Callback
+  window.onTurnstileExpired = function() {
+    console.warn('Turnstile token expired');
+    const statusDiv = document.getElementById('turnstile-status');
+    if (statusDiv) {
+      statusDiv.innerHTML = '<p class="text-sm text-orange-600">⚠️ Verifizierung abgelaufen. Bitte löse das Captcha erneut.</p>';
+    }
+    turnstileVerified = false;
+  };
+
+  // Initialize Remark42
+  function initRemark42() {
+    console.log('Initializing Remark42...');
+
+    var remark_config = {
+      host: remark42Url,
+      site_id: 'food-blog',
+      components: ['embed', 'counter'],
+      url: window.location.origin + window.location.pathname,
+      locale: 'de',
+      theme: 'light',
+      page_title: recipeTitle,
+      show_email_subscription: true,
+      simple_view: false,
+      no_footer: false,
+    };
+
+    // Load Remark42 scripts
+    (function(c) {
+      for(var i = 0; i < c.length; i++){
+        var d = document, s = d.createElement('script');
+        s.src = remark_config.host + '/web/' + c[i] + '.js';
+        s.defer = true;
+        (d.head || d.body).appendChild(s);
+      }
+    })(remark_config.components || ['embed']);
+  }
+
+  // Check if Turnstile is already loaded, otherwise wait
+  if (typeof turnstile !== 'undefined') {
+    console.log('Turnstile already loaded');
+  } else {
+    console.log('Waiting for Turnstile to load...');
+  }
+</script>
+
+<style>
+  /* Custom Remark42 styling */
+  #remark42 {
+    margin-top: 1rem;
+  }
+
+  /* Turnstile container styling */
+  #turnstile-container {
+    display: inline-block;
+  }
+
+  /* Smooth transitions */
+  #turnstile-wrapper,
+  #remark42 {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Override Remark42 styles to match site design */
+  :global(.remark) {
+    font-family: inherit !important;
+  }
+
+  :global(.remark__input) {
+    border-color: #e5e7eb !important;
+    border-radius: 0.5rem !important;
+  }
+
+  :global(.remark__input:focus) {
+    border-color: #fb923c !important;
+    box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1) !important;
+  }
+
+  :global(.remark__button) {
+    background-color: #fb923c !important;
+    border-radius: 0.5rem !important;
+    transition: background-color 0.2s !important;
+  }
+
+  :global(.remark__button:hover) {
+    background-color: #f97316 !important;
+  }
+</style>

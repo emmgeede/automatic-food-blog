@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"  # HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - remark_network
+
+  remark42:
+    image: umputun/remark42:latest
+    container_name: remark42
+    restart: unless-stopped
+    environment:
+      - REMARK_URL=https://comments.zimtkeksundapfeltarte.com
+      - SECRET=${REMARK_SECRET}
+      - SITE=food-blog
+
+      # Authentication
+      - AUTH_ANON=true
+      - ADMIN_SHARED_ID=${ADMIN_SHARED_ID}
+      - ADMIN_SHARED_EMAIL=${ADMIN_EMAIL}
+
+      # Localization
+      - TIME_ZONE=Europe/Berlin
+      - EMOJI=true
+
+      # Email Notifications
+      - NOTIFY_ADMINS=email
+      - NOTIFY_EMAIL_FROM=${ADMIN_EMAIL}
+      - NOTIFY_EMAIL_VERIFICATION_SUBJ=Bestätige deine E-Mail für Kommentare
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_TLS=true
+
+      # Anti-Spam Settings
+      - EDIT_TIME=5m
+      - MAX_COMMENT_SIZE=4000
+      - LOW_SCORE=-5
+      - CRITICAL_SCORE=-10
+
+      # Image Upload
+      - IMG_PROXY=true
+      - MAX_IMAGE_SIZE=5000000
+
+      # CORS
+      - ALLOWED_HOSTS=self,zimtkeksundapfeltarte.com,*.zimtkeksundapfeltarte.com
+
+    volumes:
+      - remark_data:/srv/var
+    networks:
+      - remark_network
+    depends_on:
+      - caddy
+
+volumes:
+  remark_data:
+    driver: local
+  caddy_data:
+    driver: local
+  caddy_config:
+    driver: local
+
+networks:
+  remark_network:
+    driver: bridge
