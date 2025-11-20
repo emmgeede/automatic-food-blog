@@ -3,10 +3,16 @@ import type { Context } from "@netlify/functions";
 const ALLOWED_EMAILS = ['foofourtyone@gmail.com']; // Only this email can access admin
 
 export default async (req: Request, context: Context) => {
+  console.log('Google OAuth callback initiated');
+
   const url = new URL(req.url);
+  console.log('Callback URL:', url.toString());
+
   const code = url.searchParams.get('code');
+  console.log('Authorization code:', code ? 'received' : 'missing');
 
   if (!code) {
+    console.error('Missing authorization code');
     return new Response('Missing authorization code', { status: 400 });
   }
 
@@ -15,11 +21,18 @@ export default async (req: Request, context: Context) => {
   const siteUrl = process.env.URL || 'https://die-mama-kocht.de';
   const redirectUri = `${siteUrl}/api/auth/google/callback`;
 
+  console.log('Redirect URI:', redirectUri);
+  console.log('Client ID configured:', !!googleClientId);
+  console.log('Client Secret configured:', !!googleClientSecret);
+
   if (!googleClientId || !googleClientSecret) {
+    console.error('Google OAuth not configured');
     return new Response('Google OAuth not configured', { status: 500 });
   }
 
   try {
+    console.log('Exchanging authorization code for access token...');
+
     // Exchange code for token
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
@@ -37,14 +50,17 @@ export default async (req: Request, context: Context) => {
 
     if (!tokenResponse.ok) {
       const error = await tokenResponse.text();
-      console.error('Token exchange failed:', error);
+      console.error('Token exchange failed:', tokenResponse.status, error);
       return new Response('OAuth token exchange failed', { status: 500 });
     }
 
+    console.log('Token exchange successful');
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
+    console.log('Access token received');
 
     // Get user info
+    console.log('Fetching user info from Google...');
     const userResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -52,14 +68,20 @@ export default async (req: Request, context: Context) => {
     });
 
     if (!userResponse.ok) {
+      console.error('Failed to get user info:', userResponse.status);
       return new Response('Failed to get user info', { status: 500 });
     }
 
     const userData = await userResponse.json();
     const userEmail = userData.email;
+    console.log('User info received, email:', userEmail);
 
     // Check if user is allowed
+    console.log('Checking if email is authorized...');
+    console.log('Allowed emails:', ALLOWED_EMAILS);
+
     if (!ALLOWED_EMAILS.includes(userEmail)) {
+      console.error('Unauthorized email:', userEmail);
       return new Response(`
         <!DOCTYPE html>
         <html>
@@ -90,6 +112,8 @@ export default async (req: Request, context: Context) => {
       });
     }
 
+    console.log('User authorized, creating admin token...');
+
     // Create a simple JWT-like token (for simplicity, we'll just use base64 encoded data)
     // In production, you'd want to use proper JWT signing
     const adminToken = Buffer.from(JSON.stringify({
@@ -97,6 +121,8 @@ export default async (req: Request, context: Context) => {
       name: userData.name,
       exp: Date.now() + (7 * 24 * 60 * 60 * 1000), // 7 days
     })).toString('base64');
+
+    console.log('Admin token created, setting cookie and redirecting to /admin/');
 
     // Set cookie and redirect to admin
     return new Response(null, {
