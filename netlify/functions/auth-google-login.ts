@@ -24,11 +24,24 @@ export default async (req: Request, context: Context) => {
 
   console.log('Redirecting to Google OAuth:', authUrl.toString());
 
-  // Redirect to Google OAuth
-  return new Response(null, {
-    status: 302,
+  // Return HTML redirect page as fallback for browsers that don't follow 302 properly
+  const redirectHtml = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta http-equiv="refresh" content="0;url=${authUrl.toString()}">
+        <script>window.location.href = "${authUrl.toString()}";</script>
+      </head>
+      <body>
+        <p>Redirecting to Google...</p>
+      </body>
+    </html>
+  `;
+
+  return new Response(redirectHtml, {
+    status: 200,
     headers: {
-      'Location': authUrl.toString(),
+      'Content-Type': 'text/html',
     },
   });
 };
