@@ -1,0 +1,91 @@
+---
+/**
+ * Dynamic Recipe Schema Component
+ * Enhances the static recipe schema with dynamic ratings and comments data
+ */
+
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
+
+interface Props {
+  baseSchema: Record<string, any>;
+  recipeSlug: string;
+}
+
+const { baseSchema, recipeSlug } = Astro.props;
+
+// Helper function to read aggregated ratings
+function getAggregatedRating(slug: string) {
+  try {
+    const ratingsPath = join(process.cwd(), 'public', 'ratings', `${slug}.json`);
+
+    if (existsSync(ratingsPath)) {
+      const ratingsData = JSON.parse(readFileSync(ratingsPath, 'utf-8'));
+      return {
+        '@type': 'AggregateRating',
+        ratingValue: ratingsData.average.toFixed(1),
+        ratingCount: ratingsData.totalRatings.toString(),
+        bestRating: '5',
+        worstRating: '1'
+      };
+    }
+  } catch (error) {
+    console.warn(`Could not read ratings for ${slug}:`, error);
+  }
+
+  // Fallback: Return null if no ratings exist
+  return null;
+}
+
+// Helper function to get comment count from Remark42
+async function getCommentCount(slug: string) {
+  try {
+    const remark42Url = import.meta.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
+    const siteUrl = Astro.site?.toString() || 'https://die-mama-kocht.de';
+    const pageUrl = `${siteUrl}/blog/${slug}`;
+
+    // Remark42 API endpoint for comment count
+    const countUrl = `${remark42Url}/api/v1/count?site=food-blog&url=${encodeURIComponent(pageUrl)}`;
+
+    const response = await fetch(countUrl);
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.count || 0;
+    }
+  } catch (error) {
+    console.warn(`Could not fetch comment count for ${slug}:`, error);
+  }
+
+  return 0;
+}
+
+// Build enhanced schema
+const enhancedSchema = { ...baseSchema };
+
+// Add or update aggregateRating
+const aggregatedRating = getAggregatedRating(recipeSlug);
+if (aggregatedRating) {
+  enhancedSchema.aggregateRating = aggregatedRating;
+} else if (enhancedSchema.aggregateRating) {
+  // Remove aggregateRating if no real ratings exist
+  delete enhancedSchema.aggregateRating;
+}
+
+// Add comment count (interactionStatistic)
+const commentCount = await getCommentCount(recipeSlug);
+if (commentCount > 0) {
+  enhancedSchema.interactionStatistic = {
+    '@type': 'InteractionCounter',
+    interactionType: 'https://schema.org/CommentAction',
+    userInteractionCount: commentCount
+  };
+}
+
+// Add dateModified if not present (use current date as fallback)
+if (!enhancedSchema.dateModified) {
+  enhancedSchema.dateModified = baseSchema.datePublished || new Date().toISOString().split('T')[0];
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(enhancedSchema)} />

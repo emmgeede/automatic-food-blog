@@ -9,6 +9,7 @@ import RecipeNutritionNew from "../../components/recipe/RecipeNutritionNew.astro
 import RecipeFactsNew from "../../components/recipe/RecipeFactsNew.astro";
 import RecipeSidebar from "../../components/recipe/RecipeSidebar.astro";
 import RecipeComments from "../../components/recipe/RecipeComments.astro";
+import DynamicRecipeSchema from "../../components/DynamicRecipeSchema.astro";
 
 type BlogEntry = CollectionEntry<"blog">;
 
@@ -68,10 +69,10 @@ const frontmatter = {
 ---
 
 <BaseLayout frontmatter={frontmatter}>
-  <!-- Schema.org Recipe Markup in head slot -->
+  <!-- Schema.org Recipe Markup with dynamic ratings and comments in head slot -->
   <Fragment slot="head">
     {recipeSchema && (
-      <script type="application/ld+json" set:html={JSON.stringify(recipeSchema)} />
+      <DynamicRecipeSchema baseSchema={recipeSchema} recipeSlug={metadata?.slug || ""} />
     )}
   </Fragment>
 
