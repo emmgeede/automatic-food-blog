@@ -9,28 +9,51 @@ const { recipeSlug, recipeTitle } = Astro.props;
 // Turnstile Site Key from environment
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const remark42Url = import.meta.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
+
+// Check if required environment variables are set
+const isConfigured = !!turnstileSiteKey;
 ---
 
 <section class="bg-white rounded-lg p-8 mb-8" id="comments-section">
   <h2 class="text-2xl font-bold text-gray-900 mb-6">Kommentare</h2>
 
-  <!-- Turnstile Verification -->
-  <div id="turnstile-wrapper" class="mb-6">
-    <p class="text-sm text-gray-600 mb-4">
-      Bitte verifiziere dich, um Kommentare zu sehen und zu schreiben.
-    </p>
-    <div
-      id="turnstile-container"
-      class="cf-turnstile"
-      data-sitekey={turnstileSiteKey}
-      data-callback="onTurnstileSuccess"
-      data-error-callback="onTurnstileError"
-      data-expired-callback="onTurnstileExpired"
-      data-theme="light"
-      data-size="normal"
-    ></div>
-    <div id="turnstile-status" class="mt-4"></div>
-  </div>
+  {!isConfigured ? (
+    <!-- Error message if environment variables are missing -->
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm text-yellow-700">
+            Kommentarfunktion ist derzeit nicht verfügbar. Bitte versuche es später erneut.
+          </p>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <>
+      <!-- Turnstile Verification -->
+      <div id="turnstile-wrapper" class="mb-6">
+        <p class="text-sm text-gray-600 mb-4">
+          Bitte verifiziere dich, um Kommentare zu sehen und zu schreiben.
+        </p>
+        <div
+          id="turnstile-container"
+          class="cf-turnstile"
+          data-sitekey={turnstileSiteKey}
+          data-callback="onTurnstileSuccess"
+          data-error-callback="onTurnstileError"
+          data-expired-callback="onTurnstileExpired"
+          data-theme="light"
+          data-size="normal"
+        ></div>
+        <div id="turnstile-status" class="mt-4"></div>
+      </div>
+    </>
+  )}
 
   <!-- Remark42 Container (initially hidden) -->
   <div id="remark42" class="hidden"></div>
@@ -129,7 +152,8 @@ const remark42Url = import.meta.env.PUBLIC_REMARK42_URL || 'https://comments.die
   function initRemark42() {
     console.log('Initializing Remark42...');
 
-    var remark_config = {
+    // Set global config BEFORE loading scripts
+    window.remark_config = {
       host: remark42Url,
       site_id: 'food-blog',
       components: ['embed', 'counter'],
@@ -146,11 +170,11 @@ const remark42Url = import.meta.env.PUBLIC_REMARK42_URL || 'https://comments.die
     (function(c) {
       for(var i = 0; i < c.length; i++){
         var d = document, s = d.createElement('script');
-        s.src = remark_config.host + '/web/' + c[i] + '.js';
+        s.src = window.remark_config.host + '/web/' + c[i] + '.js';
         s.defer = true;
         (d.head || d.body).appendChild(s);
       }
-    })(remark_config.components || ['embed']);
+    })(window.remark_config.components || ['embed']);
   }
 
   // Check if Turnstile is already loaded, otherwise wait
