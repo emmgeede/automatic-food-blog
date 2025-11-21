@@ -47,13 +47,23 @@ export default async (req: Request, context: Context) => {
 
   const remark42Url = process.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
   const adminSecret = process.env.REMARK_ADMIN_SECRET;
+  const adminSharedId = process.env.REMARK_ADMIN_SHARED_ID;
 
   console.log('Remark42 URL:', remark42Url);
   console.log('Admin secret configured:', !!adminSecret);
+  console.log('Admin shared ID configured:', !!adminSharedId);
 
   if (!adminSecret) {
     console.error('REMARK_ADMIN_SECRET not configured');
     return new Response(JSON.stringify({ error: 'Admin secret not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (!adminSharedId) {
+    console.error('REMARK_ADMIN_SHARED_ID not configured');
+    return new Response(JSON.stringify({ error: 'Admin shared ID not configured' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -64,7 +74,7 @@ export default async (req: Request, context: Context) => {
     const deleteUrl = `${remark42Url}/api/v1/admin/comment/${commentId}?site=food-blog`;
     console.log('Delete URL:', deleteUrl);
 
-    const jwt = await createAdminJWT(adminSecret);
+    const jwt = await createAdminJWT(adminSecret, adminSharedId);
     console.log('JWT created, length:', jwt.length);
 
     console.log('Sending DELETE request to Remark42...');
@@ -108,7 +118,7 @@ export default async (req: Request, context: Context) => {
 };
 
 // Create a proper admin JWT for Remark42
-async function createAdminJWT(secret: string): Promise<string> {
+async function createAdminJWT(secret: string, adminId: string): Promise<string> {
   const header = {
     alg: 'HS256',
     typ: 'JWT',
@@ -116,19 +126,19 @@ async function createAdminJWT(secret: string): Promise<string> {
 
   const now = Math.floor(Date.now() / 1000);
 
-  // Remark42 expects user info in the JWT for admin operations
+  // Remark42 expects the ADMIN_SHARED_ID in the JWT
   const payload = {
     aud: 'food-blog',
     exp: now + (60 * 5), // 5 minutes
     nbf: now, // Not before
     iat: now, // Issued at
     user: {
-      id: 'admin',
-      name: 'admin',
+      id: adminId,
+      name: 'Admin',
     },
   };
 
-  console.log('JWT payload (with user):', JSON.stringify(payload));
+  console.log('JWT payload (with admin ID):', JSON.stringify(payload));
 
   // Encode header and payload
   const headerB64 = Buffer.from(JSON.stringify(header)).toString('base64url');
