@@ -45,8 +45,14 @@ export default async (req: Request, context: Context) => {
 
     const data = await response.json();
 
+    console.log('Raw API response:', JSON.stringify(data).substring(0, 500));
+    console.log('Comments count (before flatten):', data.comments?.length || 0);
+
     // Flatten the tree structure to a simple list
     const comments = flattenComments(data.comments || []);
+
+    console.log('Comments count (after flatten):', comments.length);
+    console.log('Sample comment structure:', comments[0] ? JSON.stringify(comments[0]).substring(0, 300) : 'none');
 
     return new Response(JSON.stringify({ comments }), {
       status: 200,
@@ -66,20 +72,33 @@ export default async (req: Request, context: Context) => {
 function flattenComments(comments: any[]): any[] {
   const result: any[] = [];
 
-  function flatten(item: any) {
+  function flatten(item: any, depth = 0) {
+    if (!item) return;
+
     // Extract the actual comment data (Remark42 wraps it in { comment: {...} })
     const commentData = item.comment || item;
 
-    // Remove the nested comments array
+    // Add depth information for better display
     const { comments: children, ...flatComment } = commentData;
+    flatComment.depth = depth;
+
+    // Add parent indicator if this is a reply
+    if (commentData.pid) {
+      flatComment.isReply = true;
+      flatComment.parentId = commentData.pid;
+    }
+
     result.push(flatComment);
 
     // Recursively flatten children
     if (children && Array.isArray(children)) {
-      children.forEach(flatten);
+      console.log(`Comment ${commentData.id} has ${children.length} replies`);
+      children.forEach(child => flatten(child, depth + 1));
     }
   }
 
-  comments.forEach(flatten);
+  comments.forEach(comment => flatten(comment, 0));
+
+  console.log(`Flattened ${result.length} total comments (including replies)`);
   return result;
 }

@@ -32,11 +32,20 @@ export default async (req: Request, context: Context) => {
   }
 
   // Try to extract Remark42 JWT token from cookies (preferred - posts as Ingrid)
-  const remark42JWT = cookie?.split('REMARK42-JWT=')[1]?.split(';')[0];
+  // Remark42 JWT cookie format can be "REMARK42-JWT" or "REMARK42-JWT.food-blog"
+  let remark42JWT: string | undefined;
+  if (cookie) {
+    // Try to find any cookie starting with REMARK42-JWT
+    const jwtMatch = cookie.match(/REMARK42-JWT[^=]*=([^;]+)/);
+    remark42JWT = jwtMatch?.[1];
+  }
+
   const useJWT = !!remark42JWT;
 
+  console.log('All cookies:', cookie);
   console.log('Remark42 JWT found:', useJWT);
   if (useJWT) {
+    console.log('JWT token (first 20 chars):', remark42JWT?.substring(0, 20));
     console.log('Will post as logged-in user (Ingrid Hartmann)');
   } else {
     console.log('No Remark42 JWT - will post using Basic Auth (admin)');
