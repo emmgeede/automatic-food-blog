@@ -66,10 +66,13 @@ export default async (req: Request, context: Context) => {
 function flattenComments(comments: any[]): any[] {
   const result: any[] = [];
 
-  function flatten(comment: any) {
-    // Add the comment (without children) to result
-    const { comments: children, ...commentData } = comment;
-    result.push(commentData);
+  function flatten(item: any) {
+    // Extract the actual comment data (Remark42 wraps it in { comment: {...} })
+    const commentData = item.comment || item;
+
+    // Remove the nested comments array
+    const { comments: children, ...flatComment } = commentData;
+    result.push(flatComment);
 
     // Recursively flatten children
     if (children && Array.isArray(children)) {
