@@ -65,34 +65,39 @@ const frontmatter = {
 </BaseLayout>
 
 <script>
-  // Check if user is authenticated (has admin_token cookie)
-  function isAuthenticated() {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-      const [name, value] = cookie.trim().split('=');
-      if (name === 'admin_token' && value) {
-        console.log('Admin token found in cookies');
-        return true;
-      }
+  // Check if user is authenticated via API (since cookie is HttpOnly)
+  async function checkAuthentication() {
+    try {
+      console.log('Checking authentication via API...');
+      const response = await fetch('/api/auth/check');
+      const data = await response.json();
+      console.log('Authentication check result:', data.isAuthenticated);
+      return data.isAuthenticated;
+    } catch (error) {
+      console.error('Authentication check failed:', error);
+      return false;
     }
-    console.log('No admin token found in cookies');
-    return false;
   }
 
   // Show/hide screens based on authentication
   const loginScreen = document.getElementById('login-screen');
   const adminDashboard = document.getElementById('admin-dashboard');
 
-  if (isAuthenticated()) {
-    console.log('User is authenticated, showing admin dashboard');
-    loginScreen.style.display = 'none';
-    adminDashboard.style.display = 'block';
-    loadComments();
-  } else {
-    console.log('User is not authenticated, showing login screen');
-    loginScreen.style.display = 'block';
-    adminDashboard.style.display = 'none';
-  }
+  // Check authentication on page load
+  (async () => {
+    const isAuthenticated = await checkAuthentication();
+
+    if (isAuthenticated) {
+      console.log('User is authenticated, showing admin dashboard');
+      loginScreen.style.display = 'none';
+      adminDashboard.style.display = 'block';
+      loadComments();
+    } else {
+      console.log('User is not authenticated, showing login screen');
+      loginScreen.style.display = 'block';
+      adminDashboard.style.display = 'none';
+    }
+  })();
 
   // Login button handler
   const googleLoginBtn = document.getElementById('google-login-btn');
