@@ -133,6 +133,13 @@ const frontmatter = {
       const response = await fetch('/api/auth/check');
       const data = await response.json();
       console.log('Authentication check result:', data.isAuthenticated);
+
+      // Store user info globally if authenticated
+      if (data.isAuthenticated && data.user) {
+        window.__userInfo = data.user;
+        console.log('User info received:', data.user);
+      }
+
       return data.isAuthenticated;
     } catch (error) {
       console.error('Authentication check failed:', error);
@@ -144,35 +151,10 @@ const frontmatter = {
   const loginScreen = document.getElementById('login-screen');
   const adminDashboard = document.getElementById('admin-dashboard');
 
-  // Extract user info from admin token
-  function getUserInfo() {
-    try {
-      const cookie = document.cookie;
-      console.log('Extracting user info from cookies...');
-
-      const token = cookie.split('admin_token=')[1]?.split(';')[0];
-      if (!token) {
-        console.error('No admin_token found in cookies');
-        return null;
-      }
-
-      console.log('Token found, decoding...');
-      const decoded = JSON.parse(atob(token));
-      console.log('Decoded token:', decoded);
-
-      return {
-        name: decoded.name || 'Admin',
-        email: decoded.email || '',
-      };
-    } catch (error) {
-      console.error('Error extracting user info:', error);
-      return null;
-    }
-  }
-
-  // Update user info in header
+  // Update user info in header from API response
   function updateUserInfo() {
-    const userInfo = getUserInfo();
+    // Get user info from global variable (set by checkAuthentication)
+    const userInfo = window.__userInfo;
     console.log('Updating user info:', userInfo);
 
     if (userInfo) {
