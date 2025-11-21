@@ -32,7 +32,7 @@ export default async (req: Request, context: Context) => {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  // Get comment ID from path
+  // Get comment ID from path and URL from query parameter
   const url = new URL(req.url);
   console.log('Full pathname:', url.pathname);
   const pathParts = url.pathname.split('/');
@@ -45,47 +45,47 @@ export default async (req: Request, context: Context) => {
     return new Response('Missing comment ID', { status: 400 });
   }
 
-  const remark42Url = process.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
-  const adminSecret = process.env.REMARK_ADMIN_SECRET;
-  const adminSharedId = process.env.REMARK_ADMIN_SHARED_ID;
+  // Get post URL from query parameter
+  const postUrl = url.searchParams.get('url');
+  console.log('Post URL:', postUrl);
 
-  console.log('Remark42 URL:', remark42Url);
-  console.log('Admin secret configured:', !!adminSecret);
-  console.log('Admin shared ID configured:', !!adminSharedId);
-
-  if (!adminSecret) {
-    console.error('REMARK_ADMIN_SECRET not configured');
-    return new Response(JSON.stringify({ error: 'Admin secret not configured' }), {
-      status: 500,
+  if (!postUrl) {
+    console.error('Missing post URL');
+    return new Response(JSON.stringify({ error: 'Missing post URL' }), {
+      status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  if (!adminSharedId) {
-    console.error('REMARK_ADMIN_SHARED_ID not configured');
-    return new Response(JSON.stringify({ error: 'Admin shared ID not configured' }), {
+  const remark42Url = process.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
+  const adminPassword = process.env.REMARK_ADMIN_PASSWD;
+
+  console.log('Remark42 URL:', remark42Url);
+  console.log('Admin password configured:', !!adminPassword);
+
+  if (!adminPassword) {
+    console.error('REMARK_ADMIN_PASSWD not configured');
+    return new Response(JSON.stringify({ error: 'Admin password not configured' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
   try {
-    // Delete comment via Remark42 Admin API
-    const deleteUrl = `${remark42Url}/api/v1/admin/comment/${commentId}?site=food-blog`;
+    // Delete comment via Remark42 Admin API using Basic Auth
+    const deleteUrl = `${remark42Url}/api/v1/admin/comment/${commentId}?site=food-blog&url=${encodeURIComponent(postUrl)}`;
     console.log('Delete URL:', deleteUrl);
 
-    const jwt = await createAdminJWT(adminSecret, adminSharedId);
-    console.log('JWT created, length:', jwt.length);
+    // Create Basic Auth header
+    const credentials = Buffer.from(`admin:${adminPassword}`).toString('base64');
+    console.log('Using Basic Auth with username: admin');
 
     console.log('Sending DELETE request to Remark42...');
-    console.log('JWT header (first 50 chars):', jwt.substring(0, 50) + '...');
 
-    // Try both X-JWT and Authorization headers
     const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
-        'X-JWT': jwt,
-        'Authorization': `Bearer ${jwt}`,
+        'Authorization': `Basic ${credentials}`,
         'Content-Type': 'application/json',
       },
     });
@@ -116,53 +116,3 @@ export default async (req: Request, context: Context) => {
     });
   }
 };
-
-// Create a proper admin JWT for Remark42
-async function createAdminJWT(secret: string, adminId: string): Promise<string> {
-  const header = {
-    alg: 'HS256',
-    typ: 'JWT',
-  };
-
-  const now = Math.floor(Date.now() / 1000);
-
-  // Remark42 JWT structure for admin operations
-  const payload = {
-    aud: 'food-blog',
-    exp: now + (60 * 5), // 5 minutes
-    nbf: now, // Not before
-    iat: now, // Issued at
-    user: {
-      id: adminId,
-      name: 'Admin',
-      admin: true,  // Mark as admin
-      site_id: 'food-blog',
-      provider: 'google',
-    },
-  };
-
-  console.log('JWT payload (with admin flag):', JSON.stringify(payload));
-
-  // Encode header and payload
-  const headerB64 = Buffer.from(JSON.stringify(header)).toString('base64url');
-  const payloadB64 = Buffer.from(JSON.stringify(payload)).toString('base64url');
-  const data = `${headerB64}.${payloadB64}`;
-
-  // Sign with HMAC-SHA256
-  const encoder = new TextEncoder();
-  const keyData = encoder.encode(secret);
-  const messageData = encoder.encode(data);
-
-  const key = await crypto.subtle.importKey(
-    'raw',
-    keyData,
-    { name: 'HMAC', hash: 'SHA-256' },
-    false,
-    ['sign']
-  );
-
-  const signature = await crypto.subtle.sign('HMAC', key, messageData);
-  const signatureB64 = Buffer.from(signature).toString('base64url');
-
-  return `${data}.${signatureB64}`;
-}

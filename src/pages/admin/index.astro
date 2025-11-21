@@ -279,6 +279,7 @@ const frontmatter = {
             <button
               class="text-red-600 hover:text-red-900 delete-btn"
               data-comment-id="${comment.id}"
+              data-comment-url="${url}"
             >
               Löschen
             </button>
@@ -353,8 +354,9 @@ const frontmatter = {
     deleteButtons.forEach(btn => {
       btn.addEventListener('click', async (e) => {
         const commentId = btn.dataset.commentId;
+        const commentUrl = btn.dataset.commentUrl;
         if (confirm('Möchtest du diesen Kommentar wirklich löschen?')) {
-          await deleteComment(commentId);
+          await deleteComment(commentId, true, commentUrl);
         }
       });
     });
@@ -373,23 +375,28 @@ const frontmatter = {
 
   async function handleBulkDelete() {
     const checkboxes = document.querySelectorAll('.comment-checkbox:checked');
-    const ids = Array.from(checkboxes).map(cb => cb.value);
+    const commentData = Array.from(checkboxes).map(cb => ({
+      id: cb.value,
+      url: cb.closest('tr')?.querySelector('.delete-btn')?.dataset.commentUrl || ''
+    }));
 
-    if (ids.length === 0) return;
+    if (commentData.length === 0) return;
 
-    if (!confirm(`Möchtest du wirklich ${ids.length} Kommentar(e) löschen?`)) return;
+    if (!confirm(`Möchtest du wirklich ${commentData.length} Kommentar(e) löschen?`)) return;
 
-    for (const id of ids) {
-      await deleteComment(id, false);
+    for (const comment of commentData) {
+      await deleteComment(comment.id, false, comment.url);
     }
 
     // Reload after bulk delete
     loadComments();
   }
 
-  async function deleteComment(commentId, reload = true) {
+  async function deleteComment(commentId, reload = true, commentUrl = '') {
     try {
-      const response = await fetch(`/api/admin/comments/${commentId}`, {
+      // Add URL as query parameter
+      const urlParam = commentUrl ? `?url=${encodeURIComponent(commentUrl)}` : '';
+      const response = await fetch(`/api/admin/comments/${commentId}${urlParam}`, {
         method: 'DELETE',
       });
 
@@ -398,7 +405,9 @@ const frontmatter = {
           loadComments();
         }
       } else {
-        alert('Fehler beim Löschen des Kommentars');
+        const error = await response.json().catch(() => ({}));
+        console.error('Delete failed:', error);
+        alert('Fehler beim Löschen des Kommentars: ' + (error.error || 'Unbekannter Fehler'));
       }
     } catch (error) {
       console.error('Error deleting comment:', error);
