@@ -1,10 +1,20 @@
 ---
+import { Image } from "astro:assets";
+import profileImage from "../../../public/images/about/ingrid-profile.jpg";
+
 interface Props {
   recipeSlug: string;
   recipeTitle: string;
 }
 
 const { recipeSlug, recipeTitle } = Astro.props;
+
+// Author info
+const author = {
+  name: "Ingrid Hartmann",
+  role: "Rezeptautorin",
+  bio: "Leidenschaftliche Köchin und Oma von 4 Enkelkindern",
+};
 
 // Turnstile Site Key from environment
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
@@ -16,6 +26,33 @@ const isConfigured = !!turnstileSiteKey;
 
 <section class="bg-white rounded-lg p-8 mb-8" id="comments-section">
   <h2 class="text-2xl font-bold text-gray-900 mb-6">Kommentare</h2>
+
+  <!-- Author Profile Info -->
+  <div class="flex items-center gap-4 p-4 mb-6 bg-accent/5 rounded-lg border-l-4 border-accent">
+    <a href="/ueber-mich" class="flex-shrink-0 group" title="Mehr über Ingrid erfahren">
+      <div class="w-16 h-16 rounded-full overflow-hidden ring-2 ring-accent/20 group-hover:ring-accent transition-all">
+        <Image
+          src={profileImage}
+          alt={author.name}
+          class="w-full h-full object-cover"
+          widths={[64, 128]}
+          sizes="64px"
+          loading="lazy"
+          quality={90}
+        />
+      </div>
+    </a>
+    <div class="flex-1">
+      <a href="/ueber-mich" class="group">
+        <h3 class="font-semibold text-gray-900 group-hover:text-accent transition-colors">
+          {author.name}
+        </h3>
+      </a>
+      <p class="text-sm text-gray-600 mt-1">
+        Ich freue mich auf deine Fragen und beantworte sie gerne persönlich! 💬
+      </p>
+    </div>
+  </div>
 
   {!isConfigured ? (
     <!-- Error message if environment variables are missing -->
