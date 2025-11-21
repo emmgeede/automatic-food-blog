@@ -68,10 +68,13 @@ export default async (req: Request, context: Context) => {
     console.log('JWT created, length:', jwt.length);
 
     console.log('Sending DELETE request to Remark42...');
+    console.log('JWT header (first 50 chars):', jwt.substring(0, 50) + '...');
+
     const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
         'X-JWT': jwt,
+        'Content-Type': 'application/json',
       },
     });
 
@@ -109,14 +112,19 @@ async function createAdminJWT(secret: string): Promise<string> {
     typ: 'JWT',
   };
 
+  const now = Math.floor(Date.now() / 1000);
   const payload = {
     aud: 'food-blog',
-    exp: Math.floor(Date.now() / 1000) + (60 * 5), // 5 minutes
+    exp: now + (60 * 5), // 5 minutes
+    nbf: now, // Not before
+    iat: now, // Issued at
     handshake: {
       id: 'admin',
       provider: 'admin',
     },
   };
+
+  console.log('JWT payload:', JSON.stringify(payload));
 
   // Encode header and payload
   const headerB64 = Buffer.from(JSON.stringify(header)).toString('base64url');
