@@ -126,7 +126,7 @@ async function createAdminJWT(secret: string, adminId: string): Promise<string> 
 
   const now = Math.floor(Date.now() / 1000);
 
-  // Remark42 expects the ADMIN_SHARED_ID in the JWT
+  // Remark42 JWT structure for admin operations
   const payload = {
     aud: 'food-blog',
     exp: now + (60 * 5), // 5 minutes
@@ -135,10 +135,11 @@ async function createAdminJWT(secret: string, adminId: string): Promise<string> 
     user: {
       id: adminId,
       name: 'Admin',
+      admin: true,  // Mark as admin
     },
   };
 
-  console.log('JWT payload (with admin ID):', JSON.stringify(payload));
+  console.log('JWT payload (with admin flag):', JSON.stringify(payload));
 
   // Encode header and payload
   const headerB64 = Buffer.from(JSON.stringify(header)).toString('base64url');
