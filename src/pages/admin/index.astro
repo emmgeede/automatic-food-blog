@@ -203,7 +203,12 @@ const frontmatter = {
       console.log('User is authenticated, showing admin dashboard');
       loginScreen.style.display = 'none';
       adminDashboard.style.display = 'block';
-      updateUserInfo();
+
+      // Use setTimeout to ensure DOM is fully rendered
+      setTimeout(() => {
+        updateUserInfo();
+      }, 100);
+
       loadComments();
     } else {
       console.log('User is not authenticated, showing login screen');
