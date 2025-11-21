@@ -1,5 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+
+// Import images
+import profileImage from "../../public/images/about/ingrid-profile.jpg";
+import kitchenImage from "../../public/images/about/ingrid-kitchen.jpg";
+import grandkidsImage from "../../public/images/about/ingrid-grandkids.jpg";
+import dinnerImage from "../../public/images/about/family-dinner.jpg";
 
 const frontmatter = {
   title: "Über mich - Die Mama kocht",
@@ -21,12 +28,17 @@ const frontmatter = {
       </p>
     </header>
 
-    <!-- Main Image Placeholder -->
-    <div class="mb-12 rounded-lg overflow-hidden shadow-lg bg-gray-200 aspect-video flex items-center justify-center">
-      <p class="text-gray-500 text-center px-4">
-        Profilbild kommt hier hin<br/>
-        <span class="text-sm">(Pexels/Unsplash: Freundliche Frau, ca. 60 Jahre, in gemütlicher Küche)</span>
-      </p>
+    <!-- Main Hero Image -->
+    <div class="mb-12 rounded-lg overflow-hidden shadow-lg">
+      <Image
+        src={kitchenImage}
+        alt="Ingrid in ihrer gemütlichen Küche beim Backen"
+        class="w-full h-auto"
+        widths={[400, 800, 1200]}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+        loading="eager"
+        quality={85}
+      />
     </div>
 
     <!-- Story Sections -->
@@ -91,17 +103,29 @@ const frontmatter = {
         </ul>
       </section>
 
-      <!-- Additional Images Placeholder -->
+      <!-- Additional Images -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        <div class="rounded-lg overflow-hidden shadow-lg bg-gray-200 aspect-square flex items-center justify-center">
-          <p class="text-gray-500 text-center px-4 text-sm">
-            Bild 2: Ingrid mit Enkelkindern<br/>beim Backen
-          </p>
+        <div class="rounded-lg overflow-hidden shadow-lg">
+          <Image
+            src={grandkidsImage}
+            alt="Ingrid backt gemeinsam mit ihren Enkelkindern Weihnachtsplätzchen"
+            class="w-full h-auto"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+            quality={85}
+          />
         </div>
-        <div class="rounded-lg overflow-hidden shadow-lg bg-gray-200 aspect-square flex items-center justify-center">
-          <p class="text-gray-500 text-center px-4 text-sm">
-            Bild 3: Familienessen<br/>am gedeckten Tisch
-          </p>
+        <div class="rounded-lg overflow-hidden shadow-lg">
+          <Image
+            src={dinnerImage}
+            alt="Liebevoll gedeckter Familientisch mit hausgemachten Gerichten"
+            class="w-full h-auto"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+            quality={85}
+          />
         </div>
       </div>
 
@@ -114,9 +138,24 @@ const frontmatter = {
         <p class="text-gray-700 leading-relaxed font-medium">
           Viel Spaß beim Nachkochen und guten Appetit!
         </p>
-        <p class="text-2xl font-bold text-accent mt-6">
-          Herzlichst, Ingrid
-        </p>
+
+        <!-- Profile Image with Signature -->
+        <div class="flex flex-col items-center mt-8">
+          <div class="w-32 h-32 rounded-full overflow-hidden shadow-lg mb-4">
+            <Image
+              src={profileImage}
+              alt="Ingrid Großklos - Die Mama kocht"
+              class="w-full h-full object-cover"
+              widths={[128, 256]}
+              sizes="128px"
+              loading="lazy"
+              quality={90}
+            />
+          </div>
+          <p class="text-2xl font-bold text-accent">
+            Herzlichst, Ingrid
+          </p>
+        </div>
       </section>
     </div>
   </article>
