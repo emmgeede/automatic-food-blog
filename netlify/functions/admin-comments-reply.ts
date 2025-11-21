@@ -31,6 +31,16 @@ export default async (req: Request, context: Context) => {
     return new Response('Unauthorized', { status: 401 });
   }
 
+  // Extract Remark42 JWT token from cookies to post as the logged-in user (Ingrid)
+  const remark42JWT = cookie?.split('REMARK42-JWT=')[1]?.split(';')[0];
+  if (!remark42JWT) {
+    console.error('No Remark42 JWT token found - user not logged into Remark42');
+    return new Response(JSON.stringify({ error: 'Not logged into Remark42' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   // Parse request body
   let body;
   try {
@@ -74,21 +84,12 @@ export default async (req: Request, context: Context) => {
   }
 
   const remark42Url = process.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
-  const adminPassword = process.env.REMARK_ADMIN_PASSWD;
 
   console.log('Remark42 URL:', remark42Url);
-  console.log('Admin password configured:', !!adminPassword);
-
-  if (!adminPassword) {
-    console.error('REMARK_ADMIN_PASSWD not configured');
-    return new Response(JSON.stringify({ error: 'Admin password not configured' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
+  console.log('Using Remark42 JWT token to post as logged-in user');
 
   try {
-    // Post reply via Remark42 API using Basic Auth
+    // Post reply via Remark42 API using the user's JWT token (Ingrid)
     const postUrl = `${remark42Url}/api/v1/comment`;
     console.log('Post URL:', postUrl);
 
@@ -100,21 +101,15 @@ export default async (req: Request, context: Context) => {
         url: url,
       },
       pid: commentId, // Parent comment ID
-      // Note: User name will be determined by Remark42 based on the authenticated admin user
-      // For better display, we could set name via admin interface
     };
 
     console.log('Request body:', JSON.stringify(requestBody));
-
-    // Create Basic Auth header
-    const credentials = Buffer.from(`admin:${adminPassword}`).toString('base64');
-
-    console.log('Sending POST request to Remark42...');
+    console.log('Sending POST request to Remark42 with user JWT...');
 
     const response = await fetch(postUrl, {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${credentials}`,
+        'X-JWT': remark42JWT, // Use Ingrid's JWT token
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(requestBody),
