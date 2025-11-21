@@ -1,24 +1,35 @@
 ---
-interface Props {
-  name?: string;
-  role?: string;
-  image?: string;
-}
+import { Image } from "astro:assets";
+import profileImage from "../../../public/images/about/ingrid-profile.jpg";
 
-const { name = "Food Blog", role = "Recipe Author", image = "/images/default-author.jpg" } = Astro.props;
+// Hardcoded author info - Ingrid is the only author
+const author = {
+  name: "Ingrid Großklos",
+  role: "Rezeptautorin",
+  bio: "Leidenschaftliche Köchin und Oma von 4 Enkelkindern",
+};
 ---
 
-<div class="flex items-center gap-3 py-4 border-t border-b border-gray-200">
-  <img
-    src={image}
-    alt={name}
-    class="w-12 h-12 rounded-full object-cover"
-    loading="lazy"
-    width="48"
-    height="48"
-  />
-  <div>
-    <h3 class="font-semibold text-gray-900">{name}</h3>
-    <p class="text-sm text-gray-500">{role}</p>
+<div class="flex items-center gap-4 py-4 border-t border-b border-gray-200">
+  <a href="/ueber-mich" class="flex-shrink-0 group" title="Mehr über Ingrid erfahren">
+    <div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-gray-200 group-hover:ring-accent transition-all">
+      <Image
+        src={profileImage}
+        alt={author.name}
+        class="w-full h-full object-cover"
+        widths={[56, 112]}
+        sizes="56px"
+        loading="lazy"
+        quality={90}
+      />
+    </div>
+  </a>
+  <div class="flex-1">
+    <a href="/ueber-mich" class="group">
+      <h3 class="font-semibold text-gray-900 group-hover:text-accent transition-colors">
+        {author.name}
+      </h3>
+    </a>
+    <p class="text-sm text-gray-500">{author.role}</p>
   </div>
 </div>

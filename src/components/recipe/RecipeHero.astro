@@ -29,11 +29,6 @@ interface Props {
   cuisine?: string;
   servings?: number | string;
   difficulty?: string;
-  author?: {
-    name?: string;
-    role?: string;
-    image?: string;
-  };
   tocItems?: TocItem[];
 }
 
@@ -47,7 +42,6 @@ const {
   cuisine,
   servings,
   difficulty,
-  author,
   tocItems = [],
 } = Astro.props;
 
@@ -103,7 +97,7 @@ const mainCategory = category || categories[0] || "Rezept";
         </div>
 
         <!-- Author Info -->
-        {author && <RecipeAuthor name={author.name} role={author.role} image={author.image} />}
+        <RecipeAuthor />
       </div>
 
       <!-- Action Buttons & Social Media -->
