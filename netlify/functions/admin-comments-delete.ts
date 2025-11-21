@@ -16,27 +16,40 @@ function verifyAdminToken(cookie: string | undefined): boolean {
 }
 
 export default async (req: Request, context: Context) => {
+  console.log('Delete comment request received');
+  console.log('Method:', req.method);
+  console.log('URL:', req.url);
+
   if (req.method !== 'DELETE') {
+    console.error('Method not allowed:', req.method);
     return new Response('Method not allowed', { status: 405 });
   }
 
   // Check authentication
   const cookie = req.headers.get('cookie');
   if (!verifyAdminToken(cookie)) {
+    console.error('Unauthorized - invalid admin token');
     return new Response('Unauthorized', { status: 401 });
   }
 
   // Get comment ID from path
   const url = new URL(req.url);
+  console.log('Full pathname:', url.pathname);
   const pathParts = url.pathname.split('/');
+  console.log('Path parts:', pathParts);
   const commentId = pathParts[pathParts.length - 1];
+  console.log('Extracted comment ID:', commentId);
 
-  if (!commentId) {
+  if (!commentId || commentId === '') {
+    console.error('Missing comment ID');
     return new Response('Missing comment ID', { status: 400 });
   }
 
   const remark42Url = process.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
   const adminSecret = process.env.REMARK_ADMIN_SECRET;
+
+  console.log('Remark42 URL:', remark42Url);
+  console.log('Admin secret configured:', !!adminSecret);
 
   if (!adminSecret) {
     console.error('REMARK_ADMIN_SECRET not configured');
@@ -49,8 +62,12 @@ export default async (req: Request, context: Context) => {
   try {
     // Delete comment via Remark42 Admin API
     const deleteUrl = `${remark42Url}/api/v1/admin/comment/${commentId}?site=food-blog`;
-    const jwt = await createAdminJWT(adminSecret);
+    console.log('Delete URL:', deleteUrl);
 
+    const jwt = await createAdminJWT(adminSecret);
+    console.log('JWT created, length:', jwt.length);
+
+    console.log('Sending DELETE request to Remark42...');
     const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
@@ -58,14 +75,18 @@ export default async (req: Request, context: Context) => {
       },
     });
 
+    console.log('Remark42 response status:', response.status);
+
     if (!response.ok) {
       const error = await response.text();
-      console.error('Failed to delete comment:', error);
-      return new Response(JSON.stringify({ error: 'Failed to delete comment' }), {
+      console.error('Failed to delete comment:', response.status, error);
+      return new Response(JSON.stringify({ error: 'Failed to delete comment', details: error }), {
         status: response.status,
         headers: { 'Content-Type': 'application/json' },
       });
     }
+
+    console.log('Comment deleted successfully');
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
