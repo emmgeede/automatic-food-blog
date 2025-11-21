@@ -136,6 +136,8 @@ async function createAdminJWT(secret: string, adminId: string): Promise<string> 
       id: adminId,
       name: 'Admin',
       admin: true,  // Mark as admin
+      site_id: 'food-blog',
+      provider: 'google',
     },
   };
 
