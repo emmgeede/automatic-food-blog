@@ -75,23 +75,26 @@ function flattenComments(comments: any[]): any[] {
   function flatten(item: any, depth = 0) {
     if (!item) return;
 
-    // Extract the actual comment data (Remark42 wraps it in { comment: {...} })
+    // Extract the actual comment data (Remark42 wraps it in { comment: {...}, replies: [...] })
     const commentData = item.comment || item;
 
+    // Remark42 uses "replies" not "comments" for nested comments!
+    const children = item.replies || commentData.comments || [];
+
     // Add depth information for better display
-    const { comments: children, ...flatComment } = commentData;
+    const { comments: _, replies: __, ...flatComment } = commentData;
     flatComment.depth = depth;
 
     // Add parent indicator if this is a reply
-    if (commentData.pid) {
+    if (commentData.pid && commentData.pid !== "") {
       flatComment.isReply = true;
       flatComment.parentId = commentData.pid;
     }
 
     result.push(flatComment);
 
-    // Recursively flatten children
-    if (children && Array.isArray(children)) {
+    // Recursively flatten children (replies)
+    if (children && Array.isArray(children) && children.length > 0) {
       console.log(`Comment ${commentData.id} has ${children.length} replies`);
       children.forEach(child => flatten(child, depth + 1));
     }

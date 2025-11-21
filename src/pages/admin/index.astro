@@ -148,15 +148,24 @@ const frontmatter = {
   function getUserInfo() {
     try {
       const cookie = document.cookie;
-      const token = cookie.split('admin_token=')[1]?.split(';')[0];
-      if (!token) return null;
+      console.log('Extracting user info from cookies...');
 
+      const token = cookie.split('admin_token=')[1]?.split(';')[0];
+      if (!token) {
+        console.error('No admin_token found in cookies');
+        return null;
+      }
+
+      console.log('Token found, decoding...');
       const decoded = JSON.parse(atob(token));
+      console.log('Decoded token:', decoded);
+
       return {
         name: decoded.name || 'Admin',
         email: decoded.email || '',
       };
-    } catch {
+    } catch (error) {
+      console.error('Error extracting user info:', error);
       return null;
     }
   }
@@ -164,11 +173,25 @@ const frontmatter = {
   // Update user info in header
   function updateUserInfo() {
     const userInfo = getUserInfo();
+    console.log('Updating user info:', userInfo);
+
     if (userInfo) {
       const nameEl = document.getElementById('user-name');
       const emailEl = document.getElementById('user-email');
-      if (nameEl) nameEl.textContent = userInfo.name;
-      if (emailEl) emailEl.textContent = userInfo.email;
+
+      console.log('Name element found:', !!nameEl);
+      console.log('Email element found:', !!emailEl);
+
+      if (nameEl) {
+        nameEl.textContent = userInfo.name;
+        console.log('Set name to:', userInfo.name);
+      }
+      if (emailEl) {
+        emailEl.textContent = userInfo.email;
+        console.log('Set email to:', userInfo.email);
+      }
+    } else {
+      console.warn('No user info available');
     }
   }
 
