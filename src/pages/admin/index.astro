@@ -139,6 +139,11 @@ const frontmatter = {
       const response = await fetch('/api/admin/comments');
       const data = await response.json();
 
+      console.log('Received comments:', data.comments);
+      if (data.comments && data.comments.length > 0) {
+        console.log('First comment structure:', data.comments[0]);
+      }
+
       const dashboard = document.getElementById('comments-dashboard');
       if (dashboard) {
         renderCommentsDashboard(dashboard, data.comments || []);
@@ -232,8 +237,24 @@ const frontmatter = {
 
   function renderCommentRows(comments) {
     return comments.map(comment => {
-      const date = new Date(comment.time).toLocaleDateString('de-DE');
-      const recipeName = (comment.locator?.url || '').split('/').pop() || 'Unbekannt';
+      console.log('Rendering comment:', comment);
+
+      // Try different possible field names
+      const url = comment.locator?.url || comment.loc?.url || comment.url || '';
+      const recipeName = url.split('/').filter(Boolean).pop() || 'Unbekannt';
+
+      // Handle both ISO string and Unix timestamp
+      let date = 'Invalid Date';
+      if (comment.time) {
+        try {
+          date = new Date(comment.time).toLocaleDateString('de-DE');
+        } catch (e) {
+          console.error('Failed to parse date:', comment.time, e);
+        }
+      }
+
+      const author = comment.user?.name || comment.name || 'Anonym';
+      const text = comment.text || comment.orig || '';
 
       return `
         <tr data-comment-id="${comment.id}" class="hover:bg-gray-50">
@@ -242,11 +263,11 @@ const frontmatter = {
           </td>
           <td class="px-4 py-4 whitespace-nowrap">
             <div class="flex items-center">
-              <div class="text-sm font-medium text-gray-900">${comment.user?.name || 'Anonym'}</div>
+              <div class="text-sm font-medium text-gray-900">${author}</div>
             </div>
           </td>
           <td class="px-4 py-4">
-            <div class="text-sm text-gray-900 max-w-md truncate">${comment.text || ''}</div>
+            <div class="text-sm text-gray-900 max-w-md truncate">${text}</div>
           </td>
           <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
             ${recipeName}
