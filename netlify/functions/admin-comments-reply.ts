@@ -31,16 +31,6 @@ export default async (req: Request, context: Context) => {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  // Extract Remark42 JWT token from cookies to post as the logged-in user (Ingrid)
-  const remark42JWT = cookie?.split('REMARK42-JWT=')[1]?.split(';')[0];
-  if (!remark42JWT) {
-    console.error('No Remark42 JWT token found - user not logged into Remark42');
-    return new Response(JSON.stringify({ error: 'Not logged into Remark42' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
   // Parse request body
   let body;
   try {
@@ -84,12 +74,21 @@ export default async (req: Request, context: Context) => {
   }
 
   const remark42Url = process.env.PUBLIC_REMARK42_URL || 'https://comments.die-mama-kocht.de';
+  const adminPassword = process.env.REMARK_ADMIN_PASSWD;
 
   console.log('Remark42 URL:', remark42Url);
-  console.log('Using Remark42 JWT token to post as logged-in user');
+  console.log('Using Basic Auth to post reply');
+
+  if (!adminPassword) {
+    console.error('REMARK_ADMIN_PASSWD not configured');
+    return new Response(JSON.stringify({ error: 'Admin password not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   try {
-    // Post reply via Remark42 API using the user's JWT token (Ingrid)
+    // Post reply via Remark42 API using Basic Auth
     const postUrl = `${remark42Url}/api/v1/comment`;
     console.log('Post URL:', postUrl);
 
@@ -104,12 +103,15 @@ export default async (req: Request, context: Context) => {
     };
 
     console.log('Request body:', JSON.stringify(requestBody));
-    console.log('Sending POST request to Remark42 with user JWT...');
+    console.log('Sending POST request to Remark42 with Basic Auth...');
+
+    // Create Basic Auth header
+    const credentials = Buffer.from(`admin:${adminPassword}`).toString('base64');
 
     const response = await fetch(postUrl, {
       method: 'POST',
       headers: {
-        'X-JWT': remark42JWT, // Use Ingrid's JWT token
+        'Authorization': `Basic ${credentials}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(requestBody),
