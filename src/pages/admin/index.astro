@@ -61,6 +61,54 @@ const frontmatter = {
         </div>
       </div>
     </div>
+
+    <!-- Reply Modal (hidden by default) -->
+    <div id="reply-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h2 class="text-2xl font-bold text-gray-900">Auf Kommentar antworten</h2>
+            <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="mb-4">
+            <p class="text-sm text-gray-600">Antwort an: <span id="reply-author" class="font-semibold"></span></p>
+          </div>
+
+          <div class="mb-6">
+            <label for="reply-text" class="block text-sm font-medium text-gray-700 mb-2">
+              Deine Antwort
+            </label>
+            <textarea
+              id="reply-text"
+              rows="6"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+              placeholder="Schreibe deine Antwort hier..."
+            ></textarea>
+            <p class="mt-1 text-sm text-gray-500">Markdown wird unterstützt</p>
+          </div>
+
+          <div class="flex justify-end gap-3">
+            <button
+              id="cancel-reply"
+              class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg transition-colors"
+            >
+              Abbrechen
+            </button>
+            <button
+              id="submit-reply"
+              class="px-4 py-2 bg-accent hover:bg-primary text-white font-semibold rounded-lg transition-colors"
+            >
+              Antwort senden
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </BaseLayout>
 
@@ -277,6 +325,14 @@ const frontmatter = {
           </td>
           <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
             <button
+              class="text-blue-600 hover:text-blue-900 reply-btn mr-4"
+              data-comment-id="${comment.id}"
+              data-comment-url="${url}"
+              data-comment-author="${author}"
+            >
+              Antworten
+            </button>
+            <button
               class="text-red-600 hover:text-red-900 delete-btn"
               data-comment-id="${comment.id}"
               data-comment-url="${url}"
@@ -360,6 +416,17 @@ const frontmatter = {
         }
       });
     });
+
+    // Attach reply listeners
+    const replyButtons = document.querySelectorAll('.reply-btn');
+    replyButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const commentId = btn.dataset.commentId;
+        const commentUrl = btn.dataset.commentUrl;
+        const commentAuthor = btn.dataset.commentAuthor;
+        openReplyModal(commentId, commentUrl, commentAuthor);
+      });
+    });
   }
 
   function updateBulkDeleteButton() {
@@ -414,6 +481,101 @@ const frontmatter = {
       alert('Fehler beim Löschen des Kommentars');
     }
   }
+
+  // Reply Modal functionality
+  let currentReplyData = { commentId: '', url: '', author: '' };
+
+  function openReplyModal(commentId, url, author) {
+    currentReplyData = { commentId, url, author };
+
+    const modal = document.getElementById('reply-modal');
+    const authorSpan = document.getElementById('reply-author');
+    const textArea = document.getElementById('reply-text');
+
+    if (modal && authorSpan && textArea) {
+      authorSpan.textContent = author;
+      textArea.value = '';
+      modal.classList.remove('hidden');
+      textArea.focus();
+    }
+  }
+
+  function closeReplyModal() {
+    const modal = document.getElementById('reply-modal');
+    const textArea = document.getElementById('reply-text');
+
+    if (modal && textArea) {
+      modal.classList.add('hidden');
+      textArea.value = '';
+      currentReplyData = { commentId: '', url: '', author: '' };
+    }
+  }
+
+  async function submitReply() {
+    const textArea = document.getElementById('reply-text');
+    const submitBtn = document.getElementById('submit-reply');
+
+    if (!textArea || !submitBtn) return;
+
+    const text = textArea.value.trim();
+
+    if (!text) {
+      alert('Bitte gib eine Antwort ein');
+      return;
+    }
+
+    // Disable button during submission
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sende...';
+
+    try {
+      const response = await fetch('/api/admin/comments/reply', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          commentId: currentReplyData.commentId,
+          text: text,
+          url: currentReplyData.url,
+        }),
+      });
+
+      if (response.ok) {
+        closeReplyModal();
+        loadComments(); // Reload to show new reply
+      } else {
+        const error = await response.json().catch(() => ({}));
+        console.error('Reply failed:', error);
+        alert('Fehler beim Senden der Antwort: ' + (error.error || 'Unbekannter Fehler'));
+      }
+    } catch (error) {
+      console.error('Error submitting reply:', error);
+      alert('Fehler beim Senden der Antwort');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Antwort senden';
+    }
+  }
+
+  // Modal event listeners
+  document.getElementById('close-modal')?.addEventListener('click', closeReplyModal);
+  document.getElementById('cancel-reply')?.addEventListener('click', closeReplyModal);
+  document.getElementById('submit-reply')?.addEventListener('click', submitReply);
+
+  // Close modal on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeReplyModal();
+    }
+  });
+
+  // Close modal when clicking outside
+  document.getElementById('reply-modal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'reply-modal') {
+      closeReplyModal();
+    }
+  });
 </script>
 
 <style>

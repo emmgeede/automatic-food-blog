@@ -30,6 +30,11 @@
   status = 200
 
 [[redirects]]
+  from = "/api/admin/comments/reply"
+  to = "/.netlify/functions/admin-comments-reply"
+  status = 200
+
+[[redirects]]
   from = "/api/admin/comments/:id"
   to = "/.netlify/functions/admin-comments-delete/:id"
   status = 200
