@@ -70,10 +70,12 @@ export default async (req: Request, context: Context) => {
     console.log('Sending DELETE request to Remark42...');
     console.log('JWT header (first 50 chars):', jwt.substring(0, 50) + '...');
 
+    // Try both X-JWT and Authorization headers
     const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
         'X-JWT': jwt,
+        'Authorization': `Bearer ${jwt}`,
         'Content-Type': 'application/json',
       },
     });
@@ -113,18 +115,20 @@ async function createAdminJWT(secret: string): Promise<string> {
   };
 
   const now = Math.floor(Date.now() / 1000);
+
+  // Remark42 expects user info in the JWT for admin operations
   const payload = {
     aud: 'food-blog',
     exp: now + (60 * 5), // 5 minutes
     nbf: now, // Not before
     iat: now, // Issued at
-    handshake: {
+    user: {
       id: 'admin',
-      provider: 'admin',
+      name: 'admin',
     },
   };
 
-  console.log('JWT payload:', JSON.stringify(payload));
+  console.log('JWT payload (with user):', JSON.stringify(payload));
 
   // Encode header and payload
   const headerB64 = Buffer.from(JSON.stringify(header)).toString('base64url');
