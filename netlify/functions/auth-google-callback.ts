@@ -1,6 +1,9 @@
 import type { Context } from "@netlify/functions";
 
-const ALLOWED_EMAILS = ['foofourtyone@gmail.com']; // Only this email can access admin
+const ALLOWED_EMAILS = [
+  'foofourtyone@gmail.com',  // Original admin
+  'diemamakocht@gmail.com'   // Ingrid (blog author account)
+];
 
 export default async (req: Request, context: Context) => {
   console.log('Google OAuth callback initiated');
