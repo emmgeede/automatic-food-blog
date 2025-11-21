@@ -100,6 +100,8 @@ export default async (req: Request, context: Context) => {
         url: url,
       },
       pid: commentId, // Parent comment ID
+      // Note: User name will be determined by Remark42 based on the authenticated admin user
+      // For better display, we could set name via admin interface
     };
 
     console.log('Request body:', JSON.stringify(requestBody));

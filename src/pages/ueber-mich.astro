@@ -1,0 +1,135 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const frontmatter = {
+  title: "Über mich - Die Mama kocht",
+  metaDescription: "Hallo! Ich bin Ingrid, die Mama hinter Die Mama kocht. Erfahre mehr über meine Geschichte, meine Familie und meine Leidenschaft fürs Kochen.",
+  metaKeywords: ["über mich", "ingrid großklos", "food blog", "familienrezepte"],
+  metaCanonical: Astro.url.href,
+};
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Hallo! Ich bin Ingrid
+      </h1>
+      <p class="text-xl text-gray-600">
+        Schön, dass du hier bist!
+      </p>
+    </header>
+
+    <!-- Main Image Placeholder -->
+    <div class="mb-12 rounded-lg overflow-hidden shadow-lg bg-gray-200 aspect-video flex items-center justify-center">
+      <p class="text-gray-500 text-center px-4">
+        Profilbild kommt hier hin<br/>
+        <span class="text-sm">(Pexels/Unsplash: Freundliche Frau, ca. 60 Jahre, in gemütlicher Küche)</span>
+      </p>
+    </div>
+
+    <!-- Story Sections -->
+    <div class="prose prose-lg max-w-none">
+      <!-- Introduction -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Meine Geschichte</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Mit 62 Jahren kann ich auf ein Leben voller köstlicher Momente zurückblicken. Aufgewachsen in Thüringen, war ich schon als kleines Mädchen fasziniert von den Küchengeheimnissen meiner Oma und meiner Mutter. Der Duft frisch gebackener Plätzchen, das Brutzeln der Sonntagsbraten und das gemeinsame Zusammensitzen am großen Küchentisch – das waren die Momente, die mich geprägt haben.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Heute, nach über 40 Jahren Ehe mit meinem Klaus, drei wundervollen erwachsenen Kindern und vier quirligen Enkelkindern zwischen 2 und 10 Jahren, ist die Küche immer noch mein Lieblingsort. Hier entstehen nicht nur Gerichte, sondern Erinnerungen.
+        </p>
+      </section>
+
+      <!-- Philosophy -->
+      <section class="mb-12 bg-primary/5 p-8 rounded-lg">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Meine Kochphilosophie</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          <strong class="text-accent">"Gutes Essen bringt Menschen zusammen"</strong> – das ist mein Motto. Ich glaube fest daran, dass die schönsten Momente am Esstisch entstehen. Wenn alle um den Tisch sitzen, essen, trinken und erzählen, dann bin ich glücklich!
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Meine Rezepte sind eine Mischung aus Tradition und Moderne. Ich liebe es, Omas alte Rezepte mit neuen Ideen zu kombinieren. Dabei achte ich besonders auf saisonale und regionale Zutaten – nicht nur, weil sie besser schmecken, sondern auch, weil sie uns mit unserer Heimat verbinden.
+        </p>
+      </section>
+
+      <!-- Family -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Familie ist alles</h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Am meisten Freude bereitet es mir, für meine Enkelkinder zu kochen. Sie sind meine strengsten und ehrlichsten Kritiker! Wenn die Kleinen mit leuchtenden Augen am Tisch sitzen und nach einem zweiten Teller fragen, weiß ich: Das Rezept ist gelungen und wird hier geteilt.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Jedes Rezept auf diesem Blog ist <strong>"familiengetestet und enkelkindappr"</strong>. Von klassischen Thüringer Klößen über moderne Bowl-Kreationen bis hin zu den Lieblingskeksen meiner Enkelkinder – alles, was ihr hier findet, hat die kritische Prüfung meiner Familie bestanden.
+        </p>
+      </section>
+
+      <!-- What You'll Find Here -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Was du hier findest</h2>
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start">
+            <span class="text-accent mr-3 text-xl">✓</span>
+            <span><strong>Einfache, gelingsichere Rezepte</strong> – Ich zeige dir, wie du mit wenigen Zutaten Großes zauberst</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-accent mr-3 text-xl">✓</span>
+            <span><strong>Traditionelle Gerichte neu interpretiert</strong> – Omas Rezepte mit modernem Twist</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-accent mr-3 text-xl">✓</span>
+            <span><strong>Saisonale Küche</strong> – Was gerade Saison hat, schmeckt am besten!</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-accent mr-3 text-xl">✓</span>
+            <span><strong>Familien taugliche Gerichte</strong> – Von den Kleinsten bis zu den Großeltern, hier ist für jeden etwas dabei</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-accent mr-3 text-xl">✓</span>
+            <span><strong>Tipps und Tricks</strong> – Aus über 40 Jahren Küchenpraxis</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Additional Images Placeholder -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div class="rounded-lg overflow-hidden shadow-lg bg-gray-200 aspect-square flex items-center justify-center">
+          <p class="text-gray-500 text-center px-4 text-sm">
+            Bild 2: Ingrid mit Enkelkindern<br/>beim Backen
+          </p>
+        </div>
+        <div class="rounded-lg overflow-hidden shadow-lg bg-gray-200 aspect-square flex items-center justify-center">
+          <p class="text-gray-500 text-center px-4 text-sm">
+            Bild 3: Familienessen<br/>am gedeckten Tisch
+          </p>
+        </div>
+      </div>
+
+      <!-- Closing -->
+      <section class="mb-12 text-center bg-accent/10 p-8 rounded-lg">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Lass uns gemeinsam kochen!</h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          Ich freue mich riesig, dass du den Weg zu "Die Mama kocht" gefunden hast. Stöbere durch meine Rezepte, probiere sie aus und lass mich wissen, wie sie dir und deiner Familie geschmeckt haben. Deine Rückmeldungen in den Kommentaren sind mir sehr wichtig – schließlich lernen wir alle voneinander!
+        </p>
+        <p class="text-gray-700 leading-relaxed font-medium">
+          Viel Spaß beim Nachkochen und guten Appetit!
+        </p>
+        <p class="text-2xl font-bold text-accent mt-6">
+          Herzlichst, Ingrid
+        </p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Ensure prose styles work with Tailwind */
+  .prose h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose p {
+    margin-bottom: 1rem;
+  }
+</style>
