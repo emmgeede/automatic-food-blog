@@ -31,6 +31,17 @@ export default async (req: Request, context: Context) => {
     return new Response('Unauthorized', { status: 401 });
   }
 
+  // Try to extract Remark42 JWT token from cookies (preferred - posts as Ingrid)
+  const remark42JWT = cookie?.split('REMARK42-JWT=')[1]?.split(';')[0];
+  const useJWT = !!remark42JWT;
+
+  console.log('Remark42 JWT found:', useJWT);
+  if (useJWT) {
+    console.log('Will post as logged-in user (Ingrid Hartmann)');
+  } else {
+    console.log('No Remark42 JWT - will post using Basic Auth (admin)');
+  }
+
   // Parse request body
   let body;
   try {
@@ -77,18 +88,18 @@ export default async (req: Request, context: Context) => {
   const adminPassword = process.env.REMARK_ADMIN_PASSWD;
 
   console.log('Remark42 URL:', remark42Url);
-  console.log('Using Basic Auth to post reply');
 
-  if (!adminPassword) {
-    console.error('REMARK_ADMIN_PASSWD not configured');
-    return new Response(JSON.stringify({ error: 'Admin password not configured' }), {
+  // Only check admin password if we need Basic Auth fallback
+  if (!useJWT && !adminPassword) {
+    console.error('REMARK_ADMIN_PASSWD not configured and no JWT token available');
+    return new Response(JSON.stringify({ error: 'Authentication not configured' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
   try {
-    // Post reply via Remark42 API using Basic Auth
+    // Post reply via Remark42 API
     const postUrl = `${remark42Url}/api/v1/comment`;
     console.log('Post URL:', postUrl);
 
@@ -103,17 +114,26 @@ export default async (req: Request, context: Context) => {
     };
 
     console.log('Request body:', JSON.stringify(requestBody));
-    console.log('Sending POST request to Remark42 with Basic Auth...');
 
-    // Create Basic Auth header
-    const credentials = Buffer.from(`admin:${adminPassword}`).toString('base64');
+    // Build headers based on authentication method
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+
+    if (useJWT) {
+      // Use JWT token to post as Ingrid Hartmann
+      console.log('Sending POST request with JWT (as Ingrid)...');
+      headers['X-JWT'] = remark42JWT!;
+    } else {
+      // Fallback to Basic Auth (posts as admin)
+      console.log('Sending POST request with Basic Auth (as admin)...');
+      const credentials = Buffer.from(`admin:${adminPassword}`).toString('base64');
+      headers['Authorization'] = `Basic ${credentials}`;
+    }
 
     const response = await fetch(postUrl, {
       method: 'POST',
-      headers: {
-        'Authorization': `Basic ${credentials}`,
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(requestBody),
     });
 
