@@ -1,0 +1,911 @@
+---
+/**
+ * Popular Posts Carousel Component
+ *
+ * Features:
+ * - Lazy loading with Intersection Observer
+ * - Fetches data from API when visible
+ * - Schema.org ItemList with interaction statistics
+ * - Fully accessible with ARIA labels and keyboard navigation
+ * - Responsive with Container Queries
+ */
+
+// Map difficulty to display text
+const difficultyMap: Record<string, string> = {
+  einfach: "Einfach",
+  mittel: "Mittel",
+  schwer: "Fortgeschritten",
+};
+
+// Convert ISO 8601 duration to minutes
+function parseDuration(duration?: string): number | null {
+  if (!duration) return null;
+  const match = duration.match(/PT(\d+)M/);
+  return match ? parseInt(match[1]) : null;
+}
+---
+
+<aside
+  class="popular-posts"
+  aria-labelledby="popular-posts-heading"
+  data-popular-carousel
+  data-load-state="pending"
+>
+  <h2 id="popular-posts-heading" class="popular-posts__heading">
+    Meist besuchte Rezepte
+  </h2>
+
+  <!-- Loading State (Skeleton UI) -->
+  <div class="popular-posts__loading" data-loading>
+    <div class="popular-posts__skeleton-cards">
+      {Array.from({ length: 3 }).map(() => (
+        <div class="popular-posts__skeleton-card">
+          <div class="popular-posts__skeleton-image"></div>
+          <div class="popular-posts__skeleton-content">
+            <div class="popular-posts__skeleton-title"></div>
+            <div class="popular-posts__skeleton-meta"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div class="popular-posts__error" data-error style="display: none;">
+    <p>Beliebte Rezepte konnten nicht geladen werden.</p>
+  </div>
+
+  <!-- Content (populated by JavaScript) -->
+  <div class="popular-posts__content" data-content style="display: none;">
+    <div class="popular-posts__carousel-container">
+      <!-- Previous Button -->
+      <button
+        type="button"
+        class="popular-posts__nav-button popular-posts__nav-button--prev"
+        aria-label="Vorherige beliebte Rezepte anzeigen"
+        data-carousel-prev
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="popular-posts__nav-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- Carousel Wrapper -->
+      <div class="popular-posts__carousel-wrapper">
+        <!-- Carousel Track (populated by JavaScript) -->
+        <div
+          class="popular-posts__carousel"
+          data-carousel-track
+          role="list"
+          aria-live="polite"
+        >
+          <!-- Cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Next Button -->
+      <button
+        type="button"
+        class="popular-posts__nav-button popular-posts__nav-button--next"
+        aria-label="Nächste beliebte Rezepte anzeigen"
+        data-carousel-next
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="popular-posts__nav-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Screen Reader Status -->
+    <div class="sr-only" aria-live="polite" aria-atomic="true" data-carousel-status>
+      <!-- Status updates for screen readers -->
+    </div>
+
+    <!-- Schema.org ItemList (populated by JavaScript) -->
+    <script type="application/ld+json" data-schema>
+      {}
+    </script>
+  </div>
+</aside>
+
+<style>
+  /* ==========================================
+     BASE STYLES
+     ========================================== */
+
+  .popular-posts {
+    container-type: inline-size;
+    container-name: popular-carousel;
+    margin-block: 3rem;
+  }
+
+  .popular-posts__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--color-accent);
+    padding-bottom: 0.75rem;
+  }
+
+  /* ==========================================
+     LOADING STATE (Skeleton UI)
+     ========================================== */
+
+  .popular-posts__loading {
+    padding: 1rem 0;
+  }
+
+  .popular-posts__skeleton-cards {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 2 * 0.375rem) / 3);
+    gap: 0.375rem;
+  }
+
+  .popular-posts__skeleton-card {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .popular-posts__skeleton-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(
+      90deg,
+      var(--color-muted) 0%,
+      var(--color-gray-200) 50%,
+      var(--color-muted) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+
+  .popular-posts__skeleton-content {
+    padding: 0.625rem;
+  }
+
+  .popular-posts__skeleton-title {
+    height: 1rem;
+    background: linear-gradient(
+      90deg,
+      var(--color-muted) 0%,
+      var(--color-gray-200) 50%,
+      var(--color-muted) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .popular-posts__skeleton-meta {
+    height: 0.75rem;
+    width: 60%;
+    background: linear-gradient(
+      90deg,
+      var(--color-muted) 0%,
+      var(--color-gray-200) 50%,
+      var(--color-muted) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 0.25rem;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* ==========================================
+     ERROR STATE
+     ========================================== */
+
+  .popular-posts__error {
+    padding: 2rem;
+    background: var(--color-muted);
+    border-radius: 0.5rem;
+    text-align: center;
+    color: var(--color-gray-600);
+  }
+
+  /* ==========================================
+     NAVIGATION BUTTONS
+     ========================================== */
+
+  .popular-posts__carousel-container {
+    position: relative;
+  }
+
+  .popular-posts__nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .popular-posts__nav-button--prev {
+    left: -1rem;
+  }
+
+  .popular-posts__nav-button--next {
+    right: -1rem;
+  }
+
+  .popular-posts__nav-button:hover:not(:disabled) {
+    background: hsla(214, 41%, 10%, 1.00);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .popular-posts__nav-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .popular-posts__nav-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .popular-posts__nav-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: white;
+    transition: color 0.3s ease;
+  }
+
+  /* ==========================================
+     CAROUSEL
+     ========================================== */
+
+  .popular-posts__carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0;
+    margin: -0.5rem 0;
+    container-type: inline-size;
+  }
+
+  .popular-posts__carousel {
+    --visible-items: 3;
+    --gap-size: 0.375rem;
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100cqw - (var(--visible-items) - 1) * var(--gap-size)) / var(--visible-items));
+    gap: var(--gap-size);
+    transition: transform 0.5s ease-in-out;
+    padding-bottom: 0.5rem;
+  }
+
+  /* ==========================================
+     CARD STYLES
+     ========================================== */
+
+  .popular-posts__card {
+    min-width: 0;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .popular-posts__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .popular-posts__card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .popular-posts__card-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-muted);
+  }
+
+  .popular-posts__card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .popular-posts__card:hover .popular-posts__card-image {
+    transform: scale(1.05);
+  }
+
+  /* View Count Badge */
+  .popular-posts__view-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .popular-posts__view-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  /* Content */
+  .popular-posts__card-content {
+    padding: 0.625rem;
+  }
+
+  .popular-posts__card-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+  }
+
+  .popular-posts__card:hover .popular-posts__card-title {
+    color: var(--color-accent);
+  }
+
+  /* Metadata Grid */
+  .popular-posts__card-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.375rem;
+  }
+
+  .popular-posts__card-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .popular-posts__card-meta-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ==========================================
+     RESPONSIVE DESIGN (Container Queries)
+     ========================================== */
+
+  @container (max-width: 400px) {
+    .popular-posts__carousel {
+      --visible-items: 1;
+      --gap-size: 0.75rem;
+    }
+
+    .popular-posts__nav-button {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .popular-posts__nav-button--prev {
+      left: 0;
+    }
+
+    .popular-posts__nav-button--next {
+      right: 0;
+    }
+
+    .popular-posts__nav-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .popular-posts__card-content {
+      padding: 0.875rem;
+    }
+
+    .popular-posts__card-title {
+      font-size: 0.9rem;
+    }
+
+    .popular-posts__card-meta-grid {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .popular-posts__card-meta-item {
+      font-size: 0.75rem;
+    }
+
+    .popular-posts__skeleton-cards {
+      grid-auto-columns: 100%;
+    }
+  }
+
+  @container (min-width: 401px) and (max-width: 650px) {
+    .popular-posts__carousel {
+      --visible-items: 2;
+      --gap-size: 0.5rem;
+    }
+
+    .popular-posts__card-title {
+      font-size: 0.9rem;
+    }
+
+    .popular-posts__skeleton-cards {
+      grid-auto-columns: calc((100% - 0.5rem) / 2);
+    }
+  }
+
+  @container (min-width: 651px) {
+    .popular-posts__carousel {
+      --visible-items: 3;
+      --gap-size: 0.375rem;
+    }
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .popular-posts__carousel {
+      transition: none;
+    }
+
+    .popular-posts__card,
+    .popular-posts__card-image,
+    .popular-posts__nav-button {
+      transition: none;
+    }
+
+    @keyframes skeleton-loading {
+      0%, 100% {
+        background-position: 0 0;
+      }
+    }
+  }
+</style>
+
+<script>
+  import { getCollection } from "astro:content";
+
+  interface RecipeView {
+    slug: string;
+    views: number;
+  }
+
+  interface PopularRecipe {
+    slug: string;
+    views: number;
+    data: any;
+  }
+
+  /**
+   * Popular Posts Carousel with Lazy Loading
+   */
+  class PopularPostsCarousel {
+    private container: HTMLElement;
+    private track: HTMLElement | null = null;
+    private prevButton: HTMLButtonElement | null = null;
+    private nextButton: HTMLButtonElement | null = null;
+    private statusElement: HTMLElement | null = null;
+    private loadingElement: HTMLElement | null;
+    private errorElement: HTMLElement | null;
+    private contentElement: HTMLElement | null;
+    private schemaElement: HTMLScriptElement | null;
+    private currentIndex: number = 0;
+    private cardsPerView: number = 3;
+    private totalCards: number = 0;
+    private isLoaded: boolean = false;
+    private observer: IntersectionObserver | null = null;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.loadingElement = container.querySelector('[data-loading]');
+      this.errorElement = container.querySelector('[data-error]');
+      this.contentElement = container.querySelector('[data-content]');
+      this.schemaElement = container.querySelector('[data-schema]');
+
+      this.initLazyLoading();
+    }
+
+    /**
+     * Initialize Intersection Observer for lazy loading
+     */
+    private initLazyLoading() {
+      // Create observer with 200px margin (loads before visible)
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !this.isLoaded) {
+              this.loadPopularRecipes();
+              this.observer?.disconnect();
+            }
+          });
+        },
+        {
+          rootMargin: "200px",
+          threshold: 0.1,
+        }
+      );
+
+      this.observer.observe(this.container);
+    }
+
+    /**
+     * Load popular recipes from API
+     */
+    private async loadPopularRecipes() {
+      this.isLoaded = true;
+      this.container.dataset.loadState = "loading";
+
+      try {
+        // Fetch popular recipes from API
+        const response = await fetch("/api/popular-recipes?limit=12");
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.success || !data.recipes || data.recipes.length === 0) {
+          this.showEmptyState();
+          return;
+        }
+
+        // Fetch full recipe data from collection
+        const popularRecipes = await this.fetchRecipeData(data.recipes);
+
+        if (popularRecipes.length === 0) {
+          this.showEmptyState();
+          return;
+        }
+
+        // Render carousel
+        this.renderCarousel(popularRecipes);
+        this.updateSchema(popularRecipes);
+        this.showContent();
+
+        this.container.dataset.loadState = "loaded";
+      } catch (error) {
+        console.error("Error loading popular recipes:", error);
+        this.showError();
+        this.container.dataset.loadState = "error";
+      }
+    }
+
+    /**
+     * Fetch full recipe data from Astro content collection
+     */
+    private async fetchRecipeData(views: RecipeView[]): Promise<PopularRecipe[]> {
+      try {
+        // In production, this would be a server-side fetch
+        // For now, we return empty array and handle client-side
+        // The actual implementation would require a separate API endpoint
+        // that returns full recipe data
+
+        // For demo purposes, we'll create cards with limited data
+        return views.map(view => ({
+          slug: view.slug,
+          views: view.views,
+          data: null // Would be populated from API
+        }));
+      } catch (error) {
+        console.error("Error fetching recipe data:", error);
+        return [];
+      }
+    }
+
+    /**
+     * Render carousel cards
+     */
+    private renderCarousel(recipes: PopularRecipe[]) {
+      if (!this.contentElement) return;
+
+      this.track = this.contentElement.querySelector('[data-carousel-track]');
+      this.prevButton = this.contentElement.querySelector('[data-carousel-prev]');
+      this.nextButton = this.contentElement.querySelector('[data-carousel-next]');
+      this.statusElement = this.contentElement.querySelector('[data-carousel-status]');
+
+      if (!this.track) return;
+
+      this.totalCards = recipes.length;
+
+      // Clear existing content
+      this.track.innerHTML = '';
+
+      // Create cards
+      recipes.forEach((recipe, index) => {
+        const card = this.createCard(recipe, index + 1);
+        this.track?.appendChild(card);
+      });
+
+      // Setup navigation
+      this.updateCardsPerView();
+      this.setupNavigation();
+      this.updateButtons();
+    }
+
+    /**
+     * Create a recipe card element
+     */
+    private createCard(recipe: PopularRecipe, position: number): HTMLElement {
+      const article = document.createElement('article');
+      article.className = 'popular-posts__card';
+      article.setAttribute('role', 'listitem');
+
+      const link = document.createElement('a');
+      link.href = `/rezepte/${recipe.slug}`;
+      link.className = 'popular-posts__card-link';
+      link.setAttribute('aria-label', `Beliebtes Rezept: ${recipe.slug}`);
+
+      // Image wrapper with view count badge
+      const imageWrapper = document.createElement('div');
+      imageWrapper.className = 'popular-posts__card-image-wrapper';
+
+      const img = document.createElement('img');
+      img.src = `https://picsum.photos/400/225?random=${position}`;
+      img.alt = recipe.slug;
+      img.className = 'popular-posts__card-image';
+      img.loading = 'lazy';
+
+      const viewBadge = document.createElement('div');
+      viewBadge.className = 'popular-posts__view-badge';
+      viewBadge.innerHTML = `
+        <svg class="popular-posts__view-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span>${this.formatViews(recipe.views)}</span>
+      `;
+
+      imageWrapper.appendChild(img);
+      imageWrapper.appendChild(viewBadge);
+
+      // Content
+      const content = document.createElement('div');
+      content.className = 'popular-posts__card-content';
+
+      const title = document.createElement('h3');
+      title.className = 'popular-posts__card-title';
+      title.textContent = recipe.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+      content.appendChild(title);
+
+      link.appendChild(imageWrapper);
+      link.appendChild(content);
+      article.appendChild(link);
+
+      return article;
+    }
+
+    /**
+     * Format view count (e.g., 1234 -> 1,2K)
+     */
+    private formatViews(views: number): string {
+      if (views >= 1000) {
+        return `${(views / 1000).toFixed(1)}K`;
+      }
+      return views.toString();
+    }
+
+    /**
+     * Setup navigation event listeners
+     */
+    private setupNavigation() {
+      if (!this.prevButton || !this.nextButton) return;
+
+      this.prevButton.addEventListener('click', () => this.prev());
+      this.nextButton.addEventListener('click', () => this.next());
+
+      // Keyboard navigation
+      this.track?.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          this.prev();
+        } else if (e.key === 'ArrowRight') {
+          this.next();
+        }
+      });
+
+      // Update on resize
+      window.addEventListener('resize', () => {
+        this.updateCardsPerView();
+        this.updatePosition();
+      });
+    }
+
+    private updateCardsPerView() {
+      const containerWidth = this.track?.parentElement?.offsetWidth || 0;
+
+      if (containerWidth <= 400) {
+        this.cardsPerView = 1;
+      } else if (containerWidth <= 650) {
+        this.cardsPerView = 2;
+      } else {
+        this.cardsPerView = 3;
+      }
+    }
+
+    private next() {
+      const maxIndex = Math.ceil(this.totalCards / this.cardsPerView) - 1;
+      if (this.currentIndex < maxIndex) {
+        this.currentIndex++;
+        this.updatePosition();
+      }
+    }
+
+    private prev() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+        this.updatePosition();
+      }
+    }
+
+    private updatePosition() {
+      if (!this.track || this.track.children.length === 0) return;
+
+      const cardWidth = (this.track.children[0] as HTMLElement).offsetWidth;
+      const containerWidth = this.track.parentElement?.offsetWidth || 0;
+      let gap = 6;
+
+      if (containerWidth <= 400) {
+        gap = 12;
+      } else if (containerWidth <= 650) {
+        gap = 8;
+      }
+
+      const offset = this.currentIndex * this.cardsPerView * (cardWidth + gap);
+      this.track.style.transform = `translateX(-${offset}px)`;
+
+      this.updateButtons();
+      this.updateStatus();
+    }
+
+    private updateButtons() {
+      if (!this.prevButton || !this.nextButton) return;
+
+      const maxIndex = Math.ceil(this.totalCards / this.cardsPerView) - 1;
+      this.prevButton.disabled = this.currentIndex === 0;
+      this.nextButton.disabled = this.currentIndex >= maxIndex;
+    }
+
+    private updateStatus() {
+      if (!this.statusElement) return;
+
+      const start = this.currentIndex * this.cardsPerView + 1;
+      const end = Math.min((this.currentIndex + 1) * this.cardsPerView, this.totalCards);
+      this.statusElement.textContent = `Zeige ${start}-${end} von ${this.totalCards} beliebten Rezepten.`;
+    }
+
+    /**
+     * Update Schema.org markup
+     */
+    private updateSchema(recipes: PopularRecipe[]) {
+      if (!this.schemaElement) return;
+
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Meist besuchte Rezepte",
+        "itemListElement": recipes.map((recipe, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "url": `https://die-mama-kocht.de/rezepte/${recipe.slug}`,
+          "item": {
+            "@type": "Recipe",
+            "name": recipe.slug,
+            "interactionStatistic": {
+              "@type": "InteractionCounter",
+              "interactionType": "https://schema.org/ViewAction",
+              "userInteractionCount": recipe.views
+            }
+          }
+        }))
+      };
+
+      this.schemaElement.textContent = JSON.stringify(schema);
+    }
+
+    /**
+     * Show different states
+     */
+    private showContent() {
+      if (this.loadingElement) this.loadingElement.style.display = 'none';
+      if (this.errorElement) this.errorElement.style.display = 'none';
+      if (this.contentElement) this.contentElement.style.display = 'block';
+    }
+
+    private showError() {
+      if (this.loadingElement) this.loadingElement.style.display = 'none';
+      if (this.errorElement) this.errorElement.style.display = 'block';
+      if (this.contentElement) this.contentElement.style.display = 'none';
+    }
+
+    private showEmptyState() {
+      // Hide carousel entirely if no popular recipes
+      this.container.style.display = 'none';
+    }
+  }
+
+  // Initialize carousel when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('[data-popular-carousel]');
+    carousels.forEach((carousel) => {
+      new PopularPostsCarousel(carousel as HTMLElement);
+    });
+  });
+</script>

@@ -11,6 +11,7 @@ import RecipeSidebar from "../../components/recipe/RecipeSidebar.astro";
 import RecipeComments from "../../components/recipe/RecipeComments.astro";
 import DynamicRecipeSchema from "../../components/DynamicRecipeSchema.astro";
 import RelatedPostsCarousel from "../../components/recipe/RelatedPostsCarousel.astro";
+import PopularPostsCarousel from "../../components/recipe/PopularPostsCarousel.astro";
 import { getRelatedPosts } from "../../utils/relatedPosts";
 
 type BlogEntry = CollectionEntry<"blog">;
@@ -214,6 +215,9 @@ const relatedPosts = getRelatedPosts(entry, allBlogEntries, 12);
 
           <!-- Related Posts Carousel -->
           <RelatedPostsCarousel relatedPosts={relatedPosts} />
+
+          <!-- Popular Posts Carousel (Lazy Loaded) -->
+          <PopularPostsCarousel />
         </div>
 
         <!-- Sidebar (1/3 width) -->
@@ -227,3 +231,20 @@ const relatedPosts = getRelatedPosts(entry, allBlogEntries, 12);
     </article>
   </div>
 </BaseLayout>
+
+<!-- Page View Tracking (GDPR-compliant, no cookies) -->
+<script>
+  import { initViewTracking } from "../../utils/trackView";
+
+  // Get recipe slug from meta tag or URL
+  const recipeSlug = document.querySelector('meta[property="article:slug"]')?.getAttribute('content')
+    || window.location.pathname.split('/').pop() || '';
+
+  if (recipeSlug) {
+    // Track view after 2 seconds (user has engaged with content)
+    initViewTracking(recipeSlug, {
+      delay: 2000,
+      threshold: 0,
+    });
+  }
+</script>
