@@ -1,0 +1,261 @@
+{
+  "uuid": "3a95cad1-b017-43c3-ab36-8f29037fe029",
+  "metadata": {
+    "title": "California Sushi Rolls",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "slug": "fake-sushi-rolls",
+    "pubDate": "2025-02-19",
+    "modifiedDate": "2025-02-19",
+    "author": "Food Blog Test",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "California Sushi Rolls - Leckeres Rezept",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "metaKeywords": [
+      "California Sushi Rolls",
+      "Rezept",
+      "Kochen",
+      "Food Blog"
+    ],
+    "ogImage": "https://picsum.photos/1200/800?random=14",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Hauptgericht",
+      "Fisch"
+    ],
+    "tags": [
+      "Test",
+      "Lorem Ipsum",
+      "Beispiel"
+    ],
+    "cuisine": "Japanisch",
+    "difficulty": "schwer",
+    "mealType": "Hauptgericht"
+  },
+  "timing": {
+    "prepTime": "PT30M",
+    "cookTime": "PT30M",
+    "totalTime": "PT60M",
+    "prepTimeMinutes": 30,
+    "cookTimeMinutes": 30,
+    "totalTimeMinutes": 60
+  },
+  "nutrition": {
+    "servings": 2,
+    "servingSize": "1 Portion",
+    "calories": "509",
+    "carbohydrates": "43g",
+    "protein": "43g",
+    "fat": "23g",
+    "fiber": "9g",
+    "sugar": null,
+    "sodium": null
+  },
+  "ingredients": [
+    {
+      "name": "Zucker",
+      "amount": 469,
+      "unit": "g",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Käse",
+      "amount": 537,
+      "unit": "TL",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Eier",
+      "amount": 213,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Butter",
+      "amount": 517,
+      "unit": "TL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Butter",
+      "amount": 361,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 141,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 174,
+      "unit": "ml",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Karotten",
+      "amount": 160,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Karotten",
+      "amount": 119,
+      "unit": "Stück",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Mehl",
+      "amount": 378,
+      "unit": "ml",
+      "note": null,
+      "group": "Optional"
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "https://picsum.photos/1200/800?random=14",
+      "alt": "California Sushi Rolls",
+      "width": 1200,
+      "height": 800,
+      "caption": null
+    },
+    "content": [],
+    "steps": []
+  },
+  "content": {
+    "introduction": {
+      "title": "Einleitung",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    "facts": [
+      {
+        "title": "Wussten Sie?",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "info"
+      },
+      {
+        "title": "Tipp",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "lightbulb"
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Schritt 1",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT16M"
+      },
+      {
+        "number": 2,
+        "title": "Schritt 2",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT20M"
+      },
+      {
+        "number": 3,
+        "title": "Schritt 3",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT20M"
+      },
+      {
+        "number": 4,
+        "title": "Schritt 4",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      }
+    ],
+    "tips": {
+      "title": "Tipps",
+      "items": [
+        {
+          "title": "Tipp 1",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+          "title": "Tipp 2",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+    }
+  },
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "California Sushi Rolls",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "author": {
+      "@type": "Person",
+      "name": "Food Blog Test"
+    },
+    "datePublished": "2025-02-19T16:34:18.466Z",
+    "image": "https://picsum.photos/1200/800?random=14",
+    "recipeYield": "4 Portionen",
+    "prepTime": "PT30M",
+    "cookTime": "PT30M",
+    "totalTime": "PT60M",
+    "recipeCategory": "Hauptgericht",
+    "recipeCuisine": "Japanisch",
+    "keywords": "California Sushi Rolls",
+    "recipeIngredient": [
+      "363 EL Mehl",
+      "291 Stück Mehl",
+      "232 TL Karotten",
+      "274 TL Eier",
+      "71 g Salz",
+      "420 Stück Kartoffeln",
+      "467 ml Reis",
+      "253 EL Nudeln"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 1",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 2",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 3",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 4",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 4
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 5",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 5
+      }
+    ]
+  }
+}

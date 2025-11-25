@@ -1,0 +1,279 @@
+{
+  "uuid": "1d843f85-4ab2-4727-9368-b978b827a072",
+  "metadata": {
+    "title": "Pizza Margherita",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "slug": "fake-pizza-margherita",
+    "pubDate": "2025-03-11",
+    "modifiedDate": "2025-03-11",
+    "author": "Food Blog Test",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "Pizza Margherita - Leckeres Rezept",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "metaKeywords": [
+      "Pizza Margherita",
+      "Rezept",
+      "Kochen",
+      "Food Blog"
+    ],
+    "ogImage": "https://picsum.photos/1200/800?random=2",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Hauptgericht",
+      "Abendessen",
+      "Italienisch"
+    ],
+    "tags": [
+      "Test",
+      "Lorem Ipsum",
+      "Beispiel"
+    ],
+    "cuisine": "Italienisch",
+    "difficulty": "einfach",
+    "mealType": "Hauptgericht"
+  },
+  "timing": {
+    "prepTime": "PT20M",
+    "cookTime": "PT57M",
+    "totalTime": "PT77M",
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 57,
+    "totalTimeMinutes": 77
+  },
+  "nutrition": {
+    "servings": 3,
+    "servingSize": "1 Portion",
+    "calories": "562",
+    "carbohydrates": "38g",
+    "protein": "49g",
+    "fat": "7g",
+    "fiber": "4g",
+    "sugar": null,
+    "sodium": null
+  },
+  "ingredients": [
+    {
+      "name": "Eier",
+      "amount": 94,
+      "unit": "TL",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Zucker",
+      "amount": 268,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Käse",
+      "amount": 378,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Eier",
+      "amount": 492,
+      "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Karotten",
+      "amount": 303,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Salz",
+      "amount": 134,
+      "unit": "TL",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Zucker",
+      "amount": 504,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 72,
+      "unit": "Stück",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Milch",
+      "amount": 534,
+      "unit": "Prise",
+      "note": null,
+      "group": "Optional"
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "https://picsum.photos/1200/800?random=2",
+      "alt": "Pizza Margherita",
+      "width": 1200,
+      "height": 800,
+      "caption": null
+    },
+    "content": [],
+    "steps": []
+  },
+  "content": {
+    "introduction": {
+      "title": "Einleitung",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    "facts": [
+      {
+        "title": "Wussten Sie?",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "info"
+      },
+      {
+        "title": "Tipp",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "lightbulb"
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Schritt 1",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT6M"
+      },
+      {
+        "number": 2,
+        "title": "Schritt 2",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 3,
+        "title": "Schritt 3",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 4,
+        "title": "Schritt 4",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 6,
+        "title": "Schritt 6",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT6M"
+      },
+      {
+        "number": 7,
+        "title": "Schritt 7",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 8,
+        "title": "Schritt 8",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT24M"
+      }
+    ],
+    "tips": {
+      "title": "Tipps",
+      "items": [
+        {
+          "title": "Tipp 1",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+          "title": "Tipp 2",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+    }
+  },
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Pizza Margherita",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "author": {
+      "@type": "Person",
+      "name": "Food Blog Test"
+    },
+    "datePublished": "2025-03-11T16:34:18.462Z",
+    "image": "https://picsum.photos/1200/800?random=2",
+    "recipeYield": "4 Portionen",
+    "prepTime": "PT20M",
+    "cookTime": "PT57M",
+    "totalTime": "PT77M",
+    "recipeCategory": "Hauptgericht",
+    "recipeCuisine": "Italienisch",
+    "keywords": "Pizza Margherita",
+    "recipeIngredient": [
+      "353 Stück Nudeln",
+      "486 Prise Olivenöl",
+      "285 Prise Käse",
+      "481 EL Sahne",
+      "218 TL Nudeln",
+      "286 TL Pfeffer",
+      "183 ml Pfeffer",
+      "153 Prise Salz"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 1",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 2",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 3",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 4",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 4
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 5",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 5
+      }
+    ]
+  }
+}

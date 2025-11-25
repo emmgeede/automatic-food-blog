@@ -1,0 +1,286 @@
+{
+  "uuid": "8bb21730-e4b4-4263-88e1-16f26c5d2578",
+  "metadata": {
+    "title": "Tom Yum Suppe",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "slug": "fake-tom-yum",
+    "pubDate": "2025-11-04",
+    "modifiedDate": "2025-11-04",
+    "author": "Food Blog Test",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "Tom Yum Suppe - Leckeres Rezept",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "metaKeywords": [
+      "Tom Yum Suppe",
+      "Rezept",
+      "Kochen",
+      "Food Blog"
+    ],
+    "ogImage": "https://picsum.photos/1200/800?random=13",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Vorspeise",
+      "Suppe"
+    ],
+    "tags": [
+      "Test",
+      "Lorem Ipsum",
+      "Beispiel"
+    ],
+    "cuisine": "Thailändisch",
+    "difficulty": "mittel",
+    "mealType": "Vorspeise"
+  },
+  "timing": {
+    "prepTime": "PT21M",
+    "cookTime": "PT30M",
+    "totalTime": "PT51M",
+    "prepTimeMinutes": 21,
+    "cookTimeMinutes": 30,
+    "totalTimeMinutes": 51
+  },
+  "nutrition": {
+    "servings": 5,
+    "servingSize": "1 Portion",
+    "calories": "292",
+    "carbohydrates": "35g",
+    "protein": "38g",
+    "fat": "11g",
+    "fiber": "4g",
+    "sugar": null,
+    "sodium": null
+  },
+  "ingredients": [
+    {
+      "name": "Zwiebeln",
+      "amount": 548,
+      "unit": "Prise",
+      "note": "nach Geschmack",
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 465,
+      "unit": "TL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 218,
+      "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 238,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Eier",
+      "amount": 531,
+      "unit": "ml",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Butter",
+      "amount": 421,
+      "unit": "Prise",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Zucker",
+      "amount": 513,
+      "unit": "g",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Milch",
+      "amount": 214,
+      "unit": "Stück",
+      "note": "nach Geschmack",
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Käse",
+      "amount": 439,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 173,
+      "unit": "Prise",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Kartoffeln",
+      "amount": 344,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "https://picsum.photos/1200/800?random=13",
+      "alt": "Tom Yum Suppe",
+      "width": 1200,
+      "height": 800,
+      "caption": null
+    },
+    "content": [],
+    "steps": []
+  },
+  "content": {
+    "introduction": {
+      "title": "Einleitung",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    "facts": [
+      {
+        "title": "Wussten Sie?",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "info"
+      },
+      {
+        "title": "Tipp",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "lightbulb"
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Schritt 1",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT16M"
+      },
+      {
+        "number": 2,
+        "title": "Schritt 2",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 3,
+        "title": "Schritt 3",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 4,
+        "title": "Schritt 4",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT18M"
+      },
+      {
+        "number": 6,
+        "title": "Schritt 6",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT24M"
+      },
+      {
+        "number": 7,
+        "title": "Schritt 7",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT21M"
+      }
+    ],
+    "tips": {
+      "title": "Tipps",
+      "items": [
+        {
+          "title": "Tipp 1",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+          "title": "Tipp 2",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+    }
+  },
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Tom Yum Suppe",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "author": {
+      "@type": "Person",
+      "name": "Food Blog Test"
+    },
+    "datePublished": "2025-11-04T16:34:18.466Z",
+    "image": "https://picsum.photos/1200/800?random=13",
+    "recipeYield": "3 Portionen",
+    "prepTime": "PT21M",
+    "cookTime": "PT30M",
+    "totalTime": "PT51M",
+    "recipeCategory": "Vorspeise",
+    "recipeCuisine": "Thailändisch",
+    "keywords": "Tom Yum Suppe",
+    "recipeIngredient": [
+      "220 Prise Sahne",
+      "309 g Sahne",
+      "125 g Sahne",
+      "478 EL Reis",
+      "325 ml Pfeffer",
+      "80 Prise Salz",
+      "214 TL Käse",
+      "492 ml Karotten"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 1",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 2",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 3",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 4",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 4
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 5",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 5
+      }
+    ]
+  }
+}

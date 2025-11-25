@@ -1,0 +1,282 @@
+{
+  "uuid": "92cbb424-0e22-4939-947e-e1e9f6195503",
+  "metadata": {
+    "title": "Amerikanische Pancakes",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "slug": "fake-pancakes",
+    "pubDate": "2025-11-23",
+    "modifiedDate": "2025-11-23",
+    "author": "Food Blog Test",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "Amerikanische Pancakes - Leckeres Rezept",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "metaKeywords": [
+      "Amerikanische Pancakes",
+      "Rezept",
+      "Kochen",
+      "Food Blog"
+    ],
+    "ogImage": "https://picsum.photos/1200/800?random=18",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Frühstück",
+      "Süßspeise"
+    ],
+    "tags": [
+      "Test",
+      "Lorem Ipsum",
+      "Beispiel"
+    ],
+    "cuisine": "Amerikanisch",
+    "difficulty": "einfach",
+    "mealType": "Frühstück"
+  },
+  "timing": {
+    "prepTime": "PT36M",
+    "cookTime": "PT65M",
+    "totalTime": "PT101M",
+    "prepTimeMinutes": 36,
+    "cookTimeMinutes": 65,
+    "totalTimeMinutes": 101
+  },
+  "nutrition": {
+    "servings": 7,
+    "servingSize": "1 Portion",
+    "calories": "441",
+    "carbohydrates": "37g",
+    "protein": "18g",
+    "fat": "7g",
+    "fiber": "4g",
+    "sugar": null,
+    "sodium": null
+  },
+  "ingredients": [
+    {
+      "name": "Milch",
+      "amount": 431,
+      "unit": "Prise",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Karotten",
+      "amount": 179,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Karotten",
+      "amount": 494,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Käse",
+      "amount": 358,
+      "unit": "Stück",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 546,
+      "unit": "Prise",
+      "note": "nach Geschmack",
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Butter",
+      "amount": 166,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 71,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Reis",
+      "amount": 431,
+      "unit": "ml",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 91,
+      "unit": "Stück",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Mehl",
+      "amount": 541,
+      "unit": "EL",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Eier",
+      "amount": 445,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Mehl",
+      "amount": 203,
+      "unit": "TL",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Sahne",
+      "amount": 534,
+      "unit": "Stück",
+      "note": null,
+      "group": "Zum Servieren"
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "https://picsum.photos/1200/800?random=18",
+      "alt": "Amerikanische Pancakes",
+      "width": 1200,
+      "height": 800,
+      "caption": null
+    },
+    "content": [],
+    "steps": []
+  },
+  "content": {
+    "introduction": {
+      "title": "Einleitung",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    "facts": [
+      {
+        "title": "Wussten Sie?",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "info"
+      },
+      {
+        "title": "Tipp",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "lightbulb"
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Schritt 1",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT18M"
+      },
+      {
+        "number": 2,
+        "title": "Schritt 2",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 3,
+        "title": "Schritt 3",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 4,
+        "title": "Schritt 4",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT24M"
+      }
+    ],
+    "tips": {
+      "title": "Tipps",
+      "items": [
+        {
+          "title": "Tipp 1",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+          "title": "Tipp 2",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+    }
+  },
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Amerikanische Pancakes",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "author": {
+      "@type": "Person",
+      "name": "Food Blog Test"
+    },
+    "datePublished": "2025-11-23T16:34:18.467Z",
+    "image": "https://picsum.photos/1200/800?random=18",
+    "recipeYield": "5 Portionen",
+    "prepTime": "PT36M",
+    "cookTime": "PT65M",
+    "totalTime": "PT101M",
+    "recipeCategory": "Frühstück",
+    "recipeCuisine": "Amerikanisch",
+    "keywords": "Amerikanische Pancakes",
+    "recipeIngredient": [
+      "392 EL Zwiebeln",
+      "297 EL Milch",
+      "255 EL Pfeffer",
+      "338 EL Zucker",
+      "541 EL Sahne",
+      "149 TL Pfeffer",
+      "272 TL Mehl",
+      "140 Prise Kartoffeln"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 1",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 2",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 3",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 4",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 4
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 5",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 5
+      }
+    ]
+  }
+}

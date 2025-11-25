@@ -1,0 +1,301 @@
+{
+  "uuid": "5e0510ef-51f5-4c70-83ac-0b944bcfde4b",
+  "metadata": {
+    "title": "Saltimbocca alla Romana",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "slug": "fake-saltimbocca",
+    "pubDate": "2025-01-21",
+    "modifiedDate": "2025-01-21",
+    "author": "Food Blog Test",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "Saltimbocca alla Romana - Leckeres Rezept",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "metaKeywords": [
+      "Saltimbocca alla Romana",
+      "Rezept",
+      "Kochen",
+      "Food Blog"
+    ],
+    "ogImage": "https://picsum.photos/1200/800?random=7",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Hauptgericht",
+      "Abendessen",
+      "Italienisch"
+    ],
+    "tags": [
+      "Test",
+      "Lorem Ipsum",
+      "Beispiel"
+    ],
+    "cuisine": "Italienisch",
+    "difficulty": "einfach",
+    "mealType": "Hauptgericht"
+  },
+  "timing": {
+    "prepTime": "PT39M",
+    "cookTime": "PT15M",
+    "totalTime": "PT54M",
+    "prepTimeMinutes": 39,
+    "cookTimeMinutes": 15,
+    "totalTimeMinutes": 54
+  },
+  "nutrition": {
+    "servings": 7,
+    "servingSize": "1 Portion",
+    "calories": "338",
+    "carbohydrates": "37g",
+    "protein": "21g",
+    "fat": "6g",
+    "fiber": "8g",
+    "sugar": null,
+    "sodium": null
+  },
+  "ingredients": [
+    {
+      "name": "Butter",
+      "amount": 448,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Tomaten",
+      "amount": 167,
+      "unit": "Prise",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Butter",
+      "amount": 208,
+      "unit": "g",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Mehl",
+      "amount": 94,
+      "unit": "EL",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Milch",
+      "amount": 182,
+      "unit": "TL",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 406,
+      "unit": "TL",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Karotten",
+      "amount": 305,
+      "unit": "Prise",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Sahne",
+      "amount": 350,
+      "unit": "Prise",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 62,
+      "unit": "EL",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Eier",
+      "amount": 272,
+      "unit": "EL",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Zucker",
+      "amount": 311,
+      "unit": "g",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 349,
+      "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 526,
+      "unit": "Stück",
+      "note": null,
+      "group": "Hauptzutaten"
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "https://picsum.photos/1200/800?random=7",
+      "alt": "Saltimbocca alla Romana",
+      "width": 1200,
+      "height": 800,
+      "caption": null
+    },
+    "content": [],
+    "steps": []
+  },
+  "content": {
+    "introduction": {
+      "title": "Einleitung",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    "facts": [
+      {
+        "title": "Wussten Sie?",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "info"
+      },
+      {
+        "title": "Tipp",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "icon": "lightbulb"
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Schritt 1",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT20M"
+      },
+      {
+        "number": 2,
+        "title": "Schritt 2",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": null
+      },
+      {
+        "number": 3,
+        "title": "Schritt 3",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT18M"
+      },
+      {
+        "number": 4,
+        "title": "Schritt 4",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT13M"
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT19M"
+      },
+      {
+        "number": 6,
+        "title": "Schritt 6",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT11M"
+      },
+      {
+        "number": 7,
+        "title": "Schritt 7",
+        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "time": "PT19M"
+      }
+    ],
+    "tips": {
+      "title": "Tipps",
+      "items": [
+        {
+          "title": "Tipp 1",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        {
+          "title": "Tipp 2",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+    }
+  },
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Saltimbocca alla Romana",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "author": {
+      "@type": "Person",
+      "name": "Food Blog Test"
+    },
+    "datePublished": "2025-01-21T16:34:18.464Z",
+    "image": "https://picsum.photos/1200/800?random=7",
+    "recipeYield": "2 Portionen",
+    "prepTime": "PT39M",
+    "cookTime": "PT15M",
+    "totalTime": "PT54M",
+    "recipeCategory": "Hauptgericht",
+    "recipeCuisine": "Italienisch",
+    "keywords": "Saltimbocca alla Romana",
+    "recipeIngredient": [
+      "337 g Mehl",
+      "534 TL Butter",
+      "468 ml Eier",
+      "307 Prise Eier",
+      "250 g Sahne",
+      "361 Prise Tomaten",
+      "193 Prise Sahne",
+      "365 Stück Milch"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 1",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 2",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 3",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 4",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 4
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Schritt 5",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "position": 5
+      }
+    ]
+  }
+}
