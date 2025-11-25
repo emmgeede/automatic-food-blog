@@ -31,25 +31,7 @@ export default async (req: Request, context: Context) => {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  // Try to extract Remark42 JWT token from cookies (preferred - posts as Ingrid)
-  // Remark42 JWT cookie format can be "REMARK42-JWT" or "REMARK42-JWT.food-blog"
-  let remark42JWT: string | undefined;
-  if (cookie) {
-    // Try to find any cookie starting with REMARK42-JWT
-    const jwtMatch = cookie.match(/REMARK42-JWT[^=]*=([^;]+)/);
-    remark42JWT = jwtMatch?.[1];
-  }
-
-  const useJWT = !!remark42JWT;
-
   console.log('All cookies:', cookie);
-  console.log('Remark42 JWT found:', useJWT);
-  if (useJWT) {
-    console.log('JWT token (first 20 chars):', remark42JWT?.substring(0, 20));
-    console.log('Will post as logged-in user (Ingrid Hartmann)');
-  } else {
-    console.log('No Remark42 JWT - will post using Basic Auth (admin)');
-  }
 
   // Parse request body
   let body;
@@ -98,9 +80,8 @@ export default async (req: Request, context: Context) => {
 
   console.log('Remark42 URL:', remark42Url);
 
-  // Only check admin password if we need Basic Auth fallback
-  if (!useJWT && !adminPassword) {
-    console.error('REMARK_ADMIN_PASSWD not configured and no JWT token available');
+  if (!adminPassword) {
+    console.error('REMARK_ADMIN_PASSWD not configured');
     return new Response(JSON.stringify({ error: 'Authentication not configured' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
@@ -124,21 +105,13 @@ export default async (req: Request, context: Context) => {
 
     console.log('Request body:', JSON.stringify(requestBody));
 
-    // Build headers based on authentication method
+    // Use Basic Auth
+    console.log('Sending POST request with Basic Auth...');
+    const credentials = Buffer.from(`admin:${adminPassword}`).toString('base64');
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
+      'Authorization': `Basic ${credentials}`,
     };
-
-    if (useJWT) {
-      // Use JWT token to post as Ingrid Hartmann
-      console.log('Sending POST request with JWT (as Ingrid)...');
-      headers['X-JWT'] = remark42JWT!;
-    } else {
-      // Fallback to Basic Auth (posts as admin)
-      console.log('Sending POST request with Basic Auth (as admin)...');
-      const credentials = Buffer.from(`admin:${adminPassword}`).toString('base64');
-      headers['Authorization'] = `Basic ${credentials}`;
-    }
 
     const response = await fetch(postUrl, {
       method: 'POST',
