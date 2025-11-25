@@ -1,11 +1,11 @@
 {
-  "uuid": "0a4b6269-0bf8-4fc2-9ea7-81c0b939c69d",
+  "uuid": "e02af8dd-793d-4f87-b8f6-315bf3a64c0c",
   "metadata": {
     "title": "Parmigiana di Melanzane",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-parmigiana",
-    "pubDate": "2025-01-26",
-    "modifiedDate": "2025-01-26",
+    "pubDate": "2025-09-26",
+    "modifiedDate": "2025-09-26",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,80 +37,66 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT33M",
-    "cookTime": "PT31M",
-    "totalTime": "PT64M",
-    "prepTimeMinutes": 33,
-    "cookTimeMinutes": 31,
-    "totalTimeMinutes": 64
+    "prepTime": "PT10M",
+    "cookTime": "PT50M",
+    "totalTime": "PT60M",
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 50,
+    "totalTimeMinutes": 60
   },
   "nutrition": {
-    "servings": 5,
+    "servings": 2,
     "servingSize": "1 Portion",
-    "calories": "409",
-    "carbohydrates": "46g",
-    "protein": "22g",
-    "fat": "5g",
-    "fiber": "6g",
+    "calories": "225",
+    "carbohydrates": "33g",
+    "protein": "28g",
+    "fat": "29g",
+    "fiber": "5g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Eier",
-      "amount": 357,
-      "unit": "TL",
+      "name": "Karotten",
+      "amount": 138,
+      "unit": "Stück",
       "note": "nach Geschmack",
       "group": "Hauptzutaten"
     },
     {
-      "name": "Zwiebeln",
-      "amount": 229,
-      "unit": "g",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Olivenöl",
-      "amount": 416,
-      "unit": "g",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Käse",
-      "amount": 459,
-      "unit": "EL",
+      "name": "Eier",
+      "amount": 496,
+      "unit": "Prise",
       "note": null,
       "group": "Gewürze"
     },
     {
-      "name": "Milch",
-      "amount": 95,
-      "unit": "g",
-      "note": "nach Geschmack",
+      "name": "Sahne",
+      "amount": 413,
+      "unit": "EL",
+      "note": null,
       "group": "Optional"
     },
     {
       "name": "Reis",
-      "amount": 315,
-      "unit": "g",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Salz",
-      "amount": 313,
+      "amount": 373,
       "unit": "Stück",
       "note": null,
       "group": "Gewürze"
     },
     {
-      "name": "Reis",
-      "amount": 294,
+      "name": "Knoblauch",
+      "amount": 518,
       "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Eier",
+      "amount": 548,
+      "unit": "g",
       "note": null,
-      "group": "Zum Servieren"
+      "group": "Optional"
     }
   ],
   "images": {
@@ -133,44 +119,70 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT23M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT6M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 6,
+        "title": "Schritt 6",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 7,
+        "title": "Schritt 7",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 8,
+        "title": "Schritt 8",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -199,54 +211,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-01-26T16:34:18.464Z",
+    "datePublished": "2025-09-26T18:01:19.311Z",
     "image": "https://picsum.photos/1200/800?random=8",
-    "recipeYield": "2 Portionen",
-    "prepTime": "PT33M",
-    "cookTime": "PT31M",
-    "totalTime": "PT64M",
+    "recipeYield": "7 Portionen",
+    "prepTime": "PT10M",
+    "cookTime": "PT50M",
+    "totalTime": "PT60M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Parmigiana di Melanzane",
     "recipeIngredient": [
-      "347 TL Pfeffer",
-      "72 Stück Milch",
-      "86 EL Olivenöl",
-      "513 Prise Käse",
-      "457 EL Milch",
-      "148 EL Pfeffer",
-      "268 Stück Knoblauch",
-      "319 ml Nudeln"
+      "236 g Käse",
+      "250 Stück Olivenöl",
+      "436 g Olivenöl",
+      "148 EL Paprika",
+      "456 EL Butter",
+      "76 TL Tomaten",
+      "430 ml Knoblauch",
+      "210 Stück Butter"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

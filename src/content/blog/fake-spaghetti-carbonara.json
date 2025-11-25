@@ -1,11 +1,11 @@
 {
-  "uuid": "7adde6d0-8205-459a-9d1d-27224e8b161a",
+  "uuid": "b8912794-fb68-4f47-8d85-4d9d6e7c576d",
   "metadata": {
     "title": "Spaghetti Carbonara",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-spaghetti-carbonara",
-    "pubDate": "2025-04-03",
-    "modifiedDate": "2025-04-03",
+    "pubDate": "2025-03-09",
+    "modifiedDate": "2025-03-09",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,87 +37,73 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT18M",
-    "cookTime": "PT23M",
-    "totalTime": "PT41M",
-    "prepTimeMinutes": 18,
-    "cookTimeMinutes": 23,
-    "totalTimeMinutes": 41
+    "prepTime": "PT19M",
+    "cookTime": "PT65M",
+    "totalTime": "PT84M",
+    "prepTimeMinutes": 19,
+    "cookTimeMinutes": 65,
+    "totalTimeMinutes": 84
   },
   "nutrition": {
-    "servings": 3,
+    "servings": 7,
     "servingSize": "1 Portion",
-    "calories": "410",
-    "carbohydrates": "58g",
-    "protein": "11g",
-    "fat": "10g",
-    "fiber": "9g",
+    "calories": "411",
+    "carbohydrates": "38g",
+    "protein": "49g",
+    "fat": "17g",
+    "fiber": "2g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Käse",
-      "amount": 346,
-      "unit": "g",
+      "name": "Nudeln",
+      "amount": 355,
+      "unit": "Stück",
       "note": null,
       "group": "Gewürze"
     },
     {
       "name": "Pfeffer",
-      "amount": 189,
-      "unit": "ml",
+      "amount": 233,
+      "unit": "Stück",
       "note": null,
       "group": "Zum Servieren"
     },
     {
-      "name": "Salz",
-      "amount": 210,
-      "unit": "ml",
+      "name": "Olivenöl",
+      "amount": 115,
+      "unit": "Stück",
       "note": null,
-      "group": "Gewürze"
+      "group": "Zum Servieren"
     },
     {
-      "name": "Reis",
-      "amount": 384,
-      "unit": "TL",
+      "name": "Käse",
+      "amount": 347,
+      "unit": "g",
       "note": null,
       "group": "Zum Servieren"
     },
     {
       "name": "Tomaten",
-      "amount": 245,
-      "unit": "ml",
+      "amount": 197,
+      "unit": "Prise",
       "note": "nach Geschmack",
       "group": "Optional"
     },
     {
-      "name": "Butter",
-      "amount": 213,
-      "unit": "EL",
+      "name": "Knoblauch",
+      "amount": 491,
+      "unit": "Stück",
       "note": null,
-      "group": "Optional"
+      "group": "Gewürze"
     },
     {
-      "name": "Knoblauch",
-      "amount": 204,
+      "name": "Kartoffeln",
+      "amount": 419,
       "unit": "g",
       "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Pfeffer",
-      "amount": 97,
-      "unit": "EL",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Tomaten",
-      "amount": 479,
-      "unit": "EL",
-      "note": null,
-      "group": "Optional"
+      "group": "Hauptzutaten"
     }
   ],
   "images": {
@@ -140,38 +126,49 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT19M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -200,54 +197,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-04-03T15:34:18.461Z",
+    "datePublished": "2025-03-09T19:01:19.305Z",
     "image": "https://picsum.photos/1200/800?random=1",
-    "recipeYield": "3 Portionen",
-    "prepTime": "PT18M",
-    "cookTime": "PT23M",
-    "totalTime": "PT41M",
+    "recipeYield": "6 Portionen",
+    "prepTime": "PT19M",
+    "cookTime": "PT65M",
+    "totalTime": "PT84M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Spaghetti Carbonara",
     "recipeIngredient": [
-      "466 Prise Zucker",
-      "497 g Knoblauch",
-      "218 TL Kartoffeln",
-      "60 ml Zucker",
-      "465 Stück Milch",
-      "379 ml Pfeffer",
-      "346 Stück Paprika",
-      "524 g Karotten"
+      "105 Stück Paprika",
+      "296 TL Nudeln",
+      "514 Prise Milch",
+      "214 Stück Mehl",
+      "384 Stück Pfeffer",
+      "390 g Tomaten",
+      "458 Prise Mehl",
+      "472 g Zucker"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

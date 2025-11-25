@@ -1,11 +1,11 @@
 {
-  "uuid": "5e0510ef-51f5-4c70-83ac-0b944bcfde4b",
+  "uuid": "16594497-2337-4550-ab0e-7ca07c7f98b5",
   "metadata": {
     "title": "Saltimbocca alla Romana",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-saltimbocca",
-    "pubDate": "2025-01-21",
-    "modifiedDate": "2025-01-21",
+    "pubDate": "2024-12-09",
+    "modifiedDate": "2024-12-09",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,115 +37,101 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT39M",
-    "cookTime": "PT15M",
-    "totalTime": "PT54M",
-    "prepTimeMinutes": 39,
-    "cookTimeMinutes": 15,
-    "totalTimeMinutes": 54
+    "prepTime": "PT19M",
+    "cookTime": "PT50M",
+    "totalTime": "PT69M",
+    "prepTimeMinutes": 19,
+    "cookTimeMinutes": 50,
+    "totalTimeMinutes": 69
   },
   "nutrition": {
-    "servings": 7,
+    "servings": 4,
     "servingSize": "1 Portion",
-    "calories": "338",
-    "carbohydrates": "37g",
-    "protein": "21g",
-    "fat": "6g",
-    "fiber": "8g",
+    "calories": "264",
+    "carbohydrates": "30g",
+    "protein": "45g",
+    "fat": "12g",
+    "fiber": "10g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Butter",
-      "amount": 448,
-      "unit": "TL",
+      "name": "Pfeffer",
+      "amount": 503,
+      "unit": "ml",
       "note": "nach Geschmack",
       "group": "Optional"
     },
     {
-      "name": "Tomaten",
-      "amount": 167,
+      "name": "Zucker",
+      "amount": 124,
       "unit": "Prise",
       "note": null,
       "group": "Zum Servieren"
     },
     {
-      "name": "Butter",
-      "amount": 208,
-      "unit": "g",
-      "note": null,
+      "name": "Zwiebeln",
+      "amount": 517,
+      "unit": "Stück",
+      "note": "nach Geschmack",
       "group": "Zum Servieren"
     },
     {
-      "name": "Mehl",
-      "amount": 94,
-      "unit": "EL",
+      "name": "Eier",
+      "amount": 127,
+      "unit": "Prise",
       "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Milch",
-      "amount": 182,
-      "unit": "TL",
-      "note": null,
-      "group": "Gewürze"
+      "group": "Optional"
     },
     {
       "name": "Nudeln",
-      "amount": 406,
-      "unit": "TL",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Karotten",
-      "amount": 305,
+      "amount": 412,
       "unit": "Prise",
       "note": null,
-      "group": "Zum Servieren"
+      "group": "Optional"
     },
     {
-      "name": "Sahne",
-      "amount": 350,
-      "unit": "Prise",
+      "name": "Mehl",
+      "amount": 92,
+      "unit": "EL",
       "note": "nach Geschmack",
       "group": "Hauptzutaten"
     },
     {
       "name": "Zwiebeln",
-      "amount": 62,
+      "amount": 139,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 430,
+      "unit": "TL",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Mehl",
+      "amount": 163,
+      "unit": "EL",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Milch",
+      "amount": 163,
       "unit": "EL",
       "note": null,
       "group": "Optional"
     },
     {
-      "name": "Eier",
-      "amount": 272,
-      "unit": "EL",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Zucker",
-      "amount": 311,
-      "unit": "g",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 349,
-      "unit": "EL",
-      "note": "nach Geschmack",
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 526,
+      "name": "Mehl",
+      "amount": 324,
       "unit": "Stück",
       "note": null,
-      "group": "Hauptzutaten"
+      "group": "Zum Servieren"
     }
   ],
   "images": {
@@ -168,56 +154,70 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT20M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT18M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT13M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT19M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 6,
         "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT11M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 7,
         "title": "Schritt 7",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT19M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 8,
+        "title": "Schritt 8",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -246,54 +246,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-01-21T16:34:18.464Z",
+    "datePublished": "2024-12-09T19:01:19.310Z",
     "image": "https://picsum.photos/1200/800?random=7",
-    "recipeYield": "2 Portionen",
-    "prepTime": "PT39M",
-    "cookTime": "PT15M",
-    "totalTime": "PT54M",
+    "recipeYield": "6 Portionen",
+    "prepTime": "PT19M",
+    "cookTime": "PT50M",
+    "totalTime": "PT69M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Saltimbocca alla Romana",
     "recipeIngredient": [
-      "337 g Mehl",
-      "534 TL Butter",
-      "468 ml Eier",
-      "307 Prise Eier",
-      "250 g Sahne",
-      "361 Prise Tomaten",
-      "193 Prise Sahne",
-      "365 Stück Milch"
+      "110 ml Kartoffeln",
+      "526 Stück Mehl",
+      "78 ml Kartoffeln",
+      "348 ml Salz",
+      "348 EL Eier",
+      "296 g Mehl",
+      "365 EL Salz",
+      "286 g Pfeffer"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

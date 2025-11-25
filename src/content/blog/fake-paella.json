@@ -1,11 +1,11 @@
 {
-  "uuid": "c1b2ac25-30b1-4e4d-9384-f64f7f0d9bbd",
+  "uuid": "7cd198fe-01f4-40d0-88f9-63ee259df954",
   "metadata": {
     "title": "Paella Valenciana",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-paella",
-    "pubDate": "2025-04-28",
-    "modifiedDate": "2025-04-28",
+    "pubDate": "2025-05-21",
+    "modifiedDate": "2025-05-21",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,85 +36,71 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT17M",
-    "cookTime": "PT55M",
-    "totalTime": "PT72M",
-    "prepTimeMinutes": 17,
-    "cookTimeMinutes": 55,
-    "totalTimeMinutes": 72
+    "prepTime": "PT10M",
+    "cookTime": "PT19M",
+    "totalTime": "PT29M",
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 19,
+    "totalTimeMinutes": 29
   },
   "nutrition": {
-    "servings": 5,
+    "servings": 4,
     "servingSize": "1 Portion",
-    "calories": "317",
-    "carbohydrates": "16g",
-    "protein": "21g",
-    "fat": "9g",
+    "calories": "292",
+    "carbohydrates": "27g",
+    "protein": "17g",
+    "fat": "19g",
     "fiber": "9g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Eier",
-      "amount": 325,
-      "unit": "Prise",
-      "note": "nach Geschmack",
+      "name": "Mehl",
+      "amount": 313,
+      "unit": "Stück",
+      "note": null,
       "group": "Hauptzutaten"
     },
     {
-      "name": "Paprika",
-      "amount": 533,
-      "unit": "Prise",
+      "name": "Kartoffeln",
+      "amount": 230,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 432,
+      "unit": "ml",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 297,
+      "unit": "Stück",
       "note": "nach Geschmack",
       "group": "Zum Servieren"
     },
     {
-      "name": "Paprika",
-      "amount": 180,
-      "unit": "Prise",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Butter",
-      "amount": 545,
-      "unit": "ml",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Zwiebeln",
-      "amount": 139,
-      "unit": "ml",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Salz",
-      "amount": 102,
-      "unit": "Stück",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Karotten",
-      "amount": 327,
+      "name": "Pfeffer",
+      "amount": 501,
       "unit": "EL",
       "note": "nach Geschmack",
       "group": "Gewürze"
     },
     {
-      "name": "Knoblauch",
-      "amount": 367,
-      "unit": "g",
+      "name": "Butter",
+      "amount": 283,
+      "unit": "Stück",
       "note": null,
-      "group": "Gewürze"
+      "group": "Zum Servieren"
     },
     {
-      "name": "Käse",
-      "amount": 281,
-      "unit": "g",
+      "name": "Nudeln",
+      "amount": 290,
+      "unit": "ml",
       "note": null,
       "group": "Gewürze"
     }
@@ -139,56 +125,42 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT6M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT13M"
-      },
-      {
-        "number": 5,
-        "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT23M"
-      },
-      {
-        "number": 6,
-        "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT22M"
-      },
-      {
-        "number": 7,
-        "title": "Schritt 7",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -217,54 +189,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-04-28T15:34:18.466Z",
+    "datePublished": "2025-05-21T18:01:19.313Z",
     "image": "https://picsum.photos/1200/800?random=15",
     "recipeYield": "4 Portionen",
-    "prepTime": "PT17M",
-    "cookTime": "PT55M",
-    "totalTime": "PT72M",
+    "prepTime": "PT10M",
+    "cookTime": "PT19M",
+    "totalTime": "PT29M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Spanisch",
     "keywords": "Paella Valenciana",
     "recipeIngredient": [
-      "189 Stück Zwiebeln",
-      "465 Stück Mehl",
-      "355 g Olivenöl",
-      "190 ml Mehl",
-      "342 TL Butter",
-      "416 Prise Butter",
-      "192 ml Knoblauch",
-      "370 TL Tomaten"
+      "333 EL Mehl",
+      "108 TL Salz",
+      "175 g Salz",
+      "249 g Nudeln",
+      "402 Prise Tomaten",
+      "288 TL Butter",
+      "544 Prise Nudeln",
+      "247 Prise Karotten"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

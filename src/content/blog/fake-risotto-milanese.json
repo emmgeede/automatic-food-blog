@@ -1,11 +1,11 @@
 {
-  "uuid": "e240d5f0-2ad2-4831-9db1-283ca38435f9",
+  "uuid": "e3dcec60-444f-458b-a8cd-43a7b17aa698",
   "metadata": {
     "title": "Risotto Milanese",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-risotto-milanese",
-    "pubDate": "2025-07-02",
-    "modifiedDate": "2025-07-02",
+    "pubDate": "2025-04-07",
+    "modifiedDate": "2025-04-07",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,66 +37,101 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT29M",
-    "cookTime": "PT31M",
+    "prepTime": "PT25M",
+    "cookTime": "PT35M",
     "totalTime": "PT60M",
-    "prepTimeMinutes": 29,
-    "cookTimeMinutes": 31,
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 35,
     "totalTimeMinutes": 60
   },
   "nutrition": {
     "servings": 4,
     "servingSize": "1 Portion",
-    "calories": "239",
-    "carbohydrates": "52g",
+    "calories": "349",
+    "carbohydrates": "21g",
     "protein": "27g",
-    "fat": "12g",
-    "fiber": "6g",
+    "fat": "27g",
+    "fiber": "8g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Karotten",
-      "amount": 87,
+      "name": "Eier",
+      "amount": 429,
       "unit": "Stück",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Zwiebeln",
-      "amount": 422,
-      "unit": "g",
       "note": "nach Geschmack",
-      "group": "Gewürze"
+      "group": "Optional"
     },
     {
-      "name": "Knoblauch",
-      "amount": 227,
-      "unit": "g",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Olivenöl",
-      "amount": 261,
-      "unit": "EL",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 320,
-      "unit": "ml",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Mehl",
-      "amount": 126,
+      "name": "Tomaten",
+      "amount": 129,
       "unit": "TL",
       "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Salz",
+      "amount": 506,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Zucker",
+      "amount": 481,
+      "unit": "Prise",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Eier",
+      "amount": 168,
+      "unit": "ml",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Butter",
+      "amount": 374,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Butter",
+      "amount": 318,
+      "unit": "TL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Butter",
+      "amount": 231,
+      "unit": "Prise",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Salz",
+      "amount": 516,
+      "unit": "Prise",
+      "note": "nach Geschmack",
       "group": "Zum Servieren"
+    },
+    {
+      "name": "Milch",
+      "amount": 368,
+      "unit": "g",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Paprika",
+      "amount": 129,
+      "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
     }
   ],
   "images": {
@@ -119,50 +154,56 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT24M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 6,
         "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -191,54 +232,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-07-02T15:34:18.463Z",
+    "datePublished": "2025-04-07T18:01:19.309Z",
     "image": "https://picsum.photos/1200/800?random=4",
-    "recipeYield": "4 Portionen",
-    "prepTime": "PT29M",
-    "cookTime": "PT31M",
+    "recipeYield": "5 Portionen",
+    "prepTime": "PT25M",
+    "cookTime": "PT35M",
     "totalTime": "PT60M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Risotto Milanese",
     "recipeIngredient": [
-      "366 EL Salz",
-      "193 ml Butter",
-      "131 Stück Käse",
-      "334 Prise Kartoffeln",
-      "378 ml Mehl",
-      "393 TL Nudeln",
-      "458 Stück Butter",
-      "379 TL Sahne"
+      "428 g Reis",
+      "393 g Reis",
+      "425 TL Tomaten",
+      "65 Prise Pfeffer",
+      "295 Prise Karotten",
+      "326 ml Reis",
+      "350 Stück Tomaten",
+      "127 Prise Pfeffer"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

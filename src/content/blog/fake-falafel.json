@@ -1,11 +1,11 @@
 {
-  "uuid": "823d7781-9097-4f56-a240-02d2460f15b7",
+  "uuid": "e365f653-ae5e-4e29-883f-e581544f7d55",
   "metadata": {
     "title": "Falafel mit Tahini",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-falafel",
-    "pubDate": "2025-11-21",
-    "modifiedDate": "2025-11-21",
+    "pubDate": "2025-05-07",
+    "modifiedDate": "2025-05-07",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,108 +36,108 @@
     "mealType": "Vorspeise"
   },
   "timing": {
-    "prepTime": "PT34M",
-    "cookTime": "PT53M",
-    "totalTime": "PT87M",
-    "prepTimeMinutes": 34,
-    "cookTimeMinutes": 53,
-    "totalTimeMinutes": 87
+    "prepTime": "PT33M",
+    "cookTime": "PT42M",
+    "totalTime": "PT75M",
+    "prepTimeMinutes": 33,
+    "cookTimeMinutes": 42,
+    "totalTimeMinutes": 75
   },
   "nutrition": {
-    "servings": 6,
+    "servings": 4,
     "servingSize": "1 Portion",
-    "calories": "395",
-    "carbohydrates": "56g",
-    "protein": "35g",
-    "fat": "22g",
-    "fiber": "6g",
+    "calories": "280",
+    "carbohydrates": "17g",
+    "protein": "44g",
+    "fat": "8g",
+    "fiber": "8g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Milch",
-      "amount": 211,
-      "unit": "g",
-      "note": null,
+      "name": "Mehl",
+      "amount": 530,
+      "unit": "EL",
+      "note": "nach Geschmack",
       "group": "Optional"
     },
     {
-      "name": "Paprika",
-      "amount": 407,
+      "name": "Sahne",
+      "amount": 110,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Eier",
+      "amount": 548,
       "unit": "EL",
       "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Paprika",
+      "amount": 517,
+      "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 422,
+      "unit": "ml",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 389,
+      "unit": "ml",
+      "note": null,
       "group": "Gewürze"
     },
     {
       "name": "Paprika",
-      "amount": 464,
-      "unit": "Prise",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Nudeln",
-      "amount": 271,
-      "unit": "Prise",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Tomaten",
-      "amount": 490,
-      "unit": "Stück",
+      "amount": 141,
+      "unit": "TL",
       "note": "nach Geschmack",
       "group": "Optional"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 266,
-      "unit": "Stück",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Karotten",
-      "amount": 122,
-      "unit": "g",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Milch",
-      "amount": 263,
-      "unit": "g",
-      "note": "nach Geschmack",
-      "group": "Zum Servieren"
     },
     {
       "name": "Zwiebeln",
-      "amount": 101,
-      "unit": "Prise",
+      "amount": 170,
+      "unit": "Stück",
       "note": null,
-      "group": "Zum Servieren"
+      "group": "Hauptzutaten"
     },
     {
-      "name": "Paprika",
-      "amount": 288,
-      "unit": "g",
-      "note": "nach Geschmack",
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Mehl",
-      "amount": 196,
-      "unit": "g",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Nudeln",
-      "amount": 160,
-      "unit": "TL",
+      "name": "Olivenöl",
+      "amount": 87,
+      "unit": "Stück",
       "note": null,
       "group": "Gewürze"
+    },
+    {
+      "name": "Kartoffeln",
+      "amount": 459,
+      "unit": "TL",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Zucker",
+      "amount": 402,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Zucker",
+      "amount": 489,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
     }
   ],
   "images": {
@@ -160,38 +160,70 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT5M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT10M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT20M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 6,
+        "title": "Schritt 6",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 7,
+        "title": "Schritt 7",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 8,
+        "title": "Schritt 8",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -220,54 +252,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-11-21T16:34:18.467Z",
+    "datePublished": "2025-05-07T18:01:19.313Z",
     "image": "https://picsum.photos/1200/800?random=17",
-    "recipeYield": "5 Portionen",
-    "prepTime": "PT34M",
-    "cookTime": "PT53M",
-    "totalTime": "PT87M",
+    "recipeYield": "3 Portionen",
+    "prepTime": "PT33M",
+    "cookTime": "PT42M",
+    "totalTime": "PT75M",
     "recipeCategory": "Vorspeise",
     "recipeCuisine": "Orientalisch",
     "keywords": "Falafel mit Tahini",
     "recipeIngredient": [
-      "508 g Paprika",
-      "239 Prise Tomaten",
-      "285 g Käse",
-      "448 Prise Tomaten",
-      "532 EL Sahne",
-      "483 Prise Eier",
-      "412 TL Sahne",
-      "140 EL Kartoffeln"
+      "56 TL Sahne",
+      "101 Stück Karotten",
+      "163 ml Salz",
+      "388 ml Zwiebeln",
+      "224 Stück Zucker",
+      "434 ml Karotten",
+      "404 EL Eier",
+      "224 g Zwiebeln"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

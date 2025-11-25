@@ -71,8 +71,9 @@ function generateSteps(count = 5) {
     steps.push({
       number: i,
       title: `Schritt ${i}`,
-      instruction: loremMedium,
-      time: Math.random() > 0.5 ? `PT${Math.floor(Math.random() * 20) + 5}M` : null
+      shortText: loremShort,
+      text: loremMedium,
+      tips: []
     });
   }
   return steps;
@@ -155,12 +156,12 @@ function generateRecipe(recipeData, isItalian = false) {
         {
           title: "Wussten Sie?",
           text: loremShort,
-          icon: "info"
+          order: 1
         },
         {
           title: "Tipp",
           text: loremShort,
-          icon: "lightbulb"
+          order: 2
         }
       ],
       steps: generateSteps(Math.floor(Math.random() * 5) + 4),

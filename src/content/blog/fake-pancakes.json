@@ -1,11 +1,11 @@
 {
-  "uuid": "92cbb424-0e22-4939-947e-e1e9f6195503",
+  "uuid": "81bfcf01-7c07-4fcb-bcbe-ad547d3733bb",
   "metadata": {
     "title": "Amerikanische Pancakes",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-pancakes",
-    "pubDate": "2025-11-23",
-    "modifiedDate": "2025-11-23",
+    "pubDate": "2025-11-22",
+    "modifiedDate": "2025-11-22",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,115 +36,101 @@
     "mealType": "Frühstück"
   },
   "timing": {
-    "prepTime": "PT36M",
-    "cookTime": "PT65M",
-    "totalTime": "PT101M",
-    "prepTimeMinutes": 36,
-    "cookTimeMinutes": 65,
-    "totalTimeMinutes": 101
+    "prepTime": "PT17M",
+    "cookTime": "PT29M",
+    "totalTime": "PT46M",
+    "prepTimeMinutes": 17,
+    "cookTimeMinutes": 29,
+    "totalTimeMinutes": 46
   },
   "nutrition": {
-    "servings": 7,
+    "servings": 3,
     "servingSize": "1 Portion",
-    "calories": "441",
-    "carbohydrates": "37g",
-    "protein": "18g",
-    "fat": "7g",
-    "fiber": "4g",
+    "calories": "311",
+    "carbohydrates": "39g",
+    "protein": "49g",
+    "fat": "19g",
+    "fiber": "5g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Milch",
-      "amount": 431,
-      "unit": "Prise",
-      "note": null,
+      "name": "Pfeffer",
+      "amount": 129,
+      "unit": "g",
+      "note": "nach Geschmack",
       "group": "Hauptzutaten"
     },
     {
-      "name": "Karotten",
-      "amount": 179,
-      "unit": "ml",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Karotten",
-      "amount": 494,
-      "unit": "ml",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Käse",
-      "amount": 358,
+      "name": "Milch",
+      "amount": 458,
       "unit": "Stück",
       "note": null,
-      "group": "Hauptzutaten"
+      "group": "Gewürze"
     },
     {
-      "name": "Olivenöl",
-      "amount": 546,
-      "unit": "Prise",
-      "note": "nach Geschmack",
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Butter",
-      "amount": 166,
-      "unit": "ml",
+      "name": "Nudeln",
+      "amount": 324,
+      "unit": "g",
       "note": null,
       "group": "Gewürze"
     },
     {
-      "name": "Pfeffer",
-      "amount": 71,
-      "unit": "TL",
+      "name": "Sahne",
+      "amount": 192,
+      "unit": "Prise",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 139,
+      "unit": "g",
       "note": "nach Geschmack",
       "group": "Zum Servieren"
     },
     {
       "name": "Reis",
-      "amount": 431,
+      "amount": 291,
       "unit": "ml",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 91,
-      "unit": "Stück",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Mehl",
-      "amount": 541,
-      "unit": "EL",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Eier",
-      "amount": 445,
-      "unit": "TL",
       "note": "nach Geschmack",
       "group": "Hauptzutaten"
     },
     {
-      "name": "Mehl",
-      "amount": 203,
+      "name": "Salz",
+      "amount": 451,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 352,
       "unit": "TL",
       "note": null,
       "group": "Optional"
     },
     {
-      "name": "Sahne",
-      "amount": 534,
-      "unit": "Stück",
-      "note": null,
+      "name": "Butter",
+      "amount": 432,
+      "unit": "TL",
+      "note": "nach Geschmack",
       "group": "Zum Servieren"
+    },
+    {
+      "name": "Käse",
+      "amount": 390,
+      "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 348,
+      "unit": "TL",
+      "note": null,
+      "group": "Hauptzutaten"
     }
   ],
   "images": {
@@ -167,38 +153,49 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT18M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT24M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -227,54 +224,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-11-23T16:34:18.467Z",
+    "datePublished": "2025-11-22T19:01:19.313Z",
     "image": "https://picsum.photos/1200/800?random=18",
-    "recipeYield": "5 Portionen",
-    "prepTime": "PT36M",
-    "cookTime": "PT65M",
-    "totalTime": "PT101M",
+    "recipeYield": "3 Portionen",
+    "prepTime": "PT17M",
+    "cookTime": "PT29M",
+    "totalTime": "PT46M",
     "recipeCategory": "Frühstück",
     "recipeCuisine": "Amerikanisch",
     "keywords": "Amerikanische Pancakes",
     "recipeIngredient": [
-      "392 EL Zwiebeln",
-      "297 EL Milch",
-      "255 EL Pfeffer",
-      "338 EL Zucker",
-      "541 EL Sahne",
-      "149 TL Pfeffer",
-      "272 TL Mehl",
-      "140 Prise Kartoffeln"
+      "109 Prise Pfeffer",
+      "426 g Sahne",
+      "465 g Reis",
+      "341 ml Knoblauch",
+      "337 EL Sahne",
+      "244 ml Eier",
+      "108 TL Nudeln",
+      "214 g Butter"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

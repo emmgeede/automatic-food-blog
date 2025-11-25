@@ -1,11 +1,11 @@
 {
-  "uuid": "f18d584f-a269-476f-ad68-375e601ce093",
+  "uuid": "23980b04-f575-4e21-9689-36a47b3d11d2",
   "metadata": {
     "title": "Pasta al Pesto",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-pasta-pesto",
-    "pubDate": "2025-11-12",
-    "modifiedDate": "2025-11-12",
+    "pubDate": "2025-11-10",
+    "modifiedDate": "2025-11-10",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,87 +37,108 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT37M",
-    "cookTime": "PT32M",
-    "totalTime": "PT69M",
-    "prepTimeMinutes": 37,
-    "cookTimeMinutes": 32,
-    "totalTimeMinutes": 69
+    "prepTime": "PT32M",
+    "cookTime": "PT19M",
+    "totalTime": "PT51M",
+    "prepTimeMinutes": 32,
+    "cookTimeMinutes": 19,
+    "totalTimeMinutes": 51
   },
   "nutrition": {
-    "servings": 2,
+    "servings": 5,
     "servingSize": "1 Portion",
-    "calories": "382",
-    "carbohydrates": "41g",
+    "calories": "524",
+    "carbohydrates": "54g",
     "protein": "39g",
-    "fat": "6g",
-    "fiber": "8g",
+    "fat": "27g",
+    "fiber": "5g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
       "name": "Zucker",
-      "amount": 526,
+      "amount": 309,
       "unit": "g",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Sahne",
+      "amount": 501,
+      "unit": "ml",
       "note": null,
       "group": "Optional"
     },
     {
-      "name": "Käse",
-      "amount": 541,
-      "unit": "g",
+      "name": "Olivenöl",
+      "amount": 486,
+      "unit": "Stück",
       "note": null,
       "group": "Gewürze"
     },
     {
-      "name": "Milch",
-      "amount": 386,
+      "name": "Paprika",
+      "amount": 300,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 506,
       "unit": "TL",
       "note": null,
-      "group": "Gewürze"
+      "group": "Optional"
     },
     {
-      "name": "Nudeln",
-      "amount": 62,
-      "unit": "g",
-      "note": null,
-      "group": "Hauptzutaten"
+      "name": "Knoblauch",
+      "amount": 547,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
     },
     {
       "name": "Zwiebeln",
-      "amount": 409,
-      "unit": "ml",
+      "amount": 399,
+      "unit": "Stück",
       "note": null,
       "group": "Zum Servieren"
     },
     {
       "name": "Butter",
-      "amount": 63,
-      "unit": "EL",
+      "amount": 323,
+      "unit": "g",
       "note": null,
-      "group": "Zum Servieren"
+      "group": "Gewürze"
+    },
+    {
+      "name": "Zucker",
+      "amount": 400,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
     },
     {
       "name": "Salz",
-      "amount": 436,
+      "amount": 180,
+      "unit": "g",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 99,
       "unit": "Stück",
       "note": null,
       "group": "Optional"
     },
     {
       "name": "Kartoffeln",
-      "amount": 541,
-      "unit": "g",
+      "amount": 201,
+      "unit": "Stück",
       "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Olivenöl",
-      "amount": 451,
-      "unit": "ml",
-      "note": null,
-      "group": "Optional"
+      "group": "Hauptzutaten"
     }
   ],
   "images": {
@@ -140,50 +161,56 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 6,
         "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT20M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -212,54 +239,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-11-12T16:34:18.463Z",
+    "datePublished": "2025-11-10T19:01:19.309Z",
     "image": "https://picsum.photos/1200/800?random=5",
-    "recipeYield": "6 Portionen",
-    "prepTime": "PT37M",
-    "cookTime": "PT32M",
-    "totalTime": "PT69M",
+    "recipeYield": "3 Portionen",
+    "prepTime": "PT32M",
+    "cookTime": "PT19M",
+    "totalTime": "PT51M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Pasta al Pesto",
     "recipeIngredient": [
-      "198 Prise Salz",
-      "417 Stück Milch",
-      "168 TL Paprika",
-      "541 ml Käse",
-      "300 Stück Käse",
-      "453 g Knoblauch",
-      "330 TL Sahne",
-      "398 TL Tomaten"
+      "508 Prise Milch",
+      "364 Prise Paprika",
+      "391 Prise Reis",
+      "88 TL Pfeffer",
+      "544 EL Kartoffeln",
+      "191 TL Eier",
+      "151 g Kartoffeln",
+      "424 Prise Knoblauch"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

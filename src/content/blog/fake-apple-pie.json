@@ -1,11 +1,11 @@
 {
-  "uuid": "92f52e61-5344-43e4-a104-7569cfc26fbe",
+  "uuid": "e4855b62-aa9c-4187-aabc-bedd7c0cb59e",
   "metadata": {
     "title": "Apple Pie",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-apple-pie",
-    "pubDate": "2025-05-23",
-    "modifiedDate": "2025-05-23",
+    "pubDate": "2025-11-17",
+    "modifiedDate": "2025-11-17",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,99 +36,113 @@
     "mealType": "Dessert"
   },
   "timing": {
-    "prepTime": "PT10M",
-    "cookTime": "PT63M",
-    "totalTime": "PT73M",
-    "prepTimeMinutes": 10,
-    "cookTimeMinutes": 63,
-    "totalTimeMinutes": 73
+    "prepTime": "PT26M",
+    "cookTime": "PT69M",
+    "totalTime": "PT95M",
+    "prepTimeMinutes": 26,
+    "cookTimeMinutes": 69,
+    "totalTimeMinutes": 95
   },
   "nutrition": {
-    "servings": 3,
+    "servings": 5,
     "servingSize": "1 Portion",
-    "calories": "464",
-    "carbohydrates": "25g",
-    "protein": "38g",
+    "calories": "228",
+    "carbohydrates": "37g",
+    "protein": "17g",
     "fat": "27g",
-    "fiber": "9g",
+    "fiber": "11g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Mehl",
-      "amount": 277,
-      "unit": "EL",
+      "name": "Zwiebeln",
+      "amount": 334,
+      "unit": "Prise",
       "note": null,
-      "group": "Zum Servieren"
+      "group": "Gewürze"
     },
     {
-      "name": "Sahne",
-      "amount": 492,
-      "unit": "ml",
+      "name": "Eier",
+      "amount": 307,
+      "unit": "g",
       "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Zucker",
-      "amount": 180,
-      "unit": "ml",
-      "note": "nach Geschmack",
       "group": "Gewürze"
     },
     {
       "name": "Sahne",
-      "amount": 524,
+      "amount": 384,
+      "unit": "Prise",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 62,
+      "unit": "ml",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 506,
+      "unit": "EL",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Butter",
+      "amount": 320,
+      "unit": "TL",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Paprika",
+      "amount": 280,
       "unit": "Stück",
       "note": null,
       "group": "Hauptzutaten"
     },
     {
-      "name": "Milch",
-      "amount": 342,
-      "unit": "EL",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
       "name": "Kartoffeln",
-      "amount": 270,
-      "unit": "EL",
-      "note": null,
-      "group": "Hauptzutaten"
+      "amount": 363,
+      "unit": "Prise",
+      "note": "nach Geschmack",
+      "group": "Optional"
     },
     {
-      "name": "Zucker",
-      "amount": 127,
+      "name": "Sahne",
+      "amount": 369,
       "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Mehl",
+      "amount": 204,
+      "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Karotten",
+      "amount": 387,
+      "unit": "Prise",
       "note": "nach Geschmack",
       "group": "Hauptzutaten"
     },
     {
       "name": "Zwiebeln",
-      "amount": 192,
+      "amount": 228,
       "unit": "ml",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Käse",
-      "amount": 328,
-      "unit": "g",
-      "note": null,
+      "note": "nach Geschmack",
       "group": "Zum Servieren"
     },
     {
-      "name": "Eier",
-      "amount": 502,
-      "unit": "Stück",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Reis",
-      "amount": 236,
-      "unit": "EL",
+      "name": "Karotten",
+      "amount": 320,
+      "unit": "ml",
       "note": null,
       "group": "Hauptzutaten"
     }
@@ -153,38 +167,70 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT22M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT20M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 6,
+        "title": "Schritt 6",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 7,
+        "title": "Schritt 7",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 8,
+        "title": "Schritt 8",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -213,54 +259,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-05-23T15:34:18.465Z",
+    "datePublished": "2025-11-17T19:01:19.312Z",
     "image": "https://picsum.photos/1200/800?random=11",
-    "recipeYield": "7 Portionen",
-    "prepTime": "PT10M",
-    "cookTime": "PT63M",
-    "totalTime": "PT73M",
+    "recipeYield": "2 Portionen",
+    "prepTime": "PT26M",
+    "cookTime": "PT69M",
+    "totalTime": "PT95M",
     "recipeCategory": "Dessert",
     "recipeCuisine": "Amerikanisch",
     "keywords": "Apple Pie",
     "recipeIngredient": [
-      "481 Stück Milch",
-      "408 TL Paprika",
-      "171 Prise Knoblauch",
-      "278 Prise Karotten",
-      "482 EL Nudeln",
-      "435 Stück Nudeln",
-      "411 Stück Butter",
-      "244 Stück Olivenöl"
+      "215 Prise Käse",
+      "499 Stück Sahne",
+      "351 Stück Milch",
+      "400 Prise Reis",
+      "529 Prise Mehl",
+      "204 EL Zucker",
+      "342 Prise Salz",
+      "266 g Butter"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

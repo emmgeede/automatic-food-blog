@@ -211,6 +211,9 @@ const relatedPosts = getRelatedPosts(entry, allBlogEntries, 12);
             recipeSlug={metadata?.slug || ""}
             recipeTitle={metadata?.title || ""}
           />
+
+          <!-- Related Posts Carousel -->
+          <RelatedPostsCarousel relatedPosts={relatedPosts} />
         </div>
 
         <!-- Sidebar (1/3 width) -->
@@ -222,8 +225,5 @@ const relatedPosts = getRelatedPosts(entry, allBlogEntries, 12);
         </div>
       </div>
     </article>
-
-    <!-- Related Posts Carousel -->
-    <RelatedPostsCarousel relatedPosts={relatedPosts} />
   </div>
 </BaseLayout>

@@ -1,11 +1,11 @@
 {
-  "uuid": "2272353b-912e-4475-ab35-b2587ca73f6a",
+  "uuid": "b4f3df6a-3e31-4676-b69b-cdf84c23384f",
   "metadata": {
     "title": "Lasagne Bolognese",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-lasagne-bolognese",
-    "pubDate": "2024-12-17",
-    "modifiedDate": "2024-12-17",
+    "pubDate": "2024-12-27",
+    "modifiedDate": "2024-12-27",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,80 +37,80 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT28M",
-    "cookTime": "PT72M",
-    "totalTime": "PT100M",
-    "prepTimeMinutes": 28,
-    "cookTimeMinutes": 72,
-    "totalTimeMinutes": 100
+    "prepTime": "PT25M",
+    "cookTime": "PT65M",
+    "totalTime": "PT90M",
+    "prepTimeMinutes": 25,
+    "cookTimeMinutes": 65,
+    "totalTimeMinutes": 90
   },
   "nutrition": {
-    "servings": 7,
+    "servings": 4,
     "servingSize": "1 Portion",
-    "calories": "215",
-    "carbohydrates": "39g",
-    "protein": "12g",
-    "fat": "31g",
-    "fiber": "8g",
+    "calories": "582",
+    "carbohydrates": "59g",
+    "protein": "17g",
+    "fat": "15g",
+    "fiber": "7g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
       "name": "Tomaten",
-      "amount": 205,
-      "unit": "g",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Butter",
-      "amount": 139,
-      "unit": "EL",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Tomaten",
-      "amount": 158,
-      "unit": "g",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Butter",
-      "amount": 290,
-      "unit": "Prise",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Eier",
-      "amount": 432,
-      "unit": "ml",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Sahne",
-      "amount": 450,
+      "amount": 305,
       "unit": "TL",
       "note": "nach Geschmack",
       "group": "Optional"
     },
     {
-      "name": "Zwiebeln",
-      "amount": 174,
-      "unit": "g",
+      "name": "Käse",
+      "amount": 436,
+      "unit": "Stück",
       "note": null,
       "group": "Optional"
     },
     {
+      "name": "Olivenöl",
+      "amount": 425,
+      "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Kartoffeln",
+      "amount": 86,
+      "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Karotten",
+      "amount": 245,
+      "unit": "TL",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
       "name": "Salz",
-      "amount": 421,
-      "unit": "g",
+      "amount": 498,
+      "unit": "TL",
       "note": null,
       "group": "Hauptzutaten"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 67,
+      "unit": "Prise",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Milch",
+      "amount": 493,
+      "unit": "TL",
+      "note": null,
+      "group": "Optional"
     }
   ],
   "images": {
@@ -133,62 +133,42 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
-      },
-      {
-        "number": 5,
-        "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
-      },
-      {
-        "number": 6,
-        "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT18M"
-      },
-      {
-        "number": 7,
-        "title": "Schritt 7",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT6M"
-      },
-      {
-        "number": 8,
-        "title": "Schritt 8",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -217,54 +197,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2024-12-17T16:34:18.463Z",
+    "datePublished": "2024-12-27T19:01:19.309Z",
     "image": "https://picsum.photos/1200/800?random=3",
-    "recipeYield": "3 Portionen",
-    "prepTime": "PT28M",
-    "cookTime": "PT72M",
-    "totalTime": "PT100M",
+    "recipeYield": "5 Portionen",
+    "prepTime": "PT25M",
+    "cookTime": "PT65M",
+    "totalTime": "PT90M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Lasagne Bolognese",
     "recipeIngredient": [
-      "175 ml Karotten",
-      "89 Prise Eier",
-      "277 EL Eier",
-      "491 Stück Sahne",
-      "489 EL Salz",
-      "334 g Karotten",
-      "129 g Pfeffer",
-      "344 g Olivenöl"
+      "255 ml Paprika",
+      "193 Stück Knoblauch",
+      "297 Stück Mehl",
+      "434 EL Mehl",
+      "514 EL Zucker",
+      "240 ml Paprika",
+      "334 Prise Zucker",
+      "278 Stück Tomaten"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

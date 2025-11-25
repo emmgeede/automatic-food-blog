@@ -1,11 +1,11 @@
 {
-  "uuid": "f143e172-a550-4715-8c02-ec954ca96d79",
+  "uuid": "602dc13a-59d9-413c-a1ed-1ed2ca6eda1c",
   "metadata": {
     "title": "Gnocchi al Gorgonzola",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-gnocchi",
-    "pubDate": "2024-12-17",
-    "modifiedDate": "2024-12-17",
+    "pubDate": "2025-08-18",
+    "modifiedDate": "2025-08-18",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,115 +37,73 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT31M",
-    "cookTime": "PT42M",
-    "totalTime": "PT73M",
-    "prepTimeMinutes": 31,
-    "cookTimeMinutes": 42,
-    "totalTimeMinutes": 73
+    "prepTime": "PT18M",
+    "cookTime": "PT53M",
+    "totalTime": "PT71M",
+    "prepTimeMinutes": 18,
+    "cookTimeMinutes": 53,
+    "totalTimeMinutes": 71
   },
   "nutrition": {
-    "servings": 7,
+    "servings": 6,
     "servingSize": "1 Portion",
-    "calories": "488",
-    "carbohydrates": "25g",
-    "protein": "18g",
-    "fat": "29g",
-    "fiber": "3g",
+    "calories": "224",
+    "carbohydrates": "24g",
+    "protein": "37g",
+    "fat": "10g",
+    "fiber": "10g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Karotten",
-      "amount": 334,
-      "unit": "g",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Tomaten",
-      "amount": 482,
-      "unit": "Stück",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Tomaten",
-      "amount": 215,
-      "unit": "g",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Eier",
-      "amount": 187,
+      "name": "Knoblauch",
+      "amount": 130,
       "unit": "TL",
-      "note": "nach Geschmack",
+      "note": null,
       "group": "Optional"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 216,
+      "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Tomaten",
+      "amount": 445,
+      "unit": "Prise",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 355,
+      "unit": "g",
+      "note": null,
+      "group": "Zum Servieren"
     },
     {
       "name": "Paprika",
-      "amount": 245,
-      "unit": "Stück",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Karotten",
-      "amount": 137,
-      "unit": "g",
+      "amount": 477,
+      "unit": "TL",
       "note": null,
       "group": "Hauptzutaten"
     },
     {
-      "name": "Olivenöl",
-      "amount": 459,
-      "unit": "g",
+      "name": "Käse",
+      "amount": 319,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 268,
+      "unit": "TL",
       "note": null,
       "group": "Gewürze"
-    },
-    {
-      "name": "Pfeffer",
-      "amount": 544,
-      "unit": "Stück",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Zwiebeln",
-      "amount": 155,
-      "unit": "Stück",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Eier",
-      "amount": 496,
-      "unit": "ml",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Milch",
-      "amount": 106,
-      "unit": "g",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Zwiebeln",
-      "amount": 448,
-      "unit": "Prise",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Milch",
-      "amount": 234,
-      "unit": "Prise",
-      "note": null,
-      "group": "Zum Servieren"
     }
   ],
   "images": {
@@ -168,62 +126,49 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT12M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT6M"
-      },
-      {
-        "number": 6,
-        "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT11M"
-      },
-      {
-        "number": 7,
-        "title": "Schritt 7",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT14M"
-      },
-      {
-        "number": 8,
-        "title": "Schritt 8",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -252,54 +197,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2024-12-17T16:34:18.465Z",
+    "datePublished": "2025-08-18T18:01:19.311Z",
     "image": "https://picsum.photos/1200/800?random=9",
-    "recipeYield": "7 Portionen",
-    "prepTime": "PT31M",
-    "cookTime": "PT42M",
-    "totalTime": "PT73M",
+    "recipeYield": "2 Portionen",
+    "prepTime": "PT18M",
+    "cookTime": "PT53M",
+    "totalTime": "PT71M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Gnocchi al Gorgonzola",
     "recipeIngredient": [
-      "53 Stück Karotten",
-      "403 g Mehl",
-      "458 EL Butter",
-      "354 TL Knoblauch",
-      "53 EL Zwiebeln",
-      "462 Stück Knoblauch",
-      "260 Stück Butter",
-      "466 Stück Zwiebeln"
+      "364 g Salz",
+      "94 Stück Käse",
+      "530 g Milch",
+      "548 Prise Pfeffer",
+      "503 Stück Sahne",
+      "112 ml Salz",
+      "189 Stück Nudeln",
+      "124 ml Nudeln"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

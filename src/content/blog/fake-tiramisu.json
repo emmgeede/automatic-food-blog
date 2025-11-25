@@ -1,11 +1,11 @@
 {
-  "uuid": "a442339a-2474-4c75-8ac1-f520b7d3f33b",
+  "uuid": "1262387e-93a6-434a-9ebd-cb2deeba6d8b",
   "metadata": {
     "title": "Tiramisu Classico",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-tiramisu",
-    "pubDate": "2025-01-28",
-    "modifiedDate": "2025-01-28",
+    "pubDate": "2025-09-29",
+    "modifiedDate": "2025-09-29",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,92 +36,85 @@
     "mealType": "Dessert"
   },
   "timing": {
-    "prepTime": "PT28M",
-    "cookTime": "PT26M",
-    "totalTime": "PT54M",
-    "prepTimeMinutes": 28,
-    "cookTimeMinutes": 26,
-    "totalTimeMinutes": 54
+    "prepTime": "PT16M",
+    "cookTime": "PT37M",
+    "totalTime": "PT53M",
+    "prepTimeMinutes": 16,
+    "cookTimeMinutes": 37,
+    "totalTimeMinutes": 53
   },
   "nutrition": {
     "servings": 5,
     "servingSize": "1 Portion",
-    "calories": "497",
-    "carbohydrates": "34g",
-    "protein": "24g",
-    "fat": "22g",
-    "fiber": "4g",
+    "calories": "323",
+    "carbohydrates": "57g",
+    "protein": "43g",
+    "fat": "13g",
+    "fiber": "10g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Salz",
-      "amount": 300,
-      "unit": "Prise",
+      "name": "Eier",
+      "amount": 301,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Knoblauch",
+      "amount": 82,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 414,
+      "unit": "g",
       "note": null,
       "group": "Zum Servieren"
     },
     {
-      "name": "Knoblauch",
-      "amount": 514,
+      "name": "Karotten",
+      "amount": 261,
       "unit": "ml",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 376,
-      "unit": "Prise",
       "note": "nach Geschmack",
       "group": "Gewürze"
     },
     {
-      "name": "Sahne",
-      "amount": 174,
-      "unit": "Prise",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Nudeln",
-      "amount": 397,
+      "name": "Knoblauch",
+      "amount": 492,
       "unit": "g",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Reis",
-      "amount": 424,
-      "unit": "TL",
-      "note": null,
+      "note": "nach Geschmack",
       "group": "Gewürze"
     },
     {
-      "name": "Karotten",
-      "amount": 258,
-      "unit": "g",
+      "name": "Kartoffeln",
+      "amount": 330,
+      "unit": "EL",
       "note": null,
       "group": "Hauptzutaten"
+    },
+    {
+      "name": "Mehl",
+      "amount": 160,
+      "unit": "Stück",
+      "note": null,
+      "group": "Zum Servieren"
     },
     {
       "name": "Olivenöl",
-      "amount": 485,
+      "amount": 359,
       "unit": "TL",
       "note": null,
-      "group": "Optional"
+      "group": "Hauptzutaten"
     },
     {
-      "name": "Nudeln",
-      "amount": 113,
-      "unit": "Stück",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Salz",
-      "amount": 108,
-      "unit": "g",
+      "name": "Sahne",
+      "amount": 124,
+      "unit": "Prise",
       "note": null,
       "group": "Optional"
     }
@@ -146,50 +139,42 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT9M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT5M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT13M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
-      },
-      {
-        "number": 5,
-        "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
-      },
-      {
-        "number": 6,
-        "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT20M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -218,54 +203,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-01-28T16:34:18.467Z",
+    "datePublished": "2025-09-29T18:01:19.314Z",
     "image": "https://picsum.photos/1200/800?random=20",
-    "recipeYield": "2 Portionen",
-    "prepTime": "PT28M",
-    "cookTime": "PT26M",
-    "totalTime": "PT54M",
+    "recipeYield": "5 Portionen",
+    "prepTime": "PT16M",
+    "cookTime": "PT37M",
+    "totalTime": "PT53M",
     "recipeCategory": "Dessert",
     "recipeCuisine": "Italienisch",
     "keywords": "Tiramisu Classico",
     "recipeIngredient": [
-      "84 ml Sahne",
-      "393 Prise Zucker",
-      "538 Prise Salz",
-      "379 TL Käse",
-      "286 g Zucker",
-      "272 Prise Kartoffeln",
-      "546 EL Salz",
-      "187 EL Tomaten"
+      "122 TL Kartoffeln",
+      "365 TL Knoblauch",
+      "315 g Salz",
+      "379 ml Käse",
+      "277 g Olivenöl",
+      "249 TL Paprika",
+      "110 TL Butter",
+      "195 g Nudeln"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

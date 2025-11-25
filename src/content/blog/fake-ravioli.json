@@ -1,11 +1,11 @@
 {
-  "uuid": "be6d5cf7-a97a-415e-bef3-121063eebff1",
+  "uuid": "17d10d2e-088f-4513-921d-5e644b384c42",
   "metadata": {
     "title": "Ravioli Ricotta Spinaci",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-ravioli",
-    "pubDate": "2025-03-17",
-    "modifiedDate": "2025-03-17",
+    "pubDate": "2025-07-23",
+    "modifiedDate": "2025-07-23",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -38,78 +38,71 @@
   },
   "timing": {
     "prepTime": "PT23M",
-    "cookTime": "PT22M",
-    "totalTime": "PT45M",
+    "cookTime": "PT43M",
+    "totalTime": "PT66M",
     "prepTimeMinutes": 23,
-    "cookTimeMinutes": 22,
-    "totalTimeMinutes": 45
+    "cookTimeMinutes": 43,
+    "totalTimeMinutes": 66
   },
   "nutrition": {
-    "servings": 4,
+    "servings": 7,
     "servingSize": "1 Portion",
-    "calories": "492",
-    "carbohydrates": "52g",
-    "protein": "35g",
-    "fat": "19g",
-    "fiber": "8g",
+    "calories": "265",
+    "carbohydrates": "28g",
+    "protein": "48g",
+    "fat": "29g",
+    "fiber": "11g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Pfeffer",
-      "amount": 419,
-      "unit": "Prise",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Eier",
-      "amount": 371,
-      "unit": "g",
+      "name": "Zucker",
+      "amount": 475,
+      "unit": "EL",
       "note": null,
       "group": "Hauptzutaten"
     },
     {
-      "name": "Salz",
-      "amount": 306,
-      "unit": "TL",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Milch",
-      "amount": 481,
-      "unit": "TL",
+      "name": "Mehl",
+      "amount": 500,
+      "unit": "g",
       "note": null,
       "group": "Zum Servieren"
     },
     {
-      "name": "Paprika",
-      "amount": 338,
-      "unit": "Prise",
-      "note": "nach Geschmack",
-      "group": "Optional"
+      "name": "Butter",
+      "amount": 105,
+      "unit": "Stück",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Sahne",
+      "amount": 115,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
     },
     {
       "name": "Zwiebeln",
-      "amount": 134,
+      "amount": 308,
       "unit": "g",
-      "note": null,
-      "group": "Optional"
+      "note": "nach Geschmack",
+      "group": "Gewürze"
     },
     {
       "name": "Pfeffer",
-      "amount": 379,
-      "unit": "Stück",
-      "note": null,
-      "group": "Hauptzutaten"
+      "amount": 63,
+      "unit": "Prise",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
     },
     {
-      "name": "Kartoffeln",
-      "amount": 125,
+      "name": "Salz",
+      "amount": 127,
       "unit": "g",
-      "note": null,
+      "note": "nach Geschmack",
       "group": "Gewürze"
     }
   ],
@@ -133,50 +126,70 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT5M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT22M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 6,
         "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 7,
+        "title": "Schritt 7",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 8,
+        "title": "Schritt 8",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -205,54 +218,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-03-17T16:34:18.465Z",
+    "datePublished": "2025-07-23T18:01:19.311Z",
     "image": "https://picsum.photos/1200/800?random=10",
-    "recipeYield": "3 Portionen",
+    "recipeYield": "7 Portionen",
     "prepTime": "PT23M",
-    "cookTime": "PT22M",
-    "totalTime": "PT45M",
+    "cookTime": "PT43M",
+    "totalTime": "PT66M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Ravioli Ricotta Spinaci",
     "recipeIngredient": [
-      "170 EL Karotten",
-      "161 Stück Sahne",
-      "453 ml Knoblauch",
-      "407 TL Reis",
-      "374 TL Reis",
-      "175 Stück Nudeln",
-      "318 Stück Salz",
-      "282 ml Karotten"
+      "379 Stück Paprika",
+      "141 Prise Paprika",
+      "189 Stück Reis",
+      "541 g Nudeln",
+      "138 Stück Paprika",
+      "440 ml Reis",
+      "330 Prise Zucker",
+      "392 g Reis"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

@@ -1,11 +1,11 @@
 {
-  "uuid": "3a95cad1-b017-43c3-ab36-8f29037fe029",
+  "uuid": "7a0d238b-06f7-42dc-82c5-642ad6087099",
   "metadata": {
     "title": "California Sushi Rolls",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-sushi-rolls",
-    "pubDate": "2025-02-19",
-    "modifiedDate": "2025-02-19",
+    "pubDate": "2025-05-05",
+    "modifiedDate": "2025-05-05",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,94 +36,108 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT30M",
-    "cookTime": "PT30M",
-    "totalTime": "PT60M",
-    "prepTimeMinutes": 30,
-    "cookTimeMinutes": 30,
-    "totalTimeMinutes": 60
+    "prepTime": "PT24M",
+    "cookTime": "PT16M",
+    "totalTime": "PT40M",
+    "prepTimeMinutes": 24,
+    "cookTimeMinutes": 16,
+    "totalTimeMinutes": 40
   },
   "nutrition": {
-    "servings": 2,
+    "servings": 3,
     "servingSize": "1 Portion",
-    "calories": "509",
-    "carbohydrates": "43g",
-    "protein": "43g",
+    "calories": "219",
+    "carbohydrates": "15g",
+    "protein": "20g",
     "fat": "23g",
-    "fiber": "9g",
+    "fiber": "8g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Zucker",
+      "name": "Butter",
+      "amount": 346,
+      "unit": "Prise",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Sahne",
+      "amount": 392,
+      "unit": "Stück",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Kartoffeln",
       "amount": 469,
       "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Tomaten",
+      "amount": 137,
+      "unit": "Prise",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Tomaten",
+      "amount": 212,
+      "unit": "TL",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Kartoffeln",
+      "amount": 425,
+      "unit": "ml",
       "note": null,
       "group": "Zum Servieren"
     },
     {
       "name": "Käse",
-      "amount": 537,
-      "unit": "TL",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Eier",
-      "amount": 213,
-      "unit": "g",
-      "note": "nach Geschmack",
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Butter",
-      "amount": 517,
-      "unit": "TL",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Butter",
-      "amount": 361,
-      "unit": "g",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Pfeffer",
-      "amount": 141,
-      "unit": "ml",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 174,
-      "unit": "ml",
+      "amount": 98,
+      "unit": "Prise",
       "note": null,
       "group": "Zum Servieren"
     },
     {
-      "name": "Karotten",
-      "amount": 160,
+      "name": "Käse",
+      "amount": 506,
       "unit": "ml",
       "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Karotten",
-      "amount": 119,
-      "unit": "Stück",
-      "note": "nach Geschmack",
       "group": "Hauptzutaten"
     },
     {
-      "name": "Mehl",
-      "amount": 378,
+      "name": "Reis",
+      "amount": 234,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Käse",
+      "amount": 181,
       "unit": "ml",
       "note": null,
       "group": "Optional"
+    },
+    {
+      "name": "Salz",
+      "amount": 547,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Eier",
+      "amount": 69,
+      "unit": "g",
+      "note": null,
+      "group": "Zum Servieren"
     }
   ],
   "images": {
@@ -146,38 +160,49 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT16M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT20M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT20M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -206,54 +231,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-02-19T16:34:18.466Z",
+    "datePublished": "2025-05-05T18:01:19.312Z",
     "image": "https://picsum.photos/1200/800?random=14",
     "recipeYield": "4 Portionen",
-    "prepTime": "PT30M",
-    "cookTime": "PT30M",
-    "totalTime": "PT60M",
+    "prepTime": "PT24M",
+    "cookTime": "PT16M",
+    "totalTime": "PT40M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Japanisch",
     "keywords": "California Sushi Rolls",
     "recipeIngredient": [
-      "363 EL Mehl",
-      "291 Stück Mehl",
-      "232 TL Karotten",
-      "274 TL Eier",
-      "71 g Salz",
-      "420 Stück Kartoffeln",
-      "467 ml Reis",
-      "253 EL Nudeln"
+      "302 g Reis",
+      "538 g Pfeffer",
+      "403 TL Reis",
+      "296 ml Zucker",
+      "393 Prise Kartoffeln",
+      "507 TL Zucker",
+      "240 Stück Milch",
+      "96 Stück Karotten"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

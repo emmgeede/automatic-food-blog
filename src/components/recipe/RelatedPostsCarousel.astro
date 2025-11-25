@@ -10,6 +10,23 @@ const { relatedPosts } = Astro.props;
 // Limitiere auf maximal 12 Beiträge
 const posts = relatedPosts.slice(0, 12);
 
+// Convert ISO 8601 duration to minutes
+function parseDuration(duration?: string): number | null {
+  if (!duration) return null;
+  const match = duration.match(/PT(\d+)M/);
+  return match ? parseInt(match[1]) : null;
+}
+
+// Map difficulty to display text
+const difficultyMap: Record<string, string> = {
+  einfach: "Einfach",
+  mittel: "Mittel",
+  schwer: "Fortgeschritten",
+};
+
+// Berechne Anzahl der Schritte (immer 3 Karten pro Schritt)
+const totalSteps = Math.ceil(posts.length / 3);
+
 // Schema.org ItemList für SEO
 const itemListSchema = {
   "@context": "https://schema.org",
@@ -33,119 +50,192 @@ const itemListSchema = {
       Verwandte Rezepte
     </h2>
 
-    <div class="related-posts__carousel-wrapper">
-      <!-- Carousel Track (animiert automatisch) -->
-      <div
-        class="related-posts__carousel"
-        role="list"
-        aria-label="Liste verwandter Rezepte"
-        style={`--total-cards: ${posts.length};`}
+    <div class="related-posts__carousel-container">
+      <!-- Previous Button -->
+      <button
+        type="button"
+        class="related-posts__nav-button related-posts__nav-button--prev"
+        aria-label="Vorherige Rezepte anzeigen"
+        data-carousel-prev
       >
-        {posts.map((post) => {
-          const featuredImage = post.data.images?.featured?.src || 'https://picsum.photos/400/300';
-          const altText = post.data.images?.featured?.alt || post.data.metadata.title;
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="related-posts__nav-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
 
-          return (
-            <article
-              class="related-posts__card"
-              role="listitem"
-            >
-              <div class="related-posts__card-image-wrapper">
-                <img
-                  src={featuredImage}
-                  alt={altText}
-                  class="related-posts__card-image"
-                  loading="lazy"
-                  width="400"
-                  height="300"
-                />
-              </div>
+      <!-- Carousel Wrapper -->
+      <div class="related-posts__carousel-wrapper">
+        <!-- Carousel Track -->
+        <div
+          class="related-posts__carousel"
+          role="list"
+          aria-label="Liste verwandter Rezepte"
+          data-carousel-track
+        >
+          {posts.map((post) => {
+            const featuredImage = post.data.images?.featured?.src || 'https://picsum.photos/400/300';
+            const altText = post.data.images?.featured?.alt || post.data.metadata.title;
+            const totalMinutes = parseDuration(post.data.timing?.totalTime || post.data.timing?.cookTime);
+            const cuisine = post.data.taxonomy?.cuisine;
+            const servings = post.data.nutrition?.servings;
+            const difficulty = post.data.taxonomy?.difficulty;
 
-              <div class="related-posts__card-content">
-                <h3 class="related-posts__card-title clickable-parent">
-                  <a
-                    href={`/rezepte/${post.data.metadata.slug}`}
-                    class="related-posts__card-link"
-                  >
-                    {post.data.metadata.title}
-                  </a>
-                </h3>
+            return (
+              <article
+                class="related-posts__card"
+                role="listitem"
+              >
+                <a
+                  href={`/rezepte/${post.data.metadata.slug}`}
+                  class="related-posts__card-link"
+                >
+                  <div class="related-posts__card-image-wrapper">
+                    <img
+                      src={featuredImage}
+                      alt={altText}
+                      class="related-posts__card-image"
+                      loading="lazy"
+                      width="400"
+                      height="300"
+                    />
+                  </div>
 
-                {post.data.taxonomy?.cuisine && (
-                  <p class="related-posts__card-meta" aria-label={`Küche: ${post.data.taxonomy.cuisine}`}>
-                    <svg
-                      class="related-posts__card-icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                    </svg>
-                    <span>{post.data.taxonomy.cuisine}</span>
-                  </p>
-                )}
-              </div>
-            </article>
-          );
-        })}
+                  <div class="related-posts__card-content">
+                    <h3 class="related-posts__card-title">
+                      {post.data.metadata.title}
+                    </h3>
 
-        {/* Dupliziere die ersten 3 Karten für nahtloses Looping */}
-        {posts.length >= 3 && posts.slice(0, 3).map((post) => {
-          const featuredImage = post.data.images?.featured?.src || 'https://picsum.photos/400/300';
-          const altText = post.data.images?.featured?.alt || post.data.metadata.title;
+                    {/* Meta-Informationen */}
+                    <div class="related-posts__card-meta-grid">
+                      {totalMinutes && (
+                        <div class="related-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="related-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span class="related-posts__card-meta-text">{totalMinutes} min</span>
+                        </div>
+                      )}
 
-          return (
-            <article
-              class="related-posts__card"
-              role="listitem"
-              aria-hidden="true"
-            >
-              <div class="related-posts__card-image-wrapper">
-                <img
-                  src={featuredImage}
-                  alt={altText}
-                  class="related-posts__card-image"
-                  loading="lazy"
-                  width="400"
-                  height="300"
-                />
-              </div>
+                      {cuisine && (
+                        <div class="related-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="related-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                            />
+                          </svg>
+                          <span class="related-posts__card-meta-text">{cuisine}</span>
+                        </div>
+                      )}
 
-              <div class="related-posts__card-content">
-                <h3 class="related-posts__card-title clickable-parent">
-                  <a
-                    href={`/rezepte/${post.data.metadata.slug}`}
-                    class="related-posts__card-link"
-                  >
-                    {post.data.metadata.title}
-                  </a>
-                </h3>
+                      {servings && (
+                        <div class="related-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="related-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                          </svg>
+                          <span class="related-posts__card-meta-text">{servings}</span>
+                        </div>
+                      )}
 
-                {post.data.taxonomy?.cuisine && (
-                  <p class="related-posts__card-meta" aria-label={`Küche: ${post.data.taxonomy.cuisine}`}>
-                    <svg
-                      class="related-posts__card-icon"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                    </svg>
-                    <span>{post.data.taxonomy.cuisine}</span>
-                  </p>
-                )}
-              </div>
-            </article>
-          );
-        })}
+                      {difficulty && (
+                        <div class="related-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="related-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span class="related-posts__card-meta-text">{difficultyMap[difficulty] || difficulty}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            );
+          })}
+        </div>
       </div>
 
+      <!-- Next Button -->
+      <button
+        type="button"
+        class="related-posts__nav-button related-posts__nav-button--next"
+        aria-label="Nächste Rezepte anzeigen"
+        data-carousel-next
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="related-posts__nav-icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+
       <!-- Accessibility: Info für Screen Reader -->
-      <div class="sr-only" role="status" aria-live="polite">
-        Zeige {Math.min(posts.length, 3)} von {posts.length} verwandten Rezepten.
-        Karussell scrollt automatisch.
+      <div class="sr-only" role="status" aria-live="polite" data-carousel-status>
+        Zeige 3 von {posts.length} verwandten Rezepten.
       </div>
     </div>
 
@@ -156,92 +246,133 @@ const itemListSchema = {
 
 <style>
   /* ==========================================
-     RELATED POSTS CAROUSEL - CSS ONLY
+     RELATED POSTS CAROUSEL - MANUAL CONTROL
      ========================================== */
 
   .related-posts {
-    margin-block: 4rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-radius: 1rem;
+    container-type: inline-size;
+    container-name: carousel;
+    margin-block: 3rem;
   }
 
   .related-posts__heading {
-    font-size: 2rem;
+    font-size: 1.875rem;
     font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 2rem;
-    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--color-accent);
   }
 
-  /* Carousel Wrapper */
-  .related-posts__carousel-wrapper {
+  /* Carousel Container with Navigation */
+  .related-posts__carousel-container {
     position: relative;
-    overflow: hidden;
-    border-radius: 0.75rem;
   }
 
-  /* Carousel Track */
-  .related-posts__carousel {
+  /* Navigation Buttons - Overlay */
+  .related-posts__nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
-    gap: 1.5rem;
-    width: fit-content;
-
-    /* CSS Animation - Automatisches Scrollen */
-    animation: carousel-scroll 30s linear infinite;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  /* Pausiere Animation bei Hover oder Focus (Accessibility) */
-  .related-posts__carousel:hover,
-  .related-posts__carousel:focus-within {
-    animation-play-state: paused;
+  .related-posts__nav-button--prev {
+    left: -1rem;
   }
 
-  /* Respektiere prefers-reduced-motion (Accessibility) */
-  @media (prefers-reduced-motion: reduce) {
-    .related-posts__carousel {
-      animation: none;
-    }
+  .related-posts__nav-button--next {
+    right: -1rem;
   }
 
-  /* Keyframe Animation - Verschiebt um 3 Cards */
-  @keyframes carousel-scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      /* Verschiebt um die Breite von 3 Cards + Gaps */
-      transform: translateX(calc(-1 * (400px + 1.5rem) * 3));
-    }
+  .related-posts__nav-button:hover:not(:disabled) {
+    background: hsla(214, 41%, 10%, 1.00);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .related-posts__nav-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .related-posts__nav-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .related-posts__nav-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: white;
+    transition: color 0.3s ease;
+  }
+
+  /* Carousel Wrapper - muss volle Container-Breite haben */
+  .related-posts__carousel-wrapper {
+    width: 100%; /* Explizit volle Breite */
+    overflow: hidden;
+    padding: 0.5rem 0; /* Padding für Schatten-Sichtbarkeit */
+    margin: -0.5rem 0; /* Negative Margin um Padding zu kompensieren */
+    container-type: inline-size; /* Wrapper als Container für cqw */
+  }
+
+  /* Carousel Track - Grid-Spalten mit cqw Units relativ zum Wrapper */
+  .related-posts__carousel {
+    --visible-items: 3;
+    --gap-size: 0.375rem;
+
+    display: grid;
+    grid-auto-flow: column;
+    /* cqw bezieht sich jetzt auf carousel-wrapper Breite */
+    grid-auto-columns: calc((100cqw - (var(--visible-items) - 1) * var(--gap-size)) / var(--visible-items));
+    gap: var(--gap-size);
+    transition: transform 0.5s ease-in-out;
+    padding-bottom: 0.5rem; /* Extra Padding für Schatten unten */
   }
 
   /* ==========================================
-     CARD STYLES (CLICKABLE PARENT PATTERN)
+     CARD STYLES
      ========================================== */
 
   .related-posts__card {
-    position: relative; /* Wichtig für Clickable Parent */
-    flex: 0 0 400px;
-    width: 400px;
+    min-width: 0;
     background: white;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .related-posts__card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Link covers entire card */
+  .related-posts__card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
 
   /* Image Wrapper */
   .related-posts__card-image-wrapper {
     position: relative;
     width: 100%;
-    height: 300px;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: #e2e8f0;
+    background: var(--color-muted);
   }
 
   .related-posts__card-image {
@@ -257,61 +388,56 @@ const itemListSchema = {
 
   /* Content */
   .related-posts__card-content {
-    padding: 1.25rem;
+    padding: 0.625rem;
   }
 
-  /* Title with Clickable Parent Pattern */
+  /* Title */
   .related-posts__card-title {
-    position: relative; /* Für ::after pseudo-element */
-    font-size: 1.25rem;
+    font-size: 0.8125rem;
     font-weight: 600;
-    color: #1a202c;
-    margin: 0 0 0.75rem 0;
-    line-height: 1.4;
+    color: var(--color-primary);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.25;
+    min-height: 2.5em; /* 2 Zeilen Höhe für einheitliches Layout */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  /* Clickable Parent Link */
-  .related-posts__card-link {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  .related-posts__card-link:hover .related-posts__card-title {
+    color: var(--color-accent);
   }
 
-  .related-posts__card-link:hover,
-  .related-posts__card-link:focus {
-    color: #e53e3e;
-    text-decoration: underline;
+  /* Meta Info Grid */
+  .related-posts__card-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem;
   }
 
-  /* Clickable Parent Pattern: Stretch Link über gesamte Card */
-  .clickable-parent .related-posts__card-link::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Erweitere auf gesamte Card (Parent's Parent) */
-    top: -300px; /* Höhe des Bildes */
-    left: -1.25rem; /* Padding */
-    right: -1.25rem;
-    bottom: -1.25rem;
-    z-index: 1;
-  }
-
-  /* Meta Info */
-  .related-posts__card-meta {
+  .related-posts__card-meta-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #718096;
-    margin: 0;
-    position: relative;
-    z-index: 2; /* Über dem stretched link */
+    gap: 0.2rem;
+    font-size: 0.65rem;
+    color: var(--color-gray-600);
   }
 
   .related-posts__card-icon {
-    width: 1rem;
-    height: 1rem;
+    width: 0.75rem;
+    height: 0.75rem;
     flex-shrink: 0;
+    color: var(--color-accent);
+  }
+
+  .related-posts__card-meta-text {
+    font-weight: 500;
+    color: var(--color-gray-700);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.65rem;
   }
 
   /* Screen Reader Only */
@@ -328,61 +454,230 @@ const itemListSchema = {
   }
 
   /* ==========================================
-     RESPONSIVE DESIGN
+     RESPONSIVE DESIGN mit Container Queries
+     Hinweis: Content-Bereich (lg:col-span-2) kann maximal ~790px breit werden
      ========================================== */
 
-  @media (max-width: 768px) {
-    .related-posts {
-      padding: 1.5rem 1rem;
+  /* Mobile: 1 Karte (bis 400px Container-Breite) */
+  @container (max-width: 400px) {
+    .related-posts__carousel {
+      --visible-items: 1;
+      --gap-size: 0.75rem;
     }
 
-    .related-posts__heading {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
+    .related-posts__nav-button {
+      width: 2rem;
+      height: 2rem;
     }
 
-    .related-posts__card {
-      flex: 0 0 300px;
-      width: 300px;
+    .related-posts__nav-button--prev {
+      left: 0;
     }
 
-    .related-posts__card-image-wrapper {
-      height: 225px;
+    .related-posts__nav-button--next {
+      right: 0;
     }
 
-    /* Anpassung der Animation für kleinere Cards */
-    @keyframes carousel-scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-1 * (300px + 1.5rem) * 3));
-      }
+    .related-posts__nav-icon {
+      width: 1rem;
+      height: 1rem;
     }
 
-    /* Clickable Parent Adjustment */
-    .clickable-parent .related-posts__card-link::after {
-      top: -225px; /* Höhe des kleineren Bildes */
+    .related-posts__card-content {
+      padding: 0.875rem;
+    }
+
+    .related-posts__card-title {
+      font-size: 0.9rem;
+    }
+
+    .related-posts__card-meta-grid {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .related-posts__card-meta-item {
+      font-size: 0.75rem;
     }
   }
 
-  @media (max-width: 480px) {
-    .related-posts__card {
-      flex: 0 0 280px;
-      width: 280px;
-    }
-
+  /* Tablet: 2 Karten (401px - 650px Container-Breite) */
+  @container (min-width: 401px) and (max-width: 650px) {
     .related-posts__carousel {
-      gap: 1rem;
+      --visible-items: 2;
+      --gap-size: 0.5rem;
     }
 
-    @keyframes carousel-scroll {
-      0% {
-        transform: translateX(0);
+    .related-posts__card-title {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Desktop: 3 Karten (ab 651px Container-Breite) */
+  @container (min-width: 651px) {
+    .related-posts__carousel {
+      --visible-items: 3;
+      --gap-size: 0.375rem;
+    }
+  }
+
+  /* Fallback für Browser ohne Container Query Support */
+  @supports not (container-type: inline-size) {
+    @media (max-width: 640px) {
+      .related-posts__carousel {
+        --visible-items: 1;
+        --gap-size: 0.75rem;
       }
-      100% {
-        transform: translateX(calc(-1 * (280px + 1rem) * 3));
+
+      .related-posts__card-content {
+        padding: 0.875rem;
+      }
+
+      .related-posts__card-title {
+        font-size: 0.9rem;
+      }
+
+      .related-posts__nav-button {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .related-posts__nav-button--prev {
+        left: 0;
+      }
+
+      .related-posts__nav-button--next {
+        right: 0;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .related-posts__carousel {
+        --visible-items: 2;
+        --gap-size: 0.5rem;
+      }
+
+      .related-posts__card-title {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .related-posts__carousel {
+        --visible-items: 3;
+        --gap-size: 0.375rem;
       }
     }
   }
 </style>
+
+<script>
+  // Carousel Navigation Logic
+  class RelatedPostsCarousel {
+    private track: HTMLElement;
+    private prevButton: HTMLButtonElement;
+    private nextButton: HTMLButtonElement;
+    private statusElement: HTMLElement | null;
+    private currentIndex: number = 0;
+    private cardsPerView: number = 3;
+    private totalCards: number = 0;
+
+    constructor(container: HTMLElement) {
+      this.track = container.querySelector('[data-carousel-track]') as HTMLElement;
+      this.prevButton = container.querySelector('[data-carousel-prev]') as HTMLButtonElement;
+      this.nextButton = container.querySelector('[data-carousel-next]') as HTMLButtonElement;
+      this.statusElement = container.querySelector('[data-carousel-status]');
+
+      if (!this.track || !this.prevButton || !this.nextButton) return;
+
+      this.totalCards = this.track.children.length;
+      this.updateCardsPerView();
+
+      // Event Listeners
+      this.prevButton.addEventListener('click', () => this.prev());
+      this.nextButton.addEventListener('click', () => this.next());
+
+      // Update on resize
+      window.addEventListener('resize', () => {
+        this.updateCardsPerView();
+        this.updatePosition();
+      });
+
+      // Initial state
+      this.updateButtons();
+    }
+
+    private updateCardsPerView() {
+      // Verwende die Container-Breite (nicht Viewport), passend zu CSS Container Queries
+      const containerWidth = this.track.parentElement?.offsetWidth || 0;
+
+      if (containerWidth <= 400) {
+        this.cardsPerView = 1;
+      } else if (containerWidth <= 650) {
+        this.cardsPerView = 2;
+      } else {
+        this.cardsPerView = 3;
+      }
+    }
+
+    private next() {
+      const maxIndex = Math.ceil(this.totalCards / this.cardsPerView) - 1;
+      if (this.currentIndex < maxIndex) {
+        this.currentIndex++;
+        this.updatePosition();
+      }
+    }
+
+    private prev() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+        this.updatePosition();
+      }
+    }
+
+    private updatePosition() {
+      if (this.track.children.length === 0) return;
+
+      const cardWidth = (this.track.children[0] as HTMLElement).offsetWidth;
+
+      // Gap-Größe muss mit CSS Container Queries übereinstimmen
+      const containerWidth = this.track.parentElement?.offsetWidth || 0;
+      let gap = 6; // Default: 0.375rem
+
+      if (containerWidth <= 400) {
+        gap = 12; // 0.75rem für Mobile
+      } else if (containerWidth <= 650) {
+        gap = 8;  // 0.5rem für Tablet
+      }
+
+      const offset = this.currentIndex * this.cardsPerView * (cardWidth + gap);
+
+      this.track.style.transform = `translateX(-${offset}px)`;
+      this.updateButtons();
+      this.updateStatus();
+    }
+
+    private updateButtons() {
+      const maxIndex = Math.ceil(this.totalCards / this.cardsPerView) - 1;
+
+      this.prevButton.disabled = this.currentIndex === 0;
+      this.nextButton.disabled = this.currentIndex >= maxIndex;
+    }
+
+    private updateStatus() {
+      if (this.statusElement) {
+        const start = this.currentIndex * this.cardsPerView + 1;
+        const end = Math.min((this.currentIndex + 1) * this.cardsPerView, this.totalCards);
+        this.statusElement.textContent = `Zeige ${start}-${end} von ${this.totalCards} verwandten Rezepten.`;
+      }
+    }
+  }
+
+  // Initialize all carousels on the page
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.related-posts__carousel-container');
+    carousels.forEach((carousel) => {
+      new RelatedPostsCarousel(carousel as HTMLElement);
+    });
+  });
+</script>

@@ -1,11 +1,11 @@
 {
-  "uuid": "cc0440d6-6daf-4d72-b883-6b6587344c24",
+  "uuid": "bf868bec-893f-4c38-9fbe-19bea71871f1",
   "metadata": {
     "title": "Ossobuco alla Milanese",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-ossobuco",
-    "pubDate": "2025-04-10",
-    "modifiedDate": "2025-04-10",
+    "pubDate": "2025-05-25",
+    "modifiedDate": "2025-05-25",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -37,66 +37,115 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT12M",
-    "cookTime": "PT50M",
-    "totalTime": "PT62M",
-    "prepTimeMinutes": 12,
-    "cookTimeMinutes": 50,
-    "totalTimeMinutes": 62
+    "prepTime": "PT33M",
+    "cookTime": "PT51M",
+    "totalTime": "PT84M",
+    "prepTimeMinutes": 33,
+    "cookTimeMinutes": 51,
+    "totalTimeMinutes": 84
   },
   "nutrition": {
-    "servings": 4,
+    "servings": 2,
     "servingSize": "1 Portion",
-    "calories": "500",
-    "carbohydrates": "47g",
-    "protein": "17g",
+    "calories": "242",
+    "carbohydrates": "52g",
+    "protein": "19g",
     "fat": "21g",
-    "fiber": "10g",
+    "fiber": "8g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
       "name": "Pfeffer",
-      "amount": 227,
+      "amount": 399,
       "unit": "ml",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Kartoffeln",
-      "amount": 116,
-      "unit": "EL",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Butter",
-      "amount": 335,
-      "unit": "Prise",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 417,
-      "unit": "Prise",
       "note": null,
       "group": "Gewürze"
     },
     {
       "name": "Sahne",
-      "amount": 278,
-      "unit": "EL",
+      "amount": 530,
+      "unit": "TL",
       "note": "nach Geschmack",
       "group": "Zum Servieren"
     },
     {
-      "name": "Mehl",
-      "amount": 364,
+      "name": "Eier",
+      "amount": 521,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 375,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 400,
+      "unit": "Stück",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Reis",
+      "amount": 199,
+      "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Gewürze"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 383,
+      "unit": "TL",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Tomaten",
+      "amount": 325,
+      "unit": "ml",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 104,
+      "unit": "Prise",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 355,
       "unit": "g",
       "note": null,
       "group": "Gewürze"
+    },
+    {
+      "name": "Reis",
+      "amount": 535,
+      "unit": "ml",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 94,
+      "unit": "g",
+      "note": null,
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 53,
+      "unit": "ml",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
     }
   ],
   "images": {
@@ -119,38 +168,56 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT18M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT11M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 5,
+        "title": "Schritt 5",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 6,
+        "title": "Schritt 6",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -179,54 +246,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-04-10T15:34:18.464Z",
+    "datePublished": "2025-05-25T18:01:19.310Z",
     "image": "https://picsum.photos/1200/800?random=6",
-    "recipeYield": "5 Portionen",
-    "prepTime": "PT12M",
-    "cookTime": "PT50M",
-    "totalTime": "PT62M",
+    "recipeYield": "2 Portionen",
+    "prepTime": "PT33M",
+    "cookTime": "PT51M",
+    "totalTime": "PT84M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Italienisch",
     "keywords": "Ossobuco alla Milanese",
     "recipeIngredient": [
-      "282 ml Karotten",
-      "136 EL Zucker",
-      "108 g Paprika",
-      "198 EL Eier",
-      "238 Stück Sahne",
-      "143 EL Tomaten",
-      "57 ml Milch",
-      "104 EL Pfeffer"
+      "215 g Sahne",
+      "81 Prise Milch",
+      "545 Stück Tomaten",
+      "156 ml Salz",
+      "351 EL Käse",
+      "255 Stück Karotten",
+      "542 Prise Knoblauch",
+      "251 Stück Salz"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

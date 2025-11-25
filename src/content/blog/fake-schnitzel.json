@@ -1,11 +1,11 @@
 {
-  "uuid": "32da78ce-2ab6-4a44-9859-a4d3de34a447",
+  "uuid": "e72c846f-2a40-47d3-aadf-9b5f0869da72",
   "metadata": {
     "title": "Wiener Schnitzel",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-schnitzel",
-    "pubDate": "2025-05-14",
-    "modifiedDate": "2025-05-14",
+    "pubDate": "2025-05-24",
+    "modifiedDate": "2025-05-24",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,108 +36,115 @@
     "mealType": "Hauptgericht"
   },
   "timing": {
-    "prepTime": "PT17M",
-    "cookTime": "PT58M",
-    "totalTime": "PT75M",
-    "prepTimeMinutes": 17,
-    "cookTimeMinutes": 58,
-    "totalTimeMinutes": 75
+    "prepTime": "PT39M",
+    "cookTime": "PT47M",
+    "totalTime": "PT86M",
+    "prepTimeMinutes": 39,
+    "cookTimeMinutes": 47,
+    "totalTimeMinutes": 86
   },
   "nutrition": {
-    "servings": 6,
+    "servings": 3,
     "servingSize": "1 Portion",
-    "calories": "490",
-    "carbohydrates": "52g",
-    "protein": "21g",
-    "fat": "17g",
-    "fiber": "3g",
+    "calories": "353",
+    "carbohydrates": "28g",
+    "protein": "26g",
+    "fat": "23g",
+    "fiber": "11g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Milch",
-      "amount": 292,
-      "unit": "Prise",
-      "note": "nach Geschmack",
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Zucker",
-      "amount": 441,
-      "unit": "Stück",
-      "note": "nach Geschmack",
-      "group": "Optional"
+      "name": "Sahne",
+      "amount": 124,
+      "unit": "EL",
+      "note": null,
+      "group": "Gewürze"
     },
     {
       "name": "Nudeln",
-      "amount": 125,
-      "unit": "EL",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Pfeffer",
-      "amount": 378,
-      "unit": "EL",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Reis",
-      "amount": 117,
-      "unit": "EL",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Reis",
-      "amount": 229,
-      "unit": "g",
-      "note": "nach Geschmack",
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 214,
-      "unit": "g",
-      "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Tomaten",
-      "amount": 192,
-      "unit": "ml",
-      "note": "nach Geschmack",
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Mehl",
-      "amount": 447,
-      "unit": "EL",
-      "note": "nach Geschmack",
-      "group": "Optional"
-    },
-    {
-      "name": "Karotten",
-      "amount": 261,
+      "amount": 197,
       "unit": "TL",
       "note": null,
       "group": "Gewürze"
     },
     {
-      "name": "Pfeffer",
-      "amount": 518,
-      "unit": "g",
+      "name": "Mehl",
+      "amount": 365,
+      "unit": "EL",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Zwiebeln",
+      "amount": 160,
+      "unit": "Stück",
       "note": null,
       "group": "Gewürze"
     },
     {
-      "name": "Käse",
-      "amount": 291,
-      "unit": "EL",
+      "name": "Nudeln",
+      "amount": 169,
+      "unit": "Stück",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Kartoffeln",
+      "amount": 315,
+      "unit": "TL",
       "note": null,
       "group": "Hauptzutaten"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 91,
+      "unit": "Prise",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Nudeln",
+      "amount": 302,
+      "unit": "Stück",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Olivenöl",
+      "amount": 50,
+      "unit": "ml",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Eier",
+      "amount": 484,
+      "unit": "g",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Karotten",
+      "amount": 325,
+      "unit": "Stück",
+      "note": null,
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Käse",
+      "amount": 158,
+      "unit": "ml",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Tomaten",
+      "amount": 373,
+      "unit": "EL",
+      "note": null,
+      "group": "Gewürze"
     }
   ],
   "images": {
@@ -160,56 +167,49 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT10M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT6M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT5M"
-      },
-      {
-        "number": 6,
-        "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
-      },
-      {
-        "number": 7,
-        "title": "Schritt 7",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT7M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -238,54 +238,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-05-14T15:34:18.466Z",
+    "datePublished": "2025-05-24T18:01:19.313Z",
     "image": "https://picsum.photos/1200/800?random=16",
-    "recipeYield": "6 Portionen",
-    "prepTime": "PT17M",
-    "cookTime": "PT58M",
-    "totalTime": "PT75M",
+    "recipeYield": "7 Portionen",
+    "prepTime": "PT39M",
+    "cookTime": "PT47M",
+    "totalTime": "PT86M",
     "recipeCategory": "Hauptgericht",
     "recipeCuisine": "Österreichisch",
     "keywords": "Wiener Schnitzel",
     "recipeIngredient": [
-      "74 EL Tomaten",
-      "476 Prise Sahne",
-      "94 Prise Reis",
-      "502 Stück Karotten",
-      "419 Stück Tomaten",
-      "456 ml Sahne",
-      "346 TL Butter",
-      "177 Prise Zucker"
+      "130 EL Paprika",
+      "437 Stück Tomaten",
+      "109 EL Tomaten",
+      "225 ml Sahne",
+      "188 Stück Käse",
+      "60 g Pfeffer",
+      "92 g Olivenöl",
+      "425 g Tomaten"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]

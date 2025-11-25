@@ -1,11 +1,11 @@
 {
-  "uuid": "031f33f8-61ac-4685-b428-29726ee11cdd",
+  "uuid": "3107dd53-835c-4c1b-a259-70df6ae909a6",
   "metadata": {
     "title": "Französische Croissants",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "slug": "fake-croissant",
-    "pubDate": "2025-05-04",
-    "modifiedDate": "2025-05-04",
+    "pubDate": "2025-05-28",
+    "modifiedDate": "2025-05-28",
     "author": "Food Blog Test",
     "language": "de"
   },
@@ -36,107 +36,86 @@
     "mealType": "Frühstück"
   },
   "timing": {
-    "prepTime": "PT32M",
-    "cookTime": "PT53M",
-    "totalTime": "PT85M",
-    "prepTimeMinutes": 32,
-    "cookTimeMinutes": 53,
-    "totalTimeMinutes": 85
+    "prepTime": "PT38M",
+    "cookTime": "PT41M",
+    "totalTime": "PT79M",
+    "prepTimeMinutes": 38,
+    "cookTimeMinutes": 41,
+    "totalTimeMinutes": 79
   },
   "nutrition": {
-    "servings": 2,
+    "servings": 5,
     "servingSize": "1 Portion",
-    "calories": "299",
-    "carbohydrates": "13g",
-    "protein": "16g",
-    "fat": "16g",
+    "calories": "398",
+    "carbohydrates": "33g",
+    "protein": "38g",
+    "fat": "27g",
     "fiber": "8g",
     "sugar": null,
     "sodium": null
   },
   "ingredients": [
     {
-      "name": "Olivenöl",
-      "amount": 218,
-      "unit": "EL",
+      "name": "Zucker",
+      "amount": 362,
+      "unit": "Stück",
       "note": null,
       "group": "Gewürze"
     },
     {
-      "name": "Zwiebeln",
-      "amount": 439,
+      "name": "Tomaten",
+      "amount": 366,
       "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Milch",
+      "amount": 321,
+      "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Zum Servieren"
+    },
+    {
+      "name": "Kartoffeln",
+      "amount": 321,
+      "unit": "ml",
+      "note": null,
+      "group": "Optional"
+    },
+    {
+      "name": "Karotten",
+      "amount": 86,
+      "unit": "TL",
+      "note": null,
+      "group": "Gewürze"
+    },
+    {
+      "name": "Karotten",
+      "amount": 330,
+      "unit": "EL",
+      "note": "nach Geschmack",
+      "group": "Optional"
+    },
+    {
+      "name": "Karotten",
+      "amount": 182,
+      "unit": "Stück",
+      "note": "nach Geschmack",
+      "group": "Hauptzutaten"
+    },
+    {
+      "name": "Zucker",
+      "amount": 260,
+      "unit": "g",
       "note": "nach Geschmack",
       "group": "Gewürze"
     },
     {
       "name": "Mehl",
-      "amount": 534,
-      "unit": "Prise",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Salz",
-      "amount": 466,
-      "unit": "g",
-      "note": null,
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Käse",
-      "amount": 460,
-      "unit": "ml",
-      "note": null,
-      "group": "Optional"
-    },
-    {
-      "name": "Olivenöl",
-      "amount": 464,
-      "unit": "Prise",
-      "note": "nach Geschmack",
-      "group": "Gewürze"
-    },
-    {
-      "name": "Butter",
-      "amount": 527,
+      "amount": 344,
       "unit": "TL",
       "note": null,
-      "group": "Hauptzutaten"
-    },
-    {
-      "name": "Eier",
-      "amount": 503,
-      "unit": "Prise",
-      "note": "nach Geschmack",
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Käse",
-      "amount": 475,
-      "unit": "TL",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Knoblauch",
-      "amount": 259,
-      "unit": "EL",
-      "note": "nach Geschmack",
-      "group": "Zum Servieren"
-    },
-    {
-      "name": "Pfeffer",
-      "amount": 215,
-      "unit": "Prise",
-      "note": null,
-      "group": "Gewürze"
-    },
-    {
-      "name": "Butter",
-      "amount": 347,
-      "unit": "ml",
-      "note": "nach Geschmack",
       "group": "Gewürze"
     }
   ],
@@ -160,56 +139,70 @@
       {
         "title": "Wussten Sie?",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "info"
+        "order": 1
       },
       {
         "title": "Tipp",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "icon": "lightbulb"
+        "order": 2
       }
     ],
     "steps": [
       {
         "number": 1,
         "title": "Schritt 1",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT24M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 2,
         "title": "Schritt 2",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT24M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 3,
         "title": "Schritt 3",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT7M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 4,
         "title": "Schritt 4",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 5,
         "title": "Schritt 5",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 6,
         "title": "Schritt 6",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": null
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       },
       {
         "number": 7,
         "title": "Schritt 7",
-        "instruction": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        "time": "PT17M"
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
+      },
+      {
+        "number": 8,
+        "title": "Schritt 8",
+        "shortText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+        "tips": []
       }
     ],
     "tips": {
@@ -238,54 +231,49 @@
       "@type": "Person",
       "name": "Food Blog Test"
     },
-    "datePublished": "2025-05-04T15:34:18.466Z",
+    "datePublished": "2025-05-28T18:01:19.312Z",
     "image": "https://picsum.photos/1200/800?random=12",
     "recipeYield": "4 Portionen",
-    "prepTime": "PT32M",
-    "cookTime": "PT53M",
-    "totalTime": "PT85M",
+    "prepTime": "PT38M",
+    "cookTime": "PT41M",
+    "totalTime": "PT79M",
     "recipeCategory": "Frühstück",
     "recipeCuisine": "Französisch",
     "keywords": "Französische Croissants",
     "recipeIngredient": [
-      "467 EL Zwiebeln",
-      "257 EL Paprika",
-      "169 ml Pfeffer",
-      "178 g Nudeln",
-      "349 EL Tomaten",
-      "148 EL Kartoffeln",
-      "309 ml Zwiebeln",
-      "421 Stück Pfeffer"
+      "282 TL Eier",
+      "345 Prise Käse",
+      "66 g Nudeln",
+      "518 ml Butter",
+      "325 EL Tomaten",
+      "542 ml Salz",
+      "391 EL Eier",
+      "373 g Paprika"
     ],
     "recipeInstructions": [
       {
         "@type": "HowToStep",
         "name": "Schritt 1",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 1
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 2",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 2
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 3",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 3
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 4",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 4
       },
       {
         "@type": "HowToStep",
         "name": "Schritt 5",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
         "position": 5
       }
     ]
