@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import type { Context } from "@netlify/functions";
+import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
 interface TrackViewRequest {
   slug: string;
@@ -7,7 +7,6 @@ interface TrackViewRequest {
 }
 
 // Rate limiting using simple in-memory store (for serverless, resets on cold start)
-// In production, consider using Netlify Blobs or Redis for persistent rate limiting
 const recentViews = new Map<string, number>();
 const RATE_LIMIT_WINDOW = 30 * 60 * 1000; // 30 minutes
 
@@ -15,49 +14,50 @@ const RATE_LIMIT_WINDOW = 30 * 60 * 1000; // 30 minutes
  * Tracks page views for recipes
  * GDPR-compliant: No personal data stored, only slug and count
  */
-export default async (req: Request, context: Context) => {
+export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   // Only allow POST requests
-  if (req.method !== "POST") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: "Method not allowed" }),
       headers: { "Content-Type": "application/json" },
-    });
+    };
   }
 
   try {
-    const body: TrackViewRequest = await req.json();
+    const body: TrackViewRequest = JSON.parse(event.body || "{}");
     const { slug, timestamp } = body;
 
     // Validate input
     if (!slug || typeof slug !== "string" || slug.trim() === "") {
-      return new Response(JSON.stringify({ error: "Invalid slug" }), {
-        status: 400,
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Invalid slug" }),
         headers: { "Content-Type": "application/json" },
-      });
+      };
     }
 
     // Basic bot detection (check user agent)
-    const userAgent = req.headers.get("user-agent") || "";
+    const userAgent = event.headers["user-agent"] || "";
     if (/bot|crawler|spider|scraper/i.test(userAgent)) {
-      return new Response(JSON.stringify({ success: false, reason: "bot" }), {
-        status: 200,
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ success: false, reason: "bot" }),
         headers: { "Content-Type": "application/json" },
-      });
+      };
     }
 
     // Rate limiting: Check if this slug was tracked recently (simple de-duplication)
-    const clientIP = req.headers.get("x-forwarded-for") || "unknown";
+    const clientIP = event.headers["x-forwarded-for"] || event.headers["client-ip"] || "unknown";
     const rateKey = `${slug}:${clientIP}`;
     const lastView = recentViews.get(rateKey);
 
     if (lastView && Date.now() - lastView < RATE_LIMIT_WINDOW) {
-      return new Response(
-        JSON.stringify({ success: false, reason: "rate_limited" }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ success: false, reason: "rate_limited" }),
+        headers: { "Content-Type": "application/json" },
+      };
     }
 
     // Update rate limit tracker
@@ -84,29 +84,25 @@ export default async (req: Request, context: Context) => {
     const newCount = (currentCount || 0) + 1;
     await store.set(slug, JSON.stringify(newCount));
 
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
         success: true,
         slug,
         views: newCount,
       }),
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-          "Cache-Control": "no-store, no-cache, must-revalidate",
-        },
-      }
-    );
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+      },
+    };
   } catch (error) {
     console.error("Error tracking view:", error);
-    return new Response(
-      JSON.stringify({ error: "Internal server error" }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Internal server error" }),
+      headers: { "Content-Type": "application/json" },
+    };
   }
 };
 

@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import type { Context } from "@netlify/functions";
+import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
 interface RecipeView {
   slug: string;
@@ -10,29 +10,27 @@ interface RecipeView {
  * Returns the most popular recipes based on view count
  * Includes caching for performance
  */
-export default async (req: Request, context: Context) => {
+export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   // Only allow GET requests
-  if (req.method !== "GET") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
+  if (event.httpMethod !== "GET") {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: "Method not allowed" }),
       headers: { "Content-Type": "application/json" },
-    });
+    };
   }
 
   try {
     // Parse query parameters
-    const url = new URL(req.url);
-    const limit = parseInt(url.searchParams.get("limit") || "12", 10);
+    const limit = parseInt(event.queryStringParameters?.limit || "12", 10);
 
     // Validate limit
     if (limit < 1 || limit > 50) {
-      return new Response(
-        JSON.stringify({ error: "Limit must be between 1 and 50" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "Limit must be between 1 and 50" }),
+        headers: { "Content-Type": "application/json" },
+      };
     }
 
     // Get Netlify Blobs store
@@ -64,34 +62,30 @@ export default async (req: Request, context: Context) => {
     // Take top N recipes
     const topRecipes = recipeViews.slice(0, limit);
 
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
         success: true,
         recipes: topRecipes,
         total: recipeViews.length,
       }),
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-          // Cache for 5 minutes on CDN
-          "Cache-Control": "public, max-age=300, s-maxage=300",
-          "CDN-Cache-Control": "max-age=300",
-        },
-      }
-    );
+      headers: {
+        "Content-Type": "application/json",
+        // Cache for 5 minutes on CDN
+        "Cache-Control": "public, max-age=300, s-maxage=300",
+        "CDN-Cache-Control": "max-age=300",
+      },
+    };
   } catch (error) {
     console.error("Error fetching popular recipes:", error);
-    return new Response(
-      JSON.stringify({
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
         error: "Internal server error",
         success: false,
       }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+      headers: { "Content-Type": "application/json" },
+    };
   }
 };
 

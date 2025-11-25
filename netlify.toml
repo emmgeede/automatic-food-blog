@@ -38,3 +38,13 @@
   from = "/api/admin/comments/:id"
   to = "/.netlify/functions/admin-comments-delete/:id"
   status = 200
+
+[[redirects]]
+  from = "/api/track-view"
+  to = "/.netlify/functions/track-view"
+  status = 200
+
+[[redirects]]
+  from = "/api/popular-recipes"
+  to = "/.netlify/functions/popular-recipes"
+  status = 200
