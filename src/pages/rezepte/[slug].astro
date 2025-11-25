@@ -10,6 +10,8 @@ import RecipeFactsNew from "../../components/recipe/RecipeFactsNew.astro";
 import RecipeSidebar from "../../components/recipe/RecipeSidebar.astro";
 import RecipeComments from "../../components/recipe/RecipeComments.astro";
 import DynamicRecipeSchema from "../../components/DynamicRecipeSchema.astro";
+import RelatedPostsCarousel from "../../components/recipe/RelatedPostsCarousel.astro";
+import { getRelatedPosts } from "../../utils/relatedPosts";
 
 type BlogEntry = CollectionEntry<"blog">;
 
@@ -66,6 +68,12 @@ const frontmatter = {
   featuredImage: ogImageURL,
   ogType: seo?.ogType || "article",
 };
+
+// Get all blog entries for related posts
+const allBlogEntries = await getCollection("blog");
+
+// Calculate related posts based on taxonomy, ingredients, and title
+const relatedPosts = getRelatedPosts(entry, allBlogEntries, 12);
 ---
 
 <BaseLayout frontmatter={frontmatter}>
@@ -214,5 +222,8 @@ const frontmatter = {
         </div>
       </div>
     </article>
+
+    <!-- Related Posts Carousel -->
+    <RelatedPostsCarousel relatedPosts={relatedPosts} />
   </div>
 </BaseLayout>

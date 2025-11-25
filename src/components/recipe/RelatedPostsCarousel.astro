@@ -1,0 +1,388 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  relatedPosts: CollectionEntry<"blog">[];
+}
+
+const { relatedPosts } = Astro.props;
+
+// Limitiere auf maximal 12 Beiträge
+const posts = relatedPosts.slice(0, 12);
+
+// Schema.org ItemList für SEO
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Verwandte Rezepte",
+  "itemListElement": posts.map((post, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "url": `https://die-mama-kocht.de/rezepte/${post.data.metadata.slug}`,
+    "name": post.data.metadata.title,
+  })),
+};
+---
+
+{posts.length > 0 && (
+  <section
+    class="related-posts"
+    aria-labelledby="related-posts-heading"
+  >
+    <h2 id="related-posts-heading" class="related-posts__heading">
+      Verwandte Rezepte
+    </h2>
+
+    <div class="related-posts__carousel-wrapper">
+      <!-- Carousel Track (animiert automatisch) -->
+      <div
+        class="related-posts__carousel"
+        role="list"
+        aria-label="Liste verwandter Rezepte"
+        style={`--total-cards: ${posts.length};`}
+      >
+        {posts.map((post) => {
+          const featuredImage = post.data.images?.featured?.src || 'https://picsum.photos/400/300';
+          const altText = post.data.images?.featured?.alt || post.data.metadata.title;
+
+          return (
+            <article
+              class="related-posts__card"
+              role="listitem"
+            >
+              <div class="related-posts__card-image-wrapper">
+                <img
+                  src={featuredImage}
+                  alt={altText}
+                  class="related-posts__card-image"
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                />
+              </div>
+
+              <div class="related-posts__card-content">
+                <h3 class="related-posts__card-title clickable-parent">
+                  <a
+                    href={`/rezepte/${post.data.metadata.slug}`}
+                    class="related-posts__card-link"
+                  >
+                    {post.data.metadata.title}
+                  </a>
+                </h3>
+
+                {post.data.taxonomy?.cuisine && (
+                  <p class="related-posts__card-meta" aria-label={`Küche: ${post.data.taxonomy.cuisine}`}>
+                    <svg
+                      class="related-posts__card-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    </svg>
+                    <span>{post.data.taxonomy.cuisine}</span>
+                  </p>
+                )}
+              </div>
+            </article>
+          );
+        })}
+
+        {/* Dupliziere die ersten 3 Karten für nahtloses Looping */}
+        {posts.length >= 3 && posts.slice(0, 3).map((post) => {
+          const featuredImage = post.data.images?.featured?.src || 'https://picsum.photos/400/300';
+          const altText = post.data.images?.featured?.alt || post.data.metadata.title;
+
+          return (
+            <article
+              class="related-posts__card"
+              role="listitem"
+              aria-hidden="true"
+            >
+              <div class="related-posts__card-image-wrapper">
+                <img
+                  src={featuredImage}
+                  alt={altText}
+                  class="related-posts__card-image"
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                />
+              </div>
+
+              <div class="related-posts__card-content">
+                <h3 class="related-posts__card-title clickable-parent">
+                  <a
+                    href={`/rezepte/${post.data.metadata.slug}`}
+                    class="related-posts__card-link"
+                  >
+                    {post.data.metadata.title}
+                  </a>
+                </h3>
+
+                {post.data.taxonomy?.cuisine && (
+                  <p class="related-posts__card-meta" aria-label={`Küche: ${post.data.taxonomy.cuisine}`}>
+                    <svg
+                      class="related-posts__card-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    </svg>
+                    <span>{post.data.taxonomy.cuisine}</span>
+                  </p>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Accessibility: Info für Screen Reader -->
+      <div class="sr-only" role="status" aria-live="polite">
+        Zeige {Math.min(posts.length, 3)} von {posts.length} verwandten Rezepten.
+        Karussell scrollt automatisch.
+      </div>
+    </div>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+  </section>
+)}
+
+<style>
+  /* ==========================================
+     RELATED POSTS CAROUSEL - CSS ONLY
+     ========================================== */
+
+  .related-posts {
+    margin-block: 4rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 1rem;
+  }
+
+  .related-posts__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  /* Carousel Wrapper */
+  .related-posts__carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
+
+  /* Carousel Track */
+  .related-posts__carousel {
+    display: flex;
+    gap: 1.5rem;
+    width: fit-content;
+
+    /* CSS Animation - Automatisches Scrollen */
+    animation: carousel-scroll 30s linear infinite;
+  }
+
+  /* Pausiere Animation bei Hover oder Focus (Accessibility) */
+  .related-posts__carousel:hover,
+  .related-posts__carousel:focus-within {
+    animation-play-state: paused;
+  }
+
+  /* Respektiere prefers-reduced-motion (Accessibility) */
+  @media (prefers-reduced-motion: reduce) {
+    .related-posts__carousel {
+      animation: none;
+    }
+  }
+
+  /* Keyframe Animation - Verschiebt um 3 Cards */
+  @keyframes carousel-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* Verschiebt um die Breite von 3 Cards + Gaps */
+      transform: translateX(calc(-1 * (400px + 1.5rem) * 3));
+    }
+  }
+
+  /* ==========================================
+     CARD STYLES (CLICKABLE PARENT PATTERN)
+     ========================================== */
+
+  .related-posts__card {
+    position: relative; /* Wichtig für Clickable Parent */
+    flex: 0 0 400px;
+    width: 400px;
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .related-posts__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Image Wrapper */
+  .related-posts__card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background: #e2e8f0;
+  }
+
+  .related-posts__card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .related-posts__card:hover .related-posts__card-image {
+    transform: scale(1.05);
+  }
+
+  /* Content */
+  .related-posts__card-content {
+    padding: 1.25rem;
+  }
+
+  /* Title with Clickable Parent Pattern */
+  .related-posts__card-title {
+    position: relative; /* Für ::after pseudo-element */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+  }
+
+  /* Clickable Parent Link */
+  .related-posts__card-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .related-posts__card-link:hover,
+  .related-posts__card-link:focus {
+    color: #e53e3e;
+    text-decoration: underline;
+  }
+
+  /* Clickable Parent Pattern: Stretch Link über gesamte Card */
+  .clickable-parent .related-posts__card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Erweitere auf gesamte Card (Parent's Parent) */
+    top: -300px; /* Höhe des Bildes */
+    left: -1.25rem; /* Padding */
+    right: -1.25rem;
+    bottom: -1.25rem;
+    z-index: 1;
+  }
+
+  /* Meta Info */
+  .related-posts__card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #718096;
+    margin: 0;
+    position: relative;
+    z-index: 2; /* Über dem stretched link */
+  }
+
+  .related-posts__card-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ==========================================
+     RESPONSIVE DESIGN
+     ========================================== */
+
+  @media (max-width: 768px) {
+    .related-posts {
+      padding: 1.5rem 1rem;
+    }
+
+    .related-posts__heading {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .related-posts__card {
+      flex: 0 0 300px;
+      width: 300px;
+    }
+
+    .related-posts__card-image-wrapper {
+      height: 225px;
+    }
+
+    /* Anpassung der Animation für kleinere Cards */
+    @keyframes carousel-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-1 * (300px + 1.5rem) * 3));
+      }
+    }
+
+    /* Clickable Parent Adjustment */
+    .clickable-parent .related-posts__card-link::after {
+      top: -225px; /* Höhe des kleineren Bildes */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .related-posts__card {
+      flex: 0 0 280px;
+      width: 280px;
+    }
+
+    .related-posts__carousel {
+      gap: 1rem;
+    }
+
+    @keyframes carousel-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-1 * (280px + 1rem) * 3));
+      }
+    }
+  }
+</style>
