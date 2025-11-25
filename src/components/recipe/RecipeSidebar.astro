@@ -48,7 +48,7 @@ const allCategories = Array.from(
       <div class="space-y-4">
         {relatedRecipes.map((recipe) => (
           <a
-            href={`/blog/${recipe.data.metadata.slug}`}
+            href={`/rezepte/${recipe.data.metadata.slug}`}
             class="flex gap-3 group hover:bg-gray-50 p-2 rounded-lg transition-colors"
           >
             <div class="flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden">
@@ -134,7 +134,7 @@ const allCategories = Array.from(
       <div class="space-y-4">
         {latestPosts.map((post) => (
           <a
-            href={`/blog/${post.data.metadata.slug}`}
+            href={`/rezepte/${post.data.metadata.slug}`}
             class="flex gap-3 group hover:bg-gray-50 p-2 rounded-lg transition-colors"
           >
             <div class="flex-shrink-0 w-16 h-16 rounded overflow-hidden">

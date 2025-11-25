@@ -14,5 +14,10 @@ export default defineConfig({
   },
 
   integrations: [icon()],
-  adapter: netlify()
+  adapter: netlify(),
+
+  redirects: {
+    '/blog/[...slug]': '/rezepte/[...slug]',
+    '/blog': '/rezepte'
+  }
 });
