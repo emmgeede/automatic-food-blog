@@ -48,3 +48,14 @@
   from = "/api/popular-recipes"
   to = "/.netlify/functions/popular-recipes"
   status = 200
+
+# Legacy blog routes redirect to rezepte
+[[redirects]]
+  from = "/blog/*"
+  to = "/rezepte/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/rezepte"
+  status = 301
