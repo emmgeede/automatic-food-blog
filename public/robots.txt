@@ -1,0 +1,11 @@
+# This file controls which search engines can crawl the site
+# In development mode, all robots are blocked
+# In production, robots.txt will allow indexing
+
+User-agent: *
+Disallow: /
+
+# To enable search engine indexing later, replace with:
+# User-agent: *
+# Allow: /
+# Sitemap: https://die-mama-kocht.de/sitemap-index.xml

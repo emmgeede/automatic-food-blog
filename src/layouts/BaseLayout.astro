@@ -4,6 +4,12 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const { frontmatter = {} } = Astro.props;
+
+// Check if search engine indexing is allowed
+const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
+const robotsContent = allowIndexing
+  ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  : "noindex, nofollow";
 ---
 
 <!doctype html>
@@ -18,10 +24,7 @@ const { frontmatter = {} } = Astro.props;
     <meta name="title" content={frontmatter.title} />
     <meta name="description" content={frontmatter.metaDescription} />
     {frontmatter.metaKeywords && <meta name="keywords" content={frontmatter.metaKeywords} />}
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
+    <meta name="robots" content={robotsContent} />
     <link rel="canonical" href={frontmatter.metaCanonical} />
 
     <!-- Open Graph / Facebook -->
