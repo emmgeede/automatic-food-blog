@@ -75,7 +75,7 @@ const blogCollection = defineCollection({
         carbohydrates: z.string().optional(),
         protein: z.string().optional(),
         fat: z.string().optional(),
-        fiber: z.string().optional(),
+        fiber: z.string().nullable().optional(),
         sugar: z.string().nullable().optional(),
         sodium: z.string().nullable().optional(),
       })
@@ -88,7 +88,7 @@ const blogCollection = defineCollection({
         amount: z.number().or(z.string()).nullable().optional(),
         unit: z.string().nullable().optional(),
         note: z.string().nullable().optional(),
-        group: z.string().optional(),
+        group: z.string().nullable().optional(),
       })
     ),
 
@@ -161,6 +161,17 @@ const blogCollection = defineCollection({
           })
           .optional(),
       })
+      .optional(),
+
+    // --- FAQs (aus JSON "faqs") ---
+    faqs: z
+      .array(
+        z.object({
+          question: z.string(),
+          answer: z.string(),
+          category: z.string().optional(),
+        })
+      )
       .optional(),
 
     // --- REZEPT-SCHEMA (aus JSON "recipeSchema") ---

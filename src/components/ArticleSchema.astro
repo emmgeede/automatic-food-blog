@@ -1,0 +1,63 @@
+---
+/**
+ * Article Schema Component
+ * Generates Article structured data for Google Search
+ * Complements Recipe Schema for better SEO coverage
+ * https://schema.org/Article
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  author: string;
+  pubDate: Date;
+  modifiedDate?: Date;
+  image?: string;
+  url: string;
+  categories?: string[];
+}
+
+const {
+  title,
+  description,
+  author,
+  pubDate,
+  modifiedDate,
+  image,
+  url,
+  categories = []
+} = Astro.props;
+
+// Build Article Schema
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  author: {
+    '@type': 'Person',
+    name: author,
+  },
+  datePublished: pubDate.toISOString(),
+  dateModified: modifiedDate ? modifiedDate.toISOString() : pubDate.toISOString(),
+  image: image,
+  url: url,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Die Mama kocht',
+    logo: {
+      '@type': 'ImageObject',
+      url: Astro.site ? new URL('/logo.png', Astro.site).toString() : '/logo.png',
+    },
+  },
+  ...(categories.length > 0 && {
+    articleSection: categories,
+  }),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />

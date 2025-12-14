@@ -1,0 +1,32 @@
+---
+/**
+ * Breadcrumb Schema Component
+ * Generates BreadcrumbList structured data for Google Search
+ * https://schema.org/BreadcrumbList
+ */
+
+interface Props {
+  items: Array<{
+    name: string;
+    url: string;
+  }>;
+}
+
+const { items } = Astro.props;
+
+// Build BreadcrumbList Schema
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
+---
+
+{items && items.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+)}

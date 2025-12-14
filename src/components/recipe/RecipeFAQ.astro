@@ -1,0 +1,92 @@
+---
+interface FAQ {
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+interface Props {
+  faqs?: FAQ[];
+}
+
+const { faqs = [] } = Astro.props;
+---
+
+{faqs && faqs.length > 0 && (
+  <section id="faqs" class="bg-white rounded-lg p-8 mb-8 scroll-mt-24">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Häufig gestellte Fragen</h2>
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+          <summary class="faq-question cursor-pointer bg-gray-50 hover:bg-gray-100 p-5 flex justify-between items-center transition-colors">
+            <h3 class="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
+            <svg
+              class="faq-icon h-5 w-5 text-primary flex-shrink-0 transition-transform"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="faq-answer p-5 pt-0 bg-white">
+            <p class="text-gray-700 leading-relaxed pt-4 border-t border-gray-100">{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  /* Remove default details marker */
+  summary {
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Rotate icon when open */
+  details[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Accessibility: Focus styles */
+  summary:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  summary:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  summary:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  // Track FAQ interactions for analytics (GDPR-compliant, no cookies)
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach((item) => {
+      const summary = item.querySelector('summary');
+
+      if (summary) {
+        summary.addEventListener('click', () => {
+          // Optional: Add analytics tracking here if needed
+          // This is just for accessibility - ensure proper ARIA states
+          const isOpen = item.hasAttribute('open');
+          summary.setAttribute('aria-expanded', (!isOpen).toString());
+        });
+      }
+    });
+  });
+</script>

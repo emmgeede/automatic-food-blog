@@ -9,7 +9,11 @@ import RecipeNutritionNew from "../../components/recipe/RecipeNutritionNew.astro
 import RecipeFactsNew from "../../components/recipe/RecipeFactsNew.astro";
 import RecipeSidebar from "../../components/recipe/RecipeSidebar.astro";
 import RecipeComments from "../../components/recipe/RecipeComments.astro";
+import RecipeFAQ from "../../components/recipe/RecipeFAQ.astro";
 import DynamicRecipeSchema from "../../components/DynamicRecipeSchema.astro";
+import FAQSchema from "../../components/FAQSchema.astro";
+import BreadcrumbSchema from "../../components/BreadcrumbSchema.astro";
+import ArticleSchema from "../../components/ArticleSchema.astro";
 import RelatedPostsCarousel from "../../components/recipe/RelatedPostsCarousel.astro";
 import PopularPostsCarousel from "../../components/recipe/PopularPostsCarousel.astro";
 import { getRelatedPosts } from "../../utils/relatedPosts";
@@ -37,6 +41,7 @@ const {
   timing,
   taxonomy,
   recipeSchema,
+  faqs,
 } = entry.data;
 
 // Prepare canonical URL
@@ -58,6 +63,7 @@ const tocItems = [
   { id: 'directions', label: 'Zubereitung', iconType: 'directions' as const },
   { id: 'nutrition', label: 'Nährwerte', iconType: 'nutrition' as const },
   content?.tips && content.tips.items && content.tips.items.length > 0 && { id: 'tips', label: 'Tipps', iconType: 'tips' as const },
+  faqs && faqs.length > 0 && { id: 'faqs', label: 'FAQ', iconType: 'tips' as const },
 ].filter(Boolean);
 
 // Prepare frontmatter for BaseLayout
@@ -68,6 +74,11 @@ const frontmatter = {
   metaCanonical: canonicalURL,
   featuredImage: ogImageURL,
   ogType: seo?.ogType || "article",
+  pubDate: metadata?.pubDate?.toISOString(),
+  modifiedDate: metadata?.modifiedDate?.toISOString(),
+  author: metadata?.author,
+  section: taxonomy?.categories?.[0],
+  slug: metadata?.slug,
 };
 
 // Get all blog entries for related posts
@@ -75,14 +86,35 @@ const allBlogEntries = await getCollection("blog");
 
 // Calculate related posts based on taxonomy, ingredients, and title
 const relatedPosts = getRelatedPosts(entry, allBlogEntries, 12);
+
+// Build breadcrumb items
+const breadcrumbItems = [
+  { name: 'Startseite', url: Astro.site?.toString() || '/' },
+  { name: 'Rezepte', url: Astro.site ? new URL('/rezepte', Astro.site).toString() : '/rezepte' },
+  { name: metadata?.title || '', url: canonicalURL },
+];
 ---
 
 <BaseLayout frontmatter={frontmatter}>
-  <!-- Schema.org Recipe Markup with dynamic ratings and comments in head slot -->
+  <!-- Schema.org Structured Data (Recipe, Article, FAQ, Breadcrumb) -->
   <Fragment slot="head">
     {recipeSchema && (
       <DynamicRecipeSchema baseSchema={recipeSchema} recipeSlug={metadata?.slug || ""} />
     )}
+    {faqs && faqs.length > 0 && (
+      <FAQSchema faqs={faqs} />
+    )}
+    <BreadcrumbSchema items={breadcrumbItems} />
+    <ArticleSchema
+      title={metadata?.title || ""}
+      description={metadata?.description || ""}
+      author={metadata?.author || "Food Blog"}
+      pubDate={metadata?.pubDate || new Date()}
+      modifiedDate={metadata?.modifiedDate}
+      image={ogImageURL}
+      url={canonicalURL}
+      categories={taxonomy?.categories}
+    />
   </Fragment>
 
   <!-- Recipe Article -->
@@ -212,6 +244,9 @@ const relatedPosts = getRelatedPosts(entry, allBlogEntries, 12);
             recipeSlug={metadata?.slug || ""}
             recipeTitle={metadata?.title || ""}
           />
+
+          <!-- FAQs Section -->
+          <RecipeFAQ faqs={faqs} />
 
           <!-- Related Posts Carousel -->
           <RelatedPostsCarousel relatedPosts={relatedPosts} />
