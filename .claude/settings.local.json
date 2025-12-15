@@ -35,7 +35,8 @@
       "Bash(git pull:*)",
       "Bash(git reset:*)",
       "WebFetch(domain:zimtkeksundapfeltarte.com)",
-      "WebFetch(domain:www.halfbakedharvest.com)"
+      "WebFetch(domain:www.halfbakedharvest.com)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []

@@ -162,6 +162,26 @@ const breadcrumbItems = [
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Main Content (2/3 width) -->
         <div class="lg:col-span-2 space-y-0">
+          <!-- Jump to Recipe Button -->
+          <div class="mb-6 flex justify-center">
+            <a
+              href="#ingredients"
+              class="jump-to-recipe inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+              <span>Direkt zum Rezept</span>
+            </a>
+          </div>
+
           <!-- Rating System -->
           <RecipeRating recipeSlug={metadata?.slug || ""} />
 
@@ -266,6 +286,34 @@ const breadcrumbItems = [
     </article>
   </div>
 </BaseLayout>
+
+<!-- Jump to Recipe Button Smooth Scroll -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const jumpButton = document.querySelector('.jump-to-recipe');
+
+    if (jumpButton) {
+      jumpButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('ingredients');
+
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+
+          // Update URL
+          history.pushState(null, '', '#ingredients');
+
+          // Focus for accessibility
+          target.setAttribute('tabindex', '-1');
+          target.focus();
+        }
+      });
+    }
+  });
+</script>
 
 <!-- Page View Tracking (GDPR-compliant, no cookies) -->
 <script>

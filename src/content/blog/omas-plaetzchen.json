@@ -21,7 +21,7 @@
       "Advent",
       "gebacken"
     ],
-    "ogImage": "./images/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg",
+    "ogImage": "/images/recipes/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg",
     "ogType": "article"
   },
   "taxonomy": {
@@ -117,7 +117,7 @@
   ],
   "images": {
     "featured": {
-      "src": "./images/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg",
+      "src": "/images/recipes/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg",
       "alt": "Verzierte Weihnachtsplätzchen in Stern- und Herzform mit bunten Streuseln und Schokolade auf Holzbrett",
       "filename": "omas-weihnachtsplaetzchen-ausstecher-rezept.jpg",
       "width": 1200,
@@ -127,7 +127,7 @@
     "steps": [
       {
         "stepNumber": 1,
-        "src": "./images/omas-plaetzchen/plaetzchen-teig-ausstechen-schneidebrett.jpg",
+        "src": "/images/recipes/omas-plaetzchen/plaetzchen-teig-ausstechen-schneidebrett.jpg",
         "alt": "Ausgerollter Plätzchenteig mit Ausstechformen in Stern- und Herzform auf bemehltem Holzbrett",
         "filename": "plaetzchen-teig-ausstechen-schneidebrett.jpg",
         "width": 800,
@@ -246,7 +246,7 @@
     "name": "Omas Plätzchen - Einfach & Gelingsicher",
     "description": "Klassische deutsche Weihnachtsplätzchen nach Omas Rezept. Mit Butter, Zucker und Liebe - perfekt zum Ausstechen und Verzieren.",
     "image": [
-      "./images/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg"
+      "/images/recipes/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg"
     ],
     "author": {
       "@type": "Person",
