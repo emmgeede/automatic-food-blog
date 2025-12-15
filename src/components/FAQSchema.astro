@@ -1,0 +1,42 @@
+---
+/**
+ * FAQ Schema Component
+ * Generates FAQPage structured data for Google Search
+ * https://schema.org/FAQPage
+ */
+
+interface FAQ {
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+interface Props {
+  faqs?: FAQ[];
+}
+
+const { faqs = [] } = Astro.props;
+
+// Only generate schema if there are FAQs
+if (!faqs || faqs.length === 0) {
+  // Return nothing if no FAQs
+}
+
+// Build FAQPage Schema
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+{faqs && faqs.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+)}
