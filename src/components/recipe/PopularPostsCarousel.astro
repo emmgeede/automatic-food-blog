@@ -144,12 +144,12 @@ function parseDuration(duration?: string): number | null {
   }
 
   .popular-posts__heading {
-    font-size: 2rem;
+    font-size: 1.875rem;
     font-weight: 700;
-    color: var(--color-gray-900);
-    margin-bottom: 2rem;
-    border-bottom: 3px solid var(--color-accent);
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--color-accent);
   }
 
   /* ==========================================
@@ -363,73 +363,58 @@ function parseDuration(duration?: string): number | null {
     transform: scale(1.05);
   }
 
-  /* View Count Badge */
-  .popular-posts__view-badge {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-
-  .popular-posts__view-icon {
-    width: 0.875rem;
-    height: 0.875rem;
-  }
-
   /* Content */
   .popular-posts__card-content {
     padding: 0.625rem;
   }
 
+  /* Title */
   .popular-posts__card-title {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 600;
-    color: var(--color-gray-900);
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+    color: var(--color-primary);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.25;
+    min-height: 2.5em;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    transition: color 0.3s ease;
   }
 
-  .popular-posts__card:hover .popular-posts__card-title {
+  .popular-posts__card-link:hover .popular-posts__card-title {
     color: var(--color-accent);
   }
 
-  /* Metadata Grid */
+  /* Meta Info Grid */
   .popular-posts__card-meta-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.375rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem;
   }
 
   .popular-posts__card-meta-item {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.2rem;
     font-size: 0.65rem;
+    color: var(--color-gray-600);
+  }
+
+  .popular-posts__card-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    flex-shrink: 0;
+    color: var(--color-accent);
+  }
+
+  .popular-posts__card-meta-text {
     font-weight: 500;
     color: var(--color-gray-700);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .popular-posts__card-meta-icon {
-    width: 0.875rem;
-    height: 0.875rem;
-    color: var(--color-accent);
-    flex-shrink: 0;
+    font-size: 0.65rem;
   }
 
   /* Screen Reader Only */
@@ -490,6 +475,10 @@ function parseDuration(duration?: string): number | null {
       font-size: 0.75rem;
     }
 
+    .popular-posts__card-meta-text {
+      font-size: 0.75rem;
+    }
+
     .popular-posts__skeleton-cards {
       grid-auto-columns: 100%;
     }
@@ -546,7 +535,28 @@ function parseDuration(duration?: string): number | null {
   interface PopularRecipe {
     slug: string;
     views: number;
-    data: any;
+    data: {
+      title: string;
+      image?: string;
+      totalTime?: string;
+      cuisine?: string;
+      servings?: number;
+      difficulty?: string;
+    };
+  }
+
+  // Difficulty mapping
+  const difficultyMap: Record<string, string> = {
+    einfach: "Einfach",
+    mittel: "Mittel",
+    schwer: "Fortgeschritten",
+  };
+
+  // Parse ISO 8601 duration to minutes
+  function parseDuration(duration?: string): number | null {
+    if (!duration) return null;
+    const match = duration.match(/PT(\d+)M/);
+    return match ? parseInt(match[1]) : null;
   }
 
   /**
@@ -611,18 +621,150 @@ function parseDuration(duration?: string): number | null {
       try {
         // Mock data for popular recipes (TODO: Replace with real API call)
         const mockRecipes: PopularRecipe[] = [
-          { slug: 'apfelkuchen-nach-omas-rezept', views: 4521, data: { title: 'Apfelkuchen nach Omas Rezept' } },
-          { slug: 'saftiger-schokoladenkuchen', views: 3892, data: { title: 'Saftiger Schokoladenkuchen' } },
-          { slug: 'klassische-rinderrouladen', views: 3654, data: { title: 'Klassische Rinderrouladen' } },
-          { slug: 'kartoffelsalat-mit-mayonnaise', views: 3201, data: { title: 'Kartoffelsalat mit Mayonnaise' } },
-          { slug: 'kaesespaetzle-schwabisch', views: 2987, data: { title: 'Käsespätzle schwäbisch' } },
-          { slug: 'omas-platzchen', views: 2756, data: { title: 'Omas Plätzchen' } },
-          { slug: 'schweinebraten-mit-knuspriger-kruste', views: 2543, data: { title: 'Schweinebraten mit knuspriger Kruste' } },
-          { slug: 'rote-gruetze-mit-vanillesosse', views: 2398, data: { title: 'Rote Grütze mit Vanillesoße' } },
-          { slug: 'gulaschsuppe-ungarisch', views: 2156, data: { title: 'Gulaschsuppe ungarisch' } },
-          { slug: 'zwiebelkuchen-vom-blech', views: 1987, data: { title: 'Zwiebelkuchen vom Blech' } },
-          { slug: 'kaiserschmarrn-original', views: 1843, data: { title: 'Kaiserschmarrn original' } },
-          { slug: 'sauerbraten-rheinisch', views: 1672, data: { title: 'Sauerbraten rheinisch' } },
+          {
+            slug: 'omas-plaetzchen',
+            views: 4521,
+            data: {
+              title: 'Omas Plätzchen',
+              image: '/src/content/blog/images/omas-plaetzchen/omas-plaetzchen-featured.jpg',
+              totalTime: 'PT45M',
+              cuisine: 'Deutsch',
+              servings: 24,
+              difficulty: 'einfach'
+            }
+          },
+          {
+            slug: 'fake-spaghetti-carbonara',
+            views: 3892,
+            data: {
+              title: 'Spaghetti Carbonara',
+              image: '/src/content/blog/images/fake-spaghetti-carbonara/fake-spaghetti-carbonara-featured.jpg',
+              totalTime: 'PT25M',
+              cuisine: 'Italienisch',
+              servings: 4,
+              difficulty: 'mittel'
+            }
+          },
+          {
+            slug: 'fake-lasagne-bolognese',
+            views: 3654,
+            data: {
+              title: 'Lasagne Bolognese',
+              image: '/src/content/blog/images/fake-lasagne-bolognese/fake-lasagne-bolognese-featured.jpg',
+              totalTime: 'PT90M',
+              cuisine: 'Italienisch',
+              servings: 6,
+              difficulty: 'mittel'
+            }
+          },
+          {
+            slug: 'fake-pizza-margherita',
+            views: 3201,
+            data: {
+              title: 'Pizza Margherita',
+              image: '/src/content/blog/images/fake-pizza-margherita/fake-pizza-margherita-featured.jpg',
+              totalTime: 'PT30M',
+              cuisine: 'Italienisch',
+              servings: 2,
+              difficulty: 'einfach'
+            }
+          },
+          {
+            slug: 'fake-schnitzel',
+            views: 2987,
+            data: {
+              title: 'Wiener Schnitzel',
+              image: '/src/content/blog/images/fake-schnitzel/fake-schnitzel-featured.jpg',
+              totalTime: 'PT30M',
+              cuisine: 'Österreichisch',
+              servings: 4,
+              difficulty: 'mittel'
+            }
+          },
+          {
+            slug: 'fake-tiramisu',
+            views: 2756,
+            data: {
+              title: 'Tiramisu',
+              image: '/src/content/blog/images/fake-tiramisu/fake-tiramisu-featured.jpg',
+              totalTime: 'PT30M',
+              cuisine: 'Italienisch',
+              servings: 8,
+              difficulty: 'einfach'
+            }
+          },
+          {
+            slug: 'fake-paella',
+            views: 2543,
+            data: {
+              title: 'Paella Valenciana',
+              image: '/src/content/blog/images/fake-paella/fake-paella-featured.jpg',
+              totalTime: 'PT60M',
+              cuisine: 'Spanisch',
+              servings: 6,
+              difficulty: 'schwer'
+            }
+          },
+          {
+            slug: 'fake-risotto-milanese',
+            views: 2398,
+            data: {
+              title: 'Risotto Milanese',
+              image: '/src/content/blog/images/fake-risotto-milanese/fake-risotto-milanese-featured.jpg',
+              totalTime: 'PT35M',
+              cuisine: 'Italienisch',
+              servings: 4,
+              difficulty: 'mittel'
+            }
+          },
+          {
+            slug: 'fake-gnocchi',
+            views: 2156,
+            data: {
+              title: 'Gnocchi mit Tomatensauce',
+              image: '/src/content/blog/images/fake-gnocchi/fake-gnocchi-featured.jpg',
+              totalTime: 'PT60M',
+              cuisine: 'Italienisch',
+              servings: 4,
+              difficulty: 'mittel'
+            }
+          },
+          {
+            slug: 'doener-aus-dem-ofen',
+            views: 1987,
+            data: {
+              title: 'Döner aus dem Ofen',
+              image: '/src/content/blog/images/doener-aus-dem-ofen/doener-aus-dem-ofen-featured.jpg',
+              totalTime: 'PT120M',
+              cuisine: 'Türkisch',
+              servings: 4,
+              difficulty: 'mittel'
+            }
+          },
+          {
+            slug: 'fake-pancakes',
+            views: 1843,
+            data: {
+              title: 'Amerikanische Pancakes',
+              image: '/src/content/blog/images/fake-pancakes/fake-pancakes-featured.jpg',
+              totalTime: 'PT20M',
+              cuisine: 'Amerikanisch',
+              servings: 4,
+              difficulty: 'einfach'
+            }
+          },
+          {
+            slug: 'fake-sushi-rolls',
+            views: 1672,
+            data: {
+              title: 'Sushi Rolls',
+              image: '/src/content/blog/images/fake-sushi-rolls/fake-sushi-rolls-featured.jpg',
+              totalTime: 'PT60M',
+              cuisine: 'Japanisch',
+              servings: 4,
+              difficulty: 'schwer'
+            }
+          },
         ];
 
         // Simulate slight delay for realistic loading
@@ -712,30 +854,19 @@ function parseDuration(duration?: string): number | null {
       const recipeTitle = recipe.data?.title || recipe.slug.replace(/-/g, ' ');
       link.setAttribute('aria-label', `Beliebtes Rezept: ${recipeTitle}`);
 
-      // Image wrapper with view count badge
+      // Image wrapper
       const imageWrapper = document.createElement('div');
       imageWrapper.className = 'popular-posts__card-image-wrapper';
 
       const img = document.createElement('img');
-      img.src = `https://picsum.photos/400/225?random=${position}`;
+      img.src = recipe.data?.image || `https://picsum.photos/400/300?random=${position}`;
       img.alt = recipeTitle;
       img.className = 'popular-posts__card-image';
       img.loading = 'lazy';
-
-      const viewBadge = document.createElement('div');
-      viewBadge.className = 'popular-posts__view-badge';
-      viewBadge.innerHTML = `
-        <svg class="popular-posts__view-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-        <span>${this.formatViews(recipe.views)}</span>
-      `;
+      img.width = 400;
+      img.height = 300;
 
       imageWrapper.appendChild(img);
-      imageWrapper.appendChild(viewBadge);
 
       // Content
       const content = document.createElement('div');
@@ -743,9 +874,72 @@ function parseDuration(duration?: string): number | null {
 
       const title = document.createElement('h3');
       title.className = 'popular-posts__card-title';
-      title.textContent = recipe.data?.title || recipe.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      title.textContent = recipeTitle;
 
       content.appendChild(title);
+
+      // Meta Info Grid (like RelatedPostsCarousel)
+      const metaGrid = document.createElement('div');
+      metaGrid.className = 'popular-posts__card-meta-grid';
+
+      // Time
+      const totalMinutes = parseDuration(recipe.data?.totalTime);
+      if (totalMinutes) {
+        const metaItem = document.createElement('div');
+        metaItem.className = 'popular-posts__card-meta-item';
+        metaItem.innerHTML = `
+          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="popular-posts__card-meta-text">${totalMinutes} min</span>
+        `;
+        metaGrid.appendChild(metaItem);
+      }
+
+      // Cuisine
+      if (recipe.data?.cuisine) {
+        const metaItem = document.createElement('div');
+        metaItem.className = 'popular-posts__card-meta-item';
+        metaItem.innerHTML = `
+          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          <span class="popular-posts__card-meta-text">${recipe.data.cuisine}</span>
+        `;
+        metaGrid.appendChild(metaItem);
+      }
+
+      // Servings
+      if (recipe.data?.servings) {
+        const metaItem = document.createElement('div');
+        metaItem.className = 'popular-posts__card-meta-item';
+        metaItem.innerHTML = `
+          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span class="popular-posts__card-meta-text">${recipe.data.servings}</span>
+        `;
+        metaGrid.appendChild(metaItem);
+      }
+
+      // Difficulty
+      if (recipe.data?.difficulty) {
+        const metaItem = document.createElement('div');
+        metaItem.className = 'popular-posts__card-meta-item';
+        metaItem.innerHTML = `
+          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="popular-posts__card-meta-text">${difficultyMap[recipe.data.difficulty] || recipe.data.difficulty}</span>
+        `;
+        metaGrid.appendChild(metaItem);
+      }
+
+      content.appendChild(metaGrid);
 
       link.appendChild(imageWrapper);
       link.appendChild(content);
