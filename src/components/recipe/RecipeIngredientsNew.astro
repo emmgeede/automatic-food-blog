@@ -1,7 +1,9 @@
 ---
 interface Ingredient {
-  name: string;
+  name?: string;
+  ingredient?: string;
   amount?: number | string | null;
+  quantity?: string;
   unit?: string | null;
   note?: string | null;
   group?: string;
@@ -12,52 +14,78 @@ interface Props {
   servings?: number | string;
 }
 
-const { ingredients, servings = 4 } = Astro.props;
+const { ingredients, servings = 6 } = Astro.props;
+
+// Always display for 3 persons
+const DISPLAY_SERVINGS = 3;
+const baseServings = typeof servings === 'string' ? parseInt(servings) : servings;
+const scale = DISPLAY_SERVINGS / baseServings;
+
+// Normalize units (kg → g, L → ml) and round up
+function normalizeUnit(unit: string, amount: number): { amount: number; unit: string } {
+  const lowerUnit = unit.toLowerCase();
+
+  if (lowerUnit === 'kg') {
+    return { amount: Math.ceil(amount * 1000), unit: 'g' };
+  }
+  if (lowerUnit === 'l') {
+    return { amount: Math.ceil(amount * 1000), unit: 'ml' };
+  }
+
+  return { amount: Math.ceil(amount), unit };
+}
+
+// Scale and normalize ingredients
+const scaledIngredients = ingredients.map((ing) => {
+  const ingredientName = ing.name || ing.ingredient || '';
+  const rawAmount = ing.amount || ing.quantity || '';
+  const originalUnit = ing.unit || '';
+
+  // If no amount, return as-is
+  if (!rawAmount || isNaN(parseFloat(rawAmount.toString()))) {
+    return {
+      name: ingredientName,
+      amount: rawAmount,
+      unit: originalUnit,
+      note: ing.note,
+      group: ing.group,
+    };
+  }
+
+  const numericAmount = parseFloat(rawAmount.toString());
+  const scaledAmount = numericAmount * scale;
+
+  // Normalize units and round up
+  const { amount: finalAmount, unit: finalUnit } = normalizeUnit(originalUnit, scaledAmount);
+
+  return {
+    name: ingredientName,
+    amount: finalAmount.toString(),
+    unit: finalUnit,
+    note: ing.note,
+    group: ing.group,
+  };
+});
 
 // Group ingredients by their group field
-const groupedIngredients = ingredients.reduce((acc, ingredient) => {
+const groupedIngredients = scaledIngredients.reduce((acc, ingredient) => {
   const group = ingredient.group || 'Zutaten';
   if (!acc[group]) {
     acc[group] = [];
   }
   acc[group].push(ingredient);
   return acc;
-}, {} as Record<string, Ingredient[]>);
+}, {} as Record<string, any[]>);
 ---
 
 <section class="bg-white rounded-lg p-8 mb-8">
-  <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+  <div class="mb-6 pb-4 border-b border-gray-200">
     <h2 class="text-2xl font-bold text-gray-900">
-      Zutaten <span class="text-gray-500 font-normal" id="servings-display">für {servings} Personen</span>
+      Zutaten <span class="text-gray-500 font-normal">für {DISPLAY_SERVINGS} Personen</span>
     </h2>
-    <div class="flex items-center gap-3">
-      <span class="text-sm text-gray-600 font-medium">Personenanzahl ändern:</span>
-      <div class="flex items-center gap-2">
-        <button
-          type="button"
-          id="decrease-servings"
-          class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
-          aria-label="Portionen verringern"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          id="increase-servings"
-          class="w-8 h-8 flex items-center justify-center rounded border border-gray-300 hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
-          aria-label="Portionen erhöhen"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-          </svg>
-        </button>
-      </div>
-    </div>
   </div>
 
-  {Object.entries(groupedIngredients).map(([group, items], index) => (
+  {Object.entries(groupedIngredients).map(([group, items]) => (
     <div class="mb-6 last:mb-0">
       <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
         {group !== 'Zutaten' && (
@@ -68,7 +96,7 @@ const groupedIngredients = ingredients.reduce((acc, ingredient) => {
             <li class="flex gap-2 text-gray-700">
               <span class="flex-1">
                 {ingredient.amount && (
-                  <strong class="ingredient-amount text-gray-900" data-original={ingredient.amount}>
+                  <strong class="text-gray-900">
                     {ingredient.amount}
                   </strong>
                 )}{' '}
@@ -83,36 +111,3 @@ const groupedIngredients = ingredients.reduce((acc, ingredient) => {
     </div>
   ))}
 </section>
-
-<script>
-  const initialServings = parseInt(document.getElementById('servings-display')?.textContent?.match(/\d+/)?.[0] || '4');
-  let currentServings = initialServings;
-
-  function updateServings(newServings: number) {
-    if (newServings < 1) return;
-
-    currentServings = newServings;
-    const display = document.getElementById('servings-display');
-    if (display) {
-      display.textContent = `für ${currentServings} ${currentServings === 1 ? 'Person' : 'Personen'}`;
-    }
-
-    // Update all ingredient amounts
-    const amounts = document.querySelectorAll('.ingredient-amount');
-    amounts.forEach((amount) => {
-      const original = parseFloat((amount as HTMLElement).dataset.original || '0');
-      if (!isNaN(original)) {
-        const scaled = (original * currentServings) / initialServings;
-        amount.textContent = scaled % 1 === 0 ? scaled.toString() : scaled.toFixed(1);
-      }
-    });
-  }
-
-  document.getElementById('increase-servings')?.addEventListener('click', () => {
-    updateServings(currentServings + 1);
-  });
-
-  document.getElementById('decrease-servings')?.addEventListener('click', () => {
-    updateServings(currentServings - 1);
-  });
-</script>
