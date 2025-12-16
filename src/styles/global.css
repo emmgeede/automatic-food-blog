@@ -76,3 +76,30 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Print Styles - Only show recipe card when printing */
+@media print {
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+
+  /* Hide all page elements */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Show only recipe card and its children */
+  #recipe-card,
+  #recipe-card * {
+    visibility: visible !important;
+  }
+
+  /* Position recipe card at top of page */
+  #recipe-card {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+  }
+}
