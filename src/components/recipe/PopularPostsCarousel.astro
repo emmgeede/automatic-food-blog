@@ -609,31 +609,33 @@ function parseDuration(duration?: string): number | null {
       this.container.dataset.loadState = "loading";
 
       try {
-        // Fetch popular recipes from API
-        const response = await fetch("/api/popular-recipes?limit=12");
+        // Mock data for popular recipes (TODO: Replace with real API call)
+        const mockRecipes: PopularRecipe[] = [
+          { slug: 'apfelkuchen-nach-omas-rezept', views: 4521, data: { title: 'Apfelkuchen nach Omas Rezept' } },
+          { slug: 'saftiger-schokoladenkuchen', views: 3892, data: { title: 'Saftiger Schokoladenkuchen' } },
+          { slug: 'klassische-rinderrouladen', views: 3654, data: { title: 'Klassische Rinderrouladen' } },
+          { slug: 'kartoffelsalat-mit-mayonnaise', views: 3201, data: { title: 'Kartoffelsalat mit Mayonnaise' } },
+          { slug: 'kaesespaetzle-schwabisch', views: 2987, data: { title: 'Käsespätzle schwäbisch' } },
+          { slug: 'omas-platzchen', views: 2756, data: { title: 'Omas Plätzchen' } },
+          { slug: 'schweinebraten-mit-knuspriger-kruste', views: 2543, data: { title: 'Schweinebraten mit knuspriger Kruste' } },
+          { slug: 'rote-gruetze-mit-vanillesosse', views: 2398, data: { title: 'Rote Grütze mit Vanillesoße' } },
+          { slug: 'gulaschsuppe-ungarisch', views: 2156, data: { title: 'Gulaschsuppe ungarisch' } },
+          { slug: 'zwiebelkuchen-vom-blech', views: 1987, data: { title: 'Zwiebelkuchen vom Blech' } },
+          { slug: 'kaiserschmarrn-original', views: 1843, data: { title: 'Kaiserschmarrn original' } },
+          { slug: 'sauerbraten-rheinisch', views: 1672, data: { title: 'Sauerbraten rheinisch' } },
+        ];
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        // Simulate slight delay for realistic loading
+        await new Promise(resolve => setTimeout(resolve, 300));
 
-        const data = await response.json();
-
-        if (!data.success || !data.recipes || data.recipes.length === 0) {
-          this.showEmptyState();
-          return;
-        }
-
-        // Fetch full recipe data from collection
-        const popularRecipes = await this.fetchRecipeData(data.recipes);
-
-        if (popularRecipes.length === 0) {
+        if (mockRecipes.length === 0) {
           this.showEmptyState();
           return;
         }
 
         // Render carousel
-        this.renderCarousel(popularRecipes);
-        this.updateSchema(popularRecipes);
+        this.renderCarousel(mockRecipes);
+        this.updateSchema(mockRecipes);
         this.showContent();
 
         this.container.dataset.loadState = "loaded";
@@ -707,7 +709,8 @@ function parseDuration(duration?: string): number | null {
       const link = document.createElement('a');
       link.href = `/rezepte/${recipe.slug}`;
       link.className = 'popular-posts__card-link';
-      link.setAttribute('aria-label', `Beliebtes Rezept: ${recipe.slug}`);
+      const recipeTitle = recipe.data?.title || recipe.slug.replace(/-/g, ' ');
+      link.setAttribute('aria-label', `Beliebtes Rezept: ${recipeTitle}`);
 
       // Image wrapper with view count badge
       const imageWrapper = document.createElement('div');
@@ -715,7 +718,7 @@ function parseDuration(duration?: string): number | null {
 
       const img = document.createElement('img');
       img.src = `https://picsum.photos/400/225?random=${position}`;
-      img.alt = recipe.slug;
+      img.alt = recipeTitle;
       img.className = 'popular-posts__card-image';
       img.loading = 'lazy';
 
@@ -740,7 +743,7 @@ function parseDuration(duration?: string): number | null {
 
       const title = document.createElement('h3');
       title.className = 'popular-posts__card-title';
-      title.textContent = recipe.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      title.textContent = recipe.data?.title || recipe.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
       content.appendChild(title);
 
