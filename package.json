@@ -18,6 +18,7 @@
     "@tailwindcss/vite": "^4.1.16",
     "astro": "^5.15.3",
     "astro-icon": "^1.1.5",
+    "astro-matomo": "^1.9.0",
     "tailwindcss": "^4.1.16"
   },
   "devDependencies": {

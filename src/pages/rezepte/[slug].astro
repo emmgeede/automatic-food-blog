@@ -287,14 +287,20 @@ const breadcrumbItems = [
   </div>
 </BaseLayout>
 
-<!-- Jump to Recipe Button Smooth Scroll -->
+<!-- Jump to Recipe Button Smooth Scroll + Tracking -->
 <script>
+  import { trackButtonClick } from "../../utils/matomoTracking";
+
   document.addEventListener('DOMContentLoaded', () => {
     const jumpButton = document.querySelector('.jump-to-recipe');
 
     if (jumpButton) {
       jumpButton.addEventListener('click', (e) => {
         e.preventDefault();
+
+        // Track button click
+        trackButtonClick('Direkt zum Rezept', 'Recipe Page');
+
         const target = document.getElementById('ingredients');
 
         if (target) {
@@ -330,4 +336,24 @@ const breadcrumbItems = [
       threshold: 0,
     });
   }
+</script>
+
+<!-- Matomo Event Tracking: Scroll Depth & Time on Page -->
+<script>
+  import { initScrollTracking, initTimeTracking, setCustomDimension } from "../../utils/matomoTracking";
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize scroll tracking (25%, 50%, 75%, 100%)
+    initScrollTracking([25, 50, 75, 100]);
+
+    // Initialize time tracking (30s, 2min, 5min)
+    initTimeTracking([30, 120, 300]);
+
+    // Set custom dimensions for recipe (if available from page)
+    // Note: These would need to be added to Matomo dashboard first
+    // Custom Dimension 1: Recipe Category
+    // Custom Dimension 2: Difficulty
+    // Custom Dimension 3: Prep Time Range
+    // Custom Dimension 4: Cuisine
+  });
 </script>

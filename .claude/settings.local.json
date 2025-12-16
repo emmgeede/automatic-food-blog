@@ -36,7 +36,14 @@
       "Bash(git reset:*)",
       "WebFetch(domain:zimtkeksundapfeltarte.com)",
       "WebFetch(domain:www.halfbakedharvest.com)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "WebFetch(domain:cookieconsent.orestbida.com)",
+      "WebFetch(domain:www.evolvingdev.com)",
+      "Bash(for key in ~/.ssh/hetzner ~/.ssh/hetzner_emmgee_docu ~/.ssh/hetzner_emgge_docu_password)",
+      "Bash(do echo \"=== $key ===\")",
+      "Bash(ssh-keygen:*)",
+      "Bash(done)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []

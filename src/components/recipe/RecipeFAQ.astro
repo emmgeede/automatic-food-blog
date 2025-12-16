@@ -72,18 +72,26 @@ const { faqs = [] } = Astro.props;
 </style>
 
 <script>
+  import { trackRecipeInteraction } from "../../utils/matomoTracking";
+
   // Track FAQ interactions for analytics (GDPR-compliant, no cookies)
   document.addEventListener('DOMContentLoaded', () => {
     const faqItems = document.querySelectorAll('.faq-item');
 
-    faqItems.forEach((item) => {
+    faqItems.forEach((item, index) => {
       const summary = item.querySelector('summary');
+      const question = summary?.querySelector('h3')?.textContent?.trim() || `FAQ ${index + 1}`;
 
       if (summary) {
         summary.addEventListener('click', () => {
-          // Optional: Add analytics tracking here if needed
-          // This is just for accessibility - ensure proper ARIA states
           const isOpen = item.hasAttribute('open');
+
+          // Track FAQ interaction
+          if (!isOpen) {
+            trackRecipeInteraction('FAQ Opened', question);
+          }
+
+          // Ensure proper ARIA states for accessibility
           summary.setAttribute('aria-expanded', (!isOpen).toString());
         });
       }
