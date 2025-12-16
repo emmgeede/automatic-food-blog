@@ -36,6 +36,7 @@ interface Props {
   timing?: Timing;
   nutrition?: Nutrition;
   recipeSlug: string;
+  featuredImage?: string;
 }
 
 // Helper function to format ISO 8601 duration
@@ -68,7 +69,7 @@ function normalizeUnit(unit: string, amount: number): { amount: number; unit: st
   return { amount: Math.ceil(amount), unit };
 }
 
-export default function RecipeCardIsland({ title, description, ingredients, steps, timing, nutrition, recipeSlug }: Props) {
+export default function RecipeCardIsland({ title, description, ingredients, steps, timing, nutrition, recipeSlug, featuredImage }: Props) {
   const baseServings = nutrition?.servings || 1;
   const currentServings = useSignal(baseServings);
 
@@ -124,6 +125,7 @@ export default function RecipeCardIsland({ title, description, ingredients, step
       @page { margin: 1.5cm; size: A4; }
       body { font-family: Ubuntu, Arial, sans-serif; margin: 0; padding: 20px; }
       .recipe-card { max-width: 100%; }
+      .featured-image { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
       h2 { font-size: 24px; margin-bottom: 10px; }
       h3 { font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
       .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
@@ -142,6 +144,12 @@ export default function RecipeCardIsland({ title, description, ingredients, step
     `);
     printWindow.document.write('</style></head><body>');
     printWindow.document.write('<div class="recipe-card">');
+
+    // Add featured image if available
+    if (featuredImage) {
+      printWindow.document.write('<img src="' + featuredImage + '" alt="' + title + '" class="featured-image" />');
+    }
+
     printWindow.document.write('<h2>' + title + '</h2>');
     if (description) {
       printWindow.document.write('<p>' + description + '</p>');
