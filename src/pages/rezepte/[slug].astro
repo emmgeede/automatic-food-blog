@@ -8,6 +8,7 @@ import RecipeDirectionsNew from "../../components/recipe/RecipeDirectionsNew.ast
 import RecipeNutritionNew from "../../components/recipe/RecipeNutritionNew.astro";
 import RecipeFactsNew from "../../components/recipe/RecipeFactsNew.astro";
 import RecipeSidebar from "../../components/recipe/RecipeSidebar.astro";
+import RecipeCard from "../../components/recipe/RecipeCard.astro";
 import RecipeComments from "../../components/recipe/RecipeComments.astro";
 import RecipeFAQ from "../../components/recipe/RecipeFAQ.astro";
 import DynamicRecipeSchema from "../../components/DynamicRecipeSchema.astro";
@@ -217,6 +218,17 @@ const breadcrumbItems = [
           <div id="nutrition" class="scroll-mt-24">
             <RecipeNutritionNew nutrition={nutrition} />
           </div>
+
+          <!-- Compact Recipe Card (Print & Keep Awake) -->
+          <RecipeCard
+            title={metadata?.title || ""}
+            description={metadata?.description}
+            ingredients={ingredients || []}
+            steps={content?.steps || []}
+            timing={timing}
+            nutrition={nutrition}
+            recipeSlug={metadata?.slug || ""}
+          />
 
           <!-- Tips (optional) -->
           {content?.tips && content.tips.items && content.tips.items.length > 0 && (
