@@ -90,10 +90,13 @@ export default async (req: Request, context: Context) => {
     // Save updated ratings
     await ratingsStore.set(`${recipeSlug}`, JSON.stringify(ratings));
 
+    // Calculate aggregated data
+    const aggregatedData = calculateAggregatedRating(ratings);
+
     return new Response(
       JSON.stringify({
         message: "Bewertung erfolgreich gespeichert",
-        rating: newRating,
+        ...aggregatedData,
       }),
       {
         status: 200,
@@ -122,4 +125,31 @@ async function hashString(str: string): Promise<string> {
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+// Calculate aggregated rating data
+function calculateAggregatedRating(ratings: StoredRating[]) {
+  const totalRatings = ratings.length;
+
+  if (totalRatings === 0) {
+    return {
+      averageRating: 0,
+      totalRatings: 0,
+      ratings: { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0 },
+    };
+  }
+
+  const sum = ratings.reduce((acc, r) => acc + r.rating, 0);
+  const averageRating = sum / totalRatings;
+
+  const ratingCounts = { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0 };
+  ratings.forEach((r) => {
+    ratingCounts[r.rating.toString() as keyof typeof ratingCounts]++;
+  });
+
+  return {
+    averageRating,
+    totalRatings,
+    ratings: ratingCounts,
+  };
 }

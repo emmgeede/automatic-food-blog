@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import RecipeHero from "../../components/recipe/RecipeHero.astro";
-import RecipeRating from "../../components/recipe/RecipeRating.astro";
+import RecipeRatingIsland from "../../components/recipe/RecipeRatingIsland.tsx";
 import RecipeIngredientsNew from "../../components/recipe/RecipeIngredientsNew.astro";
 import RecipeDirectionsNew from "../../components/recipe/RecipeDirectionsNew.astro";
 import RecipeNutritionNew from "../../components/recipe/RecipeNutritionNew.astro";
@@ -181,9 +181,6 @@ const breadcrumbItems = [
               <span>Direkt zum Rezept</span>
             </a>
           </div>
-
-          <!-- Rating System -->
-          <RecipeRating recipeSlug={metadata?.slug || ""} />
 
           <!-- Introduction (optional) -->
           {content?.introduction?.text && (

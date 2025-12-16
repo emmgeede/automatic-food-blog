@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import profileImage from "../../../public/images/about/ingrid-profile.jpg";
+import RecipeRatingIsland from "./RecipeRatingIsland.tsx";
 
 interface Props {
   recipeSlug: string;
@@ -25,7 +26,12 @@ const isConfigured = !!turnstileSiteKey;
 ---
 
 <section class="bg-white rounded-lg p-8 mb-8" id="comments-section">
-  <h2 class="text-2xl font-bold text-gray-900 mb-6">Kommentare</h2>
+  <h2 class="text-2xl font-bold text-gray-900 mb-6">Bewertungen & Kommentare</h2>
+
+  <!-- Rating Widget (Dynamic Island) -->
+  <div class="mb-8">
+    <RecipeRatingIsland recipeSlug={recipeSlug} client:load />
+  </div>
 
   <!-- Author Profile Info -->
   <div class="flex items-center gap-4 p-4 mb-6 bg-accent/5 rounded-lg border-l-4 border-accent">

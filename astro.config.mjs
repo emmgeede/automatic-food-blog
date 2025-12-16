@@ -9,6 +9,8 @@ import netlify from '@astrojs/netlify';
 
 import matomo from 'astro-matomo';
 
+import preact from '@astrojs/preact';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -17,6 +19,7 @@ export default defineConfig({
 
   integrations: [
     icon(),
+    preact(),
     matomo({
       enabled: true,
       host: 'https://analytics.die-mama-kocht.de',
