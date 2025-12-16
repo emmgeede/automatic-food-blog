@@ -110,7 +110,99 @@ export default function RecipeCardIsland({ title, description, ingredients, step
     if (typeof window !== 'undefined' && window._paq) {
       window._paq.push(['trackEvent', 'Recipe', 'Print', 'Recipe Card']);
     }
-    window.print();
+
+    // Create print-specific content
+    const recipeCard = document.getElementById('recipe-card');
+    if (!recipeCard) return;
+
+    const printWindow = window.open('', '', 'height=600,width=800');
+    if (!printWindow) return;
+
+    printWindow.document.write('<html><head><title>Rezept: ' + title + '</title>');
+    printWindow.document.write('<style>');
+    printWindow.document.write(`
+      @page { margin: 1.5cm; size: A4; }
+      body { font-family: Ubuntu, Arial, sans-serif; margin: 0; padding: 20px; }
+      .recipe-card { max-width: 100%; }
+      h2 { font-size: 24px; margin-bottom: 10px; }
+      h3 { font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
+      .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+      .meta-item { text-align: center; padding: 10px; border: 1px solid #ccc; }
+      .meta-label { font-size: 11px; color: #666; }
+      .meta-value { font-size: 13px; font-weight: bold; }
+      ul { list-style: none; padding: 0; }
+      ul li { margin: 8px 0; }
+      ol { padding-left: 0; }
+      ol li { margin: 15px 0; display: flex; gap: 10px; }
+      .step-number { flex-shrink: 0; width: 24px; height: 24px; background: #008b8b; color: white;
+                      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                      font-weight: bold; font-size: 13px; }
+      .step-content { flex: 1; }
+      .step-title { font-weight: 600; margin-bottom: 5px; }
+    `);
+    printWindow.document.write('</style></head><body>');
+    printWindow.document.write('<div class="recipe-card">');
+    printWindow.document.write('<h2>' + title + '</h2>');
+    if (description) {
+      printWindow.document.write('<p>' + description + '</p>');
+    }
+
+    // Meta info
+    printWindow.document.write('<div class="meta-grid">');
+    if (timing?.prepTime) {
+      printWindow.document.write('<div class="meta-item"><div class="meta-label">Vorbereitung</div><div class="meta-value">' + formatDuration(timing.prepTime) + '</div></div>');
+    }
+    if (timing?.cookTime) {
+      printWindow.document.write('<div class="meta-item"><div class="meta-label">Kochzeit</div><div class="meta-value">' + formatDuration(timing.cookTime) + '</div></div>');
+    }
+    if (timing?.totalTime) {
+      printWindow.document.write('<div class="meta-item"><div class="meta-label">Gesamt</div><div class="meta-value">' + formatDuration(timing.totalTime) + '</div></div>');
+    }
+    if (nutrition?.servings) {
+      printWindow.document.write('<div class="meta-item"><div class="meta-label">Portionen</div><div class="meta-value">' + currentServings.value + '</div></div>');
+    }
+    printWindow.document.write('</div>');
+
+    // Ingredients
+    printWindow.document.write('<h3>Zutaten</h3>');
+    printWindow.document.write('<ul>');
+    scaledIngredients.value.forEach(ing => {
+      let line = '• ';
+      if (ing.amount) line += ing.amount + ' ';
+      if (ing.unit) line += ing.unit + ' ';
+      line += ing.name;
+      if (ing.note) line += ' (' + ing.note + ')';
+      printWindow.document.write('<li>' + line + '</li>');
+    });
+    printWindow.document.write('</ul>');
+
+    // Steps
+    printWindow.document.write('<h3>Zubereitung</h3>');
+    printWindow.document.write('<ol>');
+    steps.forEach(step => {
+      printWindow.document.write('<li>');
+      printWindow.document.write('<span class="step-number">' + step.number + '</span>');
+      printWindow.document.write('<div class="step-content">');
+      if (step.title) {
+        printWindow.document.write('<div class="step-title">' + step.title + '</div>');
+      }
+      printWindow.document.write('<div>' + (step.shortText || step.text) + '</div>');
+      printWindow.document.write('</div>');
+      printWindow.document.write('</li>');
+    });
+    printWindow.document.write('</ol>');
+
+    printWindow.document.write('<hr style="margin: 20px 0; border: none; border-top: 1px solid #ccc;">');
+    printWindow.document.write('<p style="text-align: center; font-size: 12px; color: #666;">Rezept von Die Mama kocht</p>');
+    printWindow.document.write('</div></body></html>');
+
+    printWindow.document.close();
+    printWindow.focus();
+
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.close();
+    }, 250);
   };
 
   let wakeLock: WakeLockSentinel | null = null;
