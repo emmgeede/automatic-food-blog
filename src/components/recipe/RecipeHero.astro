@@ -5,6 +5,7 @@ import RecipeAuthor from "./RecipeAuthor.astro";
 import TableOfContents from "./TableOfContents.astro";
 import SocialMediaButtons from "./SocialMediaButtons.astro";
 import RatingDisplay from "./RatingDisplay.tsx";
+import { getCategoryUrl } from "../../utils/categoryUtils";
 
 interface TocItem {
   id: string;
@@ -74,11 +75,12 @@ const mainCategory = category || categories[0] || "Rezept";
       <div>
         <!-- Category Badge -->
         <div class="mb-4">
-          <span
-            class="text-accent inline-block px-3 py-1 text-sm font-semibold tracking-wide uppercase"
+          <a
+            href={getCategoryUrl(mainCategory)}
+            class="text-accent hover:text-accent-dark inline-block px-3 py-1 text-sm font-semibold tracking-wide uppercase transition-colors"
           >
             {mainCategory}
-          </span>
+          </a>
         </div>
 
         <!-- Title -->

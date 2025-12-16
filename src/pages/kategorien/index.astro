@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCategoryUrl } from "../../utils/categoryUtils";
+
+// Get all blog entries
+const allBlogEntries = await getCollection("blog");
+
+// Collect all unique categories with recipe counts
+const categoriesMap = new Map<string, number>();
+
+allBlogEntries.forEach((entry) => {
+  const categories = entry.data.taxonomy?.categories || [];
+  categories.forEach((cat) => {
+    categoriesMap.set(cat, (categoriesMap.get(cat) || 0) + 1);
+  });
+});
+
+// Convert to array and sort by recipe count (descending)
+const categories = Array.from(categoriesMap.entries())
+  .map(([name, count]) => ({ name, count }))
+  .sort((a, b) => b.count - a.count);
+
+// Prepare canonical URL
+const canonicalURL = Astro.site
+  ? new URL('/kategorien', Astro.site).toString()
+  : '/kategorien';
+
+// Frontmatter for BaseLayout
+const frontmatter = {
+  title: 'Alle Rezept-Kategorien',
+  metaDescription: `Entdecke alle ${categories.length} Rezept-Kategorien. Finde dein Lieblingsrezept nach Kategorie sortiert - von Hauptgerichten bis zu Desserts.`,
+  metaKeywords: 'Kategorien, Rezepte, kochen, backen',
+  metaCanonical: canonicalURL,
+  featuredImage: '/og-default.jpg',
+  ogType: 'website',
+};
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <header class="mb-8">
+      <nav class="text-sm mb-4">
+        <ol class="flex items-center space-x-2 text-gray-600">
+          <li><a href="/" class="hover:text-accent">Startseite</a></li>
+          <li><span class="mx-2">/</span></li>
+          <li class="text-gray-900 font-semibold">Kategorien</li>
+        </ol>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        Alle Rezept-Kategorien
+      </h1>
+
+      <p class="text-lg text-gray-600">
+        Durchstöbere {categories.length} Kategorien mit insgesamt {allBlogEntries.length} Rezepten
+      </p>
+    </header>
+
+    <!-- Categories Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {categories.map((category) => (
+        <a
+          href={getCategoryUrl(category.name)}
+          class="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+        >
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-xl font-bold text-gray-900 group-hover:text-accent transition-colors">
+              {category.name}
+            </h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-gray-400 group-hover:text-accent transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+          <p class="text-gray-600">
+            {category.count} {category.count === 1 ? 'Rezept' : 'Rezepte'}
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

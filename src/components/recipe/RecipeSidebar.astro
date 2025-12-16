@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { getCategoryUrl } from "../../utils/categoryUtils";
 
 interface Props {
   currentSlug: string;
@@ -97,7 +98,7 @@ const allCategories = Array.from(
         return (
           <li>
             <a
-              href={`/categories/${category.toLowerCase().replace(/\s+/g, '-')}`}
+              href={getCategoryUrl(category)}
               class="flex items-center justify-between text-gray-700 hover:text-accent transition-colors group"
             >
               <span class="flex items-center gap-2">
@@ -113,7 +114,7 @@ const allCategories = Array.from(
       })}
       <li>
         <a
-          href="/categories"
+          href="/kategorien"
           class="text-accent hover:text-secondary font-semibold text-sm flex items-center gap-1 mt-2"
         >
           Alle Kategorien

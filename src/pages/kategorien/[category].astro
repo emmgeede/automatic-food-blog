@@ -1,0 +1,201 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { categoryToSlug, slugToCategory } from "../../utils/categoryUtils";
+
+type BlogEntry = CollectionEntry<"blog">;
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog");
+
+  // Collect all unique categories
+  const categoriesSet = new Set<string>();
+  blogEntries.forEach((entry) => {
+    const categories = entry.data.taxonomy?.categories || [];
+    categories.forEach((cat) => categoriesSet.add(cat));
+  });
+
+  // Create paths for each category
+  return Array.from(categoriesSet).map((category) => {
+    const categorySlug = categoryToSlug(category);
+
+    // Filter recipes for this category
+    const recipesInCategory = blogEntries.filter((entry) => {
+      const categories = entry.data.taxonomy?.categories || [];
+      return categories.includes(category);
+    });
+
+    // Sort by publication date (newest first)
+    recipesInCategory.sort((a, b) => {
+      const dateA = a.data.metadata?.pubDate || new Date(0);
+      const dateB = b.data.metadata?.pubDate || new Date(0);
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    return {
+      params: { category: categorySlug },
+      props: {
+        category,
+        categorySlug,
+        recipes: recipesInCategory
+      },
+    };
+  });
+}
+
+const { category, categorySlug, recipes } = Astro.props;
+
+// Prepare canonical URL
+const canonicalURL = Astro.site
+  ? new URL(`/kategorien/${categorySlug}`, Astro.site).toString()
+  : `/kategorien/${categorySlug}`;
+
+// Frontmatter for BaseLayout
+const frontmatter = {
+  title: `${category} Rezepte - Alle ${recipes.length} Rezepte`,
+  metaDescription: `Entdecke ${recipes.length} leckere ${category} Rezepte. Von klassisch bis modern - hier findest du die besten ${category} Rezepte mit detaillierten Anleitungen.`,
+  metaKeywords: `${category}, Rezepte, kochen, backen`,
+  metaCanonical: canonicalURL,
+  featuredImage: recipes[0]?.data.images?.featured?.src || '/og-default.jpg',
+  ogType: 'website',
+  section: category,
+};
+
+// Helper to parse ISO 8601 duration
+function parseDuration(duration?: string): number | null {
+  if (!duration) return null;
+  const match = duration.match(/PT(\d+)M/);
+  return match ? parseInt(match[1]) : null;
+}
+
+// Difficulty mapping
+const difficultyMap: Record<string, string> = {
+  einfach: "Einfach",
+  mittel: "Mittel",
+  schwer: "Fortgeschritten",
+};
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Category Header -->
+    <header class="mb-8">
+      <nav class="text-sm mb-4">
+        <ol class="flex items-center space-x-2 text-gray-600">
+          <li><a href="/" class="hover:text-accent">Startseite</a></li>
+          <li><span class="mx-2">/</span></li>
+          <li><a href="/kategorien" class="hover:text-accent">Kategorien</a></li>
+          <li><span class="mx-2">/</span></li>
+          <li class="text-gray-900 font-semibold">{category}</li>
+        </ol>
+      </nav>
+
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        {category} Rezepte
+      </h1>
+
+      <p class="text-lg text-gray-600">
+        {recipes.length} {recipes.length === 1 ? 'Rezept' : 'Rezepte'} in dieser Kategorie
+      </p>
+    </header>
+
+    <!-- Recipe Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {recipes.map((recipe) => {
+        const featuredImage = recipe.data.images?.featured?.src || 'https://picsum.photos/400/300';
+        const altText = recipe.data.images?.featured?.alt || recipe.data.metadata?.title;
+        const totalMinutes = parseDuration(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime);
+        const difficulty = recipe.data.taxonomy?.difficulty;
+
+        return (
+          <article class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <a href={`/rezepte/${recipe.data.metadata?.slug}`}>
+              <div class="relative aspect-video overflow-hidden">
+                <img
+                  src={featuredImage}
+                  alt={altText}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                />
+              </div>
+
+              <div class="p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-accent transition-colors">
+                  {recipe.data.metadata?.title}
+                </h2>
+
+                {recipe.data.metadata?.description && (
+                  <p class="text-gray-600 mb-4 line-clamp-2 text-sm">
+                    {recipe.data.metadata.description}
+                  </p>
+                )}
+
+                <div class="flex items-center gap-4 text-sm text-gray-600">
+                  {totalMinutes && (
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 text-accent"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span>{totalMinutes} min</span>
+                    </div>
+                  )}
+
+                  {difficulty && (
+                    <div class="flex items-center gap-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 text-accent"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      <span>{difficultyMap[difficulty] || difficulty}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </a>
+          </article>
+        );
+      })}
+    </div>
+
+    {recipes.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-xl text-gray-600">
+          Noch keine Rezepte in dieser Kategorie verfügbar.
+        </p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
