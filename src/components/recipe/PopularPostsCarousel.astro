@@ -1,14 +1,130 @@
 ---
 /**
  * Popular Posts Carousel Component
- *
- * Features:
- * - Lazy loading with Intersection Observer
- * - Fetches data from API when visible
- * - Schema.org ItemList with interaction statistics
- * - Fully accessible with ARIA labels and keyboard navigation
- * - Responsive with Container Queries
+ * Based on RelatedPostsCarousel template
+ * Shows most popular recipes (TODO: Replace with real view data from API)
  */
+
+// Mock data for popular recipes (TODO: Replace with real API call)
+const mockPopularRecipes = [
+  {
+    slug: 'omas-plaetzchen',
+    title: 'Omas Plätzchen',
+    image: '/src/content/blog/images/omas-plaetzchen/omas-plaetzchen-featured.jpg',
+    totalTime: 'PT45M',
+    cuisine: 'Deutsch',
+    servings: 24,
+    difficulty: 'einfach'
+  },
+  {
+    slug: 'fake-spaghetti-carbonara',
+    title: 'Spaghetti Carbonara',
+    image: '/src/content/blog/images/fake-spaghetti-carbonara/fake-spaghetti-carbonara-featured.jpg',
+    totalTime: 'PT25M',
+    cuisine: 'Italienisch',
+    servings: 4,
+    difficulty: 'mittel'
+  },
+  {
+    slug: 'fake-lasagne-bolognese',
+    title: 'Lasagne Bolognese',
+    image: '/src/content/blog/images/fake-lasagne-bolognese/fake-lasagne-bolognese-featured.jpg',
+    totalTime: 'PT90M',
+    cuisine: 'Italienisch',
+    servings: 6,
+    difficulty: 'mittel'
+  },
+  {
+    slug: 'fake-pizza-margherita',
+    title: 'Pizza Margherita',
+    image: '/src/content/blog/images/fake-pizza-margherita/fake-pizza-margherita-featured.jpg',
+    totalTime: 'PT30M',
+    cuisine: 'Italienisch',
+    servings: 2,
+    difficulty: 'einfach'
+  },
+  {
+    slug: 'fake-schnitzel',
+    title: 'Wiener Schnitzel',
+    image: '/src/content/blog/images/fake-schnitzel/fake-schnitzel-featured.jpg',
+    totalTime: 'PT30M',
+    cuisine: 'Österreichisch',
+    servings: 4,
+    difficulty: 'mittel'
+  },
+  {
+    slug: 'fake-tiramisu',
+    title: 'Tiramisu',
+    image: '/src/content/blog/images/fake-tiramisu/fake-tiramisu-featured.jpg',
+    totalTime: 'PT30M',
+    cuisine: 'Italienisch',
+    servings: 8,
+    difficulty: 'einfach'
+  },
+  {
+    slug: 'fake-paella',
+    title: 'Paella Valenciana',
+    image: '/src/content/blog/images/fake-paella/fake-paella-featured.jpg',
+    totalTime: 'PT60M',
+    cuisine: 'Spanisch',
+    servings: 6,
+    difficulty: 'schwer'
+  },
+  {
+    slug: 'fake-risotto-milanese',
+    title: 'Risotto Milanese',
+    image: '/src/content/blog/images/fake-risotto-milanese/fake-risotto-milanese-featured.jpg',
+    totalTime: 'PT35M',
+    cuisine: 'Italienisch',
+    servings: 4,
+    difficulty: 'mittel'
+  },
+  {
+    slug: 'fake-gnocchi',
+    title: 'Gnocchi mit Tomatensauce',
+    image: '/src/content/blog/images/fake-gnocchi/fake-gnocchi-featured.jpg',
+    totalTime: 'PT60M',
+    cuisine: 'Italienisch',
+    servings: 4,
+    difficulty: 'mittel'
+  },
+  {
+    slug: 'doener-aus-dem-ofen',
+    title: 'Döner aus dem Ofen',
+    image: '/src/content/blog/images/doener-aus-dem-ofen/doener-aus-dem-ofen-featured.jpg',
+    totalTime: 'PT120M',
+    cuisine: 'Türkisch',
+    servings: 4,
+    difficulty: 'mittel'
+  },
+  {
+    slug: 'fake-pancakes',
+    title: 'Amerikanische Pancakes',
+    image: '/src/content/blog/images/fake-pancakes/fake-pancakes-featured.jpg',
+    totalTime: 'PT20M',
+    cuisine: 'Amerikanisch',
+    servings: 4,
+    difficulty: 'einfach'
+  },
+  {
+    slug: 'fake-sushi-rolls',
+    title: 'Sushi Rolls',
+    image: '/src/content/blog/images/fake-sushi-rolls/fake-sushi-rolls-featured.jpg',
+    totalTime: 'PT60M',
+    cuisine: 'Japanisch',
+    servings: 4,
+    difficulty: 'schwer'
+  },
+];
+
+const posts = mockPopularRecipes.slice(0, 12);
+
+// Convert ISO 8601 duration to minutes
+function parseDuration(duration?: string): number | null {
+  if (!duration) return null;
+  const match = duration.match(/PT(\d+)M/);
+  return match ? parseInt(match[1]) : null;
+}
 
 // Map difficulty to display text
 const difficultyMap: Record<string, string> = {
@@ -17,46 +133,29 @@ const difficultyMap: Record<string, string> = {
   schwer: "Fortgeschritten",
 };
 
-// Convert ISO 8601 duration to minutes
-function parseDuration(duration?: string): number | null {
-  if (!duration) return null;
-  const match = duration.match(/PT(\d+)M/);
-  return match ? parseInt(match[1]) : null;
-}
+// Schema.org ItemList für SEO
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Meist besuchte Rezepte",
+  "itemListElement": posts.map((post, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "url": `https://die-mama-kocht.de/rezepte/${post.slug}`,
+    "name": post.title,
+  })),
+};
 ---
 
-<aside
-  class="popular-posts"
-  aria-labelledby="popular-posts-heading"
-  data-popular-carousel
-  data-load-state="pending"
->
-  <h2 id="popular-posts-heading" class="popular-posts__heading">
-    Meist besuchte Rezepte
-  </h2>
+{posts.length > 0 && (
+  <section
+    class="popular-posts"
+    aria-labelledby="popular-posts-heading"
+  >
+    <h2 id="popular-posts-heading" class="popular-posts__heading">
+      Meist besuchte Rezepte
+    </h2>
 
-  <!-- Loading State (Skeleton UI) -->
-  <div class="popular-posts__loading" data-loading>
-    <div class="popular-posts__skeleton-cards">
-      {Array.from({ length: 3 }).map(() => (
-        <div class="popular-posts__skeleton-card">
-          <div class="popular-posts__skeleton-image"></div>
-          <div class="popular-posts__skeleton-content">
-            <div class="popular-posts__skeleton-title"></div>
-            <div class="popular-posts__skeleton-meta"></div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-
-  <!-- Error State -->
-  <div class="popular-posts__error" data-error style="display: none;">
-    <p>Beliebte Rezepte konnten nicht geladen werden.</p>
-  </div>
-
-  <!-- Content (populated by JavaScript) -->
-  <div class="popular-posts__content" data-content style="display: none;">
     <div class="popular-posts__carousel-container">
       <!-- Previous Button -->
       <button
@@ -71,7 +170,6 @@ function parseDuration(duration?: string): number | null {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -84,14 +182,137 @@ function parseDuration(duration?: string): number | null {
 
       <!-- Carousel Wrapper -->
       <div class="popular-posts__carousel-wrapper">
-        <!-- Carousel Track (populated by JavaScript) -->
+        <!-- Carousel Track -->
         <div
           class="popular-posts__carousel"
-          data-carousel-track
           role="list"
-          aria-live="polite"
+          aria-label="Liste beliebter Rezepte"
+          data-carousel-track
         >
-          <!-- Cards will be inserted here by JavaScript -->
+          {posts.map((post) => {
+            const featuredImage = post.image || 'https://picsum.photos/400/300';
+            const altText = post.title;
+            const totalMinutes = parseDuration(post.totalTime);
+            const cuisine = post.cuisine;
+            const servings = post.servings;
+            const difficulty = post.difficulty;
+
+            return (
+              <article
+                class="popular-posts__card"
+                role="listitem"
+              >
+                <a
+                  href={`/rezepte/${post.slug}`}
+                  class="popular-posts__card-link"
+                >
+                  <div class="popular-posts__card-image-wrapper">
+                    <img
+                      src={featuredImage}
+                      alt={altText}
+                      class="popular-posts__card-image"
+                      loading="lazy"
+                      width="400"
+                      height="300"
+                    />
+                  </div>
+
+                  <div class="popular-posts__card-content">
+                    <h3 class="popular-posts__card-title">
+                      {post.title}
+                    </h3>
+
+                    {/* Meta-Informationen */}
+                    <div class="popular-posts__card-meta-grid">
+                      {totalMinutes && (
+                        <div class="popular-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="popular-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span class="popular-posts__card-meta-text">{totalMinutes} min</span>
+                        </div>
+                      )}
+
+                      {cuisine && (
+                        <div class="popular-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="popular-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                            />
+                          </svg>
+                          <span class="popular-posts__card-meta-text">{cuisine}</span>
+                        </div>
+                      )}
+
+                      {servings && (
+                        <div class="popular-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="popular-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                          </svg>
+                          <span class="popular-posts__card-meta-text">{servings}</span>
+                        </div>
+                      )}
+
+                      {difficulty && (
+                        <div class="popular-posts__card-meta-item">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="popular-posts__card-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span class="popular-posts__card-meta-text">{difficultyMap[difficulty] || difficulty}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            );
+          })}
         </div>
       </div>
 
@@ -108,7 +329,6 @@ function parseDuration(duration?: string): number | null {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -118,28 +338,26 @@ function parseDuration(duration?: string): number | null {
           />
         </svg>
       </button>
+
+      <!-- Accessibility: Info für Screen Reader -->
+      <div class="sr-only" role="status" aria-live="polite" data-carousel-status>
+        Zeige 3 von {posts.length} beliebten Rezepten.
+      </div>
     </div>
 
-    <!-- Screen Reader Status -->
-    <div class="sr-only" aria-live="polite" aria-atomic="true" data-carousel-status>
-      <!-- Status updates for screen readers -->
-    </div>
-
-    <!-- Schema.org ItemList (populated by JavaScript) -->
-    <script type="application/ld+json" data-schema>
-      {}
-    </script>
-  </div>
-</aside>
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
+  </section>
+)}
 
 <style>
   /* ==========================================
-     BASE STYLES
+     POPULAR POSTS CAROUSEL - MANUAL CONTROL
      ========================================== */
 
   .popular-posts {
     container-type: inline-size;
-    container-name: popular-carousel;
+    container-name: carousel;
     margin-block: 3rem;
   }
 
@@ -152,102 +370,12 @@ function parseDuration(duration?: string): number | null {
     border-bottom: 3px solid var(--color-accent);
   }
 
-  /* ==========================================
-     LOADING STATE (Skeleton UI)
-     ========================================== */
-
-  .popular-posts__loading {
-    padding: 1rem 0;
-  }
-
-  .popular-posts__skeleton-cards {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc((100% - 2 * 0.375rem) / 3);
-    gap: 0.375rem;
-  }
-
-  .popular-posts__skeleton-card {
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .popular-posts__skeleton-image {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: linear-gradient(
-      90deg,
-      var(--color-muted) 0%,
-      var(--color-gray-200) 50%,
-      var(--color-muted) 100%
-    );
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s ease-in-out infinite;
-  }
-
-  .popular-posts__skeleton-content {
-    padding: 0.625rem;
-  }
-
-  .popular-posts__skeleton-title {
-    height: 1rem;
-    background: linear-gradient(
-      90deg,
-      var(--color-muted) 0%,
-      var(--color-gray-200) 50%,
-      var(--color-muted) 100%
-    );
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s ease-in-out infinite;
-    border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .popular-posts__skeleton-meta {
-    height: 0.75rem;
-    width: 60%;
-    background: linear-gradient(
-      90deg,
-      var(--color-muted) 0%,
-      var(--color-gray-200) 50%,
-      var(--color-muted) 100%
-    );
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s ease-in-out infinite;
-    border-radius: 0.25rem;
-  }
-
-  @keyframes skeleton-loading {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
-  }
-
-  /* ==========================================
-     ERROR STATE
-     ========================================== */
-
-  .popular-posts__error {
-    padding: 2rem;
-    background: var(--color-muted);
-    border-radius: 0.5rem;
-    text-align: center;
-    color: var(--color-gray-600);
-  }
-
-  /* ==========================================
-     NAVIGATION BUTTONS
-     ========================================== */
-
+  /* Carousel Container with Navigation */
   .popular-posts__carousel-container {
     position: relative;
   }
 
+  /* Navigation Buttons - Overlay */
   .popular-posts__nav-button {
     position: absolute;
     top: 50%;
@@ -296,28 +424,27 @@ function parseDuration(duration?: string): number | null {
     transition: color 0.3s ease;
   }
 
-  /* ==========================================
-     CAROUSEL
-     ========================================== */
-
+  /* Carousel Wrapper - muss volle Container-Breite haben */
   .popular-posts__carousel-wrapper {
-    width: 100%;
+    width: 100%; /* Explizit volle Breite */
     overflow: hidden;
-    padding: 0.5rem 0;
-    margin: -0.5rem 0;
-    container-type: inline-size;
+    padding: 0.5rem 0; /* Padding für Schatten-Sichtbarkeit */
+    margin: -0.5rem 0; /* Negative Margin um Padding zu kompensieren */
+    container-type: inline-size; /* Wrapper als Container für cqw */
   }
 
+  /* Carousel Track - Grid-Spalten mit cqw Units relativ zum Wrapper */
   .popular-posts__carousel {
     --visible-items: 3;
     --gap-size: 0.375rem;
 
     display: grid;
     grid-auto-flow: column;
+    /* cqw bezieht sich jetzt auf carousel-wrapper Breite */
     grid-auto-columns: calc((100cqw - (var(--visible-items) - 1) * var(--gap-size)) / var(--visible-items));
     gap: var(--gap-size);
     transition: transform 0.5s ease-in-out;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.5rem; /* Extra Padding für Schatten unten */
   }
 
   /* ==========================================
@@ -338,12 +465,14 @@ function parseDuration(duration?: string): number | null {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
 
+  /* Link covers entire card */
   .popular-posts__card-link {
     display: block;
     text-decoration: none;
     color: inherit;
   }
 
+  /* Image Wrapper */
   .popular-posts__card-image-wrapper {
     position: relative;
     width: 100%;
@@ -375,7 +504,7 @@ function parseDuration(duration?: string): number | null {
     color: var(--color-primary);
     margin: 0 0 0.5rem 0;
     line-height: 1.25;
-    min-height: 2.5em;
+    min-height: 2.5em; /* 2 Zeilen Höhe für einheitliches Layout */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -431,9 +560,11 @@ function parseDuration(duration?: string): number | null {
   }
 
   /* ==========================================
-     RESPONSIVE DESIGN (Container Queries)
+     RESPONSIVE DESIGN mit Container Queries
+     Hinweis: Content-Bereich (lg:col-span-2) kann maximal ~790px breit werden
      ========================================== */
 
+  /* Mobile: 1 Karte (bis 400px Container-Breite) */
   @container (max-width: 400px) {
     .popular-posts__carousel {
       --visible-items: 1;
@@ -474,16 +605,9 @@ function parseDuration(duration?: string): number | null {
     .popular-posts__card-meta-item {
       font-size: 0.75rem;
     }
-
-    .popular-posts__card-meta-text {
-      font-size: 0.75rem;
-    }
-
-    .popular-posts__skeleton-cards {
-      grid-auto-columns: 100%;
-    }
   }
 
+  /* Tablet: 2 Karten (401px - 650px Container-Breite) */
   @container (min-width: 401px) and (max-width: 650px) {
     .popular-posts__carousel {
       --visible-items: 2;
@@ -493,12 +617,9 @@ function parseDuration(duration?: string): number | null {
     .popular-posts__card-title {
       font-size: 0.9rem;
     }
-
-    .popular-posts__skeleton-cards {
-      grid-auto-columns: calc((100% - 0.5rem) / 2);
-    }
   }
 
+  /* Desktop: 3 Karten (ab 651px Container-Breite) */
   @container (min-width: 651px) {
     .popular-posts__carousel {
       --visible-items: 3;
@@ -506,485 +627,95 @@ function parseDuration(duration?: string): number | null {
     }
   }
 
-  /* Respect user motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    .popular-posts__carousel {
-      transition: none;
+  /* Fallback für Browser ohne Container Query Support */
+  @supports not (container-type: inline-size) {
+    @media (max-width: 640px) {
+      .popular-posts__carousel {
+        --visible-items: 1;
+        --gap-size: 0.75rem;
+      }
+
+      .popular-posts__card-content {
+        padding: 0.875rem;
+      }
+
+      .popular-posts__card-title {
+        font-size: 0.9rem;
+      }
+
+      .popular-posts__nav-button {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .popular-posts__nav-button--prev {
+        left: 0;
+      }
+
+      .popular-posts__nav-button--next {
+        right: 0;
+      }
     }
 
-    .popular-posts__card,
-    .popular-posts__card-image,
-    .popular-posts__nav-button {
-      transition: none;
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .popular-posts__carousel {
+        --visible-items: 2;
+        --gap-size: 0.5rem;
+      }
+
+      .popular-posts__card-title {
+        font-size: 0.9rem;
+      }
     }
 
-    @keyframes skeleton-loading {
-      0%, 100% {
-        background-position: 0 0;
+    @media (min-width: 1025px) {
+      .popular-posts__carousel {
+        --visible-items: 3;
+        --gap-size: 0.375rem;
       }
     }
   }
 </style>
 
 <script>
-  interface RecipeView {
-    slug: string;
-    views: number;
-  }
-
-  interface PopularRecipe {
-    slug: string;
-    views: number;
-    data: {
-      title: string;
-      image?: string;
-      totalTime?: string;
-      cuisine?: string;
-      servings?: number;
-      difficulty?: string;
-    };
-  }
-
-  // Difficulty mapping
-  const difficultyMap: Record<string, string> = {
-    einfach: "Einfach",
-    mittel: "Mittel",
-    schwer: "Fortgeschritten",
-  };
-
-  // Parse ISO 8601 duration to minutes
-  function parseDuration(duration?: string): number | null {
-    if (!duration) return null;
-    const match = duration.match(/PT(\d+)M/);
-    return match ? parseInt(match[1]) : null;
-  }
-
-  /**
-   * Popular Posts Carousel with Lazy Loading
-   */
+  // Carousel Navigation Logic
   class PopularPostsCarousel {
-    private container: HTMLElement;
-    private track: HTMLElement | null = null;
-    private prevButton: HTMLButtonElement | null = null;
-    private nextButton: HTMLButtonElement | null = null;
-    private statusElement: HTMLElement | null = null;
-    private loadingElement: HTMLElement | null;
-    private errorElement: HTMLElement | null;
-    private contentElement: HTMLElement | null;
-    private schemaElement: HTMLScriptElement | null;
+    private track: HTMLElement;
+    private prevButton: HTMLButtonElement;
+    private nextButton: HTMLButtonElement;
+    private statusElement: HTMLElement | null;
     private currentIndex: number = 0;
     private cardsPerView: number = 3;
     private totalCards: number = 0;
-    private isLoaded: boolean = false;
-    private observer: IntersectionObserver | null = null;
 
     constructor(container: HTMLElement) {
-      this.container = container;
-      this.loadingElement = container.querySelector('[data-loading]');
-      this.errorElement = container.querySelector('[data-error]');
-      this.contentElement = container.querySelector('[data-content]');
-      this.schemaElement = container.querySelector('[data-schema]');
+      this.track = container.querySelector('[data-carousel-track]') as HTMLElement;
+      this.prevButton = container.querySelector('[data-carousel-prev]') as HTMLButtonElement;
+      this.nextButton = container.querySelector('[data-carousel-next]') as HTMLButtonElement;
+      this.statusElement = container.querySelector('[data-carousel-status]');
 
-      this.initLazyLoading();
-    }
+      if (!this.track || !this.prevButton || !this.nextButton) return;
 
-    /**
-     * Initialize Intersection Observer for lazy loading
-     */
-    private initLazyLoading() {
-      // Create observer with 200px margin (loads before visible)
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !this.isLoaded) {
-              this.loadPopularRecipes();
-              this.observer?.disconnect();
-            }
-          });
-        },
-        {
-          rootMargin: "200px",
-          threshold: 0.1,
-        }
-      );
-
-      this.observer.observe(this.container);
-    }
-
-    /**
-     * Load popular recipes from API
-     */
-    private async loadPopularRecipes() {
-      this.isLoaded = true;
-      this.container.dataset.loadState = "loading";
-
-      try {
-        // Mock data for popular recipes (TODO: Replace with real API call)
-        const mockRecipes: PopularRecipe[] = [
-          {
-            slug: 'omas-plaetzchen',
-            views: 4521,
-            data: {
-              title: 'Omas Plätzchen',
-              image: '/src/content/blog/images/omas-plaetzchen/omas-plaetzchen-featured.jpg',
-              totalTime: 'PT45M',
-              cuisine: 'Deutsch',
-              servings: 24,
-              difficulty: 'einfach'
-            }
-          },
-          {
-            slug: 'fake-spaghetti-carbonara',
-            views: 3892,
-            data: {
-              title: 'Spaghetti Carbonara',
-              image: '/src/content/blog/images/fake-spaghetti-carbonara/fake-spaghetti-carbonara-featured.jpg',
-              totalTime: 'PT25M',
-              cuisine: 'Italienisch',
-              servings: 4,
-              difficulty: 'mittel'
-            }
-          },
-          {
-            slug: 'fake-lasagne-bolognese',
-            views: 3654,
-            data: {
-              title: 'Lasagne Bolognese',
-              image: '/src/content/blog/images/fake-lasagne-bolognese/fake-lasagne-bolognese-featured.jpg',
-              totalTime: 'PT90M',
-              cuisine: 'Italienisch',
-              servings: 6,
-              difficulty: 'mittel'
-            }
-          },
-          {
-            slug: 'fake-pizza-margherita',
-            views: 3201,
-            data: {
-              title: 'Pizza Margherita',
-              image: '/src/content/blog/images/fake-pizza-margherita/fake-pizza-margherita-featured.jpg',
-              totalTime: 'PT30M',
-              cuisine: 'Italienisch',
-              servings: 2,
-              difficulty: 'einfach'
-            }
-          },
-          {
-            slug: 'fake-schnitzel',
-            views: 2987,
-            data: {
-              title: 'Wiener Schnitzel',
-              image: '/src/content/blog/images/fake-schnitzel/fake-schnitzel-featured.jpg',
-              totalTime: 'PT30M',
-              cuisine: 'Österreichisch',
-              servings: 4,
-              difficulty: 'mittel'
-            }
-          },
-          {
-            slug: 'fake-tiramisu',
-            views: 2756,
-            data: {
-              title: 'Tiramisu',
-              image: '/src/content/blog/images/fake-tiramisu/fake-tiramisu-featured.jpg',
-              totalTime: 'PT30M',
-              cuisine: 'Italienisch',
-              servings: 8,
-              difficulty: 'einfach'
-            }
-          },
-          {
-            slug: 'fake-paella',
-            views: 2543,
-            data: {
-              title: 'Paella Valenciana',
-              image: '/src/content/blog/images/fake-paella/fake-paella-featured.jpg',
-              totalTime: 'PT60M',
-              cuisine: 'Spanisch',
-              servings: 6,
-              difficulty: 'schwer'
-            }
-          },
-          {
-            slug: 'fake-risotto-milanese',
-            views: 2398,
-            data: {
-              title: 'Risotto Milanese',
-              image: '/src/content/blog/images/fake-risotto-milanese/fake-risotto-milanese-featured.jpg',
-              totalTime: 'PT35M',
-              cuisine: 'Italienisch',
-              servings: 4,
-              difficulty: 'mittel'
-            }
-          },
-          {
-            slug: 'fake-gnocchi',
-            views: 2156,
-            data: {
-              title: 'Gnocchi mit Tomatensauce',
-              image: '/src/content/blog/images/fake-gnocchi/fake-gnocchi-featured.jpg',
-              totalTime: 'PT60M',
-              cuisine: 'Italienisch',
-              servings: 4,
-              difficulty: 'mittel'
-            }
-          },
-          {
-            slug: 'doener-aus-dem-ofen',
-            views: 1987,
-            data: {
-              title: 'Döner aus dem Ofen',
-              image: '/src/content/blog/images/doener-aus-dem-ofen/doener-aus-dem-ofen-featured.jpg',
-              totalTime: 'PT120M',
-              cuisine: 'Türkisch',
-              servings: 4,
-              difficulty: 'mittel'
-            }
-          },
-          {
-            slug: 'fake-pancakes',
-            views: 1843,
-            data: {
-              title: 'Amerikanische Pancakes',
-              image: '/src/content/blog/images/fake-pancakes/fake-pancakes-featured.jpg',
-              totalTime: 'PT20M',
-              cuisine: 'Amerikanisch',
-              servings: 4,
-              difficulty: 'einfach'
-            }
-          },
-          {
-            slug: 'fake-sushi-rolls',
-            views: 1672,
-            data: {
-              title: 'Sushi Rolls',
-              image: '/src/content/blog/images/fake-sushi-rolls/fake-sushi-rolls-featured.jpg',
-              totalTime: 'PT60M',
-              cuisine: 'Japanisch',
-              servings: 4,
-              difficulty: 'schwer'
-            }
-          },
-        ];
-
-        // Simulate slight delay for realistic loading
-        await new Promise(resolve => setTimeout(resolve, 300));
-
-        if (mockRecipes.length === 0) {
-          this.showEmptyState();
-          return;
-        }
-
-        // Render carousel
-        this.renderCarousel(mockRecipes);
-        this.updateSchema(mockRecipes);
-        this.showContent();
-
-        this.container.dataset.loadState = "loaded";
-      } catch (error) {
-        console.error("Error loading popular recipes:", error);
-        this.showError();
-        this.container.dataset.loadState = "error";
-      }
-    }
-
-    /**
-     * Fetch full recipe data from Astro content collection
-     */
-    private async fetchRecipeData(views: RecipeView[]): Promise<PopularRecipe[]> {
-      try {
-        // In production, this would be a server-side fetch
-        // For now, we return empty array and handle client-side
-        // The actual implementation would require a separate API endpoint
-        // that returns full recipe data
-
-        // For demo purposes, we'll create cards with limited data
-        return views.map(view => ({
-          slug: view.slug,
-          views: view.views,
-          data: null // Would be populated from API
-        }));
-      } catch (error) {
-        console.error("Error fetching recipe data:", error);
-        return [];
-      }
-    }
-
-    /**
-     * Render carousel cards
-     */
-    private renderCarousel(recipes: PopularRecipe[]) {
-      if (!this.contentElement) return;
-
-      this.track = this.contentElement.querySelector('[data-carousel-track]');
-      this.prevButton = this.contentElement.querySelector('[data-carousel-prev]');
-      this.nextButton = this.contentElement.querySelector('[data-carousel-next]');
-      this.statusElement = this.contentElement.querySelector('[data-carousel-status]');
-
-      if (!this.track) return;
-
-      this.totalCards = recipes.length;
-
-      // Clear existing content
-      this.track.innerHTML = '';
-
-      // Create cards
-      recipes.forEach((recipe, index) => {
-        const card = this.createCard(recipe, index + 1);
-        this.track?.appendChild(card);
-      });
-
-      // Setup navigation
+      this.totalCards = this.track.children.length;
       this.updateCardsPerView();
-      this.setupNavigation();
-      this.updateButtons();
-    }
 
-    /**
-     * Create a recipe card element
-     */
-    private createCard(recipe: PopularRecipe, position: number): HTMLElement {
-      const article = document.createElement('article');
-      article.className = 'popular-posts__card';
-      article.setAttribute('role', 'listitem');
-
-      const link = document.createElement('a');
-      link.href = `/rezepte/${recipe.slug}`;
-      link.className = 'popular-posts__card-link';
-      const recipeTitle = recipe.data?.title || recipe.slug.replace(/-/g, ' ');
-      link.setAttribute('aria-label', `Beliebtes Rezept: ${recipeTitle}`);
-
-      // Image wrapper
-      const imageWrapper = document.createElement('div');
-      imageWrapper.className = 'popular-posts__card-image-wrapper';
-
-      const img = document.createElement('img');
-      img.src = recipe.data?.image || `https://picsum.photos/400/300?random=${position}`;
-      img.alt = recipeTitle;
-      img.className = 'popular-posts__card-image';
-      img.loading = 'lazy';
-      img.width = 400;
-      img.height = 300;
-
-      imageWrapper.appendChild(img);
-
-      // Content
-      const content = document.createElement('div');
-      content.className = 'popular-posts__card-content';
-
-      const title = document.createElement('h3');
-      title.className = 'popular-posts__card-title';
-      title.textContent = recipeTitle;
-
-      content.appendChild(title);
-
-      // Meta Info Grid (like RelatedPostsCarousel)
-      const metaGrid = document.createElement('div');
-      metaGrid.className = 'popular-posts__card-meta-grid';
-
-      // Time
-      const totalMinutes = parseDuration(recipe.data?.totalTime);
-      if (totalMinutes) {
-        const metaItem = document.createElement('div');
-        metaItem.className = 'popular-posts__card-meta-item';
-        metaItem.innerHTML = `
-          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span class="popular-posts__card-meta-text">${totalMinutes} min</span>
-        `;
-        metaGrid.appendChild(metaItem);
-      }
-
-      // Cuisine
-      if (recipe.data?.cuisine) {
-        const metaItem = document.createElement('div');
-        metaItem.className = 'popular-posts__card-meta-item';
-        metaItem.innerHTML = `
-          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-          </svg>
-          <span class="popular-posts__card-meta-text">${recipe.data.cuisine}</span>
-        `;
-        metaGrid.appendChild(metaItem);
-      }
-
-      // Servings
-      if (recipe.data?.servings) {
-        const metaItem = document.createElement('div');
-        metaItem.className = 'popular-posts__card-meta-item';
-        metaItem.innerHTML = `
-          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          <span class="popular-posts__card-meta-text">${recipe.data.servings}</span>
-        `;
-        metaGrid.appendChild(metaItem);
-      }
-
-      // Difficulty
-      if (recipe.data?.difficulty) {
-        const metaItem = document.createElement('div');
-        metaItem.className = 'popular-posts__card-meta-item';
-        metaItem.innerHTML = `
-          <svg class="popular-posts__card-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span class="popular-posts__card-meta-text">${difficultyMap[recipe.data.difficulty] || recipe.data.difficulty}</span>
-        `;
-        metaGrid.appendChild(metaItem);
-      }
-
-      content.appendChild(metaGrid);
-
-      link.appendChild(imageWrapper);
-      link.appendChild(content);
-      article.appendChild(link);
-
-      return article;
-    }
-
-    /**
-     * Format view count (e.g., 1234 -> 1,2K)
-     */
-    private formatViews(views: number): string {
-      if (views >= 1000) {
-        return `${(views / 1000).toFixed(1)}K`;
-      }
-      return views.toString();
-    }
-
-    /**
-     * Setup navigation event listeners
-     */
-    private setupNavigation() {
-      if (!this.prevButton || !this.nextButton) return;
-
+      // Event Listeners
       this.prevButton.addEventListener('click', () => this.prev());
       this.nextButton.addEventListener('click', () => this.next());
-
-      // Keyboard navigation
-      this.track?.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          this.prev();
-        } else if (e.key === 'ArrowRight') {
-          this.next();
-        }
-      });
 
       // Update on resize
       window.addEventListener('resize', () => {
         this.updateCardsPerView();
         this.updatePosition();
       });
+
+      // Initial state
+      this.updateButtons();
     }
 
     private updateCardsPerView() {
-      const containerWidth = this.track?.parentElement?.offsetWidth || 0;
+      // Verwende die Container-Breite (nicht Viewport), passend zu CSS Container Queries
+      const containerWidth = this.track.parentElement?.offsetWidth || 0;
 
       if (containerWidth <= 400) {
         this.cardsPerView = 1;
@@ -1011,94 +742,46 @@ function parseDuration(duration?: string): number | null {
     }
 
     private updatePosition() {
-      if (!this.track || this.track.children.length === 0) return;
+      if (this.track.children.length === 0) return;
 
       const cardWidth = (this.track.children[0] as HTMLElement).offsetWidth;
+
+      // Gap-Größe muss mit CSS Container Queries übereinstimmen
       const containerWidth = this.track.parentElement?.offsetWidth || 0;
-      let gap = 6;
+      let gap = 6; // Default: 0.375rem
 
       if (containerWidth <= 400) {
-        gap = 12;
+        gap = 12; // 0.75rem für Mobile
       } else if (containerWidth <= 650) {
-        gap = 8;
+        gap = 8;  // 0.5rem für Tablet
       }
 
       const offset = this.currentIndex * this.cardsPerView * (cardWidth + gap);
-      this.track.style.transform = `translateX(-${offset}px)`;
 
+      this.track.style.transform = `translateX(-${offset}px)`;
       this.updateButtons();
       this.updateStatus();
     }
 
     private updateButtons() {
-      if (!this.prevButton || !this.nextButton) return;
-
       const maxIndex = Math.ceil(this.totalCards / this.cardsPerView) - 1;
+
       this.prevButton.disabled = this.currentIndex === 0;
       this.nextButton.disabled = this.currentIndex >= maxIndex;
     }
 
     private updateStatus() {
-      if (!this.statusElement) return;
-
-      const start = this.currentIndex * this.cardsPerView + 1;
-      const end = Math.min((this.currentIndex + 1) * this.cardsPerView, this.totalCards);
-      this.statusElement.textContent = `Zeige ${start}-${end} von ${this.totalCards} beliebten Rezepten.`;
-    }
-
-    /**
-     * Update Schema.org markup
-     */
-    private updateSchema(recipes: PopularRecipe[]) {
-      if (!this.schemaElement) return;
-
-      const schema = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Meist besuchte Rezepte",
-        "itemListElement": recipes.map((recipe, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "url": `https://die-mama-kocht.de/rezepte/${recipe.slug}`,
-          "item": {
-            "@type": "Recipe",
-            "name": recipe.slug,
-            "interactionStatistic": {
-              "@type": "InteractionCounter",
-              "interactionType": "https://schema.org/ViewAction",
-              "userInteractionCount": recipe.views
-            }
-          }
-        }))
-      };
-
-      this.schemaElement.textContent = JSON.stringify(schema);
-    }
-
-    /**
-     * Show different states
-     */
-    private showContent() {
-      if (this.loadingElement) this.loadingElement.style.display = 'none';
-      if (this.errorElement) this.errorElement.style.display = 'none';
-      if (this.contentElement) this.contentElement.style.display = 'block';
-    }
-
-    private showError() {
-      if (this.loadingElement) this.loadingElement.style.display = 'none';
-      if (this.errorElement) this.errorElement.style.display = 'block';
-      if (this.contentElement) this.contentElement.style.display = 'none';
-    }
-
-    private showEmptyState() {
-      // Hide carousel entirely if no popular recipes
-      this.container.style.display = 'none';
+      if (this.statusElement) {
+        const start = this.currentIndex * this.cardsPerView + 1;
+        const end = Math.min((this.currentIndex + 1) * this.cardsPerView, this.totalCards);
+        this.statusElement.textContent = `Zeige ${start}-${end} von ${this.totalCards} beliebten Rezepten.`;
+      }
     }
   }
 
-  // Initialize carousel when DOM is ready
+  // Initialize all carousels on the page
   document.addEventListener('DOMContentLoaded', () => {
-    const carousels = document.querySelectorAll('[data-popular-carousel]');
+    const carousels = document.querySelectorAll('.popular-posts__carousel-container');
     carousels.forEach((carousel) => {
       new PopularPostsCarousel(carousel as HTMLElement);
     });
