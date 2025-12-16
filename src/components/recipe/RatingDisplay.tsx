@@ -64,7 +64,7 @@ export default function RatingDisplay({ recipeSlug }: RatingDisplayProps) {
 
   if (!ratingData.value || ratingData.value.totalRatings === 0) {
     return (
-      <div class="flex items-center gap-2 py-4 text-gray-500">
+      <div class="flex items-center gap-2 text-gray-500">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
@@ -74,14 +74,14 @@ export default function RatingDisplay({ recipeSlug }: RatingDisplayProps) {
   }
 
   return (
-    <div class="flex items-center gap-3 py-4 bg-gradient-to-r from-accent/5 to-transparent rounded-lg px-4 -mx-4">
+    <div class="flex items-center gap-3 bg-gradient-to-r from-accent/5 to-transparent rounded-lg px-6 py-3">
       {/* Star Display */}
       <div class="flex gap-0.5">
         {starPercentages.value.map((percentage, index) => (
-          <div key={index} class="relative w-6 h-6">
+          <div key={index} class="relative w-5 h-5">
             {/* Empty star */}
             <svg
-              class="absolute inset-0 w-6 h-6 text-gray-300"
+              class="absolute inset-0 w-5 h-5 text-gray-300"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -89,7 +89,7 @@ export default function RatingDisplay({ recipeSlug }: RatingDisplayProps) {
             </svg>
             {/* Filled star with clip-path */}
             <svg
-              class="absolute inset-0 w-6 h-6 text-yellow-400"
+              class="absolute inset-0 w-5 h-5 text-yellow-400"
               fill="currentColor"
               viewBox="0 0 24 24"
               style={{ clipPath: `inset(0 ${100 - percentage}% 0 0)` }}
@@ -102,7 +102,7 @@ export default function RatingDisplay({ recipeSlug }: RatingDisplayProps) {
 
       {/* Rating Text */}
       <div class="flex items-baseline gap-2">
-        <span class="text-2xl font-bold text-gray-900">{displayRating.value}</span>
+        <span class="text-xl font-bold text-gray-900">{displayRating.value}</span>
         <span class="text-sm text-gray-600">
           ({ratingData.value.totalRatings} {ratingData.value.totalRatings === 1 ? 'Bewertung' : 'Bewertungen'})
         </span>

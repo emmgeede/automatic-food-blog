@@ -99,11 +99,11 @@ const mainCategory = category || categories[0] || "Rezept";
           />
         </div>
 
-        <!-- Author Info -->
-        <RecipeAuthor />
-
-        <!-- Rating Display (Read-only) -->
-        <RatingDisplay recipeSlug={recipeSlug} client:load />
+        <!-- Author Info & Rating Display -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <RecipeAuthor />
+          <RatingDisplay recipeSlug={recipeSlug} client:load />
+        </div>
       </div>
 
       <!-- Action Buttons & Social Media -->
