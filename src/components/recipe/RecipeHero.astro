@@ -4,6 +4,7 @@ import RecipeMetaInfo from "./RecipeMetaInfo.astro";
 import RecipeAuthor from "./RecipeAuthor.astro";
 import TableOfContents from "./TableOfContents.astro";
 import SocialMediaButtons from "./SocialMediaButtons.astro";
+import RatingDisplay from "./RatingDisplay.tsx";
 
 interface TocItem {
   id: string;
@@ -30,6 +31,7 @@ interface Props {
   servings?: number | string;
   difficulty?: string;
   tocItems?: TocItem[];
+  recipeSlug: string;
 }
 
 const {
@@ -43,6 +45,7 @@ const {
   servings,
   difficulty,
   tocItems = [],
+  recipeSlug,
 } = Astro.props;
 
 const mainCategory = category || categories[0] || "Rezept";
@@ -98,6 +101,9 @@ const mainCategory = category || categories[0] || "Rezept";
 
         <!-- Author Info -->
         <RecipeAuthor />
+
+        <!-- Rating Display (Read-only) -->
+        <RatingDisplay recipeSlug={recipeSlug} client:load />
       </div>
 
       <!-- Action Buttons & Social Media -->
