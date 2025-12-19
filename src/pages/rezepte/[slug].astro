@@ -138,6 +138,16 @@ const breadcrumbItems = [
       {taxonomy?.categories && <meta itemprop="recipeCategory" content={taxonomy.categories.join(", ")} />}
       {taxonomy?.cuisine && <meta itemprop="recipeCuisine" content={taxonomy.cuisine} />}
 
+      <!-- Featured Image for Pagefind -->
+      {images?.featured?.src && (
+        <img
+          src={images.featured.src}
+          alt={images.featured.alt}
+          style="display: none;"
+          data-pagefind-meta="image[src]"
+        />
+      )}
+
       <!-- Hero Section -->
       {images?.featured && (
         <RecipeHero
