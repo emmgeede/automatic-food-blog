@@ -47,7 +47,8 @@
       "WebFetch(domain:bootstrapped.app)",
       "WebFetch(domain:www.wptasty.com)",
       "WebFetch(domain:demo.wprecipemaker.com)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "WebFetch(domain:pagefind.app)"
     ],
     "deny": [],
     "ask": []

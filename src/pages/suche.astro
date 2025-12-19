@@ -1,0 +1,146 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const canonicalURL = Astro.site
+  ? new URL('/suche', Astro.site).toString()
+  : '/suche';
+
+const frontmatter = {
+  title: 'Rezepte suchen',
+  metaDescription: 'Durchsuche alle Rezepte nach Zutaten, Namen oder Kategorien. Finde schnell dein Lieblingsrezept.',
+  metaKeywords: 'Suche, Rezepte finden, Rezeptsuche',
+  metaCanonical: canonicalURL,
+  featuredImage: '/og-default.jpg',
+  ogType: 'website',
+};
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">
+        Rezepte suchen
+      </h1>
+      <p class="text-lg text-gray-600">
+        Finde dein Lieblingsrezept aus unserer Sammlung
+      </p>
+    </header>
+
+    <!-- Search Container -->
+    <div class="max-w-4xl mx-auto">
+      <!-- Search Input -->
+      <div class="mb-8">
+        <div id="pagefind__search" class="pagefind-search"></div>
+      </div>
+
+      <!-- Search Results -->
+      <div id="pagefind__results" class="pagefind-results"></div>
+    </div>
+  </div>
+
+  <!-- Load Pagefind UI -->
+  <link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+  <script is:inline src="/_pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({
+        element: "#pagefind__search",
+        showSubResults: true,
+        showImages: true,
+        excerptLength: 30,
+        resetStyles: false,
+        translations: {
+          placeholder: "Rezepte durchsuchen...",
+          clear_search: "Suche löschen",
+          load_more: "Mehr Ergebnisse laden",
+          search_label: "Auf dieser Seite suchen",
+          filters_label: "Filter",
+          zero_results: "Keine Ergebnisse für [SEARCH_TERM]",
+          many_results: "[COUNT] Ergebnisse für [SEARCH_TERM]",
+          one_result: "[COUNT] Ergebnis für [SEARCH_TERM]",
+          alt_search: "Keine Ergebnisse für [SEARCH_TERM]. Zeige stattdessen Ergebnisse für [DIFFERENT_TERM]",
+          search_suggestion: "Keine Ergebnisse für [SEARCH_TERM]. Versuche eine der folgenden Suchen:",
+          searching: "Suche nach [SEARCH_TERM]..."
+        }
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style is:global>
+  /* Pagefind Custom Styling */
+  .pagefind-ui__search-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .pagefind-ui__search-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .pagefind-ui__result {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+  }
+
+  .pagefind-ui__result:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .pagefind-ui__result-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-decoration: none;
+  }
+
+  .pagefind-ui__result-link:hover {
+    color: var(--color-accent);
+  }
+
+  .pagefind-ui__result-excerpt {
+    margin-top: 0.5rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .pagefind-ui__result-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+  }
+
+  .pagefind-ui__button {
+    background: var(--color-accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+  }
+
+  .pagefind-ui__button:hover {
+    background: hsla(214, 41%, 10%, 1.00);
+  }
+
+  .pagefind-ui__message {
+    padding: 1rem;
+    text-align: center;
+    color: #6b7280;
+  }
+</style>

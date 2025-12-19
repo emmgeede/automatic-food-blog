@@ -119,11 +119,16 @@ const breadcrumbItems = [
   </Fragment>
 
   <!-- Recipe Article -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-pagefind-body>
     <article
       class="recipe-article"
       itemscope
       itemtype="https://schema.org/Recipe"
+      data-pagefind-meta="title:{metadata?.title}"
+      data-pagefind-meta="category:{taxonomy?.categories?.[0]}"
+      data-pagefind-meta="cuisine:{taxonomy?.cuisine}"
+      data-pagefind-meta="difficulty:{taxonomy?.difficulty}"
+      data-pagefind-meta="image:{images?.featured?.src}"
     >
       <!-- Hidden Schema Data -->
       <meta itemprop="name" content={metadata?.title} />
@@ -281,14 +286,18 @@ const breadcrumbItems = [
           <RecipeFAQ faqs={faqs} />
 
           <!-- Related Posts Carousel -->
-          <RelatedPostsCarousel relatedPosts={relatedPosts} />
+          <div data-pagefind-ignore>
+            <RelatedPostsCarousel relatedPosts={relatedPosts} />
+          </div>
 
           <!-- Popular Posts Carousel (Lazy Loaded) -->
-          <PopularPostsCarousel />
+          <div data-pagefind-ignore>
+            <PopularPostsCarousel />
+          </div>
         </div>
 
         <!-- Sidebar (1/3 width) -->
-        <div class="lg:col-span-1">
+        <div class="lg:col-span-1" data-pagefind-ignore>
           <RecipeSidebar
             currentSlug={metadata?.slug || ""}
             currentCategories={taxonomy?.categories}
