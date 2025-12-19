@@ -120,3 +120,5 @@ When editing code, maintain these formatting standards.
 - Frage mich am Ende eines Bugfixes oder einer Featureerstellung ob der neue Branch gemerged werden soll
 - bei Git pushe immer zu origin und github
 - Speichere alle Anweisungs- und Erklärungs-Markdownfiles in Obsidian unter '/Users/michael/Library/CloudStorage/GoogleDrive-foofourtyone@gmail.com/Meine Ablage/Obsidian Vaults/Knowledge Base/030. Projekte/DMK'
+- Verwende für alle Bilder immer die Astro Image Komponente
+- pushe nur noch zu github
