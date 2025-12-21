@@ -168,8 +168,8 @@ const frontmatter = {
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {latestRecipes.map((recipe) => (
-              <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex flex-col h-full">
+              <article class="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col overflow-hidden">
+                <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex flex-col flex-1">
                   {recipe.data.images?.featured?.src && (
                     <div class="relative aspect-video overflow-hidden">
                       <Image
@@ -182,7 +182,7 @@ const frontmatter = {
                       />
                     </div>
                   )}
-                  <div class="p-6 flex flex-col h-full">
+                  <div class="p-6 flex flex-col flex-1">
                     {recipe.data.taxonomy?.categories?.[0] && (
                       <span class="text-accent text-xs font-semibold uppercase tracking-wide">
                         {recipe.data.taxonomy.categories[0]}
@@ -193,12 +193,12 @@ const frontmatter = {
                     </h3>
 
                     {recipe.data.metadata?.description && (
-                      <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+                      <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                         {recipe.data.metadata.description}
                       </p>
                     )}
 
-                    <div class="mt-auto space-y-3">
+                    <div class="mt-auto space-y-3 pb-1">
                       <DietaryLabelsDisplay
                         dietaryLabels={recipe.data.dietaryLabels}
                         size="sm"
