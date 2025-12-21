@@ -36,7 +36,7 @@ const quickRecipes = allRecipes.filter(recipe => {
   if (!match) return false;
   const minutes = parseInt(match[1]);
   return minutes <= 30;
-}).slice(0, 6);
+}).slice(0, 8);
 
 // Dessert recipes
 const dessertRecipes = allRecipes.filter(recipe =>
@@ -317,7 +317,7 @@ const frontmatter = {
                 Alle anzeigen →
               </a>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {quickRecipes.map((recipe) => (
                 <a
                   href={`/rezepte/${recipe.data.metadata?.slug}`}
