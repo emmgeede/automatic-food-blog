@@ -1,15 +1,17 @@
 ---
 /**
  * Globale Badge-Komponente für Ernährungsweisen-Labels
- * Design: Schwarzer Hintergrund, Accent-Color Text, auffällig
+ * Design: Schwarzer Hintergrund, weiße Schrift, klickbar
  */
 
 export interface Props {
   label: string;
+  labelKey?: string; // Key for URL (e.g., 'vegan', 'keto')
   size?: 'sm' | 'md' | 'lg';
+  clickable?: boolean;
 }
 
-const { label, size = 'md' } = Astro.props;
+const { label, labelKey, size = 'md', clickable = true } = Astro.props;
 
 // Size-Mapping
 const sizeClasses = {
@@ -17,19 +19,38 @@ const sizeClasses = {
   md: 'text-sm px-3 py-1',
   lg: 'text-base px-4 py-1.5',
 };
+
+// Generate URL if clickable
+const href = clickable && labelKey ? `/ernaehrung/${labelKey}` : undefined;
 ---
 
-<span
-  class:list={[
-    'dietary-badge',
-    'inline-flex items-center font-semibold rounded-full',
-    'bg-black text-white',
-    'shadow-sm hover:shadow-md transition-shadow duration-200',
-    sizeClasses[size],
-  ]}
->
-  {label}
-</span>
+{href ? (
+  <a
+    href={href}
+    class:list={[
+      'dietary-badge',
+      'inline-flex items-center font-semibold rounded-full',
+      'bg-black text-white',
+      'shadow-sm hover:shadow-md transition-all duration-200',
+      'hover:bg-gray-800 cursor-pointer',
+      sizeClasses[size],
+    ]}
+  >
+    {label}
+  </a>
+) : (
+  <span
+    class:list={[
+      'dietary-badge',
+      'inline-flex items-center font-semibold rounded-full',
+      'bg-black text-white',
+      'shadow-sm',
+      sizeClasses[size],
+    ]}
+  >
+    {label}
+  </span>
+)}
 
 <style>
   .dietary-badge {

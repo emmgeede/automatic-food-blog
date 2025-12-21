@@ -1,0 +1,190 @@
+---
+/**
+ * Dynamic Dietary Label Archive Pages
+ * Shows all recipes filtered by a specific dietary label (vegan, keto, etc.)
+ */
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DietaryLabelsDisplay from "../../components/DietaryLabelsDisplay.astro";
+import { getDietaryLabelDisplay, type DietaryLabels } from "../../utils/dietaryDetection";
+
+export async function getStaticPaths() {
+  // Define all valid dietary labels
+  const validLabels = [
+    'vegan',
+    'vegetarian',
+    'lactoVegetarian',
+    'ovoVegetarian',
+    'pescatarian',
+    'keto',
+    'paleo',
+    'highProtein',
+    'highCarb',
+    'glutenFree',
+    'dairyFree',
+    'lowCarb',
+  ];
+
+  const allRecipes = await getCollection("blog");
+
+  // Generate paths for each dietary label that has recipes
+  return validLabels.map(label => {
+    const filteredRecipes = allRecipes.filter(recipe =>
+      recipe.data.dietaryLabels?.[label] === true
+    );
+
+    return {
+      params: { label },
+      props: {
+        label,
+        recipes: filteredRecipes,
+      },
+    };
+  });
+}
+
+const { label, recipes } = Astro.props;
+
+// Get label display info
+const labelInfo = getDietaryLabelDisplay(label as keyof DietaryLabels);
+const labelTitle = labelInfo?.label || label;
+
+// Sort recipes by date (newest first)
+const sortedRecipes = recipes.sort((a: any, b: any) => {
+  const dateA = a.data.metadata?.pubDate || new Date(0);
+  const dateB = b.data.metadata?.pubDate || new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+
+// Prepare canonical URL
+const canonicalURL = Astro.site
+  ? new URL(`/ernaehrung/${label}`, Astro.site).toString()
+  : `/ernaehrung/${label}`;
+
+// Frontmatter for BaseLayout
+const frontmatter = {
+  title: `${labelTitle} Rezepte`,
+  metaDescription: `Entdecke ${sortedRecipes.length} leckere ${labelTitle} Rezepte. Einfach, gesund und köstlich.`,
+  metaKeywords: `${labelTitle}, Rezepte, gesund, kochen`,
+  metaCanonical: canonicalURL,
+  featuredImage: '/og-default.jpg',
+  ogType: 'website',
+};
+
+// Helper function to parse ISO 8601 duration
+function parseDuration(duration?: string): string {
+  if (!duration) return '';
+  const match = duration.match(/PT(\d+)M/);
+  if (!match) return duration;
+  return `${match[1]} Min`;
+}
+
+// Difficulty mapping
+const difficultyMap: Record<string, string> = {
+  einfach: "Einfach",
+  mittel: "Mittel",
+  schwer: "Fortgeschritten",
+};
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <header class="mb-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        {labelTitle} Rezepte
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        {sortedRecipes.length} {sortedRecipes.length === 1 ? 'Rezept' : 'Rezepte'} für deine {labelTitle.toLowerCase()} Ernährung
+      </p>
+    </header>
+
+    {sortedRecipes.length === 0 ? (
+      <!-- No recipes found -->
+      <div class="text-center py-16">
+        <p class="text-xl text-gray-600 mb-4">
+          Noch keine {labelTitle} Rezepte verfügbar.
+        </p>
+        <a
+          href="/rezepte"
+          class="inline-block bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+        >
+          Alle Rezepte anzeigen
+        </a>
+      </div>
+    ) : (
+      <!-- Recipe Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedRecipes.map((recipe: any) => (
+          <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+            <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex flex-col h-full">
+              {recipe.data.images?.featured?.src && (
+                <div class="relative aspect-video overflow-hidden">
+                  <Image
+                    src={recipe.data.images.featured.src}
+                    alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                    width={600}
+                    height={400}
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex-grow">
+                  {recipe.data.taxonomy?.categories?.[0] && (
+                    <span class="text-accent text-xs font-semibold uppercase tracking-wide">
+                      {recipe.data.taxonomy.categories[0]}
+                    </span>
+                  )}
+                  <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 hover:text-accent transition-colors">
+                    {recipe.data.metadata?.title}
+                  </h3>
+                  {recipe.data.metadata?.description && (
+                    <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+                      {recipe.data.metadata.description}
+                    </p>
+                  )}
+                  <DietaryLabelsDisplay
+                    dietaryLabels={recipe.data.dietaryLabels}
+                    size="sm"
+                    className="mb-2"
+                  />
+                </div>
+                <div class="flex items-center gap-4 text-sm text-gray-600 mt-auto pt-3 border-t border-gray-100">
+                  {recipe.data.taxonomy?.difficulty && (
+                    <span class="flex items-center gap-1">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" clip-rule="evenodd" />
+                      </svg>
+                      {difficultyMap[recipe.data.taxonomy.difficulty] || recipe.data.taxonomy.difficulty}
+                    </span>
+                  )}
+                  {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
+                    <span class="flex items-center gap-1">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                      </svg>
+                      {parseDuration(recipe.data.timing.totalTime || recipe.data.timing.cookTime)}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+
+    <!-- Back to All Recipes -->
+    <div class="mt-12 text-center">
+      <a
+        href="/rezepte"
+        class="inline-block text-accent hover:text-accent-dark font-semibold text-lg hover:underline"
+      >
+        ← Alle Rezepte anzeigen
+      </a>
+    </div>
+  </div>
+</BaseLayout>

@@ -10,9 +10,10 @@ export interface Props {
   dietaryLabels?: DietaryLabels;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  clickable?: boolean;
 }
 
-const { dietaryLabels, size = 'md', className = '' } = Astro.props;
+const { dietaryLabels, size = 'md', className = '', clickable = true } = Astro.props;
 
 // Hole alle aktiven Labels
 const activeLabels = getActiveDietaryLabels(dietaryLabels);
@@ -36,7 +37,9 @@ const labelDisplays = activeLabels
     {labelDisplays.map(labelDisplay => (
       <DietaryBadge
         label={labelDisplay!.label}
+        labelKey={labelDisplay!.key}
         size={size}
+        clickable={clickable}
       />
     ))}
   </div>
