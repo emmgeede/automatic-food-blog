@@ -17,11 +17,11 @@ const sortedByDate = [...allRecipes].sort((a, b) => {
 // Latest recipes (for Latest Recipes section)
 const latestRecipes = sortedByDate.slice(0, 6);
 
-// Featured recipes for hero slider (newest 4)
-const heroRecipes = sortedByDate.slice(0, 4);
+// Featured recipes for hero slider (newest 5)
+const heroRecipes = sortedByDate.slice(0, 5);
 
-// Trending recipes for sidebar (5-10)
-const trendingRecipes = sortedByDate.slice(4, 10);
+// Trending recipes for sidebar (6-11)
+const trendingRecipes = sortedByDate.slice(5, 11);
 
 // Vegan recipes
 const veganRecipes = allRecipes.filter(recipe =>
