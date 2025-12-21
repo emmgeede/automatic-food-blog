@@ -6,7 +6,7 @@
     "slug": "fake-pasta-pesto",
     "pubDate": "2025-11-10",
     "modifiedDate": "2025-11-10",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -237,7 +237,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-11-10T19:01:19.309Z",
     "image": "https://picsum.photos/1200/800?random=5",

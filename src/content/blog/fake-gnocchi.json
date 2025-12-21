@@ -6,7 +6,7 @@
     "slug": "fake-gnocchi",
     "pubDate": "2025-08-18",
     "modifiedDate": "2025-08-18",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -195,7 +195,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-08-18T18:01:19.311Z",
     "image": "https://picsum.photos/1200/800?random=9",

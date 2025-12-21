@@ -6,7 +6,7 @@
     "slug": "test-vegan-smoothie",
     "pubDate": "2025-12-21",
     "modifiedDate": "2025-12-21",
-    "author": "Food Blog",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -224,7 +224,7 @@
     "image": ["https://picsum.photos/1200/1600?random=100"],
     "author": {
       "@type": "Person",
-      "name": "Food Blog"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-12-21",
     "prepTime": "PT5M",

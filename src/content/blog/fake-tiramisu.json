@@ -6,7 +6,7 @@
     "slug": "fake-tiramisu",
     "pubDate": "2025-09-29",
     "modifiedDate": "2025-09-29",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -201,7 +201,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-09-29T18:01:19.314Z",
     "image": "https://picsum.photos/1200/800?random=20",

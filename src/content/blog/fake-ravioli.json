@@ -6,7 +6,7 @@
     "slug": "fake-ravioli",
     "pubDate": "2025-07-23",
     "modifiedDate": "2025-07-23",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -216,7 +216,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-07-23T18:01:19.311Z",
     "image": "https://picsum.photos/1200/800?random=10",

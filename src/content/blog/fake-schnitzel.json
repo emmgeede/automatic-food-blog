@@ -6,7 +6,7 @@
     "slug": "fake-schnitzel",
     "pubDate": "2025-05-24",
     "modifiedDate": "2025-05-24",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -236,7 +236,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-05-24T18:01:19.313Z",
     "image": "https://picsum.photos/1200/800?random=16",

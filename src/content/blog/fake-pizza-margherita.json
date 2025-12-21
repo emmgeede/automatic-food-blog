@@ -6,7 +6,7 @@
     "slug": "fake-pizza-margherita",
     "pubDate": "2025-07-16",
     "modifiedDate": "2025-07-16",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -202,7 +202,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-07-16T18:01:19.308Z",
     "image": "https://picsum.photos/1200/800?random=2",

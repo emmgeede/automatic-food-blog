@@ -6,7 +6,7 @@
     "slug": "fake-spaghetti-carbonara",
     "pubDate": "2025-03-09",
     "modifiedDate": "2025-03-09",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -195,7 +195,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-03-09T19:01:19.305Z",
     "image": "https://picsum.photos/1200/800?random=1",

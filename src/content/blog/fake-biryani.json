@@ -6,7 +6,7 @@
     "slug": "fake-biryani",
     "pubDate": "2025-06-12",
     "modifiedDate": "2025-06-12",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -194,7 +194,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-06-12T18:01:19.314Z",
     "image": "https://picsum.photos/1200/800?random=19",

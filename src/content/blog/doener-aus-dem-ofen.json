@@ -6,7 +6,7 @@
     "slug": "doener-aus-dem-ofen",
     "pubDate": "2025-01-19",
     "modifiedDate": "2025-01-19",
-    "author": "Food Blog",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -403,7 +403,7 @@
     "image": ["/images/blog/doener-aus-dem-ofen/doener-aus-dem-ofen-tuerkisches-rezept.jpg"],
     "author": {
       "@type": "Person",
-      "name": "Food Blog"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-01-19",
     "prepTime": "PT30M",

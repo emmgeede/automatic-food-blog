@@ -6,7 +6,7 @@
     "slug": "fake-croissant",
     "pubDate": "2025-05-28",
     "modifiedDate": "2025-05-28",
-    "author": "Food Blog Test",
+    "author": "Ingrid Hartmann",
     "language": "de"
   },
   "seo": {
@@ -229,7 +229,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "author": {
       "@type": "Person",
-      "name": "Food Blog Test"
+      "name": "Ingrid Hartmann"
     },
     "datePublished": "2025-05-28T18:01:19.312Z",
     "image": "https://picsum.photos/1200/800?random=12",
