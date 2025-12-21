@@ -1,0 +1,43 @@
+---
+/**
+ * Container-Komponente, die alle aktiven Dietary Labels für ein Rezept anzeigt
+ */
+import DietaryBadge from './DietaryBadge.astro';
+import { getDietaryLabelDisplay, getActiveDietaryLabels } from '../utils/dietaryDetection';
+import type { DietaryLabels } from '../utils/dietaryDetection';
+
+export interface Props {
+  dietaryLabels?: DietaryLabels;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+const { dietaryLabels, size = 'md', className = '' } = Astro.props;
+
+// Hole alle aktiven Labels
+const activeLabels = getActiveDietaryLabels(dietaryLabels);
+
+// Wenn keine Labels aktiv sind, nichts rendern
+if (activeLabels.length === 0) {
+  return null;
+}
+
+// Labels mit Display-Informationen
+const labelDisplays = activeLabels
+  .map(key => {
+    const display = getDietaryLabelDisplay(key as keyof DietaryLabels);
+    return display ? { key, ...display } : null;
+  })
+  .filter(Boolean);
+---
+
+{labelDisplays.length > 0 && (
+  <div class:list={['dietary-labels-container', 'flex flex-wrap gap-2', className]}>
+    {labelDisplays.map(labelDisplay => (
+      <DietaryBadge
+        label={labelDisplay!.label}
+        size={size}
+      />
+    ))}
+  </div>
+)}

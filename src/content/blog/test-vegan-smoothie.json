@@ -1,0 +1,283 @@
+{
+  "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "metadata": {
+    "title": "Veganer Protein-Smoothie",
+    "description": "Kraftvoller veganer Smoothie mit Banane, Mandelmilch und Proteinpulver für einen energiegeladenen Start in den Tag.",
+    "slug": "test-vegan-smoothie",
+    "pubDate": "2025-12-21",
+    "modifiedDate": "2025-12-21",
+    "author": "Food Blog",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "Veganer Protein-Smoothie - Gesundes Frühstück",
+    "metaDescription": "Schneller veganer Smoothie mit hohem Proteingehalt. Perfekt als gesundes Frühstück oder Post-Workout Snack.",
+    "metaKeywords": [
+      "vegan",
+      "protein",
+      "smoothie",
+      "frühstück",
+      "gesund"
+    ],
+    "ogImage": "https://picsum.photos/1200/800?random=100",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Frühstück",
+      "Getränke"
+    ],
+    "tags": [
+      "vegan",
+      "protein",
+      "smoothie",
+      "gesund",
+      "schnell"
+    ],
+    "cuisine": "International",
+    "difficulty": "einfach",
+    "mealType": "Frühstück"
+  },
+  "dietaryLabels": {
+    "vegan": true,
+    "vegetarian": true,
+    "lactoVegetarian": false,
+    "ovoVegetarian": false,
+    "pescatarian": false,
+    "keto": false,
+    "paleo": false,
+    "highProtein": true,
+    "highCarb": false,
+    "glutenFree": true,
+    "dairyFree": true,
+    "lowCarb": false,
+    "autoDetected": true,
+    "manuallyVerified": false
+  },
+  "timing": {
+    "prepTime": "PT5M",
+    "cookTime": "PT0M",
+    "totalTime": "PT5M",
+    "prepTimeMinutes": 5,
+    "cookTimeMinutes": 0,
+    "totalTimeMinutes": 5
+  },
+  "nutrition": {
+    "servings": 1,
+    "servingSize": "1 Smoothie (ca. 350ml)",
+    "calories": "280",
+    "carbohydrates": "35g",
+    "protein": "25g",
+    "fat": "8g",
+    "fiber": "6g",
+    "sugar": "18g",
+    "sodium": "150mg"
+  },
+  "ingredients": [
+    {
+      "name": "Banane",
+      "amount": 1,
+      "unit": "Stück",
+      "note": "reif",
+      "group": null
+    },
+    {
+      "name": "Mandelmilch",
+      "amount": 250,
+      "unit": "ml",
+      "note": "ungesüßt",
+      "group": null
+    },
+    {
+      "name": "Veganes Proteinpulver",
+      "amount": 30,
+      "unit": "g",
+      "note": "Vanille",
+      "group": null
+    },
+    {
+      "name": "Haferflocken",
+      "amount": 30,
+      "unit": "g",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Leinsamen",
+      "amount": 1,
+      "unit": "EL",
+      "note": "geschrotet",
+      "group": null
+    },
+    {
+      "name": "Datteln",
+      "amount": 2,
+      "unit": "Stück",
+      "note": "entkernt",
+      "group": null
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "https://picsum.photos/1200/1600?random=100",
+      "alt": "Veganer Protein-Smoothie in hohem Glas mit Banane",
+      "filename": "vegan-protein-smoothie.jpg",
+      "width": 1200,
+      "height": 1600,
+      "caption": null
+    },
+    "steps": []
+  },
+  "content": {
+    "introduction": {
+      "text": "Dieser vegane Protein-Smoothie ist der perfekte Start in deinen Tag! Mit reifen Bananen, cremiger Mandelmilch und hochwertigem pflanzlichen Protein versorgt er dich mit allen wichtigen Nährstoffen für einen energiegeladenen Morgen. In nur 5 Minuten zubereitet, ist er ideal für alle, die es morgens eilig haben, aber nicht auf ein gesundes Frühstück verzichten möchten.",
+      "characterCount": 0
+    },
+    "facts": [
+      {
+        "title": "Pflanzliches Protein",
+        "text": "Veganes Proteinpulver aus Erbsen, Reis oder Hanf liefert alle essentiellen Aminosäuren und ist dabei leicht verdaulich. Kombiniert mit den natürlichen Proteinen aus Haferflocken und Leinsamen ergibt sich ein vollwertiges Aminosäureprofil.",
+        "order": 1
+      },
+      {
+        "title": "Energielieferant Banane",
+        "text": "Bananen sind reich an Kalium und natürlichem Zucker, der dir schnelle Energie liefert. Sie machen den Smoothie cremig und süß, ohne dass zusätzlicher Zucker nötig ist.",
+        "order": 2
+      },
+      {
+        "title": "Omega-3 aus Leinsamen",
+        "text": "Geschrotete Leinsamen sind eine hervorragende pflanzliche Quelle für Omega-3-Fettsäuren. Sie unterstützen die Herzgesundheit und liefern zusätzliche Ballaststoffe.",
+        "order": 3
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Zutaten vorbereiten",
+        "shortText": "Banane schälen und in Stücke brechen. Datteln entkernen.",
+        "text": "Schäle zunächst die Banane und breche sie in 3-4 Stücke, damit sie sich leichter mixen lässt. Wenn du gefrorene Bananenstücke verwendest, wird der Smoothie besonders cremig und erfrischend. Entferne die Kerne aus den Datteln und halbiere sie.",
+        "tips": ["Gefrorene Bananenstücke machen den Smoothie besonders cremig"]
+      },
+      {
+        "number": 2,
+        "title": "Alle Zutaten mixen",
+        "shortText": "Alle Zutaten in den Mixer geben und für 60 Sekunden auf höchster Stufe mixen.",
+        "text": "Gib die Mandelmilch zuerst in den Mixer, dann die Bananenstücke, Datteln, Haferflocken, Proteinpulver und Leinsamen. Mixe alles für etwa 60 Sekunden auf höchster Stufe, bis eine glatte, cremige Konsistenz entsteht. Falls der Smoothie zu dick ist, füge noch etwas Mandelmilch hinzu. Für eine dünnflüssigere Konsistenz kannst du auch Eiswürfel hinzufügen.",
+        "tips": []
+      },
+      {
+        "number": 3,
+        "title": "Servieren",
+        "shortText": "Sofort in ein großes Glas füllen und genießen.",
+        "text": "Gieße den fertigen Smoothie in ein großes Glas und genieße ihn sofort. Falls gewünscht, kannst du ihn mit Bananenscheiben, Haferflocken oder Kakaonibs garnieren. Der Smoothie schmeckt am besten frisch, kann aber auch bis zu 24 Stunden im Kühlschrank aufbewahrt werden.",
+        "tips": ["Vor dem Servieren gut umrühren, falls sich Zutaten abgesetzt haben"]
+      }
+    ],
+    "tips": {
+      "title": "Tipps und Variationen",
+      "items": [
+        {
+          "title": "Aufbewahrung",
+          "text": "Der Smoothie kann bis zu 24 Stunden im Kühlschrank aufbewahrt werden. Vor dem Trinken gut schütteln, da sich Zutaten absetzen können."
+        },
+        {
+          "title": "Variationen",
+          "text": "Ersetze die Banane durch gefrorene Beeren für einen anderen Geschmack. Füge einen Esslöffel Erdnussbutter für extra Protein und Cremigkeit hinzu. Oder verwende Spinat für zusätzliche Vitamine."
+        },
+        {
+          "title": "Serviervorschlag",
+          "text": "Perfekt als Post-Workout Snack oder als vollwertiges Frühstück. Kombiniere ihn mit einem Stück Vollkornbrot oder Müsliriegel für extra Sättigung."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Dieser vegane Protein-Smoothie ist nicht nur unglaublich lecker, sondern auch vollgepackt mit Nährstoffen. Er versorgt dich mit Energie, Protein und gesunden Fetten - alles, was du für einen erfolgreichen Start in den Tag brauchst. Probiere ihn aus und experimentiere mit deinen Lieblingszutaten!"
+    }
+  },
+  "faqs": [
+    {
+      "question": "Kann ich ein anderes Proteinpulver verwenden?",
+      "answer": "Ja, du kannst jedes vegane Proteinpulver deiner Wahl verwenden. Erbsenprotein, Reisprotein oder Hanfprotein funktionieren alle gut. Achte darauf, dass es ungesüßt oder leicht gesüßt ist.",
+      "category": "substitution"
+    },
+    {
+      "question": "Wie lange ist der Smoothie haltbar?",
+      "answer": "Der Smoothie schmeckt frisch am besten, kann aber bis zu 24 Stunden im Kühlschrank in einem luftdichten Behälter aufbewahrt werden. Vor dem Trinken gut schütteln.",
+      "category": "storage"
+    },
+    {
+      "question": "Kann ich den Smoothie vorbereiten?",
+      "answer": "Ja, du kannst die trockenen Zutaten (Haferflocken, Leinsamen, Proteinpulver) in einem Behälter vorbereiten. Morgens einfach Banane und Mandelmilch hinzufügen und mixen.",
+      "category": "preparation"
+    },
+    {
+      "question": "Ist der Smoothie auch für Kinder geeignet?",
+      "answer": "Ja, aber du kannst das Proteinpulver weglassen oder durch mehr Haferflocken ersetzen. Kinder brauchen nicht unbedingt zusätzliches Protein in dieser Form.",
+      "category": "dietary"
+    }
+  ],
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Veganer Protein-Smoothie",
+    "description": "Kraftvoller veganer Smoothie mit Banane, Mandelmilch und Proteinpulver",
+    "image": ["https://picsum.photos/1200/1600?random=100"],
+    "author": {
+      "@type": "Person",
+      "name": "Food Blog"
+    },
+    "datePublished": "2025-12-21",
+    "prepTime": "PT5M",
+    "cookTime": "PT0M",
+    "totalTime": "PT5M",
+    "recipeYield": "1 Smoothie",
+    "recipeCategory": "Frühstück",
+    "recipeCuisine": "International",
+    "recipeIngredient": [
+      "1 Banane (reif)",
+      "250ml Mandelmilch (ungesüßt)",
+      "30g Veganes Proteinpulver (Vanille)",
+      "30g Haferflocken",
+      "1 EL Leinsamen (geschrotet)",
+      "2 Datteln (entkernt)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Zutaten vorbereiten",
+        "text": "Banane schälen und in Stücke brechen. Datteln entkernen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Alle Zutaten mixen",
+        "text": "Alle Zutaten in den Mixer geben und für 60 Sekunden auf höchster Stufe mixen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Servieren",
+        "text": "Sofort in ein großes Glas füllen und genießen."
+      }
+    ],
+    "nutrition": {
+      "@type": "NutritionInformation",
+      "servingSize": "1 Smoothie (ca. 350ml)",
+      "calories": "280 kcal",
+      "carbohydrateContent": "35g",
+      "proteinContent": "25g",
+      "fatContent": "8g"
+    },
+    "keywords": "vegan, protein, smoothie, frühstück, gesund",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    }
+  },
+  "vgwort": {
+    "characterCount": 1950,
+    "minRequired": 1800,
+    "eligible": true,
+    "trackingUrl": null,
+    "note": "Character count meets VGWort minimum"
+  }
+}

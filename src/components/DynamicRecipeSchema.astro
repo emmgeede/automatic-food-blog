@@ -6,13 +6,16 @@
 
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
+import { dietaryLabelsToSchemaOrgDiet } from '../utils/dietaryDetection';
+import type { DietaryLabels } from '../utils/dietaryDetection';
 
 interface Props {
   baseSchema: Record<string, any>;
   recipeSlug: string;
+  dietaryLabels?: DietaryLabels;
 }
 
-const { baseSchema, recipeSlug } = Astro.props;
+const { baseSchema, recipeSlug, dietaryLabels } = Astro.props;
 
 // Helper function to read aggregated ratings
 function getAggregatedRating(slug: string) {
@@ -85,6 +88,14 @@ if (commentCount > 0) {
 // Add dateModified if not present (use current date as fallback)
 if (!enhancedSchema.dateModified) {
   enhancedSchema.dateModified = baseSchema.datePublished || new Date().toISOString().split('T')[0];
+}
+
+// Add suitableForDiet based on dietaryLabels
+if (dietaryLabels) {
+  const schemaOrgDiets = dietaryLabelsToSchemaOrgDiet(dietaryLabels);
+  if (schemaOrgDiets.length > 0) {
+    enhancedSchema.suitableForDiet = schemaOrgDiets;
+  }
 }
 ---
 

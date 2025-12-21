@@ -54,6 +54,27 @@ const blogCollection = defineCollection({
       })
       .optional(),
 
+    // --- DIETARY LABELS (Ernährungsweisen) ---
+    dietaryLabels: z
+      .object({
+        vegan: z.boolean().default(false),
+        vegetarian: z.boolean().default(false),
+        lactoVegetarian: z.boolean().default(false),
+        ovoVegetarian: z.boolean().default(false),
+        pescatarian: z.boolean().default(false),
+        keto: z.boolean().default(false),
+        paleo: z.boolean().default(false),
+        highProtein: z.boolean().default(false),
+        highCarb: z.boolean().default(false),
+        glutenFree: z.boolean().default(false),
+        dairyFree: z.boolean().default(false),
+        lowCarb: z.boolean().default(false),
+        // Metadaten zur Erkennung
+        autoDetected: z.boolean().default(true),
+        manuallyVerified: z.boolean().default(false),
+      })
+      .optional(),
+
     // --- TIMING (aus JSON "timing") ---
     timing: z
       .object({

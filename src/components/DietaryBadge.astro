@@ -1,0 +1,46 @@
+---
+/**
+ * Globale Badge-Komponente für Ernährungsweisen-Labels
+ * Design: Schwarzer Hintergrund, Accent-Color Text, auffällig
+ */
+
+export interface Props {
+  label: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { label, size = 'md' } = Astro.props;
+
+// Size-Mapping
+const sizeClasses = {
+  sm: 'text-xs px-2 py-0.5',
+  md: 'text-sm px-3 py-1',
+  lg: 'text-base px-4 py-1.5',
+};
+---
+
+<span
+  class:list={[
+    'dietary-badge',
+    'inline-flex items-center font-semibold rounded-full',
+    'bg-black text-accent',
+    'shadow-sm hover:shadow-md transition-shadow duration-200',
+    sizeClasses[size],
+  ]}
+>
+  {label}
+</span>
+
+<style>
+  .dietary-badge {
+    /* Global styling für alle Dietary Badges */
+    letter-spacing: 0.025em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .dietary-badge:hover {
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+  }
+</style>

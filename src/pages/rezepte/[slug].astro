@@ -18,6 +18,7 @@ import BreadcrumbSchema from "../../components/BreadcrumbSchema.astro";
 import ArticleSchema from "../../components/ArticleSchema.astro";
 import RelatedPostsCarousel from "../../components/recipe/RelatedPostsCarousel.astro";
 import PopularPostsCarousel from "../../components/recipe/PopularPostsCarousel.astro";
+import DietaryLabelsDisplay from "../../components/DietaryLabelsDisplay.astro";
 import { getRelatedPosts } from "../../utils/relatedPosts";
 
 type BlogEntry = CollectionEntry<"blog">;
@@ -44,6 +45,7 @@ const {
   taxonomy,
   recipeSchema,
   faqs,
+  dietaryLabels,
 } = entry.data;
 
 // Prepare canonical URL
@@ -101,7 +103,11 @@ const breadcrumbItems = [
   <!-- Schema.org Structured Data (Recipe, Article, FAQ, Breadcrumb) -->
   <Fragment slot="head">
     {recipeSchema && (
-      <DynamicRecipeSchema baseSchema={recipeSchema} recipeSlug={metadata?.slug || ""} />
+      <DynamicRecipeSchema
+        baseSchema={recipeSchema}
+        recipeSlug={metadata?.slug || ""}
+        dietaryLabels={dietaryLabels}
+      />
     )}
     {faqs && faqs.length > 0 && (
       <FAQSchema faqs={faqs} />
@@ -197,6 +203,13 @@ const breadcrumbItems = [
               <span>Direkt zum Rezept</span>
             </a>
           </div>
+
+          <!-- Dietary Labels -->
+          <DietaryLabelsDisplay
+            dietaryLabels={entry.data.dietaryLabels}
+            size="md"
+            className="mb-6 justify-center"
+          />
 
           <!-- Introduction (optional) -->
           {content?.introduction?.text && (
