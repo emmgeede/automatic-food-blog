@@ -95,6 +95,13 @@ function parseDuration(duration?: string): string {
   return match ? `${match[1]} min` : '';
 }
 
+// Difficulty mapping
+const difficultyMap: Record<string, string> = {
+  einfach: "Einfach",
+  mittel: "Mittel",
+  schwer: "Fortgeschritten",
+};
+
 // Frontmatter
 const frontmatter = {
   title: "Die Mama kocht - Leckere Rezepte für jeden Tag",
@@ -184,12 +191,12 @@ const frontmatter = {
                       {recipe.data.metadata?.title}
                     </h3>
                     <div class="flex items-center gap-4 text-sm text-gray-600">
-                      {recipe.data.metadata?.author && (
+                      {recipe.data.taxonomy?.difficulty && (
                         <span class="flex items-center gap-1">
                           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                            <path fill-rule="evenodd" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" clip-rule="evenodd" />
                           </svg>
-                          {recipe.data.metadata.author}
+                          {difficultyMap[recipe.data.taxonomy.difficulty] || recipe.data.taxonomy.difficulty}
                         </span>
                       )}
                       {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
