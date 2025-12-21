@@ -167,8 +167,8 @@ const frontmatter = {
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {latestRecipes.map((recipe) => (
-              <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-                <a href={`/rezepte/${recipe.data.metadata?.slug}`}>
+              <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex flex-col h-full">
                   {recipe.data.images?.featured?.src && (
                     <div class="relative aspect-video overflow-hidden">
                       <Image
@@ -181,16 +181,18 @@ const frontmatter = {
                       />
                     </div>
                   )}
-                  <div class="p-6">
-                    {recipe.data.taxonomy?.categories?.[0] && (
-                      <span class="text-accent text-xs font-semibold uppercase tracking-wide">
-                        {recipe.data.taxonomy.categories[0]}
-                      </span>
-                    )}
-                    <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 hover:text-accent transition-colors">
-                      {recipe.data.metadata?.title}
-                    </h3>
-                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                  <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex-grow">
+                      {recipe.data.taxonomy?.categories?.[0] && (
+                        <span class="text-accent text-xs font-semibold uppercase tracking-wide">
+                          {recipe.data.taxonomy.categories[0]}
+                        </span>
+                      )}
+                      <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 hover:text-accent transition-colors">
+                        {recipe.data.metadata?.title}
+                      </h3>
+                    </div>
+                    <div class="flex items-center gap-4 text-sm text-gray-600 mt-auto pt-3">
                       {recipe.data.taxonomy?.difficulty && (
                         <span class="flex items-center gap-1">
                           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
