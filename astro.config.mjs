@@ -17,6 +17,15 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
+  image: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+    ],
+  },
+
   integrations: [
     icon(),
     preact(),
