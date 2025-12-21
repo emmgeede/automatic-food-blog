@@ -131,44 +131,45 @@ const difficultyMap: Record<string, string> = {
                   />
                 </div>
               )}
-              <div class="p-6 flex flex-col flex-grow">
-                <div class="flex-grow">
-                  {recipe.data.taxonomy?.categories?.[0] && (
-                    <span class="text-accent text-xs font-semibold uppercase tracking-wide">
-                      {recipe.data.taxonomy.categories[0]}
-                    </span>
-                  )}
-                  <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 hover:text-accent transition-colors">
-                    {recipe.data.metadata?.title}
-                  </h3>
-                  {recipe.data.metadata?.description && (
-                    <p class="text-sm text-gray-600 mb-3 line-clamp-2">
-                      {recipe.data.metadata.description}
-                    </p>
-                  )}
-                </div>
-                <DietaryLabelsDisplay
-                  dietaryLabels={recipe.data.dietaryLabels}
-                  size="sm"
-                  className="mb-3"
-                />
-                <div class="flex items-center gap-4 text-sm text-gray-600 mt-auto pt-3 border-t border-gray-100">
-                  {recipe.data.taxonomy?.difficulty && (
-                    <span class="flex items-center gap-1">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" clip-rule="evenodd" />
-                      </svg>
-                      {difficultyMap[recipe.data.taxonomy.difficulty] || recipe.data.taxonomy.difficulty}
-                    </span>
-                  )}
-                  {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
-                    <span class="flex items-center gap-1">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
-                      </svg>
-                      {parseDuration(recipe.data.timing.totalTime || recipe.data.timing.cookTime)}
-                    </span>
-                  )}
+              <div class="p-6 flex flex-col h-full">
+                {recipe.data.taxonomy?.categories?.[0] && (
+                  <span class="text-accent text-xs font-semibold uppercase tracking-wide">
+                    {recipe.data.taxonomy.categories[0]}
+                  </span>
+                )}
+                <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 hover:text-accent transition-colors">
+                  {recipe.data.metadata?.title}
+                </h3>
+                {recipe.data.metadata?.description && (
+                  <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+                    {recipe.data.metadata.description}
+                  </p>
+                )}
+
+                <div class="mt-auto space-y-3">
+                  <DietaryLabelsDisplay
+                    dietaryLabels={recipe.data.dietaryLabels}
+                    size="sm"
+                    className=""
+                  />
+                  <div class="flex items-center gap-4 text-sm text-gray-600 pt-3 border-t border-gray-100">
+                    {recipe.data.taxonomy?.difficulty && (
+                      <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" clip-rule="evenodd" />
+                        </svg>
+                        {difficultyMap[recipe.data.taxonomy.difficulty] || recipe.data.taxonomy.difficulty}
+                      </span>
+                    )}
+                    {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
+                      <span class="flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                        </svg>
+                        {parseDuration(recipe.data.timing.totalTime || recipe.data.timing.cookTime)}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </a>

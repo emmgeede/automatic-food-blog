@@ -11,9 +11,10 @@ export interface Props {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   clickable?: boolean;
+  maxDisplay?: number; // Maximum number of labels to display
 }
 
-const { dietaryLabels, size = 'md', className = '', clickable = true } = Astro.props;
+const { dietaryLabels, size = 'md', className = '', clickable = true, maxDisplay = 3 } = Astro.props;
 
 // Hole alle aktiven Labels
 const activeLabels = getActiveDietaryLabels(dietaryLabels);
@@ -30,11 +31,15 @@ const labelDisplays = activeLabels
     return display ? { key, ...display } : null;
   })
   .filter(Boolean);
+
+// Limit to maxDisplay labels
+const displayedLabels = labelDisplays.slice(0, maxDisplay);
+const remainingCount = labelDisplays.length - maxDisplay;
 ---
 
 {labelDisplays.length > 0 && (
   <div class:list={['dietary-labels-container', 'flex flex-wrap gap-2', className]}>
-    {labelDisplays.map(labelDisplay => (
+    {displayedLabels.map(labelDisplay => (
       <DietaryBadge
         label={labelDisplay!.label}
         labelKey={labelDisplay!.key}
@@ -42,5 +47,15 @@ const labelDisplays = activeLabels
         clickable={clickable}
       />
     ))}
+    {remainingCount > 0 && (
+      <span class:list={[
+        'inline-flex items-center px-3 py-1 rounded-full bg-gray-200 text-gray-700 font-medium',
+        size === 'sm' && 'text-xs',
+        size === 'md' && 'text-sm',
+        size === 'lg' && 'text-base'
+      ]}>
+        +{remainingCount}
+      </span>
+    )}
   </div>
 )}
