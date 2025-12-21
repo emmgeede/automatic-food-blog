@@ -1,14 +1,520 @@
 ---
-import PostHeader from "../components/PostHeader.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCategoryUrl } from "../utils/categoryUtils";
 
+// Get all blog entries
+const allRecipes = await getCollection("blog");
+
+// Sort by publication date
+const sortedByDate = [...allRecipes].sort((a, b) => {
+  const dateA = a.data.metadata?.pubDate || new Date(0);
+  const dateB = b.data.metadata?.pubDate || new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+
+// Latest recipes (for Latest Recipes section)
+const latestRecipes = sortedByDate.slice(0, 6);
+
+// Featured recipes for hero slider (newest 4)
+const heroRecipes = sortedByDate.slice(0, 4);
+
+// Trending recipes for sidebar (5-10)
+const trendingRecipes = sortedByDate.slice(4, 10);
+
+// Vegan recipes
+const veganRecipes = allRecipes.filter(recipe =>
+  recipe.data.taxonomy?.categories?.includes("Vegetarisch")
+).slice(0, 4);
+
+// Quick recipes (under 30 minutes)
+const quickRecipes = allRecipes.filter(recipe => {
+  const totalTime = recipe.data.timing?.totalTime || recipe.data.timing?.cookTime;
+  if (!totalTime) return false;
+  const match = totalTime.match(/PT(\d+)M/);
+  if (!match) return false;
+  const minutes = parseInt(match[1]);
+  return minutes <= 30;
+}).slice(0, 6);
+
+// Dessert recipes
+const dessertRecipes = allRecipes.filter(recipe =>
+  recipe.data.taxonomy?.categories?.includes("Dessert") ||
+  recipe.data.taxonomy?.categories?.includes("Süßspeise") ||
+  recipe.data.taxonomy?.categories?.includes("Plätzchen/Kekse")
+).slice(0, 6);
+
+// Mock popular recipes for "Most Loved" section (will be replaced with real data)
+const mockPopularRecipes = [
+  { slug: 'omas-plaetzchen', title: 'Omas Plätzchen', image: '/images/recipes/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg' },
+  { slug: 'fake-spaghetti-carbonara', title: 'Spaghetti Carbonara', image: 'https://picsum.photos/1200/800?random=1' },
+  { slug: 'fake-lasagne-bolognese', title: 'Lasagne Bolognese', image: 'https://picsum.photos/1200/800?random=3' },
+  { slug: 'fake-pizza-margherita', title: 'Pizza Margherita', image: 'https://picsum.photos/1200/800?random=4' },
+  { slug: 'fake-schnitzel', title: 'Wiener Schnitzel', image: 'https://picsum.photos/1200/800?random=5' },
+  { slug: 'fake-tiramisu', title: 'Tiramisu', image: 'https://picsum.photos/1200/800?random=6' },
+];
+
+// Editors Selection (reversed popular recipes)
+const editorsSelection = [...mockPopularRecipes].reverse().slice(0, 6);
+
+// Categories for "Browse by Categories"
+const categories = [
+  { name: 'Suppe', icon: '🥣' },
+  { name: 'Vorspeise', icon: '🥗' },
+  { name: 'Frühstück', icon: '🥞' },
+  { name: 'Dessert', icon: '🍰' },
+  { name: 'Hauptgericht', icon: '🍝' },
+  { name: 'Backen', icon: '🍞' },
+  { name: 'Plätzchen/Kekse', icon: '🍪' },
+  { name: 'Fleisch', icon: '🥩' },
+  { name: 'Fisch', icon: '🐟' },
+  { name: 'Vegetarisch', icon: '🥕' },
+];
+
+// Helper function to parse duration
+function parseDuration(duration?: string): string {
+  if (!duration) return '';
+  const match = duration.match(/PT(\d+)M/);
+  return match ? `${match[1]} min` : '';
+}
+
+// Frontmatter
 const frontmatter = {
-  title: "Test",
-  metaDescription: "Food Blog",
-  metaKeywords: ["food", "recipes", "blog"],
+  title: "Die Mama kocht - Leckere Rezepte für jeden Tag",
+  metaDescription: "Entdecke leckere Rezepte für jeden Anlass. Von schnellen Gerichten bis zu aufwendigen Desserts - hier findest du dein nächstes Lieblingsrezept.",
+  metaKeywords: "Rezepte, Kochen, Backen, Food Blog, Deutsch, Vegetarisch, Desserts",
 };
 ---
 
 <BaseLayout frontmatter={frontmatter}>
-  <PostHeader />
+  <!-- Hero Slider Section -->
+  <section class="hero-slider mb-12 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {heroRecipes.map((recipe, index) => (
+          <a
+            href={`/rezepte/${recipe.data.metadata?.slug}`}
+            class={`relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 group ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
+          >
+            <div class={`relative ${index === 0 ? 'h-[500px]' : 'h-[240px]'}`}>
+              {recipe.data.images?.featured?.src && (
+                <Image
+                  src={recipe.data.images.featured.src}
+                  alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                  width={index === 0 ? 1200 : 600}
+                  height={index === 0 ? 800 : 400}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              )}
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                {recipe.data.taxonomy?.categories?.[0] && (
+                  <span class="inline-block bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wide rounded mb-3">
+                    {recipe.data.taxonomy.categories[0]}
+                  </span>
+                )}
+                <h3 class={`font-bold leading-tight ${index === 0 ? 'text-3xl mb-3' : 'text-xl mb-2'}`}>
+                  {recipe.data.metadata?.title}
+                </h3>
+                {index === 0 && recipe.data.metadata?.description && (
+                  <p class="text-sm opacity-90 line-clamp-2">{recipe.data.metadata.description}</p>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <!-- Main Content (2/3) -->
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Latest Recipes Section -->
+        <section>
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold text-gray-900">Neueste Rezepte</h2>
+            <a href="/rezepte" class="text-accent hover:text-accent-dark font-semibold">
+              Alle anzeigen →
+            </a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {latestRecipes.map((recipe) => (
+              <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                <a href={`/rezepte/${recipe.data.metadata?.slug}`}>
+                  {recipe.data.images?.featured?.src && (
+                    <div class="relative aspect-video overflow-hidden">
+                      <Image
+                        src={recipe.data.images.featured.src}
+                        alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                        width={600}
+                        height={400}
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="p-6">
+                    {recipe.data.taxonomy?.categories?.[0] && (
+                      <span class="text-accent text-xs font-semibold uppercase tracking-wide">
+                        {recipe.data.taxonomy.categories[0]}
+                      </span>
+                    )}
+                    <h3 class="text-xl font-bold text-gray-900 mt-2 mb-3 hover:text-accent transition-colors">
+                      {recipe.data.metadata?.title}
+                    </h3>
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                      {recipe.data.metadata?.author && (
+                        <span class="flex items-center gap-1">
+                          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                          </svg>
+                          {recipe.data.metadata.author}
+                        </span>
+                      )}
+                      {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
+                        <span class="flex items-center gap-1">
+                          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                          </svg>
+                          {parseDuration(recipe.data.timing.totalTime || recipe.data.timing.cookTime)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <!-- Browse by Categories Section -->
+        <section>
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Nach Kategorien stöbern</h2>
+          <div class="grid grid-cols-5 gap-6">
+            {categories.map((category) => (
+              <a
+                href={getCategoryUrl(category.name)}
+                class="flex flex-col items-center justify-center p-6 bg-white rounded-full aspect-square shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+              >
+                <span class="text-4xl mb-2 group-hover:scale-110 transition-transform">{category.icon}</span>
+                <span class="text-sm font-semibold text-gray-700 text-center group-hover:text-accent transition-colors">
+                  {category.name}
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <!-- Most Loved Recipes Section -->
+        <section class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold text-gray-900">Beliebteste Rezepte</h2>
+            <a href="/rezepte" class="text-accent hover:text-accent-dark font-semibold">
+              Alle anzeigen →
+            </a>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {allRecipes.slice(0, 6).map((recipe, index) => (
+              <a
+                href={`/rezepte/${recipe.data.metadata?.slug}`}
+                class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 group aspect-video"
+              >
+                {recipe.data.images?.featured?.src && (
+                  <Image
+                    src={recipe.data.images.featured.src}
+                    alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                    width={600}
+                    height={400}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                )}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div class="absolute top-4 left-4">
+                  <span class="inline-flex items-center justify-center w-10 h-10 bg-accent text-white font-bold rounded-full">
+                    {index + 1}
+                  </span>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h3 class="font-bold text-lg leading-tight">
+                    {recipe.data.metadata?.title}
+                  </h3>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <!-- Vegan Recipes Section -->
+        {veganRecipes.length > 0 && (
+          <section>
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-3xl font-bold text-gray-900">Vegetarische Rezepte</h2>
+              <a href={getCategoryUrl('Vegetarisch')} class="text-accent hover:text-accent-dark font-semibold">
+                Alle anzeigen →
+              </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {veganRecipes.map((recipe, index) => (
+                <article class={index === 0 ? 'md:row-span-2' : ''}>
+                  <a
+                    href={`/rezepte/${recipe.data.metadata?.slug}`}
+                    class="block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                  >
+                    {recipe.data.images?.featured?.src && (
+                      <div class={`relative overflow-hidden ${index === 0 ? 'aspect-square' : 'aspect-video'}`}>
+                        <Image
+                          src={recipe.data.images.featured.src}
+                          alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                          width={index === 0 ? 800 : 600}
+                          height={index === 0 ? 800 : 400}
+                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div class="p-6">
+                      <span class="text-green-600 text-xs font-semibold uppercase tracking-wide">
+                        Vegetarisch
+                      </span>
+                      <h3 class="text-xl font-bold text-gray-900 mt-2 mb-2 hover:text-accent transition-colors">
+                        {recipe.data.metadata?.title}
+                      </h3>
+                      {index === 0 && recipe.data.metadata?.description && (
+                        <p class="text-gray-600 text-sm line-clamp-3 mb-4">
+                          {recipe.data.metadata.description}
+                        </p>
+                      )}
+                      <div class="flex items-center gap-4 text-sm text-gray-600">
+                        {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
+                          <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                            </svg>
+                            {parseDuration(recipe.data.timing.totalTime || recipe.data.timing.cookTime)}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Prepare Under 30 Minutes Section -->
+        {quickRecipes.length > 0 && (
+          <section class="bg-gray-900 rounded-2xl p-8 text-white">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-3xl font-bold">Schnelle Rezepte unter 30 Minuten</h2>
+              <a href="/rezepte" class="text-accent hover:text-accent-dark font-semibold">
+                Alle anzeigen →
+              </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {quickRecipes.map((recipe) => (
+                <a
+                  href={`/rezepte/${recipe.data.metadata?.slug}`}
+                  class="group"
+                >
+                  {recipe.data.images?.featured?.src && (
+                    <div class="relative aspect-video overflow-hidden rounded-lg mb-3">
+                      <Image
+                        src={recipe.data.images.featured.src}
+                        alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                        width={400}
+                        height={300}
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <h3 class="font-bold text-base mb-1 group-hover:text-accent transition-colors line-clamp-2">
+                    {recipe.data.metadata?.title}
+                  </h3>
+                  {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
+                    <p class="text-sm text-gray-400">
+                      {parseDuration(recipe.data.timing.totalTime || recipe.data.timing.cookTime)}
+                    </p>
+                  )}
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Editors Selection Section -->
+        <section class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold text-gray-900">Redaktions-Auswahl</h2>
+            <a href="/rezepte" class="text-accent hover:text-accent-dark font-semibold">
+              Alle anzeigen →
+            </a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...allRecipes].slice(0, 6).reverse().map((recipe) => (
+              <article class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                <a href={`/rezepte/${recipe.data.metadata?.slug}`}>
+                  {recipe.data.images?.featured?.src && (
+                    <div class="relative aspect-video overflow-hidden">
+                      <Image
+                        src={recipe.data.images.featured.src}
+                        alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                        width={600}
+                        height={400}
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 hover:text-accent transition-colors">
+                      {recipe.data.metadata?.title}
+                    </h3>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <!-- Delicious Desserts Section -->
+        {dessertRecipes.length > 0 && (
+          <section>
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-3xl font-bold text-gray-900">Köstliche Desserts</h2>
+              <a href={getCategoryUrl('Dessert')} class="text-accent hover:text-accent-dark font-semibold">
+                Alle anzeigen →
+              </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {dessertRecipes.map((recipe, index) => (
+                <article class="flex gap-4 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex gap-4 w-full">
+                    {recipe.data.images?.featured?.src && (
+                      <div class="relative w-40 flex-shrink-0 overflow-hidden">
+                        <Image
+                          src={recipe.data.images.featured.src}
+                          alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                          width={200}
+                          height={200}
+                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div class="flex-1 p-4 flex flex-col justify-center">
+                      <span class="text-pink-600 text-xs font-semibold uppercase tracking-wide">
+                        Dessert
+                      </span>
+                      <h3 class="text-lg font-bold text-gray-900 mt-1 mb-2 hover:text-accent transition-colors line-clamp-2">
+                        {recipe.data.metadata?.title}
+                      </h3>
+                      {recipe.data.metadata?.description && (
+                        <p class="text-sm text-gray-600 line-clamp-2">
+                          {recipe.data.metadata.description}
+                        </p>
+                      )}
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Newsletter Section -->
+        <section class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-12 text-center">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Newsletter</h2>
+          <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+            Melde dich für unseren Newsletter an und verpasse keine neuen Rezepte und Kochtipps!
+          </p>
+          <form class="max-w-md mx-auto">
+            <div class="flex gap-3">
+              <input
+                type="email"
+                placeholder="Deine E-Mail-Adresse"
+                class="flex-1 px-6 py-3 rounded-lg border-2 border-gray-200 focus:border-accent focus:outline-none"
+                aria-label="E-Mail-Adresse"
+              />
+              <button
+                type="submit"
+                class="px-8 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors"
+              >
+                Anmelden
+              </button>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">
+              Mit der Anmeldung stimmst du unseren Datenschutzbestimmungen zu.
+            </p>
+          </form>
+        </section>
+
+      </div>
+
+      <!-- Sidebar (1/3) - Trending Recipes -->
+      <aside class="lg:col-span-1">
+        <div class="sticky top-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-6">Trending Rezepte</h3>
+          <div class="space-y-4">
+            {trendingRecipes.map((recipe) => (
+              <article class="flex gap-4 bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+                <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex gap-4 w-full">
+                  {recipe.data.images?.featured?.src && (
+                    <div class="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg">
+                      <Image
+                        src={recipe.data.images.featured.src}
+                        alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                        width={100}
+                        height={100}
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    {recipe.data.taxonomy?.categories?.[0] && (
+                      <span class="text-accent text-xs font-semibold uppercase tracking-wide">
+                        {recipe.data.taxonomy.categories[0]}
+                      </span>
+                    )}
+                    <h4 class="text-sm font-bold text-gray-900 mt-1 line-clamp-2 hover:text-accent transition-colors">
+                      {recipe.data.metadata?.title}
+                    </h4>
+                    {(recipe.data.timing?.totalTime || recipe.data.timing?.cookTime) && (
+                      <p class="text-xs text-gray-600 mt-1">
+                        {parseDuration(recipe.data.timing.totalTime || recipe.data.timing.cookTime)}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
 </BaseLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
