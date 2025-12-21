@@ -45,6 +45,22 @@ const dessertRecipes = allRecipes.filter(recipe =>
   recipe.data.taxonomy?.categories?.includes("Plätzchen/Kekse")
 ).slice(0, 6);
 
+// Breakfast recipes
+const breakfastRecipes = allRecipes.filter(recipe =>
+  recipe.data.taxonomy?.categories?.includes("Frühstück")
+).slice(0, 6);
+
+// Main course recipes
+const mainCourseRecipes = allRecipes.filter(recipe =>
+  recipe.data.taxonomy?.categories?.includes("Hauptgericht")
+).slice(0, 6);
+
+// Snack recipes
+const snackRecipes = allRecipes.filter(recipe =>
+  recipe.data.taxonomy?.categories?.includes("Vorspeise") ||
+  recipe.data.taxonomy?.categories?.includes("Snack")
+).slice(0, 6);
+
 // Mock popular recipes for "Most Loved" section (will be replaced with real data)
 const mockPopularRecipes = [
   { slug: 'omas-plaetzchen', title: 'Omas Plätzchen', image: '/images/recipes/omas-plaetzchen/omas-weihnachtsplaetzchen-ausstecher-rezept.jpg' },
@@ -412,6 +428,141 @@ const frontmatter = {
                     <div class="flex-1 p-4 flex flex-col justify-center">
                       <span class="text-pink-600 text-xs font-semibold uppercase tracking-wide">
                         Dessert
+                      </span>
+                      <h3 class="text-lg font-bold text-gray-900 mt-1 mb-2 hover:text-accent transition-colors line-clamp-2">
+                        {recipe.data.metadata?.title}
+                      </h3>
+                      {recipe.data.metadata?.description && (
+                        <p class="text-sm text-gray-600 line-clamp-2">
+                          {recipe.data.metadata.description}
+                        </p>
+                      )}
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Breakfast Recipes Section -->
+        {breakfastRecipes.length > 0 && (
+          <section>
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-3xl font-bold text-gray-900">Frühstücks-Rezepte</h2>
+              <a href={getCategoryUrl('Frühstück')} class="text-accent hover:text-accent-dark font-semibold">
+                Alle anzeigen →
+              </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {breakfastRecipes.map((recipe) => (
+                <article class="flex gap-4 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex gap-4 w-full">
+                    {recipe.data.images?.featured?.src && (
+                      <div class="relative w-40 flex-shrink-0 overflow-hidden">
+                        <Image
+                          src={recipe.data.images.featured.src}
+                          alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                          width={200}
+                          height={200}
+                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div class="flex-1 p-4 flex flex-col justify-center">
+                      <span class="text-orange-600 text-xs font-semibold uppercase tracking-wide">
+                        Frühstück
+                      </span>
+                      <h3 class="text-lg font-bold text-gray-900 mt-1 mb-2 hover:text-accent transition-colors line-clamp-2">
+                        {recipe.data.metadata?.title}
+                      </h3>
+                      {recipe.data.metadata?.description && (
+                        <p class="text-sm text-gray-600 line-clamp-2">
+                          {recipe.data.metadata.description}
+                        </p>
+                      )}
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Main Course Recipes Section -->
+        {mainCourseRecipes.length > 0 && (
+          <section>
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-3xl font-bold text-gray-900">Hauptgerichte</h2>
+              <a href={getCategoryUrl('Hauptgericht')} class="text-accent hover:text-accent-dark font-semibold">
+                Alle anzeigen →
+              </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {mainCourseRecipes.map((recipe) => (
+                <article class="flex gap-4 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex gap-4 w-full">
+                    {recipe.data.images?.featured?.src && (
+                      <div class="relative w-40 flex-shrink-0 overflow-hidden">
+                        <Image
+                          src={recipe.data.images.featured.src}
+                          alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                          width={200}
+                          height={200}
+                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div class="flex-1 p-4 flex flex-col justify-center">
+                      <span class="text-red-600 text-xs font-semibold uppercase tracking-wide">
+                        Hauptgericht
+                      </span>
+                      <h3 class="text-lg font-bold text-gray-900 mt-1 mb-2 hover:text-accent transition-colors line-clamp-2">
+                        {recipe.data.metadata?.title}
+                      </h3>
+                      {recipe.data.metadata?.description && (
+                        <p class="text-sm text-gray-600 line-clamp-2">
+                          {recipe.data.metadata.description}
+                        </p>
+                      )}
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Snacks Section -->
+        {snackRecipes.length > 0 && (
+          <section>
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-3xl font-bold text-gray-900">Snacks & Vorspeisen</h2>
+              <a href={getCategoryUrl('Vorspeise')} class="text-accent hover:text-accent-dark font-semibold">
+                Alle anzeigen →
+              </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {snackRecipes.map((recipe) => (
+                <article class="flex gap-4 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <a href={`/rezepte/${recipe.data.metadata?.slug}`} class="flex gap-4 w-full">
+                    {recipe.data.images?.featured?.src && (
+                      <div class="relative w-40 flex-shrink-0 overflow-hidden">
+                        <Image
+                          src={recipe.data.images.featured.src}
+                          alt={recipe.data.images.featured.alt || recipe.data.metadata?.title || ''}
+                          width={200}
+                          height={200}
+                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div class="flex-1 p-4 flex flex-col justify-center">
+                      <span class="text-green-600 text-xs font-semibold uppercase tracking-wide">
+                        Snacks & Vorspeisen
                       </span>
                       <h3 class="text-lg font-bold text-gray-900 mt-1 mb-2 hover:text-accent transition-colors line-clamp-2">
                         {recipe.data.metadata?.title}
