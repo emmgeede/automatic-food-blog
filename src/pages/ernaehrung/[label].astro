@@ -146,12 +146,12 @@ const difficultyMap: Record<string, string> = {
                       {recipe.data.metadata.description}
                     </p>
                   )}
-                  <DietaryLabelsDisplay
-                    dietaryLabels={recipe.data.dietaryLabels}
-                    size="sm"
-                    className="mb-2"
-                  />
                 </div>
+                <DietaryLabelsDisplay
+                  dietaryLabels={recipe.data.dietaryLabels}
+                  size="sm"
+                  className="mb-3"
+                />
                 <div class="flex items-center gap-4 text-sm text-gray-600 mt-auto pt-3 border-t border-gray-100">
                   {recipe.data.taxonomy?.difficulty && (
                     <span class="flex items-center gap-1">
