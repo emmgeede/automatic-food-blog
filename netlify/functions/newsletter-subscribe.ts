@@ -9,8 +9,10 @@ interface BrevoErrorResponse {
   message: string;
 }
 
-// Brevo Newsletter Liste ID - anpassen falls nötig
-const BREVO_LIST_ID = 2;
+// Brevo Konfiguration
+const BREVO_LIST_ID = 2;  // DMK Hauptliste
+const BREVO_TEMPLATE_ID = 1;  // Default Template Double opt-in confirmation
+const REDIRECT_URL = "https://die-mama-kocht.de/newsletter-bestaetigung";
 
 export default async (req: Request, context: Context) => {
   // CORS headers for all responses
@@ -81,28 +83,25 @@ export default async (req: Request, context: Context) => {
 
     console.log(`Newsletter subscription attempt for: ${email}`);
 
-    // Create contact directly using the simple contacts API
-    // This adds the contact to the list immediately
-    const contactPayload = {
+    // Use Double Opt-In API endpoint
+    // This sends a confirmation email to the user before adding them to the list
+    const doubleOptInPayload = {
       email: email,
-      listIds: [BREVO_LIST_ID],
-      updateEnabled: true, // Update if contact already exists
-      attributes: {
-        QUELLE: "Website Footer",
-        ANMELDEDATUM: new Date().toISOString().split('T')[0],
-      },
+      includeListIds: [BREVO_LIST_ID],
+      templateId: BREVO_TEMPLATE_ID,
+      redirectionUrl: REDIRECT_URL,
     };
 
-    console.log("Sending to Brevo API:", JSON.stringify(contactPayload));
+    console.log("Sending Double Opt-In request to Brevo:", JSON.stringify(doubleOptInPayload));
 
-    const brevoResponse = await fetch("https://api.brevo.com/v3/contacts", {
+    const brevoResponse = await fetch("https://api.brevo.com/v3/contacts/doubleOptinConfirmation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "api-key": brevoApiKey,
         "accept": "application/json",
       },
-      body: JSON.stringify(contactPayload),
+      body: JSON.stringify(doubleOptInPayload),
     });
 
     const responseText = await brevoResponse.text();
@@ -120,13 +119,13 @@ export default async (req: Request, context: Context) => {
 
       console.error("Brevo API error:", errorData);
 
-      // Check for duplicate contact - this is actually success for us
+      // Check for duplicate contact
       if (errorData.code === "duplicate_parameter" ||
           errorData.message?.includes("Contact already exist")) {
         return new Response(
           JSON.stringify({
             message: "Diese E-Mail-Adresse ist bereits für den Newsletter registriert.",
-            success: true, // Consider this a success
+            success: true,
           }),
           { status: 200, headers: corsHeaders }
         );
@@ -143,11 +142,11 @@ export default async (req: Request, context: Context) => {
       );
     }
 
-    // Success response
-    console.log(`Newsletter subscription successful for: ${email}`);
+    // Success response - confirmation email was sent
+    console.log(`Double Opt-In email sent to: ${email}`);
     return new Response(
       JSON.stringify({
-        message: "Vielen Dank! Sie wurden erfolgreich für den Newsletter angemeldet.",
+        message: "Vielen Dank! Bitte bestätigen Sie Ihre Anmeldung über den Link in der E-Mail, die wir Ihnen geschickt haben.",
         success: true,
       }),
       { status: 200, headers: corsHeaders }
