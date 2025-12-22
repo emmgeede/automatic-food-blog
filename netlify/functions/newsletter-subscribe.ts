@@ -4,26 +4,33 @@ interface NewsletterSubscription {
   email: string;
 }
 
-interface BrevoContact {
-  email: string;
-  listIds?: number[];
-  updateEnabled?: boolean;
-  attributes?: {
-    [key: string]: string | number | boolean;
-  };
-}
-
 interface BrevoErrorResponse {
   code: string;
   message: string;
 }
 
+// Brevo Newsletter Liste ID - anpassen falls nötig
+const BREVO_LIST_ID = 2;
+
 export default async (req: Request, context: Context) => {
+  // CORS headers for all responses
+  const corsHeaders = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: corsHeaders });
+  }
+
   // Only allow POST
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ message: "Method not allowed" }), {
       status: 405,
-      headers: { "Content-Type": "application/json" },
+      headers: corsHeaders,
     });
   }
 
@@ -48,11 +55,8 @@ export default async (req: Request, context: Context) => {
     // Validation
     if (!email) {
       return new Response(
-        JSON.stringify({ message: "E-Mail-Adresse ist erforderlich" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" },
-        }
+        JSON.stringify({ message: "E-Mail-Adresse ist erforderlich", success: false }),
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -60,108 +64,103 @@ export default async (req: Request, context: Context) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(
-        JSON.stringify({ message: "Ungültige E-Mail-Adresse" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" },
-        }
+        JSON.stringify({ message: "Ungültige E-Mail-Adresse", success: false }),
+        { status: 400, headers: corsHeaders }
       );
     }
 
     // Get Brevo API key from environment
     const brevoApiKey = process.env.BREVO_API_KEY;
     if (!brevoApiKey) {
-      console.error("BREVO_API_KEY not configured");
+      console.error("BREVO_API_KEY not configured in environment variables");
       return new Response(
-        JSON.stringify({ message: "Newsletter-Service nicht konfiguriert" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
+        JSON.stringify({ message: "Newsletter-Service nicht konfiguriert", success: false }),
+        { status: 500, headers: corsHeaders }
       );
     }
 
-    // Prepare Brevo contact data
-    const contactData: BrevoContact = {
+    console.log(`Newsletter subscription attempt for: ${email}`);
+
+    // Create contact directly using the simple contacts API
+    // This adds the contact to the list immediately
+    const contactPayload = {
       email: email,
-      listIds: [2], // Default list ID (adjust as needed)
-      updateEnabled: false, // Don't update existing contacts
+      listIds: [BREVO_LIST_ID],
+      updateEnabled: true, // Update if contact already exists
       attributes: {
         QUELLE: "Website Footer",
         ANMELDEDATUM: new Date().toISOString().split('T')[0],
       },
     };
 
-    // Call Brevo API
-    const brevoResponse = await fetch("https://api.brevo.com/v3/contacts/doubleOptinConfirmation", {
+    console.log("Sending to Brevo API:", JSON.stringify(contactPayload));
+
+    const brevoResponse = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "api-key": brevoApiKey,
+        "accept": "application/json",
       },
-      body: JSON.stringify({
-        email: email,
-        includeListIds: [2], // Adjust list ID as needed
-        templateId: 1, // Adjust template ID for double opt-in email
-        redirectionUrl: "https://die-mama-kocht.de/newsletter-bestaetigung",
-        attributes: contactData.attributes,
-      }),
+      body: JSON.stringify(contactPayload),
     });
+
+    const responseText = await brevoResponse.text();
+    console.log(`Brevo API response status: ${brevoResponse.status}`);
+    console.log(`Brevo API response body: ${responseText}`);
 
     // Handle Brevo API response
     if (!brevoResponse.ok) {
-      const errorData: BrevoErrorResponse = await brevoResponse.json();
+      let errorData: BrevoErrorResponse;
+      try {
+        errorData = JSON.parse(responseText);
+      } catch {
+        errorData = { code: "unknown", message: responseText };
+      }
+
       console.error("Brevo API error:", errorData);
 
-      // Check for duplicate contact
-      if (errorData.code === "duplicate_parameter") {
+      // Check for duplicate contact - this is actually success for us
+      if (errorData.code === "duplicate_parameter" ||
+          errorData.message?.includes("Contact already exist")) {
         return new Response(
           JSON.stringify({
-            message: "Diese E-Mail-Adresse ist bereits registriert",
-            success: false
+            message: "Diese E-Mail-Adresse ist bereits für den Newsletter registriert.",
+            success: true, // Consider this a success
           }),
-          {
-            status: 409,
-            headers: { "Content-Type": "application/json" },
-          }
+          { status: 200, headers: corsHeaders }
         );
       }
 
+      // Return detailed error for debugging
       return new Response(
         JSON.stringify({
-          message: "Newsletter-Anmeldung fehlgeschlagen. Bitte versuchen Sie es später erneut.",
-          success: false
+          message: `Newsletter-Anmeldung fehlgeschlagen: ${errorData.message || 'Unbekannter Fehler'}`,
+          success: false,
+          debug: errorData,
         }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
+        { status: 500, headers: corsHeaders }
       );
     }
 
     // Success response
+    console.log(`Newsletter subscription successful for: ${email}`);
     return new Response(
       JSON.stringify({
-        message: "Vielen Dank! Bitte bestätigen Sie Ihre Anmeldung über die E-Mail, die wir Ihnen geschickt haben.",
+        message: "Vielen Dank! Sie wurden erfolgreich für den Newsletter angemeldet.",
         success: true,
       }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
+      { status: 200, headers: corsHeaders }
     );
 
   } catch (error) {
     console.error("Newsletter subscription error:", error);
     return new Response(
       JSON.stringify({
-        message: "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
-        success: false
+        message: `Ein Fehler ist aufgetreten: ${error instanceof Error ? error.message : 'Unbekannter Fehler'}`,
+        success: false,
       }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
+      { status: 500, headers: corsHeaders }
     );
   }
 };
