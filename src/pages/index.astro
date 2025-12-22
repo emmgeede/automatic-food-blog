@@ -597,23 +597,27 @@ const frontmatter = {
           <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
             Melde dich für unseren Newsletter an und verpasse keine neuen Rezepte und Kochtipps!
           </p>
-          <form class="max-w-md mx-auto">
+          <form id="homepage-newsletter-form" class="max-w-md mx-auto">
             <div class="flex gap-3">
               <input
                 type="email"
+                id="homepage-newsletter-email"
                 placeholder="Deine E-Mail-Adresse"
+                required
                 class="flex-1 px-6 py-3 rounded-lg border-2 border-gray-200 focus:border-accent focus:outline-none"
                 aria-label="E-Mail-Adresse"
               />
               <button
                 type="submit"
-                class="px-8 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors"
+                id="homepage-newsletter-submit"
+                class="px-8 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Anmelden
               </button>
             </div>
+            <div id="homepage-newsletter-message" class="text-sm mt-3 hidden"></div>
             <p class="text-xs text-gray-500 mt-3">
-              Mit der Anmeldung stimmst du unseren Datenschutzbestimmungen zu.
+              Mit der Anmeldung stimmst du unseren <a href="/datenschutz" class="text-accent hover:underline">Datenschutzbestimmungen</a> zu.
             </p>
           </form>
         </section>
@@ -680,3 +684,64 @@ const frontmatter = {
     overflow: hidden;
   }
 </style>
+
+<script>
+  // Homepage Newsletter subscription handling
+  const homepageForm = document.getElementById('homepage-newsletter-form') as HTMLFormElement;
+  const homepageEmailInput = document.getElementById('homepage-newsletter-email') as HTMLInputElement;
+  const homepageSubmitButton = document.getElementById('homepage-newsletter-submit') as HTMLButtonElement;
+  const homepageMessageDiv = document.getElementById('homepage-newsletter-message') as HTMLDivElement;
+
+  if (homepageForm && homepageEmailInput && homepageSubmitButton && homepageMessageDiv) {
+    homepageForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = homepageEmailInput.value.trim();
+      if (!email) return;
+
+      // Disable form during submission
+      homepageSubmitButton.disabled = true;
+      homepageEmailInput.disabled = true;
+      homepageMessageDiv.classList.add('hidden');
+
+      try {
+        const response = await fetch('/.netlify/functions/newsletter-subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        // Show message
+        homepageMessageDiv.classList.remove('hidden');
+
+        if (response.ok && data.success) {
+          homepageMessageDiv.textContent = data.message;
+          homepageMessageDiv.classList.add('text-green-600');
+          homepageMessageDiv.classList.remove('text-red-600');
+
+          // Clear form on success
+          homepageEmailInput.value = '';
+        } else {
+          homepageMessageDiv.textContent = data.message || 'Ein Fehler ist aufgetreten';
+          homepageMessageDiv.classList.add('text-red-600');
+          homepageMessageDiv.classList.remove('text-green-600');
+        }
+
+      } catch (error) {
+        console.error('Newsletter subscription error:', error);
+        homepageMessageDiv.classList.remove('hidden');
+        homepageMessageDiv.textContent = 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
+        homepageMessageDiv.classList.add('text-red-600');
+        homepageMessageDiv.classList.remove('text-green-600');
+      } finally {
+        // Re-enable form
+        homepageSubmitButton.disabled = false;
+        homepageEmailInput.disabled = false;
+      }
+    });
+  }
+</script>
