@@ -6,7 +6,7 @@ const frontmatter = {
   metaDescription: "Kontaktieren Sie uns bei Fragen, Anregungen oder Kooperationsanfragen. Wir freuen uns auf Ihre Nachricht!",
   metaCanonical: "https://die-mama-kocht.de/kontakt",
   ogType: "website",
-  featuredImage: "https://die-mama-kocht.de/images/og-default.jpg"
+  featuredImage: "/og-default.jpg"
 };
 ---
 
@@ -23,7 +23,14 @@ const frontmatter = {
       <div>
         <h2 class="text-2xl font-semibold text-gray-900 mb-6">Schreiben Sie uns</h2>
 
-        <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+        <form name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
+
+          <!-- Honeypot Spam-Schutz (versteckt) -->
+          <div style="display: none;">
+            <label>
+              Nicht ausfüllen: <input name="bot-field" />
+            </label>
+          </div>
 
           <!-- Name -->
           <div>
