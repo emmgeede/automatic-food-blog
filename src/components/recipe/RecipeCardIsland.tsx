@@ -71,9 +71,10 @@ function normalizeUnit(unit: string, amount: number): { amount: number; unit: st
 
 export default function RecipeCardIsland({ title, description, ingredients, steps, timing, nutrition, recipeSlug, featuredImage }: Props) {
   const baseServings = nutrition?.servings || 1;
-  const currentServings = useSignal(baseServings);
+  const DISPLAY_SERVINGS = 3; // Always start with 3 servings
+  const currentServings = useSignal(DISPLAY_SERVINGS);
 
-  // Calculate scaled ingredients
+  // Calculate scaled ingredients based on original recipe servings
   const scaledIngredients = useComputed(() => {
     const scale = currentServings.value / baseServings;
 
