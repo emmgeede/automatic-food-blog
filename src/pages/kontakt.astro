@@ -1,0 +1,337 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const frontmatter = {
+  title: "Kontakt - Die Mama kocht",
+  metaDescription: "Kontaktieren Sie uns bei Fragen, Anregungen oder Kooperationsanfragen. Wir freuen uns auf Ihre Nachricht!",
+  metaCanonical: "https://die-mama-kocht.de/kontakt",
+  ogType: "website",
+  featuredImage: "https://die-mama-kocht.de/images/og-default.jpg"
+};
+---
+
+<BaseLayout frontmatter={frontmatter}>
+  <article class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Kontakt</h1>
+    <p class="text-xl text-gray-600 mb-12">
+      Haben Sie Fragen, Anregungen oder möchten Sie mit uns zusammenarbeiten? Wir freuen uns auf Ihre Nachricht!
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-12">
+
+      <!-- Kontaktformular -->
+      <div>
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Schreiben Sie uns</h2>
+
+        <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+
+          <!-- Name -->
+          <div>
+            <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
+              Name <span class="text-accent">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+              placeholder="Ihr Name"
+            />
+          </div>
+
+          <!-- E-Mail -->
+          <div>
+            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+              E-Mail-Adresse <span class="text-accent">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+              placeholder="ihre.email@beispiel.de"
+            />
+          </div>
+
+          <!-- Betreff -->
+          <div>
+            <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">
+              Betreff <span class="text-accent">*</span>
+            </label>
+            <select
+              id="subject"
+              name="subject"
+              required
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+            >
+              <option value="">Bitte wählen...</option>
+              <option value="Allgemeine Anfrage">Allgemeine Anfrage</option>
+              <option value="Rezeptfrage">Frage zu einem Rezept</option>
+              <option value="Kooperation">Kooperationsanfrage</option>
+              <option value="Feedback">Feedback / Verbesserungsvorschlag</option>
+              <option value="Technisches Problem">Technisches Problem</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
+
+          <!-- Nachricht -->
+          <div>
+            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
+              Ihre Nachricht <span class="text-accent">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="6"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-colors resize-y"
+              placeholder="Ihre Nachricht an uns..."
+            ></textarea>
+          </div>
+
+          <!-- Datenschutzhinweis -->
+          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-blue-400 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm text-blue-700">
+                  Mit dem Absenden Ihrer Nachricht stimmen Sie unserer <a href="/datenschutz" class="underline hover:text-blue-900">Datenschutzerklärung</a> zu. Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Datenschutz-Checkbox -->
+          <div class="flex items-start">
+            <div class="flex items-center h-6">
+              <input
+                id="privacy"
+                name="privacy"
+                type="checkbox"
+                required
+                class="w-4 h-4 border-gray-300 rounded text-accent focus:ring-accent"
+              />
+            </div>
+            <div class="ml-3">
+              <label for="privacy" class="text-sm text-gray-700">
+                Ich habe die <a href="/datenschutz" class="text-accent hover:underline">Datenschutzerklärung</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Daten zu. <span class="text-accent">*</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button
+              type="submit"
+              class="w-full bg-accent text-white font-semibold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+            >
+              Nachricht senden
+            </button>
+          </div>
+
+          <p class="text-xs text-gray-500 mt-4">
+            <span class="text-accent">*</span> Pflichtfelder
+          </p>
+
+        </form>
+      </div>
+
+      <!-- Kontaktinformationen & Social Media -->
+      <div class="space-y-8">
+
+        <!-- Kontaktdaten -->
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-900 mb-6">Kontaktdaten</h2>
+
+          <div class="space-y-4">
+            <!-- E-Mail -->
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-1">E-Mail</h3>
+                <a href="mailto:impressum@emmgee.de" class="text-accent hover:underline">
+                  impressum@emmgee.de
+                </a>
+              </div>
+            </div>
+
+            <!-- Adresse -->
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-1">Anschrift</h3>
+                <p class="text-gray-600">
+                  Michael Großklos<br>
+                  Köllerbachweg 6<br>
+                  66763 Dillingen<br>
+                  Deutschland
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-900 mb-6">Folgen Sie uns</h2>
+
+          <div class="grid grid-cols-2 gap-4">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-4 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-lg hover:shadow-lg transition-all duration-200 group"
+            >
+              <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" fill-rule="evenodd"/>
+              </svg>
+              <span class="font-semibold">Instagram</span>
+            </a>
+
+            <a
+              href="https://pinterest.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-4 bg-red-600 text-white rounded-lg hover:shadow-lg transition-all duration-200 group"
+            >
+              <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
+              </svg>
+              <span class="font-semibold">Pinterest</span>
+            </a>
+
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-4 bg-red-600 text-white rounded-lg hover:shadow-lg transition-all duration-200 group"
+            >
+              <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd" fill-rule="evenodd"/>
+              </svg>
+              <span class="font-semibold">YouTube</span>
+            </a>
+
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 p-4 bg-blue-600 text-white rounded-lg hover:shadow-lg transition-all duration-200 group"
+            >
+              <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+              <span class="font-semibold">Facebook</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Antwortzeiten -->
+        <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-400">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-semibold text-green-900 mb-1">Antwortzeiten</h3>
+              <p class="text-sm text-green-700">
+                Wir bemühen uns, alle Anfragen innerhalb von 48 Stunden zu beantworten. Bei dringenden Anliegen kontaktieren Sie uns bitte per E-Mail.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kooperationen -->
+        <div class="bg-accent/10 p-6 rounded-lg border-l-4 border-accent">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Interesse an einer Kooperation?</h3>
+          <p class="text-sm text-gray-700 mb-3">
+            Wir freuen uns über Kooperationsanfragen von Marken, die zu unseren Werten passen. Kontaktieren Sie uns für Mediadaten und Möglichkeiten der Zusammenarbeit.
+          </p>
+          <a href="/kooperation" class="text-accent hover:underline font-semibold text-sm inline-flex items-center gap-1">
+            Mehr zu Kooperationen
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FAQ Bereich -->
+    <div class="mt-16 pt-12 border-t border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">Häufig gestellte Fragen</h2>
+
+      <div class="space-y-6">
+
+        <details class="group bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex justify-between items-center">
+            <span>Kann ich ein Rezept für meine Website oder Publikation verwenden?</span>
+            <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Die Nutzung unserer Rezepte für kommerzielle Zwecke oder Veröffentlichungen bedarf unserer ausdrücklichen Zustimmung. Bitte kontaktieren Sie uns mit Details zu Ihrer geplanten Verwendung. Für private, nicht-kommerzielle Zwecke freuen wir uns über eine Quellenangabe.
+          </p>
+        </details>
+
+        <details class="group bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex justify-between items-center">
+            <span>Ich habe eine Frage zu einem Rezept. Wie erreiche ich euch am besten?</span>
+            <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Am schnellsten geht es über die Kommentarfunktion direkt beim jeweiligen Rezept. So können auch andere von der Antwort profitieren. Alternativ können Sie uns auch über das Kontaktformular oder per E-Mail erreichen.
+          </p>
+        </details>
+
+        <details class="group bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex justify-between items-center">
+            <span>Bietet ihr auch Kochkurse oder Workshops an?</span>
+            <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Aktuell bieten wir keine Kochkurse an, aber wir prüfen regelmäßig neue Formate. Tragen Sie sich gerne in unseren Newsletter ein, um über zukünftige Angebote informiert zu werden.
+          </p>
+        </details>
+
+        <details class="group bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <summary class="cursor-pointer font-semibold text-gray-900 flex justify-between items-center">
+            <span>Wie kann ich den Newsletter abbestellen?</span>
+            <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Jeder Newsletter enthält am Ende einen Abmeldelink. Alternativ können Sie uns eine kurze E-Mail senden, und wir nehmen Sie umgehend aus dem Verteiler.
+          </p>
+        </details>
+
+      </div>
+    </div>
+
+  </article>
+</BaseLayout>
