@@ -11,8 +11,12 @@ import matomo from 'astro-matomo';
 
 import preact from '@astrojs/preact';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://die-mama-kocht.de',
+
   vite: {
     plugins: [tailwindcss()]
   },
@@ -29,6 +33,7 @@ export default defineConfig({
   integrations: [
     icon(),
     preact(),
+    sitemap(),
     matomo({
       enabled: true,
       host: 'https://analytics.die-mama-kocht.de',
