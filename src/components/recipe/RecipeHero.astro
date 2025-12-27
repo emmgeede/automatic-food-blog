@@ -182,7 +182,12 @@ const mainCategory = category || categories[0] || "Rezept";
 
         <!-- Social Media Buttons -->
         <div class="md:ml-auto">
-          <SocialMediaButtons />
+          <SocialMediaButtons
+            recipeTitle={title}
+            recipeUrl={Astro.url.toString()}
+            recipeImage={heroImage.src}
+            recipeDescription={description || title}
+          />
         </div>
       </div>
 
