@@ -49,7 +49,8 @@
       "WebFetch(domain:demo.wprecipemaker.com)",
       "Bash(git restore:*)",
       "WebFetch(domain:pagefind.app)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:later.com)"
     ],
     "deny": [],
     "ask": []
