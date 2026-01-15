@@ -50,7 +50,17 @@
       "Bash(git restore:*)",
       "WebFetch(domain:pagefind.app)",
       "Bash(grep:*)",
-      "WebFetch(domain:later.com)"
+      "WebFetch(domain:later.com)",
+      "Bash(xargs:*)",
+      "Bash(source:*)",
+      "WebFetch(domain:tom.vgwort.de)",
+      "Bash(API_KEY=\"$VGWORT_API_KEY\")",
+      "WebFetch(domain:packagist.org)",
+      "Bash(env)",
+      "Bash(export VGWORT_USERNAME=\"emmgee\")",
+      "Bash(export VGWORT_PASSWORD=\"njc_cqh*tbc4nwr0WEC\")",
+      "WebFetch(domain:www.andreas-unkelbach.de)",
+      "WebFetch(domain:prosodia.de)"
     ],
     "deny": [],
     "ask": []
