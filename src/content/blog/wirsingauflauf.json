@@ -1,0 +1,366 @@
+{
+  "uuid": "55d93ccd-ede7-4a21-af37-2c8a8ae9c8ce",
+  "metadata": {
+    "title": "Wirsingauflauf mit Hackfleisch",
+    "description": "Herzhafter Wirsingauflauf mit saftigem Hackfleisch, knusprigem Speck und cremiger Sauce - traditionelle deutsche Hausmannskost, die wärmt und satt macht.",
+    "slug": "wirsingauflauf",
+    "pubDate": "2026-01-16",
+    "modifiedDate": "2026-01-16",
+    "author": "Ingrid Hartmann",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "Wirsingauflauf mit Hackfleisch - Traditionelles Rezept",
+    "metaDescription": "Saftiger Wirsingauflauf mit Hackfleisch, Speck und Sahne - perfekte deutsche Hausmannskost. In 90 Minuten auf dem Tisch. Ideal zu Salzkartoffeln!",
+    "metaKeywords": [
+      "Wirsingauflauf",
+      "Hackfleisch",
+      "Wirsing",
+      "Auflauf",
+      "Hausmannskost"
+    ],
+    "ogImage": "/images/rezepte/wirsingauflauf/wirsingauflauf-kartoffel-rezept-1.jpg",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Hauptgericht",
+      "Mittagessen",
+      "Abendessen",
+      "Deutsch"
+    ],
+    "tags": [
+      "Wirsing",
+      "Hackfleisch",
+      "Speck",
+      "Sahne",
+      "gebacken",
+      "deftig"
+    ],
+    "cuisine": "Deutsch",
+    "difficulty": "einfach",
+    "mealType": "Hauptgericht"
+  },
+  "dietaryLabels": {
+    "vegan": false,
+    "vegetarian": false,
+    "lactoVegetarian": false,
+    "ovoVegetarian": false,
+    "pescatarian": false,
+    "keto": false,
+    "paleo": false,
+    "highProtein": true,
+    "highCarb": false,
+    "glutenFree": false,
+    "dairyFree": false,
+    "lowCarb": true,
+    "autoDetected": true,
+    "manuallyVerified": false
+  },
+  "timing": {
+    "prepTime": "PT20M",
+    "cookTime": "PT90M",
+    "totalTime": "PT110M",
+    "prepTimeMinutes": 20,
+    "cookTimeMinutes": 90,
+    "totalTimeMinutes": 110
+  },
+  "nutrition": {
+    "servings": 4,
+    "servingSize": "1 Portion",
+    "calories": "222",
+    "carbohydrates": null,
+    "protein": null,
+    "fat": null,
+    "fiber": null,
+    "sugar": null,
+    "sodium": null
+  },
+  "ingredients": [
+    {
+      "name": "Wirsing",
+      "amount": 1,
+      "unit": "Kopf",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "gemischtes Hackfleisch",
+      "amount": 750,
+      "unit": "g",
+      "note": "halb Schwein, halb Rind",
+      "group": null
+    },
+    {
+      "name": "Ei",
+      "amount": 1,
+      "unit": "Stück",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Zwiebel",
+      "amount": 1,
+      "unit": "Stück",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Weißbrot",
+      "amount": 2,
+      "unit": "Scheiben",
+      "note": "trocken",
+      "group": null
+    },
+    {
+      "name": "mittelscharfer Senf",
+      "amount": 1,
+      "unit": "EL",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Speckwürfel",
+      "amount": 2,
+      "unit": "Packungen",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Sahne",
+      "amount": 400,
+      "unit": "ml",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Salz",
+      "amount": 1,
+      "unit": "Prise",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Pfeffer",
+      "amount": 1,
+      "unit": "Prise",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Muskat",
+      "amount": 1,
+      "unit": "Prise",
+      "note": null,
+      "group": null
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "/images/rezepte/wirsingauflauf/wirsingauflauf-kartoffel-rezept-1.jpg",
+      "alt": "Überbackener Wirsing-Kartoffel-Auflauf mit goldbrauner Käsekruste und cremiger Füllung",
+      "filename": "wirsingauflauf-kartoffel-rezept-1.jpg",
+      "width": 1200,
+      "height": 1600,
+      "caption": null
+    }
+  },
+  "content": {
+    "introduction": {
+      "text": "Wenn draußen die Temperaturen fallen und du Lust auf echte Hausmannskost hast, dann ist dieser herzhafte Wirsingauflauf genau das Richtige für dich. Das traditionelle deutsche Gericht vereint zartes Wirsinggemüse mit würzigem Hackfleisch und knusprigen Speckwürfeln zu einem wahren Wohlfühlessen. Die cremige Sahnesauce macht den Auflauf besonders saftig und aromatisch. Dieses Rezept ist perfekt für Sonntage, wenn die ganze Familie am Tisch sitzt und gemeinsam genießt. Serviert mit buttrigen Salzkartoffeln wird daraus ein vollständiges, sättigendes Hauptgericht, das nicht nur den Magen, sondern auch die Seele wärmt.",
+      "characterCount": 621
+    },
+    "facts": [
+      {
+        "title": "Herkunft und Geschichte",
+        "text": "Der Wirsingauflauf gehört zur traditionellen deutschen Hausmannskost und ist besonders in Bayern und anderen süddeutschen Regionen als klassisches Sonntagsessen beliebt. Wirsing, auch Wirsingkohl genannt, wird vor allem in den Herbst- und Wintermonaten geerntet und ist daher in dieser Zeit besonders frisch und aromatisch. Die Kombination aus Kohl, Fleisch und Sahne spiegelt die bodenständige, nahrhafte Küche wider, die früher wichtig war, um Energie für die harte körperliche Arbeit zu liefern.",
+        "order": 1
+      },
+      {
+        "title": "Zutaten im Detail",
+        "text": "Wirsing ist ein besonders nährstoffreiches Kohlgemüse, das reich an Vitamin K, Vitamin C und Folsäure ist. Die krausen, dunkelgrünen Blätter sind milder im Geschmack als Weißkohl und lassen sich leichter verdauen. Das gemischte Hackfleisch aus Schwein und Rind sorgt für eine perfekte Balance zwischen Saftigkeit und Geschmack, während die Speckwürfel dem Gericht eine würzige, deftige Note verleihen. Die Sahne bildet die cremige Grundlage, die alle Aromen miteinander verbindet und den Auflauf schön saftig hält.",
+        "order": 2
+      },
+      {
+        "title": "Nährwerte und Gesundheit",
+        "text": "Mit etwa 222 Kilokalorien pro 100 Gramm ist dieser Wirsingauflauf ein proteinreiches Hauptgericht, das dich lange satt hält. Der Wirsing liefert wichtige Vitamine und Ballaststoffe, die gut für die Verdauung sind und das Immunsystem stärken. Das Hackfleisch ist eine hervorragende Proteinquelle, die zum Muskelaufbau und zur Regeneration beiträgt. Durch die Kombination mit Kartoffeln als Beilage erhältst du eine ausgewogene Mahlzeit mit Gemüse, Eiweiß und komplexen Kohlenhydraten.",
+        "order": 3
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Wirsing vorbereiten",
+        "shortText": "Wirsing in Achtel und grobe Stücke schneiden, waschen. Kurz in Salzwasser blanchieren, dann in Eiswasser abschrecken.",
+        "text": "Beginne damit, den Wirsingkopf gründlich zu waschen und von welken oder beschädigten äußeren Blättern zu befreien. Schneide den Wirsing dann in acht gleichmäßige Teile und zerkleinere diese weiter in grobe, mundgerechte Stücke. Bringe einen großen Topf mit Salzwasser zum Kochen und gib die Wirsingstücke hinein. Lasse sie für etwa 2-3 Minuten blanchieren - sie sollten noch Biss haben und nicht zu weich werden. Nimm die Wirsingstücke sofort mit einer Schaumkelle heraus und tauche sie in eine Schüssel mit eiskaltem Wasser, um den Garprozess zu stoppen. Dies bewahrt die schöne grüne Farbe und verhindert, dass der Kohl zu matschig wird.",
+        "tips": ["Das Abschrecken in Eiswasser sorgt dafür, dass der Wirsing seine leuchtend grüne Farbe behält"]
+      },
+      {
+        "number": 2,
+        "title": "Hackfleischmasse zubereiten",
+        "shortText": "Weißbrot in heißem Wasser einweichen. Zwiebel schälen und fein würfeln. Hackfleisch mit Ei, Senf, Zwiebel, Gewürzen und ausgedrücktem Brot vermengen.",
+        "text": "Lege die beiden Scheiben trockenes Weißbrot in eine kleine Schüssel und übergieße sie mit heißem Wasser. Lass das Brot etwa 5 Minuten einweichen, damit es schön weich wird. In der Zwischenzeit schälst du die Zwiebel und schneidest sie in sehr feine Würfel - je kleiner, desto besser verteilen sich die Aromen in der Hackfleischmasse. Drücke nun das eingeweichte Brot kräftig aus, sodass möglichst wenig Flüssigkeit zurückbleibt. Gib das Hackfleisch in eine große Schüssel und füge das Ei, den Senf, die gewürfelten Zwiebeln und das ausgedrückte Brot hinzu. Würze alles kräftig mit Salz, Pfeffer und einer Prise frisch geriebener Muskatnuss. Verknete alle Zutaten gründlich mit den Händen, bis eine gleichmäßige, geschmeidige Masse entsteht.",
+        "tips": ["Die eingeweichten Brotstücke machen die Hackfleischmasse besonders saftig und locker"]
+      },
+      {
+        "number": 3,
+        "title": "Auflauf schichten",
+        "shortText": "In einer ofenfesten Form erste Packung Speckwürfel verteilen. Hälfte des Wirsings darauf schichten, Hackfleischmasse locker verteilen, restlichen Wirsing und zweite Speckpackung auflegen.",
+        "text": "Nimm eine große, ofenfeste Keramikform oder einen Bräter und verteile die Speckwürfel der ersten Packung gleichmäßig auf dem Boden. Diese bilden eine knusprige, aromatische Basis und verhindern, dass der Auflauf am Boden festklebt. Schichte nun die Hälfte des vorbereiteten Wirsings darüber - achte darauf, dass die Stücke gut verteilt sind. Als nächstes nimmst du die Hackfleischmasse und verteilst sie locker und gleichmäßig über den Wirsing. Wichtig ist, dass du die Masse nicht zu fest andrückst, damit sie während des Backens schön saftig und luftig bleibt. Bedecke die Hackfleischschicht mit dem restlichen Wirsing und streue abschließend die zweite Packung Speckwürfel gleichmäßig über die gesamte Oberfläche. Diese sorgen später für eine herrlich knusprige Kruste.",
+        "tips": ["Die Schichten sollten locker aufeinanderliegen, damit die Sahne später gut eindringen kann"]
+      },
+      {
+        "number": 4,
+        "title": "Mit Sahne übergießen und backen",
+        "shortText": "Sahne mit Pfeffer und Muskat würzen, über alles gießen. Bei 150°C ca. 90 Minuten backen.",
+        "text": "Gieße die Sahne in ein Gefäß mit Ausguss und würze sie kräftig mit frisch gemahlenem schwarzem Pfeffer und einer guten Prise Muskatnuss. Rühre die Gewürze gut unter und verteile die gewürzte Sahne dann gleichmäßig über den geschichteten Auflauf. Achte darauf, dass die Sahne alle Ecken erreicht und sich gut zwischen den Schichten verteilt. Heize deinen Backofen auf 150 Grad Celsius Ober-/Unterhitze vor. Stelle die Form in den vorgeheizten Ofen und backe den Auflauf für etwa anderthalb Stunden. Die niedrige Temperatur sorgt dafür, dass der Auflauf schonend durchgart und nicht austrocknet. Nach etwa einer Stunde kannst du nachschauen - die Oberfläche sollte goldbraun sein und die Sahne sollte eingedickt sein. Wenn die Oberfläche zu dunkel wird, decke sie mit Alufolie ab.",
+        "tips": ["Bei niedriger Temperatur bleibt das Hackfleisch saftig und der Wirsing behält seine Struktur"]
+      },
+      {
+        "number": 5,
+        "title": "Servieren",
+        "shortText": "Mit Salzkartoffeln servieren.",
+        "text": "Nimm den fertigen Wirsingauflauf aus dem Ofen und lass ihn etwa 5-10 Minuten ruhen, bevor du ihn anschneidest. So können sich die Aromen noch besser verbinden und der Auflauf wird beim Servieren nicht auseinanderfallen. Serviere großzügige Portionen zusammen mit buttrigen Salzkartoffeln, die du idealerweise parallel zum Auflauf gekocht hast. Die Kartoffeln nehmen die köstliche Sahnesauce wunderbar auf und machen das Gericht komplett. Ein knackiger grüner Salat mit einem leichten Essig-Öl-Dressing passt ebenfalls hervorragend dazu und bringt Frische auf den Teller.",
+        "tips": ["Festkochende Kartoffeln behalten ihre Form besser als mehlige Sorten"]
+      }
+    ],
+    "tips": {
+      "title": "Tipps und Variationen",
+      "items": [
+        {
+          "title": "Aufbewahrung",
+          "text": "Du kannst den Wirsingauflauf problemlos 3-4 Tage im Kühlschrank aufbewahren. Decke ihn gut ab oder fülle Reste in luftdichte Behälter. Zum Aufwärmen eignet sich der Backofen bei 160°C für etwa 15-20 Minuten am besten. Alternativ kannst du einzelne Portionen auch in der Mikrowelle erwärmen. Der Auflauf lässt sich auch hervorragend einfrieren - am besten portionsweise in Gefrierdosen. So hast du immer eine schnelle Mahlzeit parat. Eingefrorener Auflauf hält sich bis zu 3 Monate."
+        },
+        {
+          "title": "Variationen",
+          "text": "Statt gemischtem Hackfleisch kannst du auch nur Rinderhackfleisch oder sogar Bratwurstbrät verwenden. Für eine vegetarische Variante ersetze das Hackfleisch durch klein geschnittene Champignons oder Linsen. Statt Wirsing funktioniert das Rezept auch wunderbar mit Spitzkohl oder Chinakohl. Wenn du keine Sahne verwenden möchtest, kannst du diese durch Crème fraîche, saure Sahne oder pflanzliche Alternativen wie Hafersahne ersetzen. Eine Käsekruste kannst du hinzufügen, indem du 15 Minuten vor Ende der Backzeit geriebenen Käse darüber streust."
+        },
+        {
+          "title": "Serviervorschlag",
+          "text": "Der Wirsingauflauf harmoniert perfekt mit festkochenden Salzkartoffeln, die du mit etwas Butter und frischer Petersilie verfeinern kannst. Als leichter Kontrast bietet sich ein knackiger Blattsalat mit einem säuerlichen Dressing an. Auch eingelegte Gurken oder ein Gurkensalat passen hervorragend dazu. Für besondere Anlässe kannst du den Auflauf auch mit einem Klecks Senf oder Meerrettich servieren, was dem deftigen Gericht eine zusätzliche würzige Note verleiht."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Dieser herzhafte Wirsingauflauf ist ein wunderbares Beispiel für traditionelle deutsche Küche, die mit einfachen Zutaten maximalen Geschmack erzeugt. Die Kombination aus zartem Wirsing, würzigem Hackfleisch und knusprigem Speck macht jede Portion zu einem echten Genuss. Probiere dieses Rezept unbedingt aus, wenn du auf der Suche nach einem sättigenden, wärmenden Gericht für die kalte Jahreszeit bist. Deine Familie wird begeistert sein!"
+    }
+  },
+  "faqs": [
+    {
+      "question": "Kann ich den Wirsingauflauf vorbereiten und später backen?",
+      "answer": "Ja, du kannst den Wirsingauflauf hervorragend vorbereiten. Schichte alle Zutaten wie im Rezept beschrieben in die Form, gieße die gewürzte Sahne darüber und decke die Form gut mit Frischhaltefolie ab. Im Kühlschrank hält sich der vorbereitete Auflauf bis zu 24 Stunden. Beachte, dass die Backzeit dann möglicherweise 10-15 Minuten länger dauert, da der Auflauf kalt aus dem Kühlschrank kommt.",
+      "category": "preparation"
+    },
+    {
+      "question": "Kann ich Hackfleisch durch eine andere Fleischsorte ersetzen?",
+      "answer": "Absolut! Statt gemischtem Hackfleisch funktioniert auch reines Rinderhackfleisch sehr gut, allerdings wird der Auflauf dann etwas trockener. Bratwurstbrät ist eine besonders aromatische Alternative, die dem Auflauf eine würzige Note verleiht. Für eine vegetarische Variante kannst du das Hackfleisch durch eine Mischung aus fein gehackten Champignons und gekochten Linsen ersetzen oder auf pflanzliches Hackfleisch zurückgreifen.",
+      "category": "substitution"
+    },
+    {
+      "question": "Wie lange hält sich der Wirsingauflauf?",
+      "answer": "Im Kühlschrank bleibt der Wirsingauflauf gut verschlossen 3-4 Tage frisch. Bewahre ihn am besten in der Auflaufform mit Deckel oder in luftdichten Behältern auf. Du kannst den Auflauf auch problemlos einfrieren - dazu die Portionen in gefriergeeigneten Dosen verstauen. Eingefrorener Wirsingauflauf hält sich bis zu 3 Monate. Zum Auftauen über Nacht im Kühlschrank auftauen lassen und dann im Backofen bei 160°C aufwärmen.",
+      "category": "storage"
+    },
+    {
+      "question": "Kann ich statt Wirsing andere Kohlsorten verwenden?",
+      "answer": "Ja, du kannst problemlos andere Kohlsorten verwenden. Spitzkohl ist eine mildere Alternative, die sich ähnlich wie Wirsing verarbeiten lässt. Chinakohl funktioniert ebenfalls gut und braucht nur sehr kurz blanchiert zu werden. Weißkohl ist auch möglich, allerdings solltest du ihn dann etwas länger blanchieren (4-5 Minuten), da er fester ist als Wirsing. Die Garzeit im Ofen bleibt bei allen Varianten gleich.",
+      "category": "substitution"
+    },
+    {
+      "question": "Welche Kartoffeln sollte ich verwenden?",
+      "answer": "Für die Beilage zu Wirsingauflauf eignen sich festkochende Kartoffeln am besten. Sorten wie Linda, Nicola oder Princess behalten ihre Form beim Kochen und zerfall nicht. Sie nehmen die Sahnesauce des Auflaufs wunderbar auf, ohne matschig zu werden. Mehlig kochende Kartoffeln würden zu schnell zerfallen und eine zu breiige Konsistenz bekommen.",
+      "category": "technique"
+    },
+    {
+      "question": "Was ist mit dem weißen Belag auf meinem Wirsing?",
+      "answer": "Der weiße, leicht pudrige Belag auf Wirsing ist völlig normal und unbedenklich. Es handelt sich dabei um natürliche Wachsschichten, die die Pflanze zum Schutz bildet. Du kannst den Wirsing einfach gründlich unter fließendem Wasser waschen, dann verschwindet der Belag. Entferne vorher die äußersten Blätter, falls diese besonders betroffen sind oder welk aussehen. Der Rest des Wirsings ist dann einwandfrei verwendbar.",
+      "category": "preparation"
+    },
+    {
+      "question": "Kann ich den Wirsingauflauf ohne Sahne machen?",
+      "answer": "Ja, es gibt mehrere Alternativen zur Sahne. Crème fraîche mit etwas Wasser verdünnt ergibt eine ähnlich cremige Konsistenz und einen leicht säuerlichen Geschmack. Saure Sahne funktioniert ebenfalls gut. Für eine leichtere Variante kannst du Milch mit einem Esslöffel Mehl verdicken. Pflanzliche Sahne-Alternativen wie Hafersahne oder Soja-Cuisine sind für eine vegane Version geeignet, allerdings solltest du dann auch das Hackfleisch und den Speck ersetzen.",
+      "category": "substitution"
+    },
+    {
+      "question": "Wie wärme ich einen eingefrorenen Wirsingauflauf auf?",
+      "answer": "Am besten lässt du den gefrorenen Wirsingauflauf über Nacht im Kühlschrank langsam auftauen. Dann kannst du ihn abgedeckt bei 160°C für etwa 25-30 Minuten im Backofen aufwärmen, bis er durchgehend heiß ist. Wenn es schnell gehen muss, kannst du den Auflauf auch direkt aus dem Gefrierschrank bei 150°C aufbacken - dann verlängert sich die Aufwärmzeit auf etwa 45-60 Minuten. Decke ihn mit Alufolie ab, damit er nicht austrocknet.",
+      "category": "storage"
+    }
+  ],
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Wirsingauflauf mit Hackfleisch",
+    "description": "Herzhafter Wirsingauflauf mit saftigem Hackfleisch, knusprigem Speck und cremiger Sauce - traditionelle deutsche Hausmannskost, die wärmt und satt macht.",
+    "image": [
+      "/images/rezepte/wirsingauflauf/wirsingauflauf-kartoffel-rezept-1.jpg"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Ingrid Hartmann"
+    },
+    "datePublished": "2026-01-16",
+    "prepTime": "PT20M",
+    "cookTime": "PT90M",
+    "totalTime": "PT110M",
+    "recipeYield": "4 Portionen",
+    "recipeCategory": "Hauptgericht",
+    "recipeCuisine": "Deutsch",
+    "recipeIngredient": [
+      "1 Kopf Wirsing",
+      "750g gemischtes Hackfleisch (halb Schwein, halb Rind)",
+      "1 Ei",
+      "1 Zwiebel",
+      "2 Scheiben trockenes Weißbrot",
+      "1 EL mittelscharfer Senf",
+      "2 Packungen Speckwürfel",
+      "400ml Sahne",
+      "Salz, Pfeffer, Muskat nach Geschmack"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Wirsing vorbereiten",
+        "text": "Wirsing in Achtel und grobe Stücke schneiden, waschen. Kurz in Salzwasser blanchieren, dann in Eiswasser abschrecken."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Hackfleischmasse zubereiten",
+        "text": "Weißbrot in heißem Wasser einweichen. Zwiebel schälen und fein würfeln. Hackfleisch mit Ei, Senf, Zwiebel, Gewürzen und ausgedrücktem Brot vermengen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Auflauf schichten",
+        "text": "In einer ofenfesten Form erste Packung Speckwürfel verteilen. Hälfte des Wirsings darauf schichten, Hackfleischmasse locker verteilen, restlichen Wirsing und zweite Speckpackung auflegen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Mit Sahne übergießen und backen",
+        "text": "Sahne mit Pfeffer und Muskat würzen, über alles gießen. Bei 150°C ca. 90 Minuten backen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Servieren",
+        "text": "Mit Salzkartoffeln servieren."
+      }
+    ],
+    "nutrition": {
+      "@type": "NutritionInformation",
+      "servingSize": "1 Portion",
+      "calories": "222 kcal"
+    },
+    "keywords": "Wirsingauflauf, Hackfleisch, Wirsing, Auflauf, Hausmannskost, Deutsch, deftig, Speck, Sahne",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    }
+  },
+  "vgwort": {
+    "characterCount": 7547,
+    "minRequired": 1800,
+    "eligible": true,
+    "trackingUrl": "https://vg04.met.vgwort.de/na/f4f1fbd1ee5f4703a838151a5be8c172",
+    "note": "Character count includes introduction, facts, steps, tips, and conclusion sections"
+  }
+}
