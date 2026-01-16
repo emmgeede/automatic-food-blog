@@ -1,0 +1,337 @@
+{
+  "uuid": "5dfa2e3b-795b-4399-abb1-4deb152042c8",
+  "metadata": {
+    "title": "Knuspriges Feta-Spiegelei",
+    "description": "Virales TikTok-Frühstück mit knusprigem Feta, Spiegelei und Harissa - in nur 10 Minuten auf dem Tisch. Mediterran trifft nordafrikanisch!",
+    "slug": "feta-spiegelei-rezept",
+    "pubDate": "2026-01-16",
+    "modifiedDate": "2026-01-16",
+    "author": "Ingrid Hartmann",
+    "language": "de"
+  },
+  "seo": {
+    "metaTitle": "Knuspriges Feta-Spiegelei Rezept - TikTok Frühstückshit",
+    "metaDescription": "Virales TikTok-Rezept: Knuspriges Feta-Spiegelei mit Harissa in 10 Minuten. Golden-braune Feta-Kruste trifft auf cremiges Eigelb. Einfach & lecker!",
+    "metaKeywords": [
+      "Feta-Spiegelei",
+      "TikTok-Rezept",
+      "Harissa",
+      "Frühstück",
+      "mediterran"
+    ],
+    "ogImage": "./images/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg",
+    "ogType": "article"
+  },
+  "taxonomy": {
+    "categories": [
+      "Frühstück",
+      "Snack",
+      "Hauptgericht",
+      "Mediterran"
+    ],
+    "tags": [
+      "Feta",
+      "Eier",
+      "Harissa",
+      "Dill",
+      "gebraten",
+      "vegetarisch"
+    ],
+    "cuisine": "Mediterran",
+    "difficulty": "einfach",
+    "mealType": "Frühstück"
+  },
+  "dietaryLabels": {
+    "vegan": false,
+    "vegetarian": true,
+    "lactoVegetarian": true,
+    "ovoVegetarian": false,
+    "pescatarian": false,
+    "keto": false,
+    "paleo": false,
+    "highProtein": true,
+    "highCarb": false,
+    "glutenFree": false,
+    "dairyFree": false,
+    "lowCarb": true,
+    "autoDetected": true,
+    "manuallyVerified": false
+  },
+  "timing": {
+    "prepTime": "PT2M",
+    "cookTime": "PT8M",
+    "totalTime": "PT10M",
+    "prepTimeMinutes": 2,
+    "cookTimeMinutes": 8,
+    "totalTimeMinutes": 10
+  },
+  "nutrition": {
+    "servings": 1,
+    "servingSize": "1 Portion",
+    "calories": "280",
+    "carbohydrates": "15g",
+    "protein": "12g",
+    "fat": "18g",
+    "fiber": null,
+    "sugar": null,
+    "sodium": null
+  },
+  "ingredients": [
+    {
+      "name": "Feta-Käse",
+      "amount": 60,
+      "unit": "ml",
+      "note": "zerkrümelt (etwa ¼ Tasse)",
+      "group": null
+    },
+    {
+      "name": "Harissa oder Pesto",
+      "amount": 1,
+      "unit": "EL",
+      "note": null,
+      "group": null
+    },
+    {
+      "name": "Ei",
+      "amount": 1,
+      "unit": "Stück",
+      "note": "groß",
+      "group": null
+    },
+    {
+      "name": "frischer Dill oder Basilikum",
+      "amount": 1,
+      "unit": "EL",
+      "note": "gehackt",
+      "group": null
+    },
+    {
+      "name": "Avocadoöl-Spray",
+      "amount": null,
+      "unit": null,
+      "note": "zum Besprühen",
+      "group": null
+    },
+    {
+      "name": "kleine Tortilla",
+      "amount": 1,
+      "unit": "Stück",
+      "note": null,
+      "group": null
+    }
+  ],
+  "images": {
+    "featured": {
+      "src": "./images/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg",
+      "alt": "Knuspriges Feta-Spiegelei mit goldenem Käse und Kräutern auf rustikalem Teller",
+      "filename": "feta-spiegelei-rezept.jpg",
+      "width": 1200,
+      "height": 1600,
+      "caption": null
+    }
+  },
+  "content": {
+    "introduction": {
+      "text": "Stell dir vor, du beißt in eine knusprige, goldbraune Feta-Kruste, die unter deinen Zähnen leicht knackt, während gleichzeitig cremiges Eigelb herausfließt und sich mit würziger Harissa vermischt. Genau das erwartet dich bei diesem viralen TikTok-Hit, der seit 2022 die Frühstückswelt im Sturm erobert hat. Mit über 32 Millionen Aufrufen ist dieses Rezept nicht ohne Grund so beliebt: Es vereint mediterrane Aromen mit nordafrikanischer Würze und ist in nur 10 Minuten fertig. Die Kombination aus salzigem Feta, der in der Pfanne zu einer knusprigen Kruste schmilzt, und dem sanften Spiegelei darauf ist einfach unwiderstehlich. Grace Elkus hat mit dieser Kreation einen echten Frühstücks-Game-Changer geschaffen, der perfekt ist, wenn du morgens wenig Zeit hast, aber trotzdem etwas Besonderes auf dem Teller haben möchtest.",
+      "characterCount": 745
+    },
+    "facts": [
+      {
+        "title": "Herkunft und Geschichte",
+        "text": "Dieses Rezept ist ein perfektes Beispiel für moderne Fusion-Küche, die mediterrane und nordafrikanische Einflüsse vereint. Der Feta-Käse stammt ursprünglich aus Griechenland und wird seit Jahrhunderten aus Schafs- oder Ziegenmilch hergestellt. Harissa hingegen ist eine traditionelle tunesische Gewürzmischung aus gerösteten roten Paprikaschoten und verschiedenen Gewürzen. Die Kombination dieser beiden Komponenten wurde durch Social Media bekannt und hat sich zu einem viralen Phänomen entwickelt, das die Grenzen traditioneller Landesküchen aufweicht.",
+        "order": 1
+      },
+      {
+        "title": "Zutaten im Detail",
+        "text": "Feta-Käse ist nicht nur geschmacklich ein Highlight, sondern auch ernährungsphysiologisch wertvoll. Er ist reich an Kalzium und Protein und enthält durch die Fermentation wertvolle Probiotika, die deine Darmgesundheit unterstützen. Eier liefern dir alle essenziellen Aminosäuren und sind damit eine perfekte Proteinquelle. Sie enthalten zudem Cholin, das wichtig für deine Gehirnfunktion ist, sowie Lutein und Zeaxanthin, die deine Augengesundheit fördern. Die Kombination aus Feta und Ei ergibt ein proteinreiches Frühstück, das dich lange satt hält.",
+        "order": 2
+      },
+      {
+        "title": "Nährwerte und Gesundheit",
+        "text": "Mit nur 280 Kalorien pro Portion ist dieses Gericht ein relativ leichtes, aber dennoch sättigendes Frühstück. Die 12 Gramm Protein helfen dir, den Muskelaufbau zu unterstützen und deinen Blutzuckerspiegel stabil zu halten. Die gesunden Fette aus dem Feta und dem Avocadoöl fördern die Aufnahme fettlöslicher Vitamine und halten dich lange satt. Wenn du die Tortilla weglässt oder durch eine Vollkorn-Variante ersetzt, kannst du das Gericht noch nährstoffreicher gestalten.",
+        "order": 3
+      }
+    ],
+    "steps": [
+      {
+        "number": 1,
+        "title": "Feta anbraten",
+        "shortText": "Kleine Pfanne auf mittlerer Hitze erwärmen und Feta-Krümel am Rand verteilen. 2-3 Minuten schmelzen lassen.",
+        "text": "Beginne damit, eine kleine beschichtete Pfanne auf mittlerer Stufe zu erhitzen. Verteile die Feta-Krümel kreisförmig am äußeren Rand der Pfanne, sodass ein Ring entsteht. Lasse den Käse nun für etwa 2 bis 3 Minuten schmelzen, ohne ihn zu bewegen. Du wirst bemerken, dass der Feta langsam anfängt zu schmelzen und an den Rändern eine goldbraune Farbe annimmt. Diese Phase ist entscheidend für die spätere knusprige Textur. Achte darauf, dass die Hitze nicht zu hoch ist, sonst verbrennt der Käse, bevor er richtig schmelzen kann.",
+        "tips": [
+          "Verwende einen Feta-Block aus Vollmilch in Salzlake für die beste Konsistenz"
+        ]
+      },
+      {
+        "number": 2,
+        "title": "Harissa und Ei hinzufügen",
+        "shortText": "Harissa oder Pesto in die Mitte geben, dann das Ei vorsichtig darüber aufschlagen. 3-5 Minuten garen.",
+        "text": "Sobald der Feta geschmolzen ist, gibst du einen Esslöffel Harissa oder Pesto in die Mitte der Pfanne, genau dort, wo kein Käse ist. Schlage nun vorsichtig das Ei direkt über die Harissa auf. Sei dabei behutsam, damit das Eigelb intakt bleibt. Lasse das Ei nun für 3 bis 5 Minuten bei mittlerer Hitze garen, je nachdem, wie du dein Eigelb magst. Wenn du ein weiches, flüssiges Eigelb bevorzugst, reichen 3 Minuten aus. Für ein festeres Eigelb solltest du eher 5 Minuten einplanen. Du kannst die Pfanne optional mit einem Deckel abdecken, um das Eiweiß schneller zu garen und gleichzeitig das Eigelb weich zu halten.",
+        "tips": [
+          "Für ein weiches Eigelb die Pfanne mit einem Deckel abdecken"
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Mit Kräutern garnieren",
+        "shortText": "Wenn das Ei gar ist und der Feta eine goldbraune Kruste hat, mit frischem Dill oder Basilikum bestreuen.",
+        "text": "Sobald das Ei nach deinem Geschmack gegart ist und der Feta eine schöne goldbraune, knusprige Kruste entwickelt hat, ist es Zeit für die Kräuter. Nimm frischen Dill oder Basilikum und hacke ihn grob. Streue die Kräuter großzügig über das Ei und den Feta. Die Kräuter geben dem Gericht nicht nur eine wunderbare Frische, sondern setzen auch optisch einen schönen grünen Akzent. Nimm die Pfanne nun vom Herd und hebe das Feta-Ei-Kunstwerk vorsichtig mit einem breiten Pfannenwender heraus. Lege es auf einen vorbereiteten Teller.",
+        "tips": []
+      },
+      {
+        "number": 4,
+        "title": "Tortilla zubereiten",
+        "shortText": "Pfanne mit Öl besprühen und Tortilla von beiden Seiten je 1-2 Minuten goldbraun braten.",
+        "text": "Sprühe nun die gleiche Pfanne leicht mit Avocadoöl-Spray ein. Du kannst auch einen kleinen Klecks Butter verwenden, wenn du möchtest. Lege die Tortilla in die noch warme Pfanne und brate sie bei mittlerer Hitze für etwa 1 bis 2 Minuten, bis sie leicht goldbraune Stellen bekommt. Wende sie dann mit einer Zange oder einem Pfannenwender und brate die andere Seite ebenfalls für 1 bis 2 Minuten. Die Tortilla sollte leicht knusprig, aber nicht hart werden. Sie dient als perfekte Unterlage für das Feta-Ei und saugt später die köstlichen Säfte auf.",
+        "tips": []
+      },
+      {
+        "number": 5,
+        "title": "Servieren",
+        "shortText": "Feta-Ei-Mischung auf die Tortilla setzen und sofort servieren.",
+        "text": "Lege die gebratene Tortilla auf einen Teller und setze das knusprige Feta-Spiegelei vorsichtig darauf. Achte darauf, dass du die knusprige Feta-Kruste nicht beschädigst. Du kannst das Gericht jetzt direkt servieren, solange alles noch heiß und der Käse knusprig ist. Am besten isst du es sofort mit Messer und Gabel oder rollst die Tortilla um die Füllung und genießt es als Wrap. Das flüssige Eigelb wird sich mit der Harissa vermischen und eine unglaublich würzige Sauce bilden, die perfekt zum salzigen Feta passt.",
+        "tips": [
+          "Serviere das Gericht sofort, solange der Feta noch knusprig ist"
+        ]
+      }
+    ],
+    "tips": {
+      "title": "Tipps und Variationen",
+      "items": [
+        {
+          "title": "Aufbewahrung",
+          "text": "Das Feta-Spiegelei schmeckt am besten frisch zubereitet, wenn der Käse noch knusprig ist. Falls du Reste hast, bewahre sie in einem luftdichten Behälter im Kühlschrank für maximal 2 bis 3 Tage auf. Beachte jedoch, dass der Feta beim Aufwärmen seine knusprige Textur verliert und eher weich wird. Du kannst das Gericht in der Mikrowelle oder in einer Pfanne aufwärmen, allerdings wird das Ergebnis nicht mehr so spektakulär sein wie beim ersten Mal."
+        },
+        {
+          "title": "Variationen",
+          "text": "Statt Harissa kannst du auch Pesto, Sriracha, Ajvar oder Tomatensauce verwenden. Wenn du keinen Feta hast, eignen sich auch Ziegenkäse, Cotija oder Parmigiano-Reggiano. Für eine extra Portion Gemüse kannst du vor dem Feta gewürfelte Tomaten, Spinat oder Paprika in die Pfanne geben. Auch verschiedene Kräuter wie Petersilie, Koriander oder Schnittlauch passen hervorragend. Wenn du es schärfer magst, füge zusätzliche Chiliflocken oder frische Jalapeños hinzu."
+        },
+        {
+          "title": "Serviervorschlag",
+          "text": "Dieses Gericht ist nicht nur zum Frühstück ein Hit, sondern eignet sich auch perfekt als schnelles Mittagessen oder leichtes Abendessen. Serviere es mit einem frischen grünen Salat, Avocado-Scheiben oder geröstetem Vollkornbrot. Statt einer Tortilla kannst du auch Pitabrot, eine Rösti oder einfach frisches Brot reichen. Ein Klecks griechischer Joghurt und eine Prise Za'atar runden das mediterrane Geschmackserlebnis perfekt ab."
+        }
+      ]
+    },
+    "conclusion": {
+      "text": "Das knusprige Feta-Spiegelei ist mehr als nur ein TikTok-Trend – es ist ein echtes Geschmackserlebnis, das die Grenzen zwischen Mittelmeer und Nordafrika verschwimmen lässt. Mit seiner perfekten Balance aus knusprigem Käse, cremigem Ei und würziger Harissa bringt es Abwechslung auf deinen Frühstückstisch. Probiere es aus und experimentiere mit verschiedenen Variationen, um deine persönliche Lieblingskombination zu finden. Guten Appetit!"
+    }
+  },
+  "faqs": [
+    {
+      "question": "Welche Fetasorte eignet sich am besten für das Rezept?",
+      "answer": "Am besten verwendest du einen Feta-Block aus Vollmilch, der in Salzlake eingelegt ist. Dieser hat die richtige Konsistenz zum Schmelzen und entwickelt beim Braten eine besonders knusprige Kruste. Vermeide vorzerkrümelten Feta aus der Tüte, da dieser oft zu trocken ist und nicht so gut schmilzt. Feta aus Schafs- oder Ziegenmilch funktioniert ebenfalls gut und hat einen intensiveren Geschmack.",
+      "category": "substitution"
+    },
+    {
+      "question": "Warum verbrennt mein Feta zu schnell?",
+      "answer": "Wenn dein Feta verbrennt, ist die Hitze zu hoch eingestellt. Verwende immer mittlere Hitze und habe etwas Geduld. Der Feta braucht 2 bis 3 Minuten, um langsam zu schmelzen und eine goldbraune Kruste zu entwickeln. Bei zu hoher Hitze verbrennt er außen, bevor er innen richtig geschmolzen ist. Achte auch darauf, eine beschichtete Pfanne zu verwenden, die die Hitze gleichmäßig verteilt.",
+      "category": "technique"
+    },
+    {
+      "question": "Kann ich den Feta durch einen anderen Käse ersetzen?",
+      "answer": "Ja, du kannst auch andere Käsesorten verwenden, die gut schmelzen und eine knusprige Kruste bilden. Ziegenkäse ist eine hervorragende Alternative mit einem milderen, cremigeren Geschmack. Cotija, ein mexikanischer Käse, eignet sich ebenfalls gut. Auch geriebener Parmigiano-Reggiano funktioniert, ergibt aber einen intensiveren, salzigeren Geschmack. Vermeide Käsesorten, die zu weich sind oder nicht gut schmelzen, wie Mozzarella oder Frischkäse.",
+      "category": "substitution"
+    },
+    {
+      "question": "Wie lagere ich Reste vom Feta-Spiegelei?",
+      "answer": "Bewahre Reste in einem luftdichten Behälter im Kühlschrank für maximal 2 bis 3 Tage auf. Beachte jedoch, dass der Feta seine knusprige Textur verliert und beim Aufwärmen eher weich wird. Du kannst die Reste in der Mikrowelle für 30 bis 60 Sekunden oder in einer Pfanne bei niedriger Hitze aufwärmen. Das Ergebnis wird nicht so knusprig sein wie frisch zubereitet, schmeckt aber trotzdem noch gut.",
+      "category": "storage"
+    },
+    {
+      "question": "Welches Öl sollte ich zum Braten verwenden?",
+      "answer": "Avocadoöl ist ideal, da es einen hohen Rauchpunkt hat und geschmacksneutral ist. Alternativ kannst du auch Olivenöl verwenden, was dem Gericht eine mediterrane Note verleiht. Butter eignet sich ebenfalls gut und gibt einen reichhaltigen, cremigen Geschmack, verbrennt aber schneller, also achte auf die Temperatur. Rapsöl oder Sonnenblumenöl funktionieren auch, haben aber weniger Eigengeschmack.",
+      "category": "technique"
+    },
+    {
+      "question": "Kann ich die Crispy Feta Fried Eggs einfrieren?",
+      "answer": "Das Einfrieren wird nicht empfohlen, da sowohl der Feta als auch das Ei ihre Textur beim Auftauen stark verändern. Der Feta wird krümelig und wässrig, das Ei wird gummiartig und verliert seine cremige Konsistenz. Wenn du das Gericht vorbereiten möchtest, empfiehlt es sich, die Zutaten getrennt aufzubewahren und das Gericht erst kurz vor dem Servieren frisch zuzubereiten.",
+      "category": "storage"
+    },
+    {
+      "question": "Was kann ich statt einer Tortilla verwenden?",
+      "answer": "Es gibt viele leckere Alternativen zur Tortilla. Vollkornbrot oder Sauerteigbrot, leicht geröstet, sind eine herzhafte Option. Pitabrot oder Fladenbrot passen perfekt zum mediterranen Charakter des Gerichts. Eine knusprige Rösti aus geriebenen Kartoffeln ist eine kreative Alternative. Du kannst das Feta-Ei auch auf einem Bett aus Spinat, Rucola oder gemischtem Salat servieren, um es Low-Carb zu halten.",
+      "category": "substitution"
+    },
+    {
+      "question": "Wie bekomme ich ein weiches, flüssiges Eigelb?",
+      "answer": "Für ein perfekt weiches Eigelb solltest du die Pfanne mit einem Deckel abdecken, nachdem du das Ei hinzugefügt hast. Die aufsteigende Hitze gart das Eiweiß schneller, während das Eigelb weich bleibt. Gare das Ei bei mittlerer Hitze für etwa 3 bis 4 Minuten. Du kannst auch einen Esslöffel Wasser in die Pfanne geben und sofort den Deckel aufsetzen, um Dampf zu erzeugen. Kontrolliere regelmäßig den Gargrad, indem du den Deckel kurz anhebst.",
+      "category": "technique"
+    }
+  ],
+  "recipeSchema": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Knuspriges Feta-Spiegelei",
+    "description": "Ein virales TikTok-Frühstücksrezept mit Eiern, die auf einem Bett aus geschmolzenem, knusprigem Feta-Käse mit Harissa und frischen Kräutern zubereitet werden.",
+    "image": [
+      "./images/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Ingrid Hartmann"
+    },
+    "datePublished": "2026-01-16",
+    "prepTime": "PT2M",
+    "cookTime": "PT8M",
+    "totalTime": "PT10M",
+    "recipeYield": "1 Portion",
+    "recipeCategory": "Frühstück",
+    "recipeCuisine": "Mediterran",
+    "recipeIngredient": [
+      "60ml Feta-Käse, zerkrümelt (etwa ¼ Tasse)",
+      "1 EL Harissa oder Pesto",
+      "1 großes Ei",
+      "1 EL frischer Dill oder Basilikum, gehackt",
+      "Avocadoöl-Spray zum Besprühen",
+      "1 kleine Tortilla"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "name": "Feta anbraten",
+        "text": "Kleine Pfanne auf mittlerer Hitze erwärmen und Feta-Krümel am Rand verteilen. 2-3 Minuten schmelzen lassen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Harissa und Ei hinzufügen",
+        "text": "Harissa oder Pesto in die Mitte geben, dann das Ei vorsichtig darüber aufschlagen. 3-5 Minuten garen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Mit Kräutern garnieren",
+        "text": "Wenn das Ei gar ist und der Feta eine goldbraune Kruste hat, mit frischem Dill oder Basilikum bestreuen."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Tortilla zubereiten",
+        "text": "Pfanne mit Öl besprühen und Tortilla von beiden Seiten je 1-2 Minuten goldbraun braten."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Servieren",
+        "text": "Feta-Ei-Mischung auf die Tortilla setzen und sofort servieren."
+      }
+    ],
+    "nutrition": {
+      "@type": "NutritionInformation",
+      "servingSize": "1 Portion",
+      "calories": "280 kcal",
+      "carbohydrateContent": "15g",
+      "proteinContent": "12g",
+      "fatContent": "18g"
+    },
+    "keywords": "Feta-Spiegelei, TikTok-Rezept, Harissa, Frühstück, mediterran, knuspriger Feta, schnelles Frühstück",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    }
+  },
+  "vgwort": {
+    "characterCount": 6912,
+    "minRequired": 1800,
+    "eligible": true,
+    "trackingUrl": "https://vg04.met.vgwort.de/na/14f97ad5450e4ca2909cbe5dce9f89a2",
+    "note": "Character count includes introduction, facts, steps, tips, and conclusion"
+  }
+}
