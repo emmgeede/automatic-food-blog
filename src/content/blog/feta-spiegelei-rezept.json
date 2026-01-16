@@ -19,7 +19,7 @@
       "Frühstück",
       "mediterran"
     ],
-    "ogImage": "./images/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg",
+    "ogImage": "/images/rezepte/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg",
     "ogType": "article"
   },
   "taxonomy": {
@@ -122,7 +122,7 @@
   ],
   "images": {
     "featured": {
-      "src": "./images/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg",
+      "src": "/images/rezepte/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg",
       "alt": "Knuspriges Feta-Spiegelei mit goldenem Käse und Kräutern auf rustikalem Teller",
       "filename": "feta-spiegelei-rezept.jpg",
       "width": 1200,
@@ -264,7 +264,7 @@
     "name": "Knuspriges Feta-Spiegelei",
     "description": "Ein virales TikTok-Frühstücksrezept mit Eiern, die auf einem Bett aus geschmolzenem, knusprigem Feta-Käse mit Harissa und frischen Kräutern zubereitet werden.",
     "image": [
-      "./images/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg"
+      "/images/rezepte/feta-spiegelei-rezept/feta-spiegelei-rezept.jpg"
     ],
     "author": {
       "@type": "Person",
